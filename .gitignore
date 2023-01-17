@@ -1,0 +1,31 @@
+#
+# This source file is part of the StanfordBDHG Template Application project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University
+#
+# SPDX-License-Identifier: MIT
+#
+
+# Swift Package Manager
+*.xcodeproj
+.swiftpm
+.build/
+!TemplateApplication.xcodeproj
+
+# IDE related folders
+.idea
+
+# Xcode
+xcuserdata/
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Other files
+.DS_Store
+.env
+
+# Tests
+report.junit
+report.html
+TemplateApplication.xcresult

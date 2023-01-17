@@ -1,0 +1,13 @@
+#
+# This source file is part of the StanfordBDHG Template Application project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University
+#
+# SPDX-License-Identifier: MIT
+#
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+app_identifier "edu.stanford.templateapplication" # The bundle identifier of your app
+apple_id ENV["APPLE_ID"]  # Your Apple email address
