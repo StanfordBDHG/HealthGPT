@@ -1,6 +1,6 @@
 <!--
 
-This source file is part of the StanfordBDHG Template Application project
+This source file is part of the Stanforf CardinalKit Template Application project
 
 SPDX-FileCopyrightText: 2023 Stanford University
 
@@ -10,7 +10,7 @@ SPDX-License-Identifier: MIT
 
 # Template Application
 
-This repository contains the StanfordBDHG Template Application. It serves as a template repository for projects requiering a mobile application using a continous integration and continous delivery setup.
+This repository contains the Stanforf CardinalKit Template Application. It serves as a template repository for projects requiering a mobile application using a continous integration and continous delivery setup.
 
 ## Continous Delivery Workflows
 

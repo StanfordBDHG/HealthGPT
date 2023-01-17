@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "cardinalkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKit",
+      "state" : {
+        "revision" : "f9afdceb39e48814c2d9b4f08f8254b073a7de89",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "fhirmodels",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/FHIRModels",
+      "state" : {
+        "revision" : "e115442fb3c5d44ffb1dc9b4e039b77fd143ad96",
+        "version" : "0.4.0"
+      }
+    }
+  ],
+  "version" : 2
+}

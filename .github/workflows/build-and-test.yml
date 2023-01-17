@@ -1,5 +1,5 @@
 #
-# This source file is part of the StanfordBDHG Template Application project
+# This source file is part of the Stanforf CardinalKit Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -34,10 +34,10 @@ jobs:
           swift --version
     - name: Build and test
       run: bundler install && bundle exec fastlane test
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: true
-        token: ${{ secrets.CODECOV_TOKEN }}
-        xcode: true
-        xcode_archive_path: TemplateApplication.xcresult
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v3
+    #   with:
+    #     fail_ci_if_error: true
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     xcode: true
+    #     xcode_archive_path: TemplateApplication.xcresult

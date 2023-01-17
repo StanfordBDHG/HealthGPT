@@ -1,5 +1,5 @@
 //
-// This source file is part of the StanfordBDHG Template Application project
+// This source file is part of the Stanforf CardinalKit Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
