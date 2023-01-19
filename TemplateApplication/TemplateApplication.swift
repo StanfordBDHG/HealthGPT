@@ -11,6 +11,9 @@ import SwiftUI
 
 @main
 struct TemplateApplication: App {
+    @UIApplicationDelegateAdaptor(TemplateAppDelegate.self) var appDelegate
+    
+    
     var body: some Scene {
         WindowGroup {
             VStack {
@@ -21,6 +24,7 @@ struct TemplateApplication: App {
                 Text("Welcome to the Template Application!")
                     .bold()
             }
+                .cardinalKit(appDelegate)
         }
     }
 }
