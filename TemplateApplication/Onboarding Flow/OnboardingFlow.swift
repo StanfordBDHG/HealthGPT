@@ -12,6 +12,7 @@ import SwiftUI
 struct OnboardingFlow: View {
     enum Step: String, Codable {
         case interestingModules
+        case consent
     }
     
     
@@ -25,6 +26,8 @@ struct OnboardingFlow: View {
                     switch onboardingStep {
                     case .interestingModules:
                         InterestingModules(onboardingSteps: $onboardingSteps)
+                    case .consent:
+                        Consent(onboardingSteps: $onboardingSteps)
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)

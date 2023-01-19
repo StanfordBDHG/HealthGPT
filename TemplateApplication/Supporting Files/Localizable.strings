@@ -37,4 +37,11 @@
 "INTERESTING_MODULES_AREA2_TITLE" = "FHIR";
 "INTERESTING_MODULES_AREA2_DESCRIPTION" = "The FHIR module provides a CardinalKit standard that can be used as a communication standard between modules.";
 
-"INTERESTING_MODULES_BUTTON" = "Explore the App";
+"INTERESTING_MODULES_BUTTON" = "Next";
+
+
+// MARK: Consent
+"CONSENT_TITLE" = "Consent Example";
+"CONSENT_SUBTITLE" = "CardinalKit can collect consent from a user. You can provide the consent document using a markdown file.";
+
+"CONSENT_LOADING_ERROR" = "Please include a markdown based document named \"ConsentDocument\" in your asset catalogue.";

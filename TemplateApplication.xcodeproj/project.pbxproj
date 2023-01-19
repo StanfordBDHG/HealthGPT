@@ -18,6 +18,7 @@
 		2FC9759A2978D83500BA99FE /* Onboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975992978D83500BA99FE /* Onboarding */; };
 		2FC9759C2978DB5900BA99FE /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9759B2978DB5900BA99FE /* Binding+Negate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
+		2FC975A12978E94F00BA99FE /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A02978E94F00BA99FE /* Consent.swift */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* TemplateApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* TemplateApplicationTests.swift */; };
@@ -51,6 +52,7 @@
 		2FC975972978D7D300BA99FE /* InterestingModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
 		2FC9759B2978DB5900BA99FE /* Binding+Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Negate.swift"; sourceTree = "<group>"; };
 		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		2FC975A02978E94F00BA99FE /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* TemplateApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */,
 				2FC975952978D7CC00BA99FE /* Welcome.swift */,
 				2FC975972978D7D300BA99FE /* InterestingModules.swift */,
+				2FC975A02978E94F00BA99FE /* Consent.swift */,
 			);
 			path = "Onboarding Flow";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC975A12978E94F00BA99FE /* Consent.swift in Sources */,
 				2FC975942978D4C900BA99FE /* CodableArray+RawRepresentable.swift in Sources */,
 				2FC9759C2978DB5900BA99FE /* Binding+Negate.swift in Sources */,
 				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,

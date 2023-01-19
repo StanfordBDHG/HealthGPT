@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct InterestingModules: View {
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
     
@@ -31,7 +30,7 @@ struct InterestingModules: View {
             ],
             actionText: "INTERESTING_MODULES_BUTTON",
             action: {
-                completedOnboardingFlow = true
+                onboardingSteps.append(.consent)
             }
         )
     }
