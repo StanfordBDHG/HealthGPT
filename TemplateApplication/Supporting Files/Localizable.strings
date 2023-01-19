@@ -44,4 +44,4 @@
 "CONSENT_TITLE" = "Consent Example";
 "CONSENT_SUBTITLE" = "CardinalKit can collect consent from a user. You can provide the consent document using a markdown file.";
 
-"CONSENT_LOADING_ERROR" = "Please include a markdown based document named \"ConsentDocument\" in your asset catalogue.";
+"CONSENT_LOADING_ERROR" = "Please include a markdown based document named \"ConsentDocument\" in your main Bundle.";

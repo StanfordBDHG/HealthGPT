@@ -16,7 +16,8 @@ struct Consent: View {
     
     
     private var consentDocument: Data {
-        guard let data = NSDataAsset(name: "ConsentDocument")?.data else {
+        guard let path = Bundle.main.url(forResource: "ConsentDocument", withExtension: "md"),
+              let data = try? Data(contentsOf: path) else {
             return Data(String(localized: "CONSENT_LOADING_ERROR").utf8)
         }
         return data
