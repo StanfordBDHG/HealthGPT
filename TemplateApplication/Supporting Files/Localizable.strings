@@ -1,0 +1,40 @@
+//
+// This source file is part of the Stanford CardinalKit Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
+// MARK: - Main View
+"MAIN_WELCOME" = "Welcome to the Template Application!";
+
+
+// MARK: - Onboarding
+
+// MARK: Welcome
+"WELCOME_TITLE" = "CardinalKit\nTemplate Application";
+"WELCOME_SUBTITLE" = "This application demonstrates several CardinalKit features & modules.";
+
+"WELCOME_AREA1_TITLE" = "The CardinalKit Framework";
+"WELCOME_AREA1_DESCRIPTION" = "The CardinalKit Framework builds the foundation of this template application.";
+
+"WELCOME_AREA2_TITLE" = "Swift Package Manager";
+"WELCOME_AREA2_DESCRIPTION" = "CardinalKit uses the Swift Package Manager to import it as a dependency.";
+
+"WELCOME_AREA3_TITLE" = "CardinalKit Modules";
+"WELCOME_AREA3_DESCRIPTION" = "CardinalKit offers several modules including HealthKit integration, questionnaires, and more ...";
+
+"WELCOME_BUTTON" = "Learn More";
+
+// MARK: Interesting Modules
+"INTERESTING_MODULES_TITLE" = "Interesting Modules";
+"INTERESTING_MODULES_SUBTITLE" = "Here are a few CardinalKit modules that are interesting to know about ...";
+
+"INTERESTING_MODULES_AREA1_TITLE" = "Onboarding";
+"INTERESTING_MODULES_AREA1_DESCRIPTION" = "The onboarding module allows you to build an onboardig flow like this one.";
+
+"INTERESTING_MODULES_AREA2_TITLE" = "FHIR";
+"INTERESTING_MODULES_AREA2_DESCRIPTION" = "The FHIR module provides a CardinalKit standard that can be used as a communication standard between modules.";
+
+"INTERESTING_MODULES_BUTTON" = "Explore the App";

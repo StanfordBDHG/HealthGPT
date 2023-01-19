@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanforf CardinalKit Template Application project
+// This source file is part of the Stanford CardinalKit Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
@@ -12,6 +12,7 @@ import SwiftUI
 @main
 struct TemplateApplication: App {
     @UIApplicationDelegateAdaptor(TemplateAppDelegate.self) var appDelegate
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
     var body: some Scene {
@@ -21,9 +22,12 @@ struct TemplateApplication: App {
                     .font(.system(size: 100))
                     .foregroundColor(.accentColor)
                     .padding()
-                Text("Welcome to the Template Application!")
+                Text("MAIN_WELCOME")
                     .bold()
             }
+                .sheet(isPresented: !$completedOnboardingFlow) {
+                    OnboardingFlow()
+                }
                 .cardinalKit(appDelegate)
         }
     }

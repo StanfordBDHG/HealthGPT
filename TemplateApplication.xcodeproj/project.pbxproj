@@ -10,6 +10,14 @@
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2FC975872978D26900BA99FE /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975862978D26900BA99FE /* CardinalKit */; };
 		2FC975892978D26900BA99FE /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975882978D26900BA99FE /* FHIR */; };
+		2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */; };
+		2FC9758F2978D39D00BA99FE /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9758E2978D39D00BA99FE /* StorageKeys.swift */; };
+		2FC975942978D4C900BA99FE /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975932978D4C900BA99FE /* CodableArray+RawRepresentable.swift */; };
+		2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975952978D7CC00BA99FE /* Welcome.swift */; };
+		2FC975982978D7D300BA99FE /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975972978D7D300BA99FE /* InterestingModules.swift */; };
+		2FC9759A2978D83500BA99FE /* Onboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975992978D83500BA99FE /* Onboarding */; };
+		2FC9759C2978DB5900BA99FE /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9759B2978DB5900BA99FE /* Binding+Negate.swift */; };
+		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* TemplateApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* TemplateApplicationTests.swift */; };
@@ -36,6 +44,13 @@
 /* Begin PBXFileReference section */
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2F5E32C4297E05EA003432F8 /* CardinalKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CardinalKit; path = ../CardinalKit; sourceTree = "<group>"; };
+		2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
+		2FC9758E2978D39D00BA99FE /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		2FC975932978D4C900BA99FE /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
+		2FC975952978D7CC00BA99FE /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		2FC975972978D7D300BA99FE /* InterestingModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
+		2FC9759B2978DB5900BA99FE /* Binding+Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Negate.swift"; sourceTree = "<group>"; };
+		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* TemplateApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +68,7 @@
 			files = (
 				2FC975872978D26900BA99FE /* CardinalKit in Frameworks */,
 				2FC975892978D26900BA99FE /* FHIR in Frameworks */,
+				2FC9759A2978D83500BA99FE /* Onboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +89,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FC9758A2978D34100BA99FE /* Onboarding Flow */ = {
+			isa = PBXGroup;
+			children = (
+				2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */,
+				2FC975952978D7CC00BA99FE /* Welcome.swift */,
+				2FC975972978D7D300BA99FE /* InterestingModules.swift */,
+			);
+			path = "Onboarding Flow";
+			sourceTree = "<group>";
+		};
+		2FC9758D2978D37900BA99FE /* Shared Context */ = {
+			isa = PBXGroup;
+			children = (
+				2FC9758E2978D39D00BA99FE /* StorageKeys.swift */,
+			);
+			path = "Shared Context";
+			sourceTree = "<group>";
+		};
+		2FC975922978D4C300BA99FE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2FC975932978D4C900BA99FE /* CodableArray+RawRepresentable.swift */,
+				2FC9759B2978DB5900BA99FE /* Binding+Negate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				653A258928339462005D4D48 /* Info.plist */,
+				653A255428338800005D4D48 /* Assets.xcassets */,
+				2FC9759E2978E39600BA99FE /* Localizable.strings */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +151,12 @@
 		653A254F283387FE005D4D48 /* TemplateApplication */ = {
 			isa = PBXGroup;
 			children = (
+				2FC9759D2978E30800BA99FE /* Supporting Files */,
+				2FC975922978D4C300BA99FE /* Extensions */,
+				2FC9758D2978D37900BA99FE /* Shared Context */,
+				2FC9758A2978D34100BA99FE /* Onboarding Flow */,
 				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
 				2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */,
-				653A258928339462005D4D48 /* Info.plist */,
-				653A255428338800005D4D48 /* Assets.xcassets */,
 			);
 			path = TemplateApplication;
 			sourceTree = "<group>";
@@ -148,6 +203,7 @@
 			packageProductDependencies = (
 				2FC975862978D26900BA99FE /* CardinalKit */,
 				2FC975882978D26900BA99FE /* FHIR */,
+				2FC975992978D83500BA99FE /* Onboarding */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -242,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
+				2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +323,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC975942978D4C900BA99FE /* CodableArray+RawRepresentable.swift in Sources */,
+				2FC9759C2978DB5900BA99FE /* Binding+Negate.swift in Sources */,
+				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,
+				2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */,
+				2FC9758F2978D39D00BA99FE /* StorageKeys.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
+				2FC975982978D7D300BA99FE /* InterestingModules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +492,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TemplateApplication/Info.plist;
+				INFOPLIST_FILE = "TemplateApplication/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -466,7 +529,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 637867499T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TemplateApplication/Info.plist;
+				INFOPLIST_FILE = "TemplateApplication/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -618,6 +681,10 @@
 		2FC975882978D26900BA99FE /* FHIR */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FHIR;
+		};
+		2FC975992978D83500BA99FE /* Onboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Onboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
