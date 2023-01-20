@@ -13,4 +13,8 @@ enum StorageKeys {
     // MARK: - Onboarding
     static let onboardingFlowComplete = "onboardingFlow.complete"
     static let onboardingFlowStep = "onboardingFlow.step"
+    
+    
+    // MARK: - Home
+    static let homeTabSelection = "home.tabselection"
 }

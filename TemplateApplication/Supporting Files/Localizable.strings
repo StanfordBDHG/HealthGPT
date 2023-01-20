@@ -45,3 +45,10 @@
 "CONSENT_SUBTITLE" = "CardinalKit can collect consent from a user. You can provide the consent document using a markdown file.";
 
 "CONSENT_LOADING_ERROR" = "Please include a markdown based document named \"ConsentDocument\" in your main Bundle.";
+
+
+// MARK: - Contacts
+
+"CONTACTS_NAVIGATION_TITLE" = "Contacts";
+"LELAND_STANFORD_BIO" = "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.
+[https://en.wikipedia.org/wiki/Leland_Stanford]";
