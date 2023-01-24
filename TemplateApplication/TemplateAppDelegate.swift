@@ -16,6 +16,9 @@ import Scheduler
 import SwiftUI
 
 
+typealias TemplateApplicationScheduler = Scheduler<FHIR, TemplateApplicationTaskContext>
+
+
 class TemplateAppDelegate: CardinalKitAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
@@ -31,6 +34,18 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
             }
             QuestionnaireDataSource()
             MockDataStorageProvider()
+            TemplateApplicationScheduler(tasks: [
+                Task(
+                    title: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE",
+                    description: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION",
+                    schedule: Schedule(
+                        start: Calendar.current.startOfDay(for: Date()),
+                        dateComponents: .init(hour: 0, minute: 30), // Every Day at 12:30 AM
+                        end: .numberOfEvents(356)
+                    ),
+                    context: TemplateApplicationTaskContext.questionnaire(Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire"))
+                )
+            ])
         }
     }
 }

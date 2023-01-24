@@ -24,7 +24,7 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            QuestionnaireList()
+            SchedulerView()
                 .tag(Tabs.questionnaires)
                 .tabItem {
                     Label("QUESTIONNAIRES_TAB_TITLE", systemImage: "list.clipboard")
