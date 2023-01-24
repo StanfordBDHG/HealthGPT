@@ -12,6 +12,7 @@ import HealthKit
 import HealthKitDataSource
 import HealthKitToFHIRAdapter
 import Questionnaires
+import Scheduler
 import SwiftUI
 
 
@@ -29,6 +30,7 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
                 }
             }
             QuestionnaireDataSource()
+            MockDataStorageProvider()
         }
     }
 }

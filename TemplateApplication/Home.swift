@@ -15,6 +15,7 @@ struct HomeView: View {
     enum Tabs: String {
         case contact
         case questionnaires
+        case mockUpload
     }
     
     
@@ -32,6 +33,11 @@ struct HomeView: View {
                 .tag(Tabs.contact)
                 .tabItem {
                     Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+                }
+            MockUploadList()
+                .tag(Tabs.mockUpload)
+                .tabItem {
+                    Label("MOCK_UPLOAD_TAB_TITLE", systemImage: "server.rack")
                 }
         }
     }
