@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 
 
-struct Contacts: View {
+public struct Contacts: View {
     let contacts = [
         Contact(
             name: PersonNameComponents(
@@ -49,12 +49,15 @@ struct Contacts: View {
     ]
     
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             ContactsList(contacts: contacts)
                 .navigationTitle("CONTACTS_NAVIGATION_TITLE")
         }
     }
+    
+    
+    public init() {}
 }
 
 

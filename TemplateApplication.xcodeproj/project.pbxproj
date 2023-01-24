@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E233298047DA00E05C29 /* TemplateSharedContext */; };
 		2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */; };
+		2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23729804AA300E05C29 /* TemplateContacts */; };
 		2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75B297FCC5000BCB272 /* ScheduleView.swift */; };
 		2F49B768297FD1CB00BCB272 /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */; };
 		2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */; };
@@ -33,7 +34,6 @@
 		2FC975A12978E94F00BA99FE /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A02978E94F00BA99FE /* Consent.swift */; };
 		2FC975A52978EFB500BA99FE /* ConsentDocument.md in Resources */ = {isa = PBXBuildFile; fileRef = 2FC975A42978EFB500BA99FE /* ConsentDocument.md */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
-		2FC975AA297A7D6500BA99FE /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A9297A7D6500BA99FE /* Contacts.swift */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* TemplateApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* TemplateApplicationTests.swift */; };
@@ -75,7 +75,6 @@
 		2FC975A02978E94F00BA99FE /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		2FC975A42978EFB500BA99FE /* ConsentDocument.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ConsentDocument.md; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		2FC975A9297A7D6500BA99FE /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* TemplateApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 				2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */,
 				2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */,
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
+				2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
@@ -159,14 +159,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2FC975A62978F10300BA99FE /* Contact Views */ = {
-			isa = PBXGroup;
-			children = (
-				2FC975A9297A7D6500BA99FE /* Contacts.swift */,
-			);
-			path = "Contact Views";
-			sourceTree = "<group>";
-		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				2FAEC082297F85B600C11C42 /* Schedule */,
-				2FC975A62978F10300BA99FE /* Contact Views */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				2FC9758A2978D34100BA99FE /* Onboarding Flow */,
 				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
@@ -254,6 +245,7 @@
 				2F49B783298041F300BCB272 /* Contact */,
 				2F38E233298047DA00E05C29 /* TemplateSharedContext */,
 				2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */,
+				2F38E23729804AA300E05C29 /* TemplateContacts */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -386,7 +378,6 @@
 				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,
 				2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */,
 				2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */,
-				2FC975AA297A7D6500BA99FE /* Contacts.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
 				2FC975982978D7D300BA99FE /* InterestingModules.swift in Sources */,
@@ -762,6 +753,10 @@
 		2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TemplateMockDataStorageProvider;
+		};
+		2F38E23729804AA300E05C29 /* TemplateContacts */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TemplateContacts;
 		};
 		2F49B7752980407B00BCB272 /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;
