@@ -25,20 +25,25 @@ struct HealthKitPermissions: View {
                         title: "HEALTHKIT_PERMISSIONS_TITLE",
                         subtitle: "HEALTHKIT_PERMISSIONS_SUBTITLE"
                     )
+                    Spacer()
+                    Image(systemName: "heart.text.square.fill")
+                        .font(.system(size: 150))
+                        .foregroundColor(.accentColor)
                     Text("HEALTHKIT_PERMISSIONS_DESCRIPTION")
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 16)
+                    Spacer()
                 }
             }, actionView: {
                 OnboardingActionsView(
                     "HEALTHKIT_PERMISSIONS_BUTTON",
                     action: {
-                        _Concurrency.Task {
-                            do {
-                                try await healthKitDataSource.askForAuthorization()
-                            } catch {
-                                print("Could not request HealthKit permissions.")
-                            }
-                            completedOnboardingFlow = true
+                        do {
+                            try await healthKitDataSource.askForAuthorization()
+                        } catch {
+                            print("Could not request HealthKit permissions.")
                         }
+                        completedOnboardingFlow = true
                     }
                 )
             }
