@@ -73,6 +73,6 @@ let package = Package(
         .target(
             name: "TemplateSharedContext",
             dependencies: []
-        ),
+        )
     ]
 )

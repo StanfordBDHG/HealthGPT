@@ -9,6 +9,11 @@
 default_platform(:ios)
 
 platform :ios do
+  before_all do
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "5"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
+  end
+
   desc "Build and test"
   lane :test do
     run_tests(

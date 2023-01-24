@@ -9,7 +9,11 @@
 import FHIR
 
 
+/// The context attached to each task in the CardinalKit Template Application.
+///
+/// We currently only support `Questionnaire`s, more cases can be added in the future.
 public enum TemplateApplicationTaskContext: Codable, Identifiable {
+    /// The task schould display a `Questionnaire`.
     case questionnaire(Questionnaire)
     
     

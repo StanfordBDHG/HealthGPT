@@ -9,6 +9,7 @@
 import SwiftUI
 
 
+/// Displays the recoded uploads collected by the ``MockDataStorageProvider``.
 public struct MockUploadList: View {
     @EnvironmentObject var mockDataStorageProvider: MockDataStorageProvider
     
