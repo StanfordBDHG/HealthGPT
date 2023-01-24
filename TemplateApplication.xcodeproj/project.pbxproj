@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
+		2FAEC07C297F55C800C11C42 /* HealthKitDataSource in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC07B297F55C800C11C42 /* HealthKitDataSource */; };
+		2FAEC07E297F55C800C11C42 /* HealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC07D297F55C800C11C42 /* HealthKitToFHIRAdapter */; };
+		2FAEC081297F5BCF00C11C42 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAEC080297F5BCF00C11C42 /* HealthKitPermissions.swift */; };
 		2FC975872978D26900BA99FE /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975862978D26900BA99FE /* CardinalKit */; };
 		2FC975892978D26900BA99FE /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC975882978D26900BA99FE /* FHIR */; };
 		2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */; };
@@ -49,6 +52,8 @@
 /* Begin PBXFileReference section */
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2F5E32C4297E05EA003432F8 /* CardinalKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CardinalKit; path = ../CardinalKit; sourceTree = "<group>"; };
+		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
+		2FAEC080297F5BCF00C11C42 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
 		2FC9758B2978D34D00BA99FE /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		2FC9758E2978D39D00BA99FE /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		2FC975932978D4C900BA99FE /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
@@ -77,6 +82,8 @@
 			files = (
 				2FC975872978D26900BA99FE /* CardinalKit in Frameworks */,
 				2FC975892978D26900BA99FE /* FHIR in Frameworks */,
+				2FAEC07C297F55C800C11C42 /* HealthKitDataSource in Frameworks */,
+				2FAEC07E297F55C800C11C42 /* HealthKitToFHIRAdapter in Frameworks */,
 				2FC9759A2978D83500BA99FE /* Onboarding in Frameworks */,
 				2FC975AC297A7F4400BA99FE /* Contact in Frameworks */,
 			);
@@ -106,6 +113,7 @@
 				2FC975952978D7CC00BA99FE /* Welcome.swift */,
 				2FC975972978D7D300BA99FE /* InterestingModules.swift */,
 				2FC975A02978E94F00BA99FE /* Consent.swift */,
+				2FAEC080297F5BCF00C11C42 /* HealthKitPermissions.swift */,
 			);
 			path = "Onboarding Flow";
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */,
 				653A258928339462005D4D48 /* Info.plist */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FC9759E2978E39600BA99FE /* Localizable.strings */,
@@ -227,6 +236,8 @@
 				2FC975882978D26900BA99FE /* FHIR */,
 				2FC975992978D83500BA99FE /* Onboarding */,
 				2FC975AB297A7F4400BA99FE /* Contact */,
+				2FAEC07B297F55C800C11C42 /* HealthKitDataSource */,
+				2FAEC07D297F55C800C11C42 /* HealthKitToFHIRAdapter */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -358,6 +369,7 @@
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
 				2FC975982978D7D300BA99FE /* InterestingModules.swift in Sources */,
+				2FAEC081297F5BCF00C11C42 /* HealthKitPermissions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -548,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TemplateApplication/Supporting Files/TemplateApplication.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -571,7 +585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cardinalkittemplateapplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TemplateApplication;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "CardinalKit Template Application";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -701,6 +715,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2FAEC07B297F55C800C11C42 /* HealthKitDataSource */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthKitDataSource;
+		};
+		2FAEC07D297F55C800C11C42 /* HealthKitToFHIRAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HealthKitToFHIRAdapter;
+		};
 		2FC975862978D26900BA99FE /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CardinalKit;

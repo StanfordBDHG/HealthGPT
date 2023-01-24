@@ -13,6 +13,7 @@ struct OnboardingFlow: View {
     enum Step: String, Codable {
         case interestingModules
         case consent
+        case healthKitPermissions
     }
     
     
@@ -28,6 +29,8 @@ struct OnboardingFlow: View {
                         InterestingModules(onboardingSteps: $onboardingSteps)
                     case .consent:
                         Consent(onboardingSteps: $onboardingSteps)
+                    case .healthKitPermissions:
+                        HealthKitPermissions()
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)

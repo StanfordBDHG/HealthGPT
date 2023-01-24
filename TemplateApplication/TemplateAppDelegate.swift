@@ -8,11 +8,25 @@
 
 import CardinalKit
 import FHIR
+import HealthKit
+import HealthKitDataSource
+import HealthKitToFHIRAdapter
 import SwiftUI
 
 
 class TemplateAppDelegate: CardinalKitAppDelegate {
     override var configuration: Configuration {
-        Configuration(standard: FHIR()) { }
+        Configuration(standard: FHIR()) {
+            if HKHealthStore.isHealthDataAvailable() {
+                HealthKit {
+                    CollectSample(
+                        HKQuantityType(.stepCount),
+                        deliverySetting: .background(.afterAuthorizationAndApplicationWillLaunch)
+                    )
+                } adapter: {
+                    HealthKitToFHIRAdapter()
+                }
+            }
+        }
     }
 }

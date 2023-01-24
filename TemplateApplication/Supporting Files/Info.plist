@@ -11,5 +11,7 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>The CardinalKit Template Application uses the step count to demonstrate CardinalKit&apos;s integration with HealthKit</string>
 </dict>
 </plist>

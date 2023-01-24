@@ -14,11 +14,11 @@ import SwiftUI
 struct Contacts: View {
     let contacts = [
         Contact(
-            image: Image(systemName: "figure.wave.circle"),
             name: PersonNameComponents(
                 givenName: "Leland",
                 familyName: "Stanford"
             ),
+            image: Image(systemName: "figure.wave.circle"),
             title: "University Founder",
             description: String(localized: "LELAND_STANFORD_BIO"),
             organization: "Stanford University",

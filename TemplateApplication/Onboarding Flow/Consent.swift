@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct Consent: View {
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
     
@@ -35,7 +34,7 @@ struct Consent: View {
                 consentDocument
             },
             action: {
-                completedOnboardingFlow = true
+                onboardingSteps.append(.healthKitPermissions)
             }
         )
     }
