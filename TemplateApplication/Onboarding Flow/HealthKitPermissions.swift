@@ -10,6 +10,7 @@ import FHIR
 import HealthKitDataSource
 import Onboarding
 import SwiftUI
+import TemplateSharedContext
 
 
 struct HealthKitPermissions: View {

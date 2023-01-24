@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E233298047DA00E05C29 /* TemplateSharedContext */; };
 		2F49B756297FBF5500BCB272 /* MockDataStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */; };
 		2F49B758297FC18900BCB272 /* MockUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B757297FC18900BCB272 /* MockUpload.swift */; };
 		2F49B75A297FC1C500BCB272 /* MockUploadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B759297FC1C500BCB272 /* MockUploadList.swift */; };
@@ -27,9 +28,6 @@
 		2F49B7802980418400BCB272 /* Onboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B77F2980418400BCB272 /* Onboarding */; };
 		2F49B7822980419C00BCB272 /* Questionnaires in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7812980419C00BCB272 /* Questionnaires */; };
 		2F49B784298041F300BCB272 /* Contact in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B783298041F300BCB272 /* Contact */; };
-		2F49B79C298044F800BCB272 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B79A298044F800BCB272 /* StorageKeys.swift */; };
-		2F49B79D298044F800BCB272 /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B799298044F800BCB272 /* Binding+Negate.swift */; };
-		2F49B79E298044F800BCB272 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B79B298044F800BCB272 /* CodableArray+RawRepresentable.swift */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2FAEC081297F5BCF00C11C42 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAEC080297F5BCF00C11C42 /* HealthKitPermissions.swift */; };
 		2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC08A297F885600C11C42 /* FHIRQuestionnaires */; };
@@ -78,9 +76,6 @@
 		2F49B76F2980330300BCB272 /* EventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContext.swift; sourceTree = "<group>"; };
 		2F49B7712980330A00BCB272 /* EventContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContextView.swift; sourceTree = "<group>"; };
 		2F49B77329803E8F00BCB272 /* TemplateApplicationModules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TemplateApplicationModules; sourceTree = "<group>"; };
-		2F49B799298044F800BCB272 /* Binding+Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Negate.swift"; sourceTree = "<group>"; };
-		2F49B79A298044F800BCB272 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
-		2F49B79B298044F800BCB272 /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
 		2FAEC080297F5BCF00C11C42 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
@@ -112,6 +107,7 @@
 				2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */,
 				2F49B784298041F300BCB272 /* Contact in Frameworks */,
 				2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */,
+				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
@@ -219,9 +215,6 @@
 		653A254F283387FE005D4D48 /* TemplateApplication */ = {
 			isa = PBXGroup;
 			children = (
-				2F49B799298044F800BCB272 /* Binding+Negate.swift */,
-				2F49B79B298044F800BCB272 /* CodableArray+RawRepresentable.swift */,
-				2F49B79A298044F800BCB272 /* StorageKeys.swift */,
 				2F49B754297FBF0900BCB272 /* Mock Data Storage Provider */,
 				2FAEC082297F85B600C11C42 /* Schedule */,
 				2FC975A62978F10300BA99FE /* Contact Views */,
@@ -283,6 +276,7 @@
 				2F49B77F2980418400BCB272 /* Onboarding */,
 				2F49B7812980419C00BCB272 /* Questionnaires */,
 				2F49B783298041F300BCB272 /* Contact */,
+				2F38E233298047DA00E05C29 /* TemplateSharedContext */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -411,19 +405,16 @@
 				2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */,
 				2FC975A12978E94F00BA99FE /* Consent.swift in Sources */,
 				2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */,
-				2F49B79E298044F800BCB272 /* CodableArray+RawRepresentable.swift in Sources */,
 				2F49B762297FCF8F00BCB272 /* MockUploadDetailView.swift in Sources */,
 				2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */,
 				2F49B760297FCF7A00BCB272 /* LazyText.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
-				2F49B79D298044F800BCB272 /* Binding+Negate.swift in Sources */,
 				2F49B75A297FC1C500BCB272 /* MockUploadList.swift in Sources */,
 				2F49B764297FCFB400BCB272 /* MockUploadHeader.swift in Sources */,
 				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,
 				2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */,
 				2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */,
 				2FC975AA297A7D6500BA99FE /* Contacts.swift in Sources */,
-				2F49B79C298044F800BCB272 /* StorageKeys.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				2F49B758297FC18900BCB272 /* MockUpload.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
@@ -793,6 +784,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F38E233298047DA00E05C29 /* TemplateSharedContext */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TemplateSharedContext;
+		};
 		2F49B7752980407B00BCB272 /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
