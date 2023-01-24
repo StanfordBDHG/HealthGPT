@@ -11,6 +11,7 @@ import FHIR
 import HealthKit
 import HealthKitDataSource
 import HealthKitToFHIRAdapter
+import Questionnaires
 import SwiftUI
 
 
@@ -27,6 +28,7 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
                     HealthKitToFHIRAdapter()
                 }
             }
+            QuestionnaireDataSource()
         }
     }
 }
