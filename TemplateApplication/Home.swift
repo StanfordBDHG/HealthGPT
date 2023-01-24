@@ -16,19 +16,19 @@ import TemplateSharedContext
 
 struct HomeView: View {
     enum Tabs: String {
+        case schedule
         case contact
-        case questionnaires
         case mockUpload
     }
     
     
-    @AppStorage(StorageKeys.homeTabSelection) var selectedTab = Tabs.contact
+    @AppStorage(StorageKeys.homeTabSelection) var selectedTab = Tabs.schedule
     
     
     var body: some View {
         TabView(selection: $selectedTab) {
             ScheduleView()
-                .tag(Tabs.questionnaires)
+                .tag(Tabs.schedule)
                 .tabItem {
                     Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
                 }

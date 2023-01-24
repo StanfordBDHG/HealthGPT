@@ -10,7 +10,7 @@ import SwiftUI
 import TemplateSharedContext
 
 
-struct OnboardingFlow: View {
+public struct OnboardingFlow: View {
     enum Step: String, Codable {
         case interestingModules
         case consent
@@ -21,7 +21,7 @@ struct OnboardingFlow: View {
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
     
     
-    var body: some View {
+    public var body: some View {
         NavigationStack(path: $onboardingSteps) {
             Welcome(onboardingSteps: $onboardingSteps)
                 .navigationDestination(for: Step.self) { onboardingStep in
@@ -37,6 +37,9 @@ struct OnboardingFlow: View {
                 .navigationBarTitleDisplayMode(.inline)
         }
     }
+    
+    
+    public init() {}
 }
 
 

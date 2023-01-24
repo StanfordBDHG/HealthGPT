@@ -33,6 +33,9 @@ let package = Package(
             dependencies: [
                 .target(name: "TemplateSharedContext"),
                 .product(name: "Contact", package: "CardinalKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .target(
@@ -41,6 +44,9 @@ let package = Package(
                 .target(name: "TemplateSharedContext"),
                 .product(name: "CardinalKit", package: "CardinalKit"),
                 .product(name: "FHIR", package: "CardinalKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .target(

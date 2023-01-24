@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import TemplateOnboardingFlow
 import TemplateSharedContext
 
 

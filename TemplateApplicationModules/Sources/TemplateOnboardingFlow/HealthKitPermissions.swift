@@ -23,21 +23,21 @@ struct HealthKitPermissions: View {
             contentView: {
                 VStack {
                     OnboardingTitleView(
-                        title: "HEALTHKIT_PERMISSIONS_TITLE",
-                        subtitle: "HEALTHKIT_PERMISSIONS_SUBTITLE"
+                        title: "HEALTHKIT_PERMISSIONS_TITLE".moduleLocalized,
+                        subtitle: "HEALTHKIT_PERMISSIONS_SUBTITLE".moduleLocalized
                     )
                     Spacer()
                     Image(systemName: "heart.text.square.fill")
                         .font(.system(size: 150))
                         .foregroundColor(.accentColor)
-                    Text("HEALTHKIT_PERMISSIONS_DESCRIPTION")
+                    Text("HEALTHKIT_PERMISSIONS_DESCRIPTION", bundle: .module)
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
                     Spacer()
                 }
             }, actionView: {
                 OnboardingActionsView(
-                    "HEALTHKIT_PERMISSIONS_BUTTON",
+                    "HEALTHKIT_PERMISSIONS_BUTTON".moduleLocalized,
                     action: {
                         do {
                             try await healthKitDataSource.askForAuthorization()

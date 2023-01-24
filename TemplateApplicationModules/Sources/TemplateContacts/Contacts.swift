@@ -20,7 +20,7 @@ public struct Contacts: View {
             ),
             image: Image(systemName: "figure.wave.circle"),
             title: "University Founder",
-            description: String(localized: "LELAND_STANFORD_BIO"),
+            description: String(localized: "LELAND_STANFORD_BIO", bundle: .module),
             organization: "Stanford University",
             address: {
                 let address = CNMutablePostalAddress()
@@ -52,7 +52,7 @@ public struct Contacts: View {
     public var body: some View {
         NavigationStack {
             ContactsList(contacts: contacts)
-                .navigationTitle("CONTACTS_NAVIGATION_TITLE")
+                .navigationTitle(String(localized: "CONTACTS_NAVIGATION_TITLE", bundle: .module))
         }
     }
     
