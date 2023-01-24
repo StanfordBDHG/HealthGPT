@@ -9,11 +9,11 @@
 import FHIR
 
 
-enum TemplateApplicationTaskContext: Codable, Identifiable {
+public enum TemplateApplicationTaskContext: Codable, Identifiable {
     case questionnaire(Questionnaire)
     
     
-    var id: Questionnaire.ID {
+    public var id: Questionnaire.ID {
         switch self {
         case let .questionnaire(questionnaire):
             return questionnaire.id
@@ -23,7 +23,7 @@ enum TemplateApplicationTaskContext: Codable, Identifiable {
     var actionType: String {
         switch self {
         case .questionnaire:
-            return String(localized: "TASK_CONTEXT_ACTION_QUESTIONNAIRE")
+            return String(localized: "TASK_CONTEXT_ACTION_QUESTIONNAIRE", bundle: .module)
         }
     }
 }

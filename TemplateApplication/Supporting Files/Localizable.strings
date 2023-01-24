@@ -6,9 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-// MARK: - Main View
-"MAIN_WELCOME" = "Welcome to the Template Application!";
-
 
 // MARK: - Contacts
 "CONTACTS_TAB_TITLE" = "Contacts";
@@ -20,7 +17,3 @@
 
 // MARK: - Schedule
 "SCHEDULE_TAB_TITLE" = "Schedule";
-"SCHEDULE_LIST_TITLE" = "Schedule";
-"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" = "Social Support Questionnaire";
-"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" = "Please fill out the Social Support Questionnaire every day.";
-"TASK_CONTEXT_ACTION_QUESTIONNAIRE" = "Start Questionnaire";

@@ -12,7 +12,7 @@ import Scheduler
 import SwiftUI
 
 
-struct ScheduleView: View {
+public struct ScheduleView: View {
     @EnvironmentObject var scheduler: TemplateApplicationScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
@@ -23,7 +23,7 @@ struct ScheduleView: View {
     }
     
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             List(startOfDays, id: \.timeIntervalSinceNow) { startOfDay in
                 Section(format(startOfDay: startOfDay)) {
@@ -46,9 +46,12 @@ struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                .navigationTitle("SCHEDULE_LIST_TITLE")
+                .navigationTitle(String(localized: "SCHEDULE_LIST_TITLE", bundle: .module))
         }
     }
+    
+    
+    public init() {}
     
     
     private func destination(withContext eventContext: EventContext) -> some View {

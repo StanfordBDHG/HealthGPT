@@ -11,12 +11,7 @@
 		2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */; };
 		2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23729804AA300E05C29 /* TemplateContacts */; };
 		2F38E23A29804AE300E05C29 /* TemplateOnboardingFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */; };
-		2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75B297FCC5000BCB272 /* ScheduleView.swift */; };
-		2F49B768297FD1CB00BCB272 /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */; };
-		2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */; };
-		2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */; };
-		2F49B7702980330300BCB272 /* EventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B76F2980330300BCB272 /* EventContext.swift */; };
-		2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B7712980330A00BCB272 /* EventContextView.swift */; };
+		2F38E23C29804EFA00E05C29 /* TemplateSchedule in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23B29804EFA00E05C29 /* TemplateSchedule */; };
 		2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* CardinalKit */; };
 		2F49B7782980407C00BCB272 /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7772980407C00BCB272 /* FHIR */; };
 		2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7792980407C00BCB272 /* HealthKitDataSource */; };
@@ -53,12 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F49B75B297FCC5000BCB272 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
-		2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Questionnaire.swift"; sourceTree = "<group>"; };
-		2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplicationTaskContext.swift; sourceTree = "<group>"; };
-		2F49B76F2980330300BCB272 /* EventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContext.swift; sourceTree = "<group>"; };
-		2F49B7712980330A00BCB272 /* EventContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContextView.swift; sourceTree = "<group>"; };
 		2F49B77329803E8F00BCB272 /* TemplateApplicationModules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TemplateApplicationModules; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
@@ -88,6 +77,7 @@
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
 				2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
+				2F38E23C29804EFA00E05C29 /* TemplateSchedule in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
 				2F49B77C2980407C00BCB272 /* HealthKitToFHIRAdapter in Frameworks */,
@@ -112,18 +102,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2FAEC082297F85B600C11C42 /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				2F49B75B297FCC5000BCB272 /* ScheduleView.swift */,
-				2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */,
-				2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */,
-				2F49B76F2980330300BCB272 /* EventContext.swift */,
-				2F49B7712980330A00BCB272 /* EventContextView.swift */,
-			);
-			path = Schedule;
-			sourceTree = "<group>";
-		};
 		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +109,6 @@
 				653A258928339462005D4D48 /* Info.plist */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FC9759E2978E39600BA99FE /* Localizable.strings */,
-				2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,11 +138,10 @@
 		653A254F283387FE005D4D48 /* TemplateApplication */ = {
 			isa = PBXGroup;
 			children = (
-				2FAEC082297F85B600C11C42 /* Schedule */,
-				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
 				2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				2FC9759D2978E30800BA99FE /* Supporting Files */,
 			);
 			path = TemplateApplication;
 			sourceTree = "<group>";
@@ -223,6 +199,7 @@
 				2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */,
 				2F38E23729804AA300E05C29 /* TemplateContacts */,
 				2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */,
+				2F38E23B29804EFA00E05C29 /* TemplateSchedule */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -319,7 +296,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
-				2F49B768297FD1CB00BCB272 /* SocialSupportQuestionnaire.json in Resources */,
 				2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,12 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F49B7702980330300BCB272 /* EventContext.swift in Sources */,
-				2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */,
-				2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */,
-				2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
-				2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
 			);
@@ -732,6 +703,10 @@
 		2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TemplateOnboardingFlow;
+		};
+		2F38E23B29804EFA00E05C29 /* TemplateSchedule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TemplateSchedule;
 		};
 		2F49B7752980407B00BCB272 /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;

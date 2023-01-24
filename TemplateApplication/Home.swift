@@ -11,6 +11,7 @@ import Questionnaires
 import SwiftUI
 import TemplateContacts
 import TemplateMockDataStorageProvider
+import TemplateSchedule
 import TemplateSharedContext
 
 
