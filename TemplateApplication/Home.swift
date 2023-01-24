@@ -24,10 +24,10 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            SchedulerView()
+            ScheduleView()
                 .tag(Tabs.questionnaires)
                 .tabItem {
-                    Label("QUESTIONNAIRES_TAB_TITLE", systemImage: "list.clipboard")
+                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
                 }
             Contacts()
                 .tag(Tabs.contact)

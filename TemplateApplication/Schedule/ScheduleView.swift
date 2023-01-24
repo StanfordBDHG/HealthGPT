@@ -12,52 +12,7 @@ import Scheduler
 import SwiftUI
 
 
-struct EventContext: Comparable, Identifiable {
-    let event: Event
-    let task: Task<TemplateApplicationTaskContext>
-    
-    
-    var id: Event.ID {
-        event.id
-    }
-    
-    
-    static func < (lhs: EventContext, rhs: EventContext) -> Bool {
-        lhs.event.scheduledAt < rhs.event.scheduledAt
-    }
-}
-
-
-struct EventContextView: View {
-    let eventContext: EventContext
-    
-    
-    var body: some View {
-        HStack {
-            VStack {
-                Text(eventContext.task.title)
-                    .font(.title2)
-                Text(eventContext.task.description)
-                    .foregroundColor(.secondary)
-            }
-            Group {
-                if eventContext.event.complete {
-                    Image(systemName: "checkmark.circle.fill")
-                } else {
-                    Image(systemName: "circle")
-                }
-            }
-                .font(.largeTitle.weight(.regular))
-                .foregroundColor(.gray)
-                .padding(.leading, 4)
-        }
-            .disabled(eventContext.event.complete)
-            .contentShape(Rectangle())
-    }
-}
-
-
-struct SchedulerView: View {
+struct ScheduleView: View {
     @EnvironmentObject var scheduler: TemplateApplicationScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
@@ -91,7 +46,7 @@ struct SchedulerView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                .navigationTitle("SCHEDULER_LIST_TITLE")
+                .navigationTitle("SCHEDULE_LIST_TITLE")
         }
     }
     
@@ -145,7 +100,22 @@ struct SchedulerView: View {
 
 struct SchedulerView_Previews: PreviewProvider {
     static var previews: some View {
-        SchedulerView()
-            .environmentObject(TemplateApplicationScheduler())
+        ScheduleView()
+            .environmentObject(
+                TemplateApplicationScheduler(
+                    tasks: [
+                        Task(
+                            title: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE"),
+                            description: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION"),
+                            schedule: Schedule(
+                                start: Calendar.current.startOfDay(for: Date()),
+                                dateComponents: .init(hour: 0, minute: 30), // Every Day at 12:30 AM
+                                end: .numberOfEvents(356)
+                            ),
+                            context: TemplateApplicationTaskContext.questionnaire(Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire"))
+                        )
+                    ]
+                )
+            )
     }
 }

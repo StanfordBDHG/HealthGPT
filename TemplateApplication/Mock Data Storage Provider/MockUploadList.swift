@@ -15,9 +15,21 @@ struct MockUploadList: View {
     
     var body: some View {
         NavigationStack {
-            List(mockDataStorageProvider.mockUploads) { mockUpload in
-                NavigationLink(value: mockUpload) {
-                    MockUploadHeader(mockUpload: mockUpload)
+            Group {
+                if mockDataStorageProvider.mockUploads.isEmpty {
+                    VStack(spacing: 32) {
+                        Image(systemName: "server.rack")
+                            .font(.system(size: 100))
+                        Text("MOCK_UPLOAD_LIST_PLACEHOLDER")
+                            .multilineTextAlignment(.center)
+                    }
+                        .padding(32)
+                } else {
+                    List(mockDataStorageProvider.mockUploads) { mockUpload in
+                        NavigationLink(value: mockUpload) {
+                            MockUploadHeader(mockUpload: mockUpload)
+                        }
+                    }
                 }
             }
                 .navigationDestination(for: MockUpload.self) { mockUpload in

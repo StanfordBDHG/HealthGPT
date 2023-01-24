@@ -11,7 +11,7 @@
 		2F49B756297FBF5500BCB272 /* MockDataStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */; };
 		2F49B758297FC18900BCB272 /* MockUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B757297FC18900BCB272 /* MockUpload.swift */; };
 		2F49B75A297FC1C500BCB272 /* MockUploadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B759297FC1C500BCB272 /* MockUploadList.swift */; };
-		2F49B75C297FCC5000BCB272 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75B297FCC5000BCB272 /* TasksView.swift */; };
+		2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75B297FCC5000BCB272 /* ScheduleView.swift */; };
 		2F49B760297FCF7A00BCB272 /* LazyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75F297FCF7A00BCB272 /* LazyText.swift */; };
 		2F49B762297FCF8F00BCB272 /* MockUploadDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B761297FCF8F00BCB272 /* MockUploadDetailView.swift */; };
 		2F49B764297FCFB400BCB272 /* MockUploadHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B763297FCFB400BCB272 /* MockUploadHeader.swift */; };
@@ -19,6 +19,8 @@
 		2F49B768297FD1CB00BCB272 /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */; };
 		2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */; };
 		2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */; };
+		2F49B7702980330300BCB272 /* EventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B76F2980330300BCB272 /* EventContext.swift */; };
+		2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B7712980330A00BCB272 /* EventContextView.swift */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2FAEC07C297F55C800C11C42 /* HealthKitDataSource in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC07B297F55C800C11C42 /* HealthKitDataSource */; };
 		2FAEC07E297F55C800C11C42 /* HealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC07D297F55C800C11C42 /* HealthKitToFHIRAdapter */; };
@@ -66,13 +68,15 @@
 		2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataStorageProvider.swift; sourceTree = "<group>"; };
 		2F49B757297FC18900BCB272 /* MockUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpload.swift; sourceTree = "<group>"; };
 		2F49B759297FC1C500BCB272 /* MockUploadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadList.swift; sourceTree = "<group>"; };
-		2F49B75B297FCC5000BCB272 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		2F49B75B297FCC5000BCB272 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		2F49B75F297FCF7A00BCB272 /* LazyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyText.swift; sourceTree = "<group>"; };
 		2F49B761297FCF8F00BCB272 /* MockUploadDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadDetailView.swift; sourceTree = "<group>"; };
 		2F49B763297FCFB400BCB272 /* MockUploadHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadHeader.swift; sourceTree = "<group>"; };
 		2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Questionnaire.swift"; sourceTree = "<group>"; };
 		2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplicationTaskContext.swift; sourceTree = "<group>"; };
+		2F49B76F2980330300BCB272 /* EventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContext.swift; sourceTree = "<group>"; };
+		2F49B7712980330A00BCB272 /* EventContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContextView.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2F5E32C4297E05EA003432F8 /* CardinalKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CardinalKit; path = ../CardinalKit; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
@@ -145,14 +149,16 @@
 			path = "Mock Data Storage Provider";
 			sourceTree = "<group>";
 		};
-		2FAEC082297F85B600C11C42 /* Tasks */ = {
+		2FAEC082297F85B600C11C42 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				2F49B75B297FCC5000BCB272 /* TasksView.swift */,
+				2F49B75B297FCC5000BCB272 /* ScheduleView.swift */,
 				2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */,
 				2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */,
+				2F49B76F2980330300BCB272 /* EventContext.swift */,
+				2F49B7712980330A00BCB272 /* EventContextView.swift */,
 			);
-			path = Tasks;
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		2FC9758A2978D34100BA99FE /* Onboarding Flow */ = {
@@ -231,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				2F49B754297FBF0900BCB272 /* Mock Data Storage Provider */,
-				2FAEC082297F85B600C11C42 /* Tasks */,
+				2FAEC082297F85B600C11C42 /* Schedule */,
 				2FC975A62978F10300BA99FE /* Contact Views */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				2FC975922978D4C300BA99FE /* Extensions */,
@@ -415,12 +421,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F49B7702980330300BCB272 /* EventContext.swift in Sources */,
 				2F49B756297FBF5500BCB272 /* MockDataStorageProvider.swift in Sources */,
 				2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */,
 				2FC975A12978E94F00BA99FE /* Consent.swift in Sources */,
 				2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */,
 				2F49B762297FCF8F00BCB272 /* MockUploadDetailView.swift in Sources */,
 				2FC975942978D4C900BA99FE /* CodableArray+RawRepresentable.swift in Sources */,
+				2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */,
 				2F49B760297FCF7A00BCB272 /* LazyText.swift in Sources */,
 				2FC9759C2978DB5900BA99FE /* Binding+Negate.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
@@ -428,7 +436,7 @@
 				2F49B764297FCFB400BCB272 /* MockUploadHeader.swift in Sources */,
 				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,
 				2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */,
-				2F49B75C297FCC5000BCB272 /* TasksView.swift in Sources */,
+				2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */,
 				2FC975AA297A7D6500BA99FE /* Contacts.swift in Sources */,
 				2FC9758F2978D39D00BA99FE /* StorageKeys.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
@@ -672,7 +680,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.TemplateApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cardinalkittemplateapplicationtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = NO;
 				SWIFT_VERSION = 5.0;
@@ -692,7 +700,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.TemplateApplicationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cardinalkittemplateapplicationtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = NO;
 				SWIFT_VERSION = 5.0;
@@ -711,7 +719,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.TemplateApplicationUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cardinalkittemplateapplicationuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = NO;
 				SWIFT_VERSION = 5.0;
@@ -730,7 +738,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.TemplateApplicationUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cardinalkittemplateapplicationuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = NO;
 				SWIFT_VERSION = 5.0;

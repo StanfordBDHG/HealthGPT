@@ -10,9 +10,9 @@ import Foundation
 
 
 struct MockUpload: Identifiable, Hashable {
-    enum UploadType: String {
-        case add = "Add"
-        case delete = "Delete"
+    enum UploadType {
+        case add
+        case delete
     }
     
     

@@ -61,6 +61,23 @@
 
 
 // MARK: - Contacts
+"CONTACTS_TAB_TITLE" = "Contacts";
 "CONTACTS_NAVIGATION_TITLE" = "Contacts";
 "LELAND_STANFORD_BIO" = "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.
 [https://en.wikipedia.org/wiki/Leland_Stanford]";
+
+
+// MARK: - Mock Upload Data Storage Provider
+"MOCK_UPLOAD_TAB_TITLE" = "Mock Upload";
+"MOCK_UPLOAD_LIST_PLACEHOLDER" = "The Mock Upload Data Storage Provider will display all uploads that would be triggered by the FHIR standard.";
+"MOCK_UPLOAD_LIST_TITLE" = "Mock Upload";
+"MOCK_UPLOAD_DETAIL_HEADER" = "Upload Header";
+"MOCK_UPLOAD_DETAIL_BODY" = "Upload Body";
+
+
+// MARK: - Schedule
+"SCHEDULE_TAB_TITLE" = "Schedule";
+"SCHEDULE_LIST_TITLE" = "Schedule";
+"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" = "Social Support Questionnaire";
+"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" = "Please fill out the Social Support Questionnaire every day.";
+"TASK_CONTEXT_ACTION_QUESTIONNAIRE" = "Start Questionnaire";

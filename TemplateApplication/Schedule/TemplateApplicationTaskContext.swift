@@ -19,4 +19,11 @@ enum TemplateApplicationTaskContext: Codable, Identifiable {
             return questionnaire.id
         }
     }
+    
+    var actionType: String {
+        switch self {
+        case .questionnaire:
+            return String(localized: "TASK_CONTEXT_ACTION_QUESTIONNAIRE")
+        }
+    }
 }
