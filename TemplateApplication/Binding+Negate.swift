@@ -10,7 +10,7 @@ import SwiftUI
 
 
 extension Binding where Value == Bool {
-    prefix static func ! (value: Binding<Bool>) -> Binding<Bool> {
+    public prefix static func ! (value: Binding<Bool>) -> Binding<Bool> {
         Binding<Bool>(
             get: { !value.wrappedValue },
             set: { value.wrappedValue = !$0 }

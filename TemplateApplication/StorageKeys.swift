@@ -6,15 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Foundation
-
-
-enum StorageKeys {
+public enum StorageKeys {
     // MARK: - Onboarding
-    static let onboardingFlowComplete = "onboardingFlow.complete"
-    static let onboardingFlowStep = "onboardingFlow.step"
+    public static let onboardingFlowComplete = "onboardingFlow.complete"
+    public static let onboardingFlowStep = "onboardingFlow.step"
     
     
     // MARK: - Home
-    static let homeTabSelection = "home.tabselection"
+    public static let homeTabSelection = "home.tabselection"
 }

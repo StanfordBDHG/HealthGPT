@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ModelsR4
+import FHIR
 
 
 extension Foundation.Bundle {

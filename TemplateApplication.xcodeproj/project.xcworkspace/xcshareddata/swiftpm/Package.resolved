@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "cardinalkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0ea23b3cb37dbabac3841c1a1486b6318c70f6ad"
+      }
+    },
+    {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/FHIRModels",
@@ -50,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleDataTransport.git",
       "state" : {
-        "revision" : "5056b15c5acbb90cd214fe4d6138bdf5a740e5a8",
-        "version" : "9.2.0"
+        "revision" : "f6b558e3f801f2cac336b04f615ce111fa9ddaa0",
+        "version" : "9.2.1"
       }
     },
     {
@@ -129,7 +138,7 @@
     {
       "identity" : "researchkitonfhir",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR.git",
+      "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
         "revision" : "efb23f31a79a0b914af6a4a3c90ef2608c95bfeb",
         "version" : "0.1.5"

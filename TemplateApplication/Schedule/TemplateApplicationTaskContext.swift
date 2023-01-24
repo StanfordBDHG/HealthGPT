@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import ModelsR4
+import FHIR
 
 
 enum TemplateApplicationTaskContext: Codable, Identifiable {
