@@ -11,8 +11,8 @@ import FHIR
 import Foundation
 
 
-actor MockDataStorageProvider: DataStorageProvider, ObservableObjectProvider, ObservableObject {
-    typealias ComponentStandard = FHIR
+public actor MockDataStorageProvider: DataStorageProvider, ObservableObjectProvider, ObservableObject {
+    public typealias ComponentStandard = FHIR
     
     
     let encoder: JSONEncoder = {
@@ -24,10 +24,10 @@ actor MockDataStorageProvider: DataStorageProvider, ObservableObjectProvider, Ob
     private(set) var mockUploads: [MockUpload] = []
     
     
-    init() { }
+    public init() { }
     
     
-    func process(_ element: DataChange<ComponentStandard.BaseType, ComponentStandard.RemovalContext>) async throws {
+    public func process(_ element: DataChange<ComponentStandard.BaseType, ComponentStandard.RemovalContext>) async throws {
         switch element {
         case let .addition(element):
             let data = try encoder.encode(element)

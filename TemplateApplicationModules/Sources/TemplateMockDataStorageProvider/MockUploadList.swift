@@ -9,18 +9,18 @@
 import SwiftUI
 
 
-struct MockUploadList: View {
+public struct MockUploadList: View {
     @EnvironmentObject var mockDataStorageProvider: MockDataStorageProvider
     
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             Group {
                 if mockDataStorageProvider.mockUploads.isEmpty {
                     VStack(spacing: 32) {
                         Image(systemName: "server.rack")
                             .font(.system(size: 100))
-                        Text("MOCK_UPLOAD_LIST_PLACEHOLDER")
+                        Text(String(localized: "MOCK_UPLOAD_LIST_PLACEHOLDER", bundle: .module))
                             .multilineTextAlignment(.center)
                     }
                         .padding(32)
@@ -35,9 +35,12 @@ struct MockUploadList: View {
                 .navigationDestination(for: MockUpload.self) { mockUpload in
                     MockUploadDetailView(mockUpload: mockUpload)
                 }
-                .navigationTitle("MOCK_UPLOAD_LIST_TITLE")
+                .navigationTitle(String(localized: "MOCK_UPLOAD_LIST_TITLE", bundle: .module))
         }
     }
+    
+    
+    public init() {}
     
     
     private func format(_ date: Date) -> String {

@@ -13,6 +13,7 @@ import PackageDescription
 
 let package = Package(
     name: "TemplateModules",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v16)
     ],
@@ -49,6 +50,9 @@ let package = Package(
                 .product(name: "FHIR", package: "CardinalKit"),
                 .product(name: "HealthKitDataSource", package: "CardinalKit"),
                 .product(name: "Onboarding", package: "CardinalKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .target(

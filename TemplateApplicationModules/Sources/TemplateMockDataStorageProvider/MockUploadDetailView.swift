@@ -15,10 +15,10 @@ struct MockUploadDetailView: View {
     
     var body: some View {
         List {
-            Section("MOCK_UPLOAD_DETAIL_HEADER") {
+            Section(String(localized: "MOCK_UPLOAD_DETAIL_HEADER", bundle: .module)) {
                 MockUploadHeader(mockUpload: mockUpload)
             }
-            Section("MOCK_UPLOAD_DETAIL_BODY") {
+            Section(String(localized: "MOCK_UPLOAD_DETAIL_BODY", bundle: .module)) {
                 LazyText(text: mockUpload.body ?? "")
             }
         }

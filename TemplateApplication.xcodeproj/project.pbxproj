@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E233298047DA00E05C29 /* TemplateSharedContext */; };
-		2F49B756297FBF5500BCB272 /* MockDataStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */; };
-		2F49B758297FC18900BCB272 /* MockUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B757297FC18900BCB272 /* MockUpload.swift */; };
-		2F49B75A297FC1C500BCB272 /* MockUploadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B759297FC1C500BCB272 /* MockUploadList.swift */; };
+		2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */; };
 		2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75B297FCC5000BCB272 /* ScheduleView.swift */; };
-		2F49B760297FCF7A00BCB272 /* LazyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B75F297FCF7A00BCB272 /* LazyText.swift */; };
-		2F49B762297FCF8F00BCB272 /* MockUploadDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B761297FCF8F00BCB272 /* MockUploadDetailView.swift */; };
-		2F49B764297FCFB400BCB272 /* MockUploadHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B763297FCFB400BCB272 /* MockUploadHeader.swift */; };
 		2F49B768297FD1CB00BCB272 /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */; };
 		2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */; };
 		2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */; };
@@ -63,13 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataStorageProvider.swift; sourceTree = "<group>"; };
-		2F49B757297FC18900BCB272 /* MockUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpload.swift; sourceTree = "<group>"; };
-		2F49B759297FC1C500BCB272 /* MockUploadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadList.swift; sourceTree = "<group>"; };
 		2F49B75B297FCC5000BCB272 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		2F49B75F297FCF7A00BCB272 /* LazyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyText.swift; sourceTree = "<group>"; };
-		2F49B761297FCF8F00BCB272 /* MockUploadDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadDetailView.swift; sourceTree = "<group>"; };
-		2F49B763297FCFB400BCB272 /* MockUploadHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadHeader.swift; sourceTree = "<group>"; };
 		2F49B767297FD1CB00BCB272 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2F49B769297FD23D00BCB272 /* Bundle+Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Questionnaire.swift"; sourceTree = "<group>"; };
 		2F49B76D297FD37700BCB272 /* TemplateApplicationTaskContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplicationTaskContext.swift; sourceTree = "<group>"; };
@@ -107,6 +96,7 @@
 				2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */,
 				2F49B784298041F300BCB272 /* Contact in Frameworks */,
 				2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */,
+				2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */,
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
@@ -132,19 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F49B754297FBF0900BCB272 /* Mock Data Storage Provider */ = {
-			isa = PBXGroup;
-			children = (
-				2F49B755297FBF5500BCB272 /* MockDataStorageProvider.swift */,
-				2F49B757297FC18900BCB272 /* MockUpload.swift */,
-				2F49B763297FCFB400BCB272 /* MockUploadHeader.swift */,
-				2F49B759297FC1C500BCB272 /* MockUploadList.swift */,
-				2F49B75F297FCF7A00BCB272 /* LazyText.swift */,
-				2F49B761297FCF8F00BCB272 /* MockUploadDetailView.swift */,
-			);
-			path = "Mock Data Storage Provider";
-			sourceTree = "<group>";
-		};
 		2FAEC082297F85B600C11C42 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +192,6 @@
 		653A254F283387FE005D4D48 /* TemplateApplication */ = {
 			isa = PBXGroup;
 			children = (
-				2F49B754297FBF0900BCB272 /* Mock Data Storage Provider */,
 				2FAEC082297F85B600C11C42 /* Schedule */,
 				2FC975A62978F10300BA99FE /* Contact Views */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
@@ -277,6 +253,7 @@
 				2F49B7812980419C00BCB272 /* Questionnaires */,
 				2F49B783298041F300BCB272 /* Contact */,
 				2F38E233298047DA00E05C29 /* TemplateSharedContext */,
+				2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -401,22 +378,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F49B7702980330300BCB272 /* EventContext.swift in Sources */,
-				2F49B756297FBF5500BCB272 /* MockDataStorageProvider.swift in Sources */,
 				2F49B76E297FD37700BCB272 /* TemplateApplicationTaskContext.swift in Sources */,
 				2FC975A12978E94F00BA99FE /* Consent.swift in Sources */,
 				2F49B76A297FD23D00BCB272 /* Bundle+Questionnaire.swift in Sources */,
-				2F49B762297FCF8F00BCB272 /* MockUploadDetailView.swift in Sources */,
 				2F49B7722980330A00BCB272 /* EventContextView.swift in Sources */,
-				2F49B760297FCF7A00BCB272 /* LazyText.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
-				2F49B75A297FC1C500BCB272 /* MockUploadList.swift in Sources */,
-				2F49B764297FCFB400BCB272 /* MockUploadHeader.swift in Sources */,
 				2FC975962978D7CC00BA99FE /* Welcome.swift in Sources */,
 				2FC9758C2978D34D00BA99FE /* OnboardingFlow.swift in Sources */,
 				2F49B75C297FCC5000BCB272 /* ScheduleView.swift in Sources */,
 				2FC975AA297A7D6500BA99FE /* Contacts.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
-				2F49B758297FC18900BCB272 /* MockUpload.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
 				2FC975982978D7D300BA99FE /* InterestingModules.swift in Sources */,
 				2FAEC081297F5BCF00C11C42 /* HealthKitPermissions.swift in Sources */,
@@ -787,6 +758,10 @@
 		2F38E233298047DA00E05C29 /* TemplateSharedContext */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TemplateSharedContext;
+		};
+		2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TemplateMockDataStorageProvider;
 		};
 		2F49B7752980407B00BCB272 /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;

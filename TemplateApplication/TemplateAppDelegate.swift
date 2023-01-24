@@ -14,6 +14,7 @@ import HealthKitToFHIRAdapter
 import Questionnaires
 import Scheduler
 import SwiftUI
+import TemplateMockDataStorageProvider
 
 
 typealias TemplateApplicationScheduler = Scheduler<FHIR, TemplateApplicationTaskContext>
