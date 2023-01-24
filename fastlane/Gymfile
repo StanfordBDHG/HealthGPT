@@ -19,7 +19,7 @@ project("TemplateApplication.xcodeproj")
 export_options(
   {
     provisioningProfiles: { 
-      "edu.stanford.cardinalkittemplateapplication" => "CardinalKitTemplateApplication"
+      "edu.stanford.cardinalkittemplateapplication" => "CardinalKit Template Application"
     }
   }
 )

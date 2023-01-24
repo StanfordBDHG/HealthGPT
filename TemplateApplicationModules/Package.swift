@@ -25,7 +25,7 @@ let package = Package(
         .library(name: "TemplateSharedContext", targets: ["TemplateSharedContext"])
     ],
     dependencies: [
-        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", branch: "main")
+        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.2.1"))
     ],
     targets: [
         .target(

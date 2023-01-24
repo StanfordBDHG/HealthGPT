@@ -21,7 +21,6 @@
 		2F49B7822980419C00BCB272 /* Questionnaires in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7812980419C00BCB272 /* Questionnaires */; };
 		2F49B784298041F300BCB272 /* Contact in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B783298041F300BCB272 /* Contact */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
-		2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAEC08A297F885600C11C42 /* FHIRQuestionnaires */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
@@ -72,7 +71,6 @@
 				2F49B77E2980407C00BCB272 /* Scheduler in Frameworks */,
 				2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */,
 				2F49B784298041F300BCB272 /* Contact in Frameworks */,
-				2FAEC08B297F885600C11C42 /* FHIRQuestionnaires in Frameworks */,
 				2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */,
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
 				2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */,
@@ -186,7 +184,6 @@
 			);
 			name = TemplateApplication;
 			packageProductDependencies = (
-				2FAEC08A297F885600C11C42 /* FHIRQuestionnaires */,
 				2F49B7752980407B00BCB272 /* CardinalKit */,
 				2F49B7772980407C00BCB272 /* FHIR */,
 				2F49B7792980407C00BCB272 /* HealthKitDataSource */,
@@ -276,7 +273,6 @@
 			);
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
-				2FAEC089297F885600C11C42 /* XCRemoteSwiftPackageReference "ResearchKitOnFHIR" */,
 				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
@@ -673,16 +669,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
 			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		2FAEC089297F885600C11C42 /* XCRemoteSwiftPackageReference "ResearchKitOnFHIR" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/ResearchKitOnFHIR";
-			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.5;
+				minimumVersion = 0.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -747,11 +735,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
 			productName = Contact;
-		};
-		2FAEC08A297F885600C11C42 /* FHIRQuestionnaires */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FAEC089297F885600C11C42 /* XCRemoteSwiftPackageReference "ResearchKitOnFHIR" */;
-			productName = FHIRQuestionnaires;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

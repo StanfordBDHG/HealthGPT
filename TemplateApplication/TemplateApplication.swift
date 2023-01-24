@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import CardinalKit
 import SwiftUI
 import TemplateOnboardingFlow
 import TemplateSharedContext

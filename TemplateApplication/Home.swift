@@ -6,8 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FHIRQuestionnaires
-import Questionnaires
 import SwiftUI
 import TemplateContacts
 import TemplateMockDataStorageProvider
