@@ -25,6 +25,8 @@ jobs:
     needs: buildandtest
     steps:
     - uses: actions/checkout@v3
+      with:
+        lfs: true
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest-stable

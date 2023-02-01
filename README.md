@@ -10,64 +10,80 @@ SPDX-License-Identifier: MIT
 
 # Template Application
 
-This repository contains the Stanford CardinalKit Template Application. It serves as a template repository for projects requiering a mobile application using a continous integration and continous delivery setup.
+This repository contains the CardinalKit Template Application.
+It demonstrates using the [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) framework template and builds on top of the [StanfordBDHG Template Application](https://github.com/StanfordBDHG/TemplateApplication).
+
+
+## Application Structure
+
+The CardinalKit Template Application uses a modularized structure enabled by using the Swift Package Manager.
+
+The application contains the following five modules that are separated into different Swift Package Manger Targets in the `TemplateApplicationModules` Swift Package.
+
+The application uses the CardinalKit `FHIR` standard to provide a shared repository for data exchanged between different modules using the `FHIR` standard.
+You can learn more about the CardinalKit standards-based software architecture in the [CardinalKit documentation](https://github.com/StanfordBDHG/CardinalKit).
+
+
+### Template Onboarding Flow
+
+The `TemplateOnboardingFlow` module contains the different steps displayed in the onboarding flow.
+It uses the CardinalKit `Onboarding` module to display different onboarding-related views like the information about the application, a consent screen, and a screen to display a HealthKit consent view.
+
+<p float="left">
+ <img width="250" alt="A screen displaying welcome information." src="Figures/TemplateOnboardingFlow/Welcome.png">
+ <img width="250" alt="A screen showing an overview of the modules used in the CardinalKit Template application." src="Figures/TemplateOnboardingFlow/InterestingModules.png">
+ <img width="250" alt="A screen displaying the consent view." src="Figures/TemplateOnboardingFlow/Consent.png">
+ <img width="250" alt="A screen showing a view displaying the HealthKit access screen." src="Figures/TemplateOnboardingFlow/HealthKitAccess.png">
+</p>
+
+
+### Template Schedule
+
+The `TemplateSchedule` module provides the functionality to schedule a recurring task and bind it to an action, e.g., displaying a questionnaire.
+It uses the CardinalKit `Scheduler` and `Questionnaires` modules to schedule the tasks as defined in the `TemplateApplicationScheduler`.
+
+<p float="left">
+ <img width="250" alt="A screen displaying the Scheduler UI." src="Figures/TemplateSchedule/Scheduler.png">
+ <img width="250" alt="A screen showing a questionnaire using ResearchKit." src="Figures/TemplateSchedule/Questionnaire.png">
+ <img width="250" alt="A screen displaying the Scheduler UI when the questionnaire is finished." src="Figures/TemplateSchedule/QuestionnaireFinished.png">
+</p>
+
+
+### Template Contacts
+
+The `TemplateContacts` module provides the functionality to display contact information in your application.
+It uses the CardinalKit `Contacts` module to use the contact-related views provided by CardinalKit.
+
+<p float="left">
+ <img width="250" alt="A screen displaying the Contact UI." src="Figures/TemplateContacts/Contacts.png">
+</p>
+
+
+### Template Mock Data Storage Provider
+
+The `TemplateMockDataStorageProvider` module allows a developer to get an overview of the synconization of data between the local `FHIR` model and a cloud storage provider.
+It uses the CardinalKit `DataStorageProvider`s to get information that is stored in the `FHIR` standard in the CardinalKit Template Application.
+
+<p float="left">
+ <img width="250" alt="A screen displaying the list of Mock Data Storage Provider uploads." src="Figures/TemplateMockDataStorageProvider/TemplateMockDataStorageProviderList.png">
+ <img width="250" alt="A screen displaying the detailed overview of one Mock Data Storage Provider upload." src="Figures/TemplateMockDataStorageProvider/TemplateMockDataStorageProviderDetail.png">
+</p>
+
 
 ## Continous Delivery Workflows
 
-### Beta Deployment
+The CardinalKit Template application includes continuous integration (CI) and continuous delivery (CD) setup.
+- Automatically build and test the application on every pull request before deploying it.
+- An automated setup to deploy the application to TestFlight every time there is a new commit on the repository's main branch.
+- Ensure a coherent code style by checking the conformance to the SwiftLint rules defined in `.swiftlint.yml` on every pull request and commit.
+- Ensure conformance to the [REUSE Spacification]() to property license the application and all related code.
 
-The Beta Deployment workflow is triggered when a new commit is added to the main branch. 
+Please refer to the [StanfordBDHG Template Application](https://github.com/StanfordBDHG/TemplateApplication) and the [ContinousDelivery Example by Paul Schmiedmayer](https://github.com/PSchmiedmayer/ContinousDelivery) for more background about the CI and CD setup for the CardinalKit Template Application.
 
-It first runs the Build and Test workflow to ensure all tests are passing.
-Once the Build and Test workflow passes, it builds the iOS application so it can be archived and sent to [TestFlight](https://developer.apple.com/testflight/) for internal beta deployment.
 
-### Build and Test
+## Contributors & License
 
-The Build and Test workflow builds and tests the iOS application, shared Swift package, and web service. It runs all unit and user interface (UI) tests defined in the targets. The iOS application is tested on the iOS simulator on macOS. The shared and web service Swift packages are tested on Linux and macOS as well as in release and debug configuration to demonstrate all possible variations. 
+This project is based on [ContinousDelivery Example by Paul Schmiedmayer](https://github.com/PSchmiedmayer/ContinousDelivery), and the [StanfordBDHG Template Application](https://github.com/StanfordBDHG/TemplateApplication) provided using the MIT license.
+You can find a list of contributors in the `CONTRIBUTORS.md` file.
 
-### SwiftLint
-
-The Swiftlint workflow is triggered by every pull request (PR) and checks if the files found in the diff contain any [SwiftLint](https://github.com/realm/SwiftLint) violations.
-You can change the SwiftLint configuration in the `.swiftlint.yml` file found at the root of this repository.
-
-## Continous Delivery Setup
-
-It is a prerequiesite to have access to a Apple Developer Account that allows [TestFlight](https://developer.apple.com/testflight/) releases and create a app in [App Store Connect](https://appstoreconnect.apple.com) that matches the bundle identifier you have defined in the App project.
-
-### App Store Connect Access
-
-The [TestFlight](https://developer.apple.com/testflight/) deployment requires access to the App Store Connect API using an API key. Please follow the Apple instructions to [Creating API Keys for the App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api). The key needs the `App Manager` access role.
-Store the following information in the following GitHub secrets:
-- `APPLE_ID`: The Apple ID you use to access the App Store Connect API.
-- `APP_STORE_CONNECT_ISSUER_ID`: The issuer ID of the App Store Connect API is displayed in the App Store Connect API keys section.
-- `APP_STORE_CONNECT_API_KEY_ID`: The key ID of the API key created in the App Store Connect API keys section.
-- `APP_STORE_CONNECT_API_KEY_BASE64`: The content of the key created in App Store Connect condensed into a Base64 representation, e.g., using `base64 -i AuthKey_ABCDEFGHIJ.p8 | pbcopy`.
-
-### Apple Xcode Certificate and Provisioning Profile
-
-The GitHub Action imports the Apple certificate and provisioning profile from the GitHub secrets and installs them in a local KeyChain on the GitHub runner instances.
-Please follow the GitHub instructions to [Installing an Apple certificate on macOS runners for Xcode development](https://docs.github.com/en/enterprise-server@3.4/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development).
-
-Obtaining the Apple provisioning profile requires you to follow the following steps:
-1. Register the app identifier in the [Apple Developer Account Identifiers section](https://developer.apple.com/account/resources/identifiers/list) using the bundle identifier for your application, e.g., `com.schmiedmayer.continousdelivery`.
-2. Create an **AppStore** distribution provisioning profile in the [Apple Developer Account Profiles section](https://developer.apple.com/account/resources/profiles/list) using the app identifier you have created in the previous step.
-3. Download the provisioning profile and convert it to a Base64 representation as detailed in [Installing an Apple certificate on macOS runners for Xcode development](https://docs.github.com/en/enterprise-server@3.4/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development) and add it as the value for the `BUILD_PROVISION_PROFILE_BASE64` secret.
-
-After following the setup steps detailed in [Installing an Apple certificate on macOS runners for Xcode development](https://docs.github.com/en/enterprise-server@3.4/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development) and obtaining the Apple provisioning profile as described above, you should have the following secrets configured in the repository settings:
-- `BUILD_CERTIFICATE_BASE64`: The Base64 version of the Apple signing certificate to build your iOS application.
-- `P12_PASSWORD`: The password for the Apple signing certificate.
-- `BUILD_PROVISION_PROFILE_BASE64`: The Base64 version of the Apple provisioning profile to build your iOS application.
-- `KEYCHAIN_PASSWORD`: A password for the keychain that will be created on the runner instance.
-
-Be sure that you update the name of the provisioning profile in the `Gymfile` and update the app name, bundle identifyer, Xcode project name, paths, and other settings in the fastlane files when modifying the template to your needs!
-
-### Swift Package and Fastlane Update ACCESS_TOKEN
-
-The [Swift Package and Fastlane Update workflow](https://github.com/PSchmiedmayer/ContinousDelivery/blob/main/.github/workflows/update.yml) requires an `ACCESS_TOKEN` secret: a GitHub Personal Access Token (PAT) allowing write access to the repository.
-We suggest using a bot account to create the access token. Using the PAT triggers the GitHub Actions in the create PR. [The GitHub documentation provides instructions on creating a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). The [scrop of the token](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) can be limited to the `public_repo` scope for public repositories or the `repo` scrope for private repositories as well as the `workflow` scope.
-
-Removing the `token` input in the GitHub action workflow results in using the default `GITHUB_TOKEN` and the GitHub Action bot account that does not trigger any possible merge checks in the newly created PR.
-
-### Contributors
-
-This project is based on [ContinousDelivery Example by Paul Schmiedmayer](https://github.com/PSchmiedmayer/ContinousDelivery). You can find a list of contributors in the `CONTRIBUTORS.md` file.
+The CardinalKit Template Application and the CardinalKit framework are licensed under the MIT license.
