@@ -1,0 +1,23 @@
+#
+# This source file is part of the Stanford CardinalKit Template Application project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University
+#
+# SPDX-License-Identifier: MIT
+#
+
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Schmiedmayer"
+  given-names: "Paul"
+  orcid: "https://orcid.org/0000-0002-8607-9148"
+- family-names: "Ravi"
+  given-names: "Vishnu"
+  orcid: "https://orcid.org/0000-0003-0359-1275"
+- family-names: "Aalami"
+  given-names: "Oliver"
+  orcid: "https://orcid.org/0000-0002-7799-2429"
+title: "CardinalKit Template Application"
+doi: doi.org/10.5281/zenodo.7600783
+url: "https://github.com/StanfordBDHG/CardinalKitTemplateApplication"

@@ -8,7 +8,11 @@ SPDX-License-Identifier: MIT
 
 -->
 
-# Template Application
+# CardinalKit Template Application
+
+[![Beta Deployment](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/actions/workflows/beta-deployment.yml/badge.svg)](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/actions/workflows/beta-deployment.yml)
+[![codecov](https://codecov.io/gh/StanfordBDHG/CardinalKitTemplateApplication/branch/main/graph/badge.svg?token=9fvSAiFJUY)](https://codecov.io/gh/StanfordBDHG/CardinalKitTemplateApplication)
+[![DOI](https://zenodo.org/badge/589846478.svg)](https://zenodo.org/badge/latestdoi/589846478)
 
 This repository contains the CardinalKit Template Application.
 It demonstrates using the [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) framework template and builds on top of the [StanfordBDHG Template Application](https://github.com/StanfordBDHG/TemplateApplication).
