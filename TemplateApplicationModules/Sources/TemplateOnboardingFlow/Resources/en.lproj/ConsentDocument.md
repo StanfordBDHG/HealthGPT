@@ -1,1 +1,1 @@
-CardinalKit can render consent documents in the mardown format: This is a *markdown* **example**.
+CardinalKit can render consent documents in the markdown format: This is a *markdown* **example**.

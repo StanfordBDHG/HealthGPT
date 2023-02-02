@@ -25,7 +25,7 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
                 HealthKit {
                     CollectSample(
                         HKQuantityType(.stepCount),
-                        deliverySetting: .background(.afterAuthorizationAndApplicationWillLaunch)
+                        deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
                     )
                 } adapter: {
                     HealthKitToFHIRAdapter()

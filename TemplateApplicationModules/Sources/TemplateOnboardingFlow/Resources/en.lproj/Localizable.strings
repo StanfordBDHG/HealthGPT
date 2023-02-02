@@ -28,7 +28,7 @@
 "INTERESTING_MODULES_SUBTITLE" = "Here are a few CardinalKit modules that are interesting to know about ...";
 
 "INTERESTING_MODULES_AREA1_TITLE" = "Onboarding";
-"INTERESTING_MODULES_AREA1_DESCRIPTION" = "The onboarding module allows you to build an onboardig flow like this one.";
+"INTERESTING_MODULES_AREA1_DESCRIPTION" = "The onboarding module allows you to build an onboarding flow like this one.";
 
 "INTERESTING_MODULES_AREA2_TITLE" = "FHIR";
 "INTERESTING_MODULES_AREA2_DESCRIPTION" = "The FHIR module provides a CardinalKit standard that can be used as a communication standard between modules.";

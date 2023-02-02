@@ -38,7 +38,12 @@ struct InterestingModules: View {
             ],
             actionText: "INTERESTING_MODULES_BUTTON".moduleLocalized,
             action: {
+                #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
+                print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
+                onboardingSteps.append(.healthKitPermissions)
+                #else
                 onboardingSteps.append(.consent)
+                #endif
             }
         )
     }

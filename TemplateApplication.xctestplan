@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "6C9DABEF-5835-4523-A115-B83B0C6E3BBC",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "maximumTestRepetitions" : 2,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:TemplateApplication.xcodeproj",
+      "identifier" : "653A254C283387FE005D4D48",
+      "name" : "TemplateApplication"
+    },
+    "testRepetitionMode" : "retryOnFailure"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TemplateApplication.xcodeproj",
+        "identifier" : "653A255C28338800005D4D48",
+        "name" : "TemplateApplicationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:TemplateApplication.xcodeproj",
+        "identifier" : "653A256628338800005D4D48",
+        "name" : "TemplateApplicationUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
