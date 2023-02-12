@@ -53,9 +53,11 @@ public struct MockUploadList: View {
 }
 
 
+#if DEBUG
 struct MockUploadsList_Previews: PreviewProvider {
     static var previews: some View {
         MockUploadList()
             .environmentObject(MockDataStorageProvider())
     }
 }
+#endif

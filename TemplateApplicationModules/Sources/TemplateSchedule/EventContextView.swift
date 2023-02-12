@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Scheduler
 import SwiftUI
 
 
@@ -54,3 +55,27 @@ struct EventContextView: View {
         return dateFormatter.string(from: eventDate)
     }
 }
+
+
+#if DEBUG
+struct EventContextView_Previews: PreviewProvider {
+    // We use a force unwrap in the preview as we can not recover from an error here
+    // and the code will never end up in a production environment.
+    // swiftlint:disable:next force_unwrapping
+    private static let task = TemplateApplicationScheduler().tasks.first!
+    
+    
+    static var previews: some View {
+        EventContextView(
+            eventContext: EventContext(
+                // We use a force unwrap in the preview as we can not recover from an error here
+                // and the code will never end up in a production environment.
+                // swiftlint:disable:next force_unwrapping
+                event: task.events(from: .now.addingTimeInterval(-60 * 60 * 24)).first!,
+                task: task
+            )
+        )
+            .padding()
+    }
+}
+#endif

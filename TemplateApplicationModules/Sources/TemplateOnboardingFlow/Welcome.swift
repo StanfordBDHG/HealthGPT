@@ -49,6 +49,7 @@ struct Welcome: View {
 }
 
 
+#if DEBUG
 struct Welcome_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
     
@@ -57,3 +58,4 @@ struct Welcome_Previews: PreviewProvider {
         Welcome(onboardingSteps: $path)
     }
 }
+#endif

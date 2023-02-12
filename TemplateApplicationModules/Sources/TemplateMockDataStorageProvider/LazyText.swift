@@ -35,3 +35,22 @@ struct LazyText: View {
         self.text = text
     }
 }
+
+
+#if DEBUG
+struct LazyText_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            LazyText(
+                text: """
+                This is a long text ...
+                
+                And some more lines ...
+                
+                And a third line ...
+                """
+            )
+        }
+    }
+}
+#endif

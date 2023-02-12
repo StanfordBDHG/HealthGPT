@@ -26,3 +26,19 @@ struct MockUploadDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+
+#if DEBUG
+struct MockUploadDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        MockUploadDetailView(
+            mockUpload: MockUpload(
+                id: UUID().uuidString,
+                type: .add,
+                path: "A Path",
+                body: "A Body ..."
+            )
+        )
+    }
+}
+#endif

@@ -46,6 +46,7 @@ struct Consent: View {
 }
 
 
+#if DEBUG
 struct Consent_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
     
@@ -54,3 +55,4 @@ struct Consent_Previews: PreviewProvider {
         Consent(onboardingSteps: $path)
     }
 }
+#endif

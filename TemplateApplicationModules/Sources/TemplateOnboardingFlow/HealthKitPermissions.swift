@@ -40,7 +40,12 @@ struct HealthKitPermissions: View {
                     "HEALTHKIT_PERMISSIONS_BUTTON".moduleLocalized,
                     action: {
                         do {
-                            try await healthKitDataSource.askForAuthorization()
+                            // HealthKit is not available in the preview simulator.
+                            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+                                try await _Concurrency.Task.sleep(for: .seconds(5))
+                            } else {
+                                try await healthKitDataSource.askForAuthorization()
+                            }
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
@@ -53,8 +58,10 @@ struct HealthKitPermissions: View {
 }
 
 
+#if DEBUG
 struct HealthKitPermissions_Previews: PreviewProvider {
     static var previews: some View {
         HealthKitPermissions()
     }
 }
+#endif

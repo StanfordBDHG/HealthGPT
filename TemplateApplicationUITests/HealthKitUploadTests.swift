@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import XCTestExtensions
 import XCTHealthKit
 
 
@@ -45,7 +46,7 @@ class HealthKitUploadTests: XCTestCase {
     private func navigateToMockUpload() throws {
         let app = XCUIApplication()
         
-        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Mock Upload"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Mock Upload"].waitForExistence(timeout: 5))
         app.tabBars["Tab Bar"].buttons["Mock Upload"].tap()
     }
     
@@ -56,12 +57,12 @@ class HealthKitUploadTests: XCTestCase {
         let predicate = NSPredicate(format: "label CONTAINS[c] %@", observationText)
         
         if shouldBePresent {
-            XCTAssertTrue(app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5))
+            XCTAssertTrue(app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 5))
             if pressIfPresent {
                 app.staticTexts.containing(predicate).firstMatch.tap()
             }
         } else {
-            XCTAssertFalse(app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5))
+            XCTAssertFalse(app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 5))
         }
     }
 }

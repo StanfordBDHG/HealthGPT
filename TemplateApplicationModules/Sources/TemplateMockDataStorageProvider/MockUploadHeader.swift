@@ -45,3 +45,18 @@ struct MockUploadHeader: View {
         return dateFormatter.string(from: date)
     }
 }
+
+
+#if DEBUG
+struct MockUploadHeader_Previews: PreviewProvider {
+    static var previews: some View {
+        MockUploadHeader(
+            mockUpload: MockUpload(
+                id: UUID().uuidString,
+                type: .add,
+                path: "A Path"
+            )
+        )
+    }
+}
+#endif

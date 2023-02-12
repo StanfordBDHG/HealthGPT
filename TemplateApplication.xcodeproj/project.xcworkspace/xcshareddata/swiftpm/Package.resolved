@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "0df86ea17d5d281415be74f2290df8431644f156",
-        "version" : "10.4.0"
+        "revision" : "f567ed9a2b30e29159df258049a9c662c517688e",
+        "version" : "10.5.0"
       }
     },
     {
@@ -154,12 +154,21 @@
       }
     },
     {
+      "identity" : "xctestextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTestExtensions",
+      "state" : {
+        "revision" : "773d7f9a841d4e68132776b096e5307dca389e43",
+        "version" : "0.2.1"
+      }
+    },
+    {
       "identity" : "xcthealthkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit",
       "state" : {
-        "revision" : "1291d29d19adb16b2301d22d1ec1bfc54819ac99",
-        "version" : "0.1.0"
+        "revision" : "37ef9a48fcbdd5a301e8482a4bdbf61ef987a4f0",
+        "version" : "0.3.0"
       }
     }
   ],

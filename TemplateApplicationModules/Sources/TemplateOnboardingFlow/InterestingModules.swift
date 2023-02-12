@@ -55,6 +55,7 @@ struct InterestingModules: View {
 }
 
 
+#if DEBUG
 struct ThingsToKnow_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
     
@@ -63,3 +64,4 @@ struct ThingsToKnow_Previews: PreviewProvider {
         InterestingModules(onboardingSteps: $path)
     }
 }
+#endif

@@ -62,8 +62,10 @@ public struct Contacts: View {
 }
 
 
+#if DEBUG
 struct Contacts_Previews: PreviewProvider {
     static var previews: some View {
         Contacts()
     }
 }
+#endif
