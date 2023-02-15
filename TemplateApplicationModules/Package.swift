@@ -25,7 +25,7 @@ let package = Package(
         .library(name: "TemplateSharedContext", targets: ["TemplateSharedContext"])
     ],
     dependencies: [
-        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.2.1"))
+        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.0"))
     ],
     targets: [
         .target(
@@ -53,9 +53,16 @@ let package = Package(
             name: "TemplateOnboardingFlow",
             dependencies: [
                 .target(name: "TemplateSharedContext"),
+                .product(name: "Account", package: "CardinalKit"),
                 .product(name: "FHIR", package: "CardinalKit"),
+                .product(name: "FirebaseAccount", package: "CardinalKit"),
                 .product(name: "HealthKitDataSource", package: "CardinalKit"),
-                .product(name: "Onboarding", package: "CardinalKit")
+                .product(name: "Onboarding", package: "CardinalKit"),
+                .product(name: "Views", package: "CardinalKit")
+            ],
+            exclude: [
+                "Resources/en.lproj/ConsentDocument.md.license",
+                "Resources/AppIcon.png.license"
             ],
             resources: [
                 .process("Resources")

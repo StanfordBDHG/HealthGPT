@@ -49,6 +49,24 @@
 "CONSENT_LOADING_ERROR" = "Please include a markdown based document named \"ConsentDocument\" in your module Bundle.";
 
 
+// MARK: Account
+"ACCOUNT_TITLE" = "Your Account";
+"ACCOUNT_SUBTITLE" = "The Template Application demonstrates the usage of the Firebase Account Module.";
+"ACCOUNT_SETUP_DESCRIPTION" = "The login and sign up buttons use the Account Login and SignUp views.";
+"ACCOUNT_SIGNED_IN_DESCRIPTION" = "You are successfully signed in with the following account:";
+"ACCOUNT_NEXT" = "Next";
+"ACCOUNT_SIGN_UP" = "Sign Up";
+"ACCOUNT_LOGIN" = "Login";
+
+"USER_VIEW_LOADING" = "Loading user information ...";
+
+"LOGIN_TITLE" = "Login";
+"LOGIN_SUBTITLE" = "The Template Application demonstrates the usage of the Firebase Account Module to enable different authentication services, including an email and password-based login.";
+
+"SIGN_UP_TITLE" = "Sign Up";
+"SIGN_UP_SUBTITLE" = "The Template Application demonstrates the usage of the Firebase Account Module to enable different authentication services, including an email and password-based sign-up.";
+
+
 // MARK: HealthKit
 "HEALTHKIT_PERMISSIONS_TITLE" = "HealthKit Access";
 "HEALTHKIT_PERMISSIONS_SUBTITLE" = "CardinalKit can access data from HealthKit using the HealthKitDataSource module.";

@@ -42,8 +42,7 @@ class SchedulerAndQuestionnaireTests: XCTestCase {
         }
                         
         XCTAssertTrue(app.textFields["Tap to answer"].waitForExistence(timeout: 5))
-        app.textFields["Tap to answer"].tap()
-        app.textFields["Tap to answer"].typeText("42")
+        try app.textFields["Tap to answer"].enter(value: "42")
         app.toolbars["Toolbar"].buttons["Done"].tap()
                         
         XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 5))

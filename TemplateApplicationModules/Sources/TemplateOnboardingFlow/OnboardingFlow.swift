@@ -15,6 +15,9 @@ public struct OnboardingFlow: View {
     enum Step: String, Codable {
         case interestingModules
         case consent
+        case accountSetup
+        case login
+        case signUp
         case healthKitPermissions
     }
     
@@ -31,6 +34,12 @@ public struct OnboardingFlow: View {
                         InterestingModules(onboardingSteps: $onboardingSteps)
                     case .consent:
                         Consent(onboardingSteps: $onboardingSteps)
+                    case .accountSetup:
+                        AccountSetup(onboardingSteps: $onboardingSteps)
+                    case .login:
+                        TemplateLogin()
+                    case .signUp:
+                        TemplateSignUp()
                     case .healthKitPermissions:
                         HealthKitPermissions()
                     }

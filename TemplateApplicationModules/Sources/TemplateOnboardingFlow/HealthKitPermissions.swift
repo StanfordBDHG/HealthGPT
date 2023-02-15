@@ -16,6 +16,7 @@ import TemplateSharedContext
 struct HealthKitPermissions: View {
     @EnvironmentObject var healthKitDataSource: HealthKit<FHIR>
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @State var healthKitProcessing = false
     
     
     var body: some View {
@@ -40,6 +41,7 @@ struct HealthKitPermissions: View {
                     "HEALTHKIT_PERMISSIONS_BUTTON".moduleLocalized,
                     action: {
                         do {
+                            healthKitProcessing = true
                             // HealthKit is not available in the preview simulator.
                             if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
@@ -50,10 +52,12 @@ struct HealthKitPermissions: View {
                             print("Could not request HealthKit permissions.")
                         }
                         completedOnboardingFlow = true
+                        healthKitProcessing = false
                     }
                 )
             }
         )
+            .navigationBarBackButtonHidden(healthKitProcessing)
     }
 }
 

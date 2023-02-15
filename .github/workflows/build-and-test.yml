@@ -34,8 +34,29 @@ jobs:
       run: |
           xcodebuild -version
           swift --version
-    - name: Build and test
-      run: bundler install && bundle exec fastlane test
+    - name: Cache Firebase Emulators
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/firebase/emulators
+        key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('~/.cache/firebase/emulators/**') }}
+    - name: Setup NodeJS
+      uses: actions/setup-node@v3
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+    - name: Install Firebase CLI Tools
+      run: npm install -g firebase-tools
+    - name: Build and Test Example App
+      run: |
+          firebase emulators:exec 'bundler install && bundle exec fastlane test'
+    - name: Upload Artifact
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: TemplateApplication.xcresult
+        path: TemplateApplication.xcresult
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:

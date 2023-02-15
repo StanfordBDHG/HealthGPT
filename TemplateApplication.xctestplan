@@ -9,13 +9,11 @@
     }
   ],
   "defaultOptions" : {
-    "maximumTestRepetitions" : 2,
     "targetForVariableExpansion" : {
       "containerPath" : "container:TemplateApplication.xcodeproj",
       "identifier" : "653A254C283387FE005D4D48",
       "name" : "TemplateApplication"
-    },
-    "testRepetitionMode" : "retryOnFailure"
+    }
   },
   "testTargets" : [
     {

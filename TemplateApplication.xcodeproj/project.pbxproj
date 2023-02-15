@@ -28,6 +28,12 @@
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
+		2FED18F22999AAF400A51A28 /* Account in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F12999AAF400A51A28 /* Account */; };
+		2FED18F42999AAF400A51A28 /* FirebaseAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F32999AAF400A51A28 /* FirebaseAccount */; };
+		2FED18F82999AB5900A51A28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */; };
+		2FED18FA299A0C7600A51A28 /* FHIRToFirestoreAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F9299A0C7600A51A28 /* FHIRToFirestoreAdapter */; };
+		2FED18FC299A0C7600A51A28 /* FirestoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18FB299A0C7600A51A28 /* FirestoreDataStorage */; };
+		2FED18FE299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18FD299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter */; };
 		2FEE103D2998E580000822E1 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEE103C2998E580000822E1 /* XCTestExtensions */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -63,6 +69,7 @@
 		2FC94CD4298B0A1D009C8209 /* TemplateApplication.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TemplateApplication.xctestplan; sourceTree = "<group>"; };
 		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* TemplateApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,16 +85,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FED18FE299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter in Frameworks */,
 				2F49B7822980419C00BCB272 /* Questionnaires in Frameworks */,
 				2F49B77E2980407C00BCB272 /* Scheduler in Frameworks */,
 				2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */,
 				2F49B784298041F300BCB272 /* Contact in Frameworks */,
 				2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */,
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
+				2FED18FA299A0C7600A51A28 /* FHIRToFirestoreAdapter in Frameworks */,
+				2FED18F42999AAF400A51A28 /* FirebaseAccount in Frameworks */,
+				2FED18FC299A0C7600A51A28 /* FirestoreDataStorage in Frameworks */,
 				2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
 				2F38E23C29804EFA00E05C29 /* TemplateSchedule in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
+				2FED18F22999AAF400A51A28 /* Account in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
 				2F49B77C2980407C00BCB272 /* HealthKitToFHIRAdapter in Frameworks */,
 				2F38E23A29804AE300E05C29 /* TemplateOnboardingFlow in Frameworks */,
@@ -118,6 +130,7 @@
 			children = (
 				2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */,
 				653A258928339462005D4D48 /* Info.plist */,
+				2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FC9759E2978E39600BA99FE /* Localizable.strings */,
 			);
@@ -215,6 +228,11 @@
 				2F38E23729804AA300E05C29 /* TemplateContacts */,
 				2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */,
 				2F38E23B29804EFA00E05C29 /* TemplateSchedule */,
+				2FED18F12999AAF400A51A28 /* Account */,
+				2FED18F32999AAF400A51A28 /* FirebaseAccount */,
+				2FED18F9299A0C7600A51A28 /* FHIRToFirestoreAdapter */,
+				2FED18FB299A0C7600A51A28 /* FirestoreDataStorage */,
+				2FED18FD299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -313,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FED18F82999AB5900A51A28 /* GoogleService-Info.plist in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */,
 			);
@@ -836,7 +855,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.0;
 			};
 		};
 		2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -852,7 +871,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -922,6 +941,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
+		};
+		2FED18F12999AAF400A51A28 /* Account */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = Account;
+		};
+		2FED18F32999AAF400A51A28 /* FirebaseAccount */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = FirebaseAccount;
+		};
+		2FED18F9299A0C7600A51A28 /* FHIRToFirestoreAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = FHIRToFirestoreAdapter;
+		};
+		2FED18FB299A0C7600A51A28 /* FirestoreDataStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = FirestoreDataStorage;
+		};
+		2FED18FD299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = FirestoreStoragePrefixUserIdAdapter;
 		};
 		2FEE103C2998E580000822E1 /* XCTestExtensions */ = {
 			isa = XCSwiftPackageProductDependency;

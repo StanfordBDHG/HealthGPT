@@ -15,6 +15,8 @@ class OnboardingTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        try disablePasswordAutofill()
+        
         continueAfterFailure = false
         
         let app = XCUIApplication()
@@ -49,6 +51,7 @@ extension XCUIApplication {
         if staticTexts["Consent Example"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
         }
+        try navigateOnboardingAccount()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     
@@ -134,20 +137,65 @@ extension XCUIApplication {
         )
         
         XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 5))
-        staticTexts["Given Name"].tap()
-        textFields["Enter your given name ..."].typeText("Leland")
+        try textFields["Enter your given name ..."].enter(value: "Leland")
+        textFields["Enter your given name ..."].typeText("\n")
         
         XCTAssertTrue(staticTexts["Family Name"].waitForExistence(timeout: 5))
-        staticTexts["Family Name"].tap()
-        textFields["Enter your family name ..."].typeText("Stanford")
-        
-        staticTexts["Given Name"].swipeUp()
+        try textFields["Enter your family name ..."].enter(value: "Stanford")
+        textFields["Enter your family name ..."].typeText("\n")
         
         XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 5))
         staticTexts["Leland Stanford"].firstMatch.swipeUp()
         
         XCTAssertTrue(buttons["I Consent"].waitForExistence(timeout: 5))
         buttons["I Consent"].tap()
+    }
+    
+    private func navigateOnboardingAccount() throws {
+        XCTAssertTrue(staticTexts["Your Account"].waitForExistence(timeout: 5))
+        
+        guard !buttons["Next"].waitForExistence(timeout: 5) else {
+            buttons["Next"].tap()
+            return
+        }
+        
+        XCTAssertTrue(buttons["Sign Up"].waitForExistence(timeout: 5))
+        buttons["Sign Up"].tap()
+        
+        XCTAssertTrue(navigationBars.staticTexts["Sign Up"].waitForExistence(timeout: 5))
+        XCTAssertTrue(images["App Icon"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Email and Password"].waitForExistence(timeout: 5))
+        
+        buttons["Email and Password"].tap()
+        
+        try textFields["Enter your email ..."].enter(value: "leland@stanford.edu")
+        swipeUp()
+        
+        secureTextFields["Enter your password ..."].tap()
+        secureTextFields["Enter your password ..."].typeText("StanfordRocks")
+        swipeUp()
+        secureTextFields["Repeat your password ..."].tap()
+        secureTextFields["Repeat your password ..."].typeText("StanfordRocks")
+        swipeUp()
+        
+        try textFields["Enter your given name ..."].enter(value: "Leland")
+        staticTexts["Repeat\nPassword"].swipeUp()
+        
+        try textFields["Enter your family name ..."].enter(value: "Stanford")
+        staticTexts["Repeat\nPassword"].swipeUp()
+        
+        collectionViews.buttons["Sign Up"].tap()
+        
+        sleep(3)
+        
+        if staticTexts["HealthKit Access"].waitForExistence(timeout: 5) && navigationBars.buttons["Back"].waitForExistence(timeout: 5) {
+            navigationBars.buttons["Back"].tap()
+            
+            XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 5))
+            XCTAssertTrue(staticTexts["leland@stanford.edu"].waitForExistence(timeout: 5))
+            XCTAssertTrue(scrollViews.otherElements.buttons["Next"].waitForExistence(timeout: 5))
+            scrollViews.otherElements.buttons["Next"].tap()
+        }
     }
     
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {

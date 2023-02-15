@@ -15,6 +15,8 @@ class HealthKitUploadTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        try disablePasswordAutofill()
+        
         continueAfterFailure = false
         
         let app = XCUIApplication()
@@ -29,13 +31,14 @@ class HealthKitUploadTests: XCTestCase {
         try app.conductOnboardingIfNeeded()
         
         try navigateToMockUpload()
-        try assertObservationCellPresent(false)
         
-        app.terminate()
+        try assertObservationCellPresent(false)
         
         try exitAppAndOpenHealth(.steps)
         
         app.activate()
+        
+        sleep(5)
         
         try navigateToMockUpload()
         try assertObservationCellPresent(true, pressIfPresent: true)

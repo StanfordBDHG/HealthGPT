@@ -13,7 +13,7 @@ import Foundation
 extension Foundation.Bundle {
     func questionnaire(withName name: String) -> Questionnaire {
         guard let resourceURL = self.url(forResource: name, withExtension: "json") else {
-            fatalError("Could not find the questionnaire \"\(name)\".json in Bundle.")
+            fatalError("Could not find the questionnaire \"\(name).json\" in the bundle.")
         }
         
         do {
