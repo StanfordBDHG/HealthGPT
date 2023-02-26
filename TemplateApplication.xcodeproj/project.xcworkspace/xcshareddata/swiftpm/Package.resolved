@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/CardinalKit",
       "state" : {
-        "revision" : "f86fd8e39b64c685ee57e691b84f1cf851c146ae",
-        "version" : "0.3.0"
+        "revision" : "5ad27f4b7c47d9d3ab1435eb55bcd3db139dbd8b",
+        "version" : "0.3.2"
       }
     },
     {
@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit",
       "state" : {
-        "revision" : "70b79e67339da1174e6f7dcd58d6c041388ded96",
-        "version" : "0.3.1"
+        "revision" : "19395bbd14a2554e4c9d3fe5cf38aa626c807269",
+        "version" : "0.3.3"
       }
     }
   ],

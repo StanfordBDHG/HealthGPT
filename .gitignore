@@ -9,6 +9,7 @@
 # Swift Package Manager
 *.xcodeproj
 .swiftpm
+.derivedData
 .build/
 !TemplateApplication.xcodeproj
 

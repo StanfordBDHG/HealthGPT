@@ -18,6 +18,7 @@ platform :ios do
   lane :test do
     run_tests(
       code_coverage: true,
+      derived_data_path: ".derivedData",
       result_bundle: true,
       output_directory: "."
     )
@@ -25,7 +26,9 @@ platform :ios do
 
   desc "Build app"
   lane :build do
-    build_app
+    build_app(
+      derived_data_path: ".derivedData"
+    )
   end
 
   desc "Sign in to the App Store Connect API"
@@ -46,6 +49,16 @@ platform :ios do
       xcodeproj: "TemplateApplication.xcodeproj"
     })
     build
-    upload_to_testflight
+    commit = last_git_commit
+    upload_to_testflight(
+      distribute_external: true,
+      groups: [
+        "External Testers"
+      ],
+      submit_beta_review: true,
+      notify_external_testers: true,
+      expire_previous_builds: true,
+      changelog: commit[:message]
+    )
   end
 end
