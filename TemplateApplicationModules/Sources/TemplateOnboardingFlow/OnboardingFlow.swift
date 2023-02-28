@@ -21,8 +21,8 @@ public struct OnboardingFlow: View {
         case healthKitPermissions
     }
     
-    
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
     public var body: some View {
@@ -46,6 +46,7 @@ public struct OnboardingFlow: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .interactiveDismissDisabled(!completedOnboardingFlow)
     }
     
     
