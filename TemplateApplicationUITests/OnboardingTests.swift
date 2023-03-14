@@ -77,13 +77,13 @@ extension XCUIApplication {
     private func navigateOnboardingFlowConsent() throws {
         XCTAssertTrue(staticTexts["Consent Example"].waitForExistence(timeout: 2))
         
-        XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 2))
-        try textFields["Enter your given name ..."].enter(value: "Leland")
-        textFields["Enter your given name ..."].typeText("\n")
+        XCTAssertTrue(staticTexts["First Name"].waitForExistence(timeout: 2))
+        try textFields["Enter your first name ..."].enter(value: "Leland")
+        textFields["Enter your first name ..."].typeText("\n")
         
-        XCTAssertTrue(staticTexts["Family Name"].waitForExistence(timeout: 2))
-        try textFields["Enter your family name ..."].enter(value: "Stanford")
-        textFields["Enter your family name ..."].typeText("\n")
+        XCTAssertTrue(staticTexts["Last Name"].waitForExistence(timeout: 2))
+        try textFields["Enter your last name ..."].enter(value: "Stanford")
+        textFields["Enter your last name ..."].typeText("\n")
         
         XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
         staticTexts["Leland Stanford"].firstMatch.swipeUp()
@@ -119,10 +119,10 @@ extension XCUIApplication {
         secureTextFields["Repeat your password ..."].typeText("StanfordRocks")
         swipeUp()
         
-        try textFields["Enter your given name ..."].enter(value: "Leland")
+        try textFields["Enter your first name ..."].enter(value: "Leland")
         staticTexts["Repeat\nPassword"].swipeUp()
         
-        try textFields["Enter your family name ..."].enter(value: "Stanford")
+        try textFields["Enter your last name ..."].enter(value: "Stanford")
         staticTexts["Repeat\nPassword"].swipeUp()
         
         collectionViews.buttons["Sign Up"].tap()

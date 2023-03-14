@@ -16,16 +16,16 @@ on:
 jobs:
   reuse_action:
     name: REUSE Compliance Check
-    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v1
+    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
   swiftlint:
     name: SwiftLint
-    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v1
+    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       artifactname: TemplateApplication.xcresult
-      runsonlabels: '["macOS", "self-hosted"]'
+      runsonlabels: '["macos-latest"]'
       setupfirebaseemulator: true
       customcommand: "firebase emulators:exec 'fastlane test'"
   uploadcoveragereport:

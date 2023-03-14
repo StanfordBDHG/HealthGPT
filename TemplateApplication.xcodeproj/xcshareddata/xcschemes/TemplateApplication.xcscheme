@@ -78,15 +78,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--showOnboarding"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--disableFirebase"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--showOnboarding"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--skipOnboarding"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--useFirebaseEmulator"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>

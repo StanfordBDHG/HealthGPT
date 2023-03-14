@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/CardinalKit",
       "state" : {
-        "revision" : "5ad27f4b7c47d9d3ab1435eb55bcd3db139dbd8b",
-        "version" : "0.3.2"
+        "revision" : "6162a67a0b821c2be9358bec798d5d3e94cc5783",
+        "version" : "0.3.5"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "f567ed9a2b30e29159df258049a9c662c517688e",
-        "version" : "10.5.0"
+        "revision" : "60f9a33e7084482df67b48e16f315f4f7a6f5da9",
+        "version" : "10.6.0"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "9a09ece724128e8d1e14c5133b87c0e236844ac0",
-        "version" : "10.4.0"
+        "revision" : "04351180d4c757c6c16127cb57b685fff9ef260b",
+        "version" : "10.6.0"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR",
       "state" : {
-        "revision" : "1b7b7d71c30563f84d4c892421caf7f1c79ff09e",
-        "version" : "0.2.2"
+        "revision" : "d10f408766264183cd50bb117b99580255520aa3",
+        "version" : "0.2.3"
       }
     },
     {
@@ -140,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
-        "revision" : "efb23f31a79a0b914af6a4a3c90ef2608c95bfeb",
-        "version" : "0.1.5"
+        "revision" : "1bc7a15760916ade4c5058fa798a871e80c2955c",
+        "version" : "0.1.6"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "ab3a58b7209a17d781c0d1dbb3e1ff3da306bae8",
-        "version" : "1.20.3"
+        "revision" : "0af9125c4eae12a4973fb66574c53a54962a9e1e",
+        "version" : "1.21.0"
       }
     },
     {

@@ -19,13 +19,13 @@ let package = Package(
     ],
     products: [
         .library(name: "TemplateContacts", targets: ["TemplateContacts"]),
-        .library(name: "TemplateMockDataStorageProvider", targets: ["TemplateMockDataStorageProvider"]),
         .library(name: "TemplateOnboardingFlow", targets: ["TemplateOnboardingFlow"]),
         .library(name: "TemplateSchedule", targets: ["TemplateSchedule"]),
         .library(name: "TemplateSharedContext", targets: ["TemplateSharedContext"])
     ],
     dependencies: [
-        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.0"))
+        .package(url: "https://github.com/StanfordBDHG/CardinalKit", .upToNextMinor(from: "0.3.5")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.6.0")
     ],
     targets: [
         .target(
@@ -33,17 +33,6 @@ let package = Package(
             dependencies: [
                 .target(name: "TemplateSharedContext"),
                 .product(name: "Contact", package: "CardinalKit")
-            ],
-            resources: [
-                .process("Resources")
-            ]
-        ),
-        .target(
-            name: "TemplateMockDataStorageProvider",
-            dependencies: [
-                .target(name: "TemplateSharedContext"),
-                .product(name: "CardinalKit", package: "CardinalKit"),
-                .product(name: "FHIR", package: "CardinalKit")
             ],
             resources: [
                 .process("Resources")
@@ -58,7 +47,8 @@ let package = Package(
                 .product(name: "FirebaseAccount", package: "CardinalKit"),
                 .product(name: "HealthKitDataSource", package: "CardinalKit"),
                 .product(name: "Onboarding", package: "CardinalKit"),
-                .product(name: "Views", package: "CardinalKit")
+                .product(name: "Views", package: "CardinalKit"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ],
             exclude: [
                 "Resources/en.lproj/ConsentDocument.md.license",

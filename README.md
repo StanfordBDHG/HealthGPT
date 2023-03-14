@@ -39,7 +39,7 @@ You do not have to make any modifications to the Firebase configuration, login i
 
 Startup the [Firebase Emulator Suite](https://firebase.google.com/docs/emulator-suite) using
 ```
-$ firebase emulators:start --only auth,firestore
+$ firebase emulators:start
 ```
 
 After the emulators have started up, you can run the application in your simulator to build, test, and run the application.
@@ -48,6 +48,7 @@ The application includes the following feature flags that can be configured in t
 - ``--skipOnboarding``: Skips the onboarding flow to enable easier development of features in the application and to allow UI tests to skip the onboarding flow.
 - ``--showOnboarding``: Always show the onboarding when the application is launched. Makes it easy to modify and test the onboarding flow without the need to manually remove the application or reset the simulator.
 - ``--disableFirebase``: Disables the Firebase interactions, including the login/sign-up step and the Firebase Firestore upload.
+- ``--useFirebaseEmulator``: Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.
 
 
 ### Template Onboarding Flow

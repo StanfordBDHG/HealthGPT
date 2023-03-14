@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FHIRMockDataStorageProvider
 import SwiftUI
 import TemplateContacts
-import TemplateMockDataStorageProvider
 import TemplateSchedule
 import TemplateSharedContext
 

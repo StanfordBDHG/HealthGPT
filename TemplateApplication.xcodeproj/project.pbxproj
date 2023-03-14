@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E233298047DA00E05C29 /* TemplateSharedContext */; };
-		2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */; };
 		2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23729804AA300E05C29 /* TemplateContacts */; };
 		2F38E23A29804AE300E05C29 /* TemplateOnboardingFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */; };
 		2F38E23C29804EFA00E05C29 /* TemplateSchedule in Frameworks */ = {isa = PBXBuildFile; productRef = 2F38E23B29804EFA00E05C29 /* TemplateSchedule */; };
@@ -26,11 +25,13 @@
 		2F4E23872989DB360013F3D9 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23862989DB360013F3D9 /* ContactsTests.swift */; };
 		2F4E23892989DB400013F3D9 /* HealthKitUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
+		2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */; };
+		2F6025CD29BBE92B0045459E /* FHIRMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6025CC29BBE92B0045459E /* FHIRMockDataStorageProvider */; };
+		2F6025D029BBEC610045459E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6025CF29BBEC610045459E /* FirebaseAuth */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
 		2FED18F22999AAF400A51A28 /* Account in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F12999AAF400A51A28 /* Account */; };
 		2FED18F42999AAF400A51A28 /* FirebaseAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F32999AAF400A51A28 /* FirebaseAccount */; };
-		2FED18F82999AB5900A51A28 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */; };
 		2FED18FA299A0C7600A51A28 /* FHIRToFirestoreAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18F9299A0C7600A51A28 /* FHIRToFirestoreAdapter */; };
 		2FED18FC299A0C7600A51A28 /* FirestoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18FB299A0C7600A51A28 /* FirestoreDataStorage */; };
 		2FED18FE299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FED18FD299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter */; };
@@ -65,11 +66,11 @@
 		2F4E23862989DB360013F3D9 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitUploadTests.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
+		2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
 		2FC94CD4298B0A1D009C8209 /* TemplateApplication.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TemplateApplication.xctestplan; sourceTree = "<group>"; };
 		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* TemplateApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,12 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6025CD29BBE92B0045459E /* FHIRMockDataStorageProvider in Frameworks */,
 				2FED18FE299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter in Frameworks */,
 				2F49B7822980419C00BCB272 /* Questionnaires in Frameworks */,
 				2F49B77E2980407C00BCB272 /* Scheduler in Frameworks */,
 				2F49B77A2980407C00BCB272 /* HealthKitDataSource in Frameworks */,
 				2F49B784298041F300BCB272 /* Contact in Frameworks */,
-				2F38E236298048E500E05C29 /* TemplateMockDataStorageProvider in Frameworks */,
 				2F38E234298047DA00E05C29 /* TemplateSharedContext in Frameworks */,
 				2FED18FA299A0C7600A51A28 /* FHIRToFirestoreAdapter in Frameworks */,
 				2FED18F42999AAF400A51A28 /* FirebaseAccount in Frameworks */,
@@ -98,6 +99,7 @@
 				2F38E23829804AA300E05C29 /* TemplateContacts in Frameworks */,
 				2F49B7782980407C00BCB272 /* FHIR in Frameworks */,
 				2F38E23C29804EFA00E05C29 /* TemplateSchedule in Frameworks */,
+				2F6025D029BBEC610045459E /* FirebaseAuth in Frameworks */,
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
 				2FED18F22999AAF400A51A28 /* Account in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
@@ -130,7 +132,7 @@
 			children = (
 				2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */,
 				653A258928339462005D4D48 /* Info.plist */,
-				2FED18F62999AB5900A51A28 /* GoogleService-Info.plist */,
+				2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FC9759E2978E39600BA99FE /* Localizable.strings */,
 			);
@@ -208,6 +210,7 @@
 				653A2549283387FE005D4D48 /* Sources */,
 				653A254A283387FE005D4D48 /* Frameworks */,
 				653A254B283387FE005D4D48 /* Resources */,
+				2F5B528D29BD237B002020B7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -224,7 +227,6 @@
 				2F49B7812980419C00BCB272 /* Questionnaires */,
 				2F49B783298041F300BCB272 /* Contact */,
 				2F38E233298047DA00E05C29 /* TemplateSharedContext */,
-				2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */,
 				2F38E23729804AA300E05C29 /* TemplateContacts */,
 				2F38E23929804AE300E05C29 /* TemplateOnboardingFlow */,
 				2F38E23B29804EFA00E05C29 /* TemplateSchedule */,
@@ -233,6 +235,8 @@
 				2FED18F9299A0C7600A51A28 /* FHIRToFirestoreAdapter */,
 				2FED18FB299A0C7600A51A28 /* FirestoreDataStorage */,
 				2FED18FD299AE00500A51A28 /* FirestoreStoragePrefixUserIdAdapter */,
+				2F6025CC29BBE92B0045459E /* FHIRMockDataStorageProvider */,
+				2F6025CF29BBEC610045459E /* FirebaseAuth */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* TemplateApplication.app */;
@@ -314,6 +318,7 @@
 				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */,
 				2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */,
 				2FEE103B2998E580000822E1 /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
+				2F6025CE29BBEC610045459E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -331,9 +336,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FED18F82999AB5900A51A28 /* GoogleService-Info.plist in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */,
+				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +357,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F5B528D29BD237B002020B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  export PATH=\"$PATH:/opt/homebrew/bin\"\n  if which swiftlint > /dev/null; then\n    swiftlint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		653A2549283387FE005D4D48 /* Sources */ = {
@@ -855,7 +881,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.3.2;
+				minimumVersion = 0.3.5;
 			};
 		};
 		2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -864,6 +890,14 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 0.3.3;
+			};
+		};
+		2F6025CE29BBEC610045459E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.6.0;
 			};
 		};
 		2FEE103B2998E580000822E1 /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
@@ -880,10 +914,6 @@
 		2F38E233298047DA00E05C29 /* TemplateSharedContext */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TemplateSharedContext;
-		};
-		2F38E235298048E500E05C29 /* TemplateMockDataStorageProvider */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TemplateMockDataStorageProvider;
 		};
 		2F38E23729804AA300E05C29 /* TemplateContacts */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -941,6 +971,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
+		};
+		2F6025CC29BBE92B0045459E /* FHIRMockDataStorageProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = FHIRMockDataStorageProvider;
+		};
+		2F6025CF29BBEC610045459E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F6025CE29BBEC610045459E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 		2FED18F12999AAF400A51A28 /* Account */ = {
 			isa = XCSwiftPackageProductDependency;
