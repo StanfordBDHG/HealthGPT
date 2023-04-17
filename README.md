@@ -11,7 +11,7 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 - Chat-style interface for user-friendly health data interaction
 - Integration with the Apple Health app to ensure seamless first-party data usage
 - Extensible architecture built on CardinalKit for easy customization
-- GPT-4 support throught the [OpenAI] spm module
+- GPT-4 support throught the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
 
 ## Set Up
 
@@ -26,7 +26,7 @@ For any other quick changes, refer to the CardinalKit repo.
 
 ## TODOs
 
-- [ ] stream GPT responses to the client in order to hide latency
+- [ ] stream GPT responses to the client in order to hide latency (currently broken in the Swift [OpenAI])(https://github.com/MacPaw/OpenAI/issues/14) module)
 - [ ] store the API key in a config/plist file (or generally in a more secure way)
 - [ ] enable users to disconnect health data streams at will
 - [ ] provide support for more HealthKit types
