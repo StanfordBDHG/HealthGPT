@@ -26,7 +26,7 @@ For any other quick changes, refer to the CardinalKit repo.
 
 ## TODOs
 
-- [ ] stream GPT responses to the client in order to hide latency (currently broken in the Swift [OpenAI])(https://github.com/MacPaw/OpenAI/issues/14) module)
+- [ ] stream GPT responses to the client in order to hide latency (currently broken in the SPM module: https://github.com/MacPaw/OpenAI/issues/14)
 - [ ] store the API key in a config/plist file (or generally in a more secure way)
 - [ ] enable users to disconnect health data streams at will
 - [ ] provide support for more HealthKit types
