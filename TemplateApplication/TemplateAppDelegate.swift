@@ -63,7 +63,7 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
         )
     }
     
-    
+    // ADD HK SAMPLES
     private var healthKit: HealthKit<FHIR> {
         HealthKit {
             CollectSample(

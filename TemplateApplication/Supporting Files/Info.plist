@@ -11,21 +11,5 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
-	<key>NSHealthShareUsageDescription</key>
-	<string>The CardinalKit Template Application uses the step count to demonstrate CardinalKit&apos;s integration with HealthKit.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>The CardinalKit Template Application uses the step count to demonstrate CardinalKit&apos;s integration with HealthKit.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
 </dict>
 </plist>

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "653A254C283387FE005D4D48"
-               BuildableName = "TemplateApplication.app"
-               BlueprintName = "TemplateApplication"
+               BuildableName = "HealthGPT.app"
+               BlueprintName = "HealthGPT"
                ReferencedContainer = "container:TemplateApplication.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -71,15 +71,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "653A254C283387FE005D4D48"
-            BuildableName = "TemplateApplication.app"
-            BlueprintName = "TemplateApplication"
+            BuildableName = "HealthGPT.app"
+            BlueprintName = "HealthGPT"
             ReferencedContainer = "container:TemplateApplication.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--showOnboarding"
@@ -87,7 +87,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useFirebaseEmulator"
@@ -106,8 +106,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "653A254C283387FE005D4D48"
-            BuildableName = "TemplateApplication.app"
-            BlueprintName = "TemplateApplication"
+            BuildableName = "HealthGPT.app"
+            BlueprintName = "HealthGPT"
             ReferencedContainer = "container:TemplateApplication.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
