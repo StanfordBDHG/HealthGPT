@@ -22,6 +22,8 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
 
+You can add queries for additional Health quantities and categories by editing `src/TemplateApplication/HealthDataFetcher.swift`. You also need to update the prompt in `src/TemplateApplication/MessageInputView.swift` to pass the appropriate data to the OpenAI API.
+
 For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
 
 ## TODOs
@@ -31,5 +33,6 @@ For any other quick changes (such as adding an onboarding flow), refer to the [C
 - [ ] enable users to disconnect health data streams at will
 - [ ] provide support for more HealthKit types
 - [ ] chain LLM queries to first identify which data to pull from HealthKit and then construct a prompt
+- [ ] access data from the current day
 
 _Feel free to create a PR with any code that you might find helpful!_
