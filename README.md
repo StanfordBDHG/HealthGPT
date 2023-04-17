@@ -42,3 +42,7 @@ For any other quick changes (such as adding an onboarding flow), refer to the [C
 - [ ] [whisper.cpp](https://github.com/ggerganov/whisper.cpp) integration within the chat interface
 
 _Feel free to create a PR with any code that you might find helpful!_
+
+## Disclaimer
+
+HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. Large language models, such as those provided by OpenAI, are known to hallucinate and at times return false information. The use of HealthGPT is at your own risk. Always consult a qualified healthcare provider for personalized advice regarding your health and well-being.
