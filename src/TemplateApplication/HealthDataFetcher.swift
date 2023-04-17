@@ -41,9 +41,9 @@ class HealthDataFetcher {
         }
     }
     
-    func fetchLastTwoWeeksQuantityData(for identifier: HKQuantityTypeIdentifier, unit: HKUnit, completion: @escaping ([Double]) -> Void) {
+    func fetchLastTwoWeeksQuantityData(for identifier: HKQuantityTypeIdentifier, unit: HKUnit, options: HKStatisticsOptions, completion: @escaping ([Double]) -> Void) {
         let predicate = createLastTwoWeeksPredicate()
-        let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: identifier)!, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: Date.startOfDay(), intervalComponents: DateComponents(day: 1))
+        let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: identifier)!, quantitySamplePredicate: predicate, options: options, anchorDate: Date.startOfDay(), intervalComponents: DateComponents(day: 1))
 
         var dailyData: [Double] = []
 
@@ -93,23 +93,23 @@ class HealthDataFetcher {
     }
 
     func fetchLastTwoWeeksStepCount(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(for: .stepCount, unit: HKUnit.count(), completion: completion)
+        fetchLastTwoWeeksQuantityData(for: .stepCount, unit: HKUnit.count(), options: [.cumulativeSum], completion: completion)
     }
 
     func fetchLastTwoWeeksActiveEnergy(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(for: .activeEnergyBurned, unit: HKUnit.largeCalorie(), completion: completion)
+        fetchLastTwoWeeksQuantityData(for: .activeEnergyBurned, unit: HKUnit.largeCalorie(), options: [.cumulativeSum], completion: completion)
     }
     
     func fetchLastTwoWeeksExerciseTime(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(for: .appleExerciseTime, unit: .minute(), completion: completion)
+        fetchLastTwoWeeksQuantityData(for: .appleExerciseTime, unit: .minute(), options: [.cumulativeSum], completion: completion)
     }
     
     func fetchLastTwoWeeksBodyWeight(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(for: .bodyMass, unit: .pound(), completion: completion)
+        fetchLastTwoWeeksQuantityData(for: .bodyMass, unit: .pound(), options: [.discreteAverage], completion: completion)
     }
     
     func fetchLastTwoWeeksHeartRate(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(for: .heartRate, unit: .count(), completion: completion)
+        fetchLastTwoWeeksQuantityData(for: .heartRate, unit: .count(), options: [.discreteAverage], completion: completion)
     }
     
     func fetchLastTwoWeeksSleep(completion: @escaping ([Double]) -> Void) {
