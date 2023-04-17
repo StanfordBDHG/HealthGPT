@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 -->
 
-Template Application Contributors
-=================================
+# HealthGPT Contributors
 
-* [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
+- [Varun Shenoy](https://varunshenoy.com)
