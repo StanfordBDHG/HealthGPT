@@ -10,7 +10,7 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 - Chat-style interface for user-friendly health data interaction
 - Integration with the Apple Health app to ensure seamless first-party data usage
-- Extensible architecture built on CardinalKit for easy customization
+- Extensible architecture built on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) for easy customization
 - GPT-4 support throught the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
 
 ## Set Up
@@ -22,7 +22,7 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
 
-For any other quick changes, refer to the CardinalKit repo.
+For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
 
 ## TODOs
 
