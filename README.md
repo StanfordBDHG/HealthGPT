@@ -2,7 +2,7 @@
 
 ![Example Conversation](example.png)
 
-HealthGPT is an iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
+HealthGPT is an experimental iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
 
 Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/)) and OpenAI, HealthGPT offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
 
