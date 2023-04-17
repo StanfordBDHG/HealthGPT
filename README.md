@@ -22,7 +22,10 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
 
-You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories by editing `src/TemplateApplication/HealthDataFetcher.swift`. You also need to update the prompt in `src/TemplateApplication/MessageInputView.swift` to pass the appropriate data to the OpenAI API.
+You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
+
+1. Edit `src/TemplateApplication/HealthDataFetcher.swift` to create an appropriate query for your data type.
+2. Update the prompt in `src/TemplateApplication/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
 
 For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
 
