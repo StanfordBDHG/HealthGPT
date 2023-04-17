@@ -11,7 +11,8 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 - Chat-style interface for user-friendly health data interaction
 - Integration with the Apple Health app to ensure seamless first-party data usage
 - Extensible architecture built on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) for easy customization
-- GPT-4 support throught the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
+- GPT-3.5 + GPT-4 access through the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
+- Out of the box support for querying sleep, active energy, exercise minutes, and body mass.
 
 ## Set Up
 
