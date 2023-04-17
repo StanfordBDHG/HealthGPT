@@ -38,5 +38,7 @@ For any other quick changes (such as adding an onboarding flow), refer to the [C
 - [ ] provide support for more HealthKit types
 - [ ] chain LLM queries to first identify which data to pull from HealthKit and then construct a prompt
 - [ ] access data from the current day
+- [ ] Siri integration
+- [ ] [whisper.cpp](https://github.com/ggerganov/whisper.cpp) integration within the chat interface
 
 _Feel free to create a PR with any code that you might find helpful!_
