@@ -6,23 +6,22 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Onboarding
+import CardinalKitOnboarding
 import SwiftUI
-import TemplateSharedContext
 
 
 struct Consent: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
-    
-    
+
+
     private var consentDocument: Data {
-        guard let path = Bundle.module.url(forResource: "ConsentDocument", withExtension: "md"),
+        guard let path = Bundle.main.url(forResource: "ConsentDocument", withExtension: "md"),
               let data = try? Data(contentsOf: path) else {
             return Data("CONSENT_LOADING_ERROR".moduleLocalized.utf8)
         }
         return data
     }
-    
+
     var body: some View {
         ConsentView(
             header: {
@@ -43,8 +42,8 @@ struct Consent: View {
             }
         )
     }
-    
-    
+
+
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
     }
@@ -54,8 +53,8 @@ struct Consent: View {
 #if DEBUG
 struct Consent_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
-    
-    
+
+
     static var previews: some View {
         Consent(onboardingSteps: $path)
     }

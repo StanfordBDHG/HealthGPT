@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import TemplateSharedContext
 
 
 private struct TemplateAppTestingSetup: ViewModifier {

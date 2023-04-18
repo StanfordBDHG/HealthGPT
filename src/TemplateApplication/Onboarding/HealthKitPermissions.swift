@@ -6,19 +6,18 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FHIR
-import HealthKitDataSource
-import Onboarding
+import CardinalKitFHIR
+import CardinalKitHealthKit
+import CardinalKitOnboarding
 import SwiftUI
-import TemplateSharedContext
 
 
 struct HealthKitPermissions: View {
     @EnvironmentObject var healthKitDataSource: HealthKit<FHIR>
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @State var healthKitProcessing = false
-    
-    
+
+
     var body: some View {
         OnboardingView(
             contentView: {
@@ -31,7 +30,7 @@ struct HealthKitPermissions: View {
                     Image(systemName: "heart.text.square.fill")
                         .font(.system(size: 150))
                         .foregroundColor(.accentColor)
-                    Text("HEALTHKIT_PERMISSIONS_DESCRIPTION", bundle: .module)
+                    Text("HEALTHKIT_PERMISSIONS_DESCRIPTION")
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
                     Spacer()

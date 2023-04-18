@@ -6,14 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Onboarding
+import CardinalKitOnboarding
 import SwiftUI
 
 
 struct InterestingModules: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
-    
-    
+
+
     var body: some View {
         SequentialOnboardingView(
             title: "INTERESTING_MODULES_TITLE".moduleLocalized,
@@ -47,8 +47,8 @@ struct InterestingModules: View {
             }
         )
     }
-    
-    
+
+
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
     }
@@ -58,8 +58,8 @@ struct InterestingModules: View {
 #if DEBUG
 struct ThingsToKnow_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
-    
-    
+
+
     static var previews: some View {
         InterestingModules(onboardingSteps: $path)
     }

@@ -8,8 +8,6 @@
 
 import CardinalKit
 import SwiftUI
-import TemplateOnboardingFlow
-import TemplateSharedContext
 
 
 @main

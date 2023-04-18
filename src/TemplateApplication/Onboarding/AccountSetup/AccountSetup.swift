@@ -6,19 +6,19 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
-import class FHIR.FHIR
-import FirebaseAccount
+import CardinalKitAccount
+import class CardinalKitFHIR.FHIR
+import CardinalKitFirebaseAccount
+import CardinalKitOnboarding
 import FirebaseAuth
-import Onboarding
 import SwiftUI
 
 
 struct AccountSetup: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     @EnvironmentObject var account: Account
-    
-    
+
+
     var body: some View {
         OnboardingView(
             contentView: {
@@ -53,7 +53,7 @@ struct AccountSetup: View {
                 }
             }
     }
-    
+
     @ViewBuilder
     private var accountImage: some View {
         Group {
@@ -66,15 +66,15 @@ struct AccountSetup: View {
             .font(.system(size: 150))
             .foregroundColor(.accentColor)
     }
-    
+
     @ViewBuilder
     private var accountDescription: some View {
         VStack {
             Group {
                 if account.signedIn {
-                    Text("ACCOUNT_SIGNED_IN_DESCRIPTION", bundle: .module)
+                    Text("ACCOUNT_SIGNED_IN_DESCRIPTION")
                 } else {
-                    Text("ACCOUNT_SETUP_DESCRIPTION", bundle: .module)
+                    Text("ACCOUNT_SETUP_DESCRIPTION")
                 }
             }
                 .multilineTextAlignment(.center)
@@ -88,7 +88,7 @@ struct AccountSetup: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var actionView: some View {
         if account.signedIn {
@@ -111,8 +111,8 @@ struct AccountSetup: View {
             )
         }
     }
-    
-    
+
+
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
     }
@@ -122,8 +122,8 @@ struct AccountSetup: View {
 #if DEBUG
 struct AccountSetup_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
-    
-    
+
+
     static var previews: some View {
         AccountSetup(onboardingSteps: $path)
             .environmentObject(Account(accountServices: []))

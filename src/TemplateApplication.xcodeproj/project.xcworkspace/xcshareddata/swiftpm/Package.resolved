@@ -14,8 +14,80 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/CardinalKit",
       "state" : {
-        "revision" : "6162a67a0b821c2be9358bec798d5d3e94cc5783",
-        "version" : "0.3.5"
+        "revision" : "b5476acaeb57092068a945e7750ab84ce02ddbc6",
+        "version" : "0.4.1"
+      }
+    },
+    {
+      "identity" : "cardinalkitaccount",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitAccount",
+      "state" : {
+        "revision" : "a90e8ed53cd186d3634c751b55324b5181dda3f2",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "cardinalkitfhir",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitFHIR.git",
+      "state" : {
+        "revision" : "08bb7850b72ea5593dff6d9b104db03a4cfe8997",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "cardinalkitfhirtofirestoreadapter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitFHIRtoFirestoreAdapter.git",
+      "state" : {
+        "revision" : "7d0d82e3eeda8ff672066ca76c470ac12600df02",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "cardinalkitfirebase",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitFirebase",
+      "state" : {
+        "revision" : "51a821270b7f98699621b8da88263b5ec10b7ff4",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "cardinalkithealthkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitHealthKit.git",
+      "state" : {
+        "revision" : "91c4a61689485ab76e3b6777f9477c7c8147184f",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "cardinalkithealthkittofhiradapter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitHealthKitToFHIRAdapter.git",
+      "state" : {
+        "revision" : "b5bc6e8a26672880714311fc6afd8ee050e1dc97",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "cardinalkitonboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitOnboarding.git",
+      "state" : {
+        "revision" : "5f3d47dfcbdfb2fbb7e9484cc15f798b2730085f",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "cardinalkitviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitViews",
+      "state" : {
+        "revision" : "eefa262d96a930fb6339de194a2e574b5fbc8810",
+        "version" : "0.2.1"
       }
     },
     {
@@ -23,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/FHIRModels",
       "state" : {
-        "revision" : "e115442fb3c5d44ffb1dc9b4e039b77fd143ad96",
-        "version" : "0.4.0"
+        "revision" : "861afd5816a98d38f86220eab2f812d76cad84a0",
+        "version" : "0.5.0"
       }
     },
     {
@@ -113,8 +185,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "27ac9fa136574d0fa79fa68423f9367ab6167b41"
+        "revision" : "65748811327527fad88a1a0d141911fd6072b720",
+        "version" : "0.1.2"
       }
     },
     {
@@ -124,24 +196,6 @@
       "state" : {
         "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
         "version" : "2.2.0"
-      }
-    },
-    {
-      "identity" : "researchkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/ResearchKit",
-      "state" : {
-        "revision" : "3ea06dcc596bd49571ae3353c9c1555776114072",
-        "version" : "2.2.9"
-      }
-    },
-    {
-      "identity" : "researchkitonfhir",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
-      "state" : {
-        "revision" : "1bc7a15760916ade4c5058fa798a871e80c2955c",
-        "version" : "0.1.6"
       }
     },
     {
@@ -169,6 +223,15 @@
       "state" : {
         "revision" : "19395bbd14a2554e4c9d3fe5cf38aa626c807269",
         "version" : "0.3.3"
+      }
+    },
+    {
+      "identity" : "xctruntimeassertions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
+      "state" : {
+        "revision" : "654b3e49219c0e2303ae8b4ea8edf5e12d168e12",
+        "version" : "0.2.1"
       }
     }
   ],

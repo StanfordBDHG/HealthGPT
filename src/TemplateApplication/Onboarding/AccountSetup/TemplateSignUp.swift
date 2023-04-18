@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
-import Onboarding
+import CardinalKitAccount
+import CardinalKitOnboarding
 import SwiftUI
 
 
@@ -16,7 +16,7 @@ struct TemplateSignUp: View {
         SignUp {
             IconView()
                 .padding(.top, 32)
-            Text("SIGN_UP_SUBTITLE", bundle: .module)
+            Text("SIGN_UP_SUBTITLE")
                 .multilineTextAlignment(.center)
                 .padding()
             Spacer(minLength: 0)
