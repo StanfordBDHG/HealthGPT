@@ -32,7 +32,7 @@ struct MessageInputView: View {
                 userMessage = ""
                 
                 // ADD YOUR OPENAI API KEY HERE
-                let openAI = OpenAI(apiToken: "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")
+                let openAI = OpenAI(apiToken: "YOUR OPENAI API KEY")
                 
                 Task {
                     let healthDataFetcher = HealthDataFetcher()
