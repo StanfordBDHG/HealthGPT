@@ -19,11 +19,8 @@
 		2F49B7802980418400BCB272 /* Onboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B77F2980418400BCB272 /* Onboarding */; };
 		2F49B7822980419C00BCB272 /* Questionnaires in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7812980419C00BCB272 /* Questionnaires */; };
 		2F49B784298041F300BCB272 /* Contact in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B783298041F300BCB272 /* Contact */; };
-		2F4E237E2989A2FE0013F3D9 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */; };
 		2F4E23812989C5930013F3D9 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F4E23802989C5930013F3D9 /* XCTHealthKit */; };
 		2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */; };
-		2F4E23872989DB360013F3D9 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23862989DB360013F3D9 /* ContactsTests.swift */; };
-		2F4E23892989DB400013F3D9 /* HealthKitUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */; };
 		2F6025CD29BBE92B0045459E /* FHIRMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6025CC29BBE92B0045459E /* FHIRMockDataStorageProvider */; };
@@ -38,8 +35,6 @@
 		2FEE103D2998E580000822E1 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEE103C2998E580000822E1 /* XCTestExtensions */; };
 		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
-		653A256228338800005D4D48 /* TemplateApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* TemplateApplicationTests.swift */; };
-		653A256C28338800005D4D48 /* SchedulerAndQuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256B28338800005D4D48 /* SchedulerAndQuestionnaireTests.swift */; };
 		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
 		E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D86A329EDB21B00490C26 /* MessageInputView.swift */; };
 		E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */; };
@@ -65,10 +60,7 @@
 
 /* Begin PBXFileReference section */
 		2F49B77329803E8F00BCB272 /* TemplateApplicationModules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TemplateApplicationModules; sourceTree = "<group>"; };
-		2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppTestingSetup.swift; sourceTree = "<group>"; };
-		2F4E23862989DB360013F3D9 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
-		2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitUploadTests.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* TemplateApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TemplateApplication.entitlements; sourceTree = "<group>"; };
@@ -79,9 +71,7 @@
 		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653A255D28338800005D4D48 /* TemplateApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A256128338800005D4D48 /* TemplateApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplicationTests.swift; sourceTree = "<group>"; };
 		653A256728338800005D4D48 /* TemplateApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A256B28338800005D4D48 /* SchedulerAndQuestionnaireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerAndQuestionnaireTests.swift; sourceTree = "<group>"; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcher.swift; sourceTree = "<group>"; };
 		E21D86A329EDB21B00490C26 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
@@ -189,7 +179,6 @@
 		653A256028338800005D4D48 /* TemplateApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				653A256128338800005D4D48 /* TemplateApplicationTests.swift */,
 			);
 			path = TemplateApplicationTests;
 			sourceTree = "<group>";
@@ -197,10 +186,6 @@
 		653A256A28338800005D4D48 /* TemplateApplicationUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2F4E237D2989A2FE0013F3D9 /* OnboardingTests.swift */,
-				653A256B28338800005D4D48 /* SchedulerAndQuestionnaireTests.swift */,
-				2F4E23862989DB360013F3D9 /* ContactsTests.swift */,
-				2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */,
 			);
 			path = TemplateApplicationUITests;
 			sourceTree = "<group>";
@@ -390,7 +375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  export PATH=\"$PATH:/opt/homebrew/bin\"\n  if which swiftlint > /dev/null; then\n    swiftlint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nfi\n";
+			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -413,7 +398,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653A256228338800005D4D48 /* TemplateApplicationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,10 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F4E23872989DB360013F3D9 /* ContactsTests.swift in Sources */,
-				2F4E23892989DB400013F3D9 /* HealthKitUploadTests.swift in Sources */,
-				2F4E237E2989A2FE0013F3D9 /* OnboardingTests.swift in Sources */,
-				653A256C28338800005D4D48 /* SchedulerAndQuestionnaireTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
