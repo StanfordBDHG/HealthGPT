@@ -15,16 +15,16 @@ extension Foundation.Bundle {
     ///   - name: The name of the image.
     ///   - fileExtension: The file extension of the image.
     /// - Returns: Returns the `UIImage` loaded from the `Bundle` instance.
-    public func image(withName name: String, fileExtension: String) -> UIImage {
+    func image(withName name: String, fileExtension: String) -> UIImage {
         guard let resourceURL = self.url(forResource: name, withExtension: fileExtension) else {
             fatalError("Could not find the file \"\(name).\(fileExtension)\" in the bundle.")
         }
-        
+
         guard let resourceData = try? Data(contentsOf: resourceURL),
               let image = UIImage(data: resourceData) else {
             fatalError("Decode the image named \"\(name).\(fileExtension)\"")
         }
-        
+
         return image
     }
 }

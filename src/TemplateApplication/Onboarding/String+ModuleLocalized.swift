@@ -8,6 +8,6 @@
 
 extension String {
     var moduleLocalized: String {
-        String(localized: LocalizationValue(self), bundle: .module)
+        String(localized: LocalizationValue(self))
     }
 }

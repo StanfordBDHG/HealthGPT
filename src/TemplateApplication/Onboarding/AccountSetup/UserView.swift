@@ -6,19 +6,19 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
-import class FHIR.FHIR
-import FirebaseAccount
+import CardinalKitAccount
+import class CardinalKitFHIR.FHIR
+import CardinalKitFirebaseAccount
+import CardinalKitViews
 import Foundation
 import SwiftUI
-import Views
 
 
 struct UserView: View {
     @EnvironmentObject var account: Account
     @EnvironmentObject var firebaseAccountConfiguration: FirebaseAccountConfiguration<FHIR>
-    
-    
+
+
     var body: some View {
         userInformation
             .padding()
@@ -28,8 +28,8 @@ struct UserView: View {
                     .shadow(color: .gray, radius: 2)
             )
     }
-    
-    
+
+
     @ViewBuilder
     private var userInformation: some View {
         HStack(spacing: 16) {
@@ -50,7 +50,7 @@ struct UserView: View {
                 Spacer()
                 VStack(spacing: 16) {
                     ProgressView()
-                    Text("USER_VIEW_LOADING", bundle: .module)
+                    Text("USER_VIEW_LOADING")
                         .multilineTextAlignment(.center)
                 }
                 Spacer()
