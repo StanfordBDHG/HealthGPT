@@ -9,8 +9,8 @@ import SwiftUI
 
 private struct TemplateAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
-    
+
+
     func body(content: Content) -> some View {
         content
             .task {

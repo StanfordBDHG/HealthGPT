@@ -20,9 +20,8 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
             }
         }
     }
-    
-    
-    // ADD HK SAMPLES
+
+
     private var healthKit: HealthKit<FHIR> {
         HealthKit {
             CollectSamples(
@@ -33,7 +32,6 @@ class TemplateAppDelegate: CardinalKitAppDelegate {
                     HKQuantityType(.bodyMass),
                     HKQuantityType(.heartRate),
                     HKCategoryType(.sleepAnalysis)
-                    
                 ],
                 deliverySetting: .manual()
             )
