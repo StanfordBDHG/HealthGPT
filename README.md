@@ -1,10 +1,19 @@
+<!--
+
+This source file is part of the Stanford HealthGPT project
+
+SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
+   
+-->
+
 # HealthGPT
 
 ![Example Conversation](Figures/Example.png)
 
 HealthGPT is an experimental iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
 
-Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/)) and OpenAI, HealthGPT offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
+Built on top of [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) and the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) and OpenAI.
+HealthGPT offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
 
 ## Features
 
@@ -21,27 +30,24 @@ HealthGPT is provided for general informational purposes only and is not intende
 ## Set Up
 
 1. Clone this repository.
-2. Open `src/TemplateApplication.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
+2. Open `HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
 3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
 4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
 
-Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
+Note: if you're using the simulator, you will need to manually add data in the Health app. 
+Otherwise, all of your results will read zero.
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
-1. Edit `src/TemplateApplication/HealthDataFetcher.swift` to create an appropriate query for your data type.
-2. Update the prompt in `src/TemplateApplication/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
+1. Edit `HealthGPT/HealthGPT/HealthDataFetcher.swift` to create an appropriate query for your data type.
+2. Update the prompt in `HealthGPT/HealthGPT/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
 
 For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
 
-## TODOs
+## Contributing
 
-- [ ] stream GPT responses to the client in order to hide latency (currently broken in the SPM module: https://github.com/MacPaw/OpenAI/issues/14)
-- [ ] enable users to disconnect health data streams at will
-- [ ] provide support for more HealthKit types
-- [ ] chain LLM queries to first identify which data to pull from HealthKit and then construct a prompt
-- [ ] access data from the current day
-- [ ] Siri integration
-- [ ] [whisper.cpp](https://github.com/ggerganov/whisper.cpp) integration within the chat interface
+Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordBDHG/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordBDHG/.github/blob/main/CODE_OF_CONDUCT.md) first.
 
-_Feel free to create a PR with any code that you might find helpful!_
+
+![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-light.png#gh-light-mode-only)
+![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-dark.png#gh-dark-mode-only)
