@@ -17,7 +17,7 @@ on:
 
 jobs:
   buildandtest:
-    name: Build and Test Swift Package
+    name: Build and Test Application
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       artifactname: TemplateApplication.xcresult
