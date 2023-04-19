@@ -6,7 +6,7 @@ SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
    
 -->
 
-HealthKitGPT & CardinalKit Tempalte App Contributors
+HealthKitGPT & CardinalKit Template App Contributors
 ====================================================
 
 * [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
