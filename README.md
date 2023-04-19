@@ -18,7 +18,7 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 1. Clone this repository.
 2. Open `src/TemplateApplication.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
-3. Replace the OpenAI API key in `MessageInputView.swift` with your own from OpenAI's dashboard.
+3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
 4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
@@ -33,7 +33,6 @@ For any other quick changes (such as adding an onboarding flow), refer to the [C
 ## TODOs
 
 - [ ] stream GPT responses to the client in order to hide latency (currently broken in the SPM module: https://github.com/MacPaw/OpenAI/issues/14)
-- [ ] store the API key in a config/plist file (or generally in a more secure way)
 - [ ] enable users to disconnect health data streams at will
 - [ ] provide support for more HealthKit types
 - [ ] chain LLM queries to first identify which data to pull from HealthKit and then construct a prompt
