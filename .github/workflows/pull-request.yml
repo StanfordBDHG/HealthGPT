@@ -7,6 +7,7 @@
 name: Pull Request
 
 on:
+  # pull_request:
   workflow_dispatch:
   workflow_call:
 
@@ -17,3 +18,6 @@ jobs:
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
+  # swiftlint:
+  #   name: SwiftLint
+  #   uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
