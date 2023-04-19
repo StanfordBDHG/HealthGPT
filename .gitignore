@@ -9,7 +9,7 @@
 .swiftpm
 .derivedData
 .build/
-!TemplateApplication.xcodeproj
+!HealthGPT.xcodeproj
 
 # IDE related folders
 .idea
@@ -27,7 +27,7 @@ xcuserdata/
 # Tests
 report.junit
 report.html
-TemplateApplication.xcresult
+HealthGPT.xcresult
 
 # Logs
 logs
