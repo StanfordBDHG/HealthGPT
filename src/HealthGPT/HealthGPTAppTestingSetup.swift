@@ -1,15 +1,13 @@
 //
-// This source file is part of the Stanford CardinalKit Template Application project
+//  HealthGPTAppTestingSetup.swift
+//  HealthGPT
 //
-// SPDX-FileCopyrightText: 2023 Stanford University
-//
-// SPDX-License-Identifier: MIT
 //
 
 import SwiftUI
 
 
-private struct TemplateAppTestingSetup: ViewModifier {
+private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
@@ -29,6 +27,6 @@ private struct TemplateAppTestingSetup: ViewModifier {
 
 extension View {
     func testingSetup() -> some View {
-        self.modifier(TemplateAppTestingSetup())
+        self.modifier(HealthGPTAppTestingSetup())
     }
 }

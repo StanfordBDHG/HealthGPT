@@ -1,9 +1,8 @@
 //
-// This source file is part of the Stanford CardinalKit Template Application project
+//  HealthGPTApplication.swift
+//  HealthGPT
 //
-// SPDX-FileCopyrightText: 2023 Stanford University
-//
-// SPDX-License-Identifier: MIT
+//  Created by Vishnu Ravi on 4/19/23.
 //
 
 import CardinalKit
@@ -11,11 +10,11 @@ import SwiftUI
 
 
 @main
-struct TemplateApplication: App {
-    @UIApplicationDelegateAdaptor(TemplateAppDelegate.self) var appDelegate
+struct HealthGPTApp: App {
+    @UIApplicationDelegateAdaptor(HealthGPTAppDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
-    
+
+
     var body: some Scene {
         WindowGroup {
             HomeView()

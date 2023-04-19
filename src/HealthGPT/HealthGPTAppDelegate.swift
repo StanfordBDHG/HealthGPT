@@ -1,9 +1,7 @@
 //
-// This source file is part of the Stanford CardinalKit Template Application project
+//  HealthGPTAppDelegate.swift
+//  HealthGPT
 //
-// SPDX-FileCopyrightText: 2023 Stanford University
-//
-// SPDX-License-Identifier: MIT
 //
 
 import CardinalKit
@@ -21,7 +19,7 @@ import HealthKit
 import SwiftUI
 
 
-class TemplateAppDelegate: CardinalKitAppDelegate {
+class HealthGPTAppDelegate: CardinalKitAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             if !FeatureFlags.disableFirebase {
