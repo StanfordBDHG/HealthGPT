@@ -1,0 +1,866 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2737200B29EEBE4300024843 /* CardinalKitHealthKit */; };
+		2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2737201429EEC16400024843 /* CardinalKitOnboarding */; };
+		275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */; };
+		275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */; };
+		275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */; };
+		275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD629EEC6A60079D453 /* InterestingModules.swift */; };
+		275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */; };
+		275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */; };
+		275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDC29EEC6DC0079D453 /* Welcome.swift */; };
+		275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF129EECA030079D453 /* Binding+Negate.swift */; };
+		275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */; };
+		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
+		2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* CardinalKit */; };
+		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
+		2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */; };
+		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
+		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
+		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
+		2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF329F041C500239E1A /* OpenAI */; };
+		2FF8DBF729F041F200239E1A /* CardinalKitFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF629F041F200239E1A /* CardinalKitFHIR */; };
+		2FF8DBFA29F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */; };
+		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
+		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
+		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
+		E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D86A329EDB21B00490C26 /* MessageInputView.swift */; };
+		E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F4E21DB29F0518B0067EE98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653A254C283387FE005D4D48;
+			remoteInfo = HealthGPT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
+		275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
+		275DEFD629EEC6A60079D453 /* InterestingModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
+		275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
+		275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ModuleLocalized.swift"; sourceTree = "<group>"; };
+		275DEFDC29EEC6DC0079D453 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		275DEFF129EECA030079D453 /* Binding+Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Negate.swift"; sourceTree = "<group>"; };
+		275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
+		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
+		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
+		2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppTestingSetup.swift; sourceTree = "<group>"; };
+		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
+		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
+		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
+		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcher.swift; sourceTree = "<group>"; };
+		E21D86A329EDB21B00490C26 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTView.swift; sourceTree = "<group>"; };
+		E26542A229E8D70100094BAD /* OpenAI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenAI; path = "/Users/varunshenoy/Library/Developer/Xcode/DerivedData/TemplateApplication-fhjipkzkgfsoxiezldfjbwynfudi/SourcePackages/checkouts/OpenAI"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F4E21D229F0518B0067EE98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653A254A283387FE005D4D48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */,
+				2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */,
+				2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */,
+				2FF8DBF729F041F200239E1A /* CardinalKitFHIR in Frameworks */,
+				2FF8DBFA29F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter in Frameworks */,
+				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		275DEFCC29EEC58A0079D453 /* SharedContext */ = {
+			isa = PBXGroup;
+			children = (
+				275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */,
+				275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */,
+			);
+			path = SharedContext;
+			sourceTree = "<group>";
+		};
+		275DEFD129EEC6620079D453 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */,
+				275DEFD629EEC6A60079D453 /* InterestingModules.swift */,
+				275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */,
+				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
+				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		275DEFEE29EEC9E30079D453 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				275DEFF129EECA030079D453 /* Binding+Negate.swift */,
+				275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		2F4E21D629F0518B0067EE98 /* HealthGPTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */,
+			);
+			path = HealthGPTUITests;
+			sourceTree = "<group>";
+		};
+		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */,
+				653A258928339462005D4D48 /* Info.plist */,
+				653A255428338800005D4D48 /* Assets.xcassets */,
+				2FC9759E2978E39600BA99FE /* Localizable.strings */,
+				27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FF8DBF129F0414E00239E1A /* HealthGPT */ = {
+			isa = PBXGroup;
+			children = (
+				E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */,
+				E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */,
+				E21D86A329EDB21B00490C26 /* MessageInputView.swift */,
+			);
+			path = HealthGPT;
+			sourceTree = "<group>";
+		};
+		653A2544283387FE005D4D48 = {
+			isa = PBXGroup;
+			children = (
+				653A254F283387FE005D4D48 /* HealthGPT */,
+				2F4E21D629F0518B0067EE98 /* HealthGPTUITests */,
+				653A254E283387FE005D4D48 /* Products */,
+				653A258B283395A7005D4D48 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		653A254E283387FE005D4D48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				653A254D283387FE005D4D48 /* HealthGPT.app */,
+				2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		653A254F283387FE005D4D48 /* HealthGPT */ = {
+			isa = PBXGroup;
+			children = (
+				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
+				2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */,
+				2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */,
+				2FC975A72978F11A00BA99FE /* Home.swift */,
+				2FF8DBF129F0414E00239E1A /* HealthGPT */,
+				275DEFEE29EEC9E30079D453 /* Helper */,
+				275DEFD129EEC6620079D453 /* Onboarding */,
+				275DEFCC29EEC58A0079D453 /* SharedContext */,
+				2FC9759D2978E30800BA99FE /* Supporting Files */,
+			);
+			path = HealthGPT;
+			sourceTree = "<group>";
+		};
+		653A258B283395A7005D4D48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E26542A229E8D70100094BAD /* OpenAI */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F4E21D429F0518B0067EE98 /* HealthGPTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F4E21E029F0518B0067EE98 /* Build configuration list for PBXNativeTarget "HealthGPTUITests" */;
+			buildPhases = (
+				2F4E21D129F0518B0067EE98 /* Sources */,
+				2F4E21D229F0518B0067EE98 /* Frameworks */,
+				2F4E21D329F0518B0067EE98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F4E21DC29F0518B0067EE98 /* PBXTargetDependency */,
+			);
+			name = HealthGPTUITests;
+			productName = HealthGPTUITests;
+			productReference = 2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		653A254C283387FE005D4D48 /* HealthGPT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 653A257128338800005D4D48 /* Build configuration list for PBXNativeTarget "HealthGPT" */;
+			buildPhases = (
+				653A2549283387FE005D4D48 /* Sources */,
+				653A254A283387FE005D4D48 /* Frameworks */,
+				653A254B283387FE005D4D48 /* Resources */,
+				2F5B528D29BD237B002020B7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HealthGPT;
+			packageProductDependencies = (
+				2F49B7752980407B00BCB272 /* CardinalKit */,
+				2737200B29EEBE4300024843 /* CardinalKitHealthKit */,
+				2737201429EEC16400024843 /* CardinalKitOnboarding */,
+				2FF8DBF329F041C500239E1A /* OpenAI */,
+				2FF8DBF629F041F200239E1A /* CardinalKitFHIR */,
+				2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */,
+			);
+			productName = TemplateApplication;
+			productReference = 653A254D283387FE005D4D48 /* HealthGPT.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		653A2545283387FE005D4D48 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					2F4E21D429F0518B0067EE98 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 653A254C283387FE005D4D48;
+					};
+					653A254C283387FE005D4D48 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+				};
+			};
+			buildConfigurationList = 653A2548283387FE005D4D48 /* Build configuration list for PBXProject "HealthGPT" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 653A2544283387FE005D4D48;
+			packageReferences = (
+				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */,
+				2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */,
+				2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */,
+				2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */,
+				2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */,
+				2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */,
+			);
+			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				653A254C283387FE005D4D48 /* HealthGPT */,
+				2F4E21D429F0518B0067EE98 /* HealthGPTUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F4E21D329F0518B0067EE98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653A254B283387FE005D4D48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
+				2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */,
+				27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F5B528D29BD237B002020B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F4E21D129F0518B0067EE98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653A2549283387FE005D4D48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */,
+				275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */,
+				275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */,
+				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
+				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
+				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,
+				2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */,
+				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
+				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
+				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
+				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
+				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
+				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,
+				275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */,
+				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
+				E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F4E21DC29F0518B0067EE98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653A254C283387FE005D4D48 /* HealthGPT */;
+			targetProxy = 2F4E21DB29F0518B0067EE98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2F4E21DD29F0518B0067EE98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Debug;
+		};
+		2F4E21DE29F0518B0067EE98 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Test;
+		};
+		2F4E21DF29F0518B0067EE98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Release;
+		};
+		2FEE10302998C89C000822E1 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Test;
+		};
+		2FEE10312998C89C000822E1 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.healthgpt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Test;
+		};
+		653A256F28338800005D4D48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		653A257028338800005D4D48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		653A257228338800005D4D48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.healthgpt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		653A257328338800005D4D48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.healthgpt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F4E21E029F0518B0067EE98 /* Build configuration list for PBXNativeTarget "HealthGPTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F4E21DD29F0518B0067EE98 /* Debug */,
+				2F4E21DE29F0518B0067EE98 /* Test */,
+				2F4E21DF29F0518B0067EE98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		653A2548283387FE005D4D48 /* Build configuration list for PBXProject "HealthGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				653A256F28338800005D4D48 /* Debug */,
+				2FEE10302998C89C000822E1 /* Test */,
+				653A257028338800005D4D48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		653A257128338800005D4D48 /* Build configuration list for PBXNativeTarget "HealthGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				653A257228338800005D4D48 /* Debug */,
+				2FEE10312998C89C000822E1 /* Test */,
+				653A257328338800005D4D48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitHealthKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+		2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
+		2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
+		2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitFHIR.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+		2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitHealthKitToFHIRAdapter.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2737200B29EEBE4300024843 /* CardinalKitHealthKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */;
+			productName = CardinalKitHealthKit;
+		};
+		2737201429EEC16400024843 /* CardinalKitOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */;
+			productName = CardinalKitOnboarding;
+		};
+		2F49B7752980407B00BCB272 /* CardinalKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
+			productName = CardinalKit;
+		};
+		2FF8DBF329F041C500239E1A /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		2FF8DBF629F041F200239E1A /* CardinalKitFHIR */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */;
+			productName = CardinalKitFHIR;
+		};
+		2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */;
+			productName = CardinalKitHealthKitToFHIRAdapter;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 653A2545283387FE005D4D48 /* Project object */;
+}

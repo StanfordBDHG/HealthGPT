@@ -1,9 +1,7 @@
 #
-# This source file is part of the Stanford CardinalKit Template Application project
+# This source file is part of the Stanford HealthGPT project
 #
-# SPDX-FileCopyrightText: 2023 Stanford University
-#
-# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 #
 
 # Swift Package Manager
@@ -11,7 +9,7 @@
 .swiftpm
 .derivedData
 .build/
-!TemplateApplication.xcodeproj
+!HealthGPT.xcodeproj
 
 # IDE related folders
 .idea
@@ -29,7 +27,7 @@ xcuserdata/
 # Tests
 report.junit
 report.html
-TemplateApplication.xcresult
+HealthGPT.xcresult
 
 # Logs
 logs
