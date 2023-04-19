@@ -1,0 +1,26 @@
+#
+# This source file is part of the Stanford CardinalKit Template Application project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  buildandtest:
+    name: Build and Test Application
+    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    with:
+      path: ./src
+      artifactname: TemplateApplication.xcresult
+      runsonlabels: '["macOS", "self-hosted"]'
+      scheme: TemplateApplication
