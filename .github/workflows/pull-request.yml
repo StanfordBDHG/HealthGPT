@@ -7,7 +7,6 @@
 name: Pull Request
 
 on:
-  pull_request:
   workflow_dispatch:
 
 jobs:
