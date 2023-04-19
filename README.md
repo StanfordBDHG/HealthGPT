@@ -1,6 +1,6 @@
 # HealthGPT
 
-![Example Conversation](example.png)
+![Example Conversation](Figures/Example.png)
 
 HealthGPT is an experimental iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
 
@@ -13,6 +13,10 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 - Extensible architecture built on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) for easy customization
 - GPT-3.5 + GPT-4 access through the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
 - Out of the box support for querying sleep, step count, active energy, exercise minutes, heart rate, and body mass.
+
+## Disclaimer
+
+HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. Large language models, such as those provided by OpenAI, are known to hallucinate and at times return false information. The use of HealthGPT is at your own risk. Always consult a qualified healthcare provider for personalized advice regarding your health and well-being.
 
 ## Set Up
 
@@ -41,7 +45,3 @@ For any other quick changes (such as adding an onboarding flow), refer to the [C
 - [ ] [whisper.cpp](https://github.com/ggerganov/whisper.cpp) integration within the chat interface
 
 _Feel free to create a PR with any code that you might find helpful!_
-
-## Disclaimer
-
-HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. Large language models, such as those provided by OpenAI, are known to hallucinate and at times return false information. The use of HealthGPT is at your own risk. Always consult a qualified healthcare provider for personalized advice regarding your health and well-being.
