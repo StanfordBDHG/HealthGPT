@@ -18,7 +18,7 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 
 1. Clone this repository.
 2. Open `src/TemplateApplication.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
-3. Replace the OpenAI API key in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
+3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
 4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
