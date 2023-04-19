@@ -18,6 +18,6 @@ jobs:
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
-  # swiftlint:
-  #   name: SwiftLint
-  #   uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
+  swiftlint:
+    name: SwiftLint
+    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
