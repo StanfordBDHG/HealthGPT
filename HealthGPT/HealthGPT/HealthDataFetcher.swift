@@ -42,19 +42,27 @@ class HealthDataFetcher {
     
     func fetchLastTwoWeeksQuantityData(
         for identifier: HKQuantityTypeIdentifier,
-        unit: HKUnit, options: HKStatisticsOptions,
+        unit: HKUnit,
+        options: HKStatisticsOptions,
         completion: @escaping ([Double]) -> Void
     ) {
         let predicate = createLastTwoWeeksPredicate()
+
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
+            return
+        }
+
         let query = HKStatisticsCollectionQuery(
-            quantityType: HKObjectType.quantityType(forIdentifier: identifier)!,
-            quantitySamplePredicate: predicate, options: options, anchorDate: Date.startOfDay(),
+            quantityType: quantityType,
+            quantitySamplePredicate: predicate,
+            options: options,
+            anchorDate: Date.startOfDay(),
             intervalComponents: DateComponents(day: 1)
         )
 
         var dailyData: [Double] = []
 
-        query.initialResultsHandler = { query, results, _ in
+        query.initialResultsHandler = { _, results, _ in
             if let statsCollection = results {
                 statsCollection.enumerateStatistics(
                     from: Date().twoWeeksAgoStartOfDay(),
@@ -82,22 +90,28 @@ class HealthDataFetcher {
     ) {
         let predicate = createLastTwoWeeksPredicate()
 
+        guard let sampleType = HKObjectType.categoryType(forIdentifier: identifier) else {
+            return
+        }
+
         let query = HKSampleQuery(
-            sampleType: HKObjectType.categoryType(forIdentifier: identifier)!,
-            predicate: predicate, limit: HKObjectQueryNoLimit,
+            sampleType: sampleType,
+            predicate: predicate,
+            limit: HKObjectQueryNoLimit,
             sortDescriptors: nil
-        ) { (_, samples, _) in
+        ) { _, samples, _ in
             var dailyData: [Double] = [Double](repeating: 0, count: 14)
             if let samples = samples as? [HKCategorySample] {
-
                 for sample in samples {
                     let startOfSampleDay = Calendar.current.startOfDay(for: sample.startDate)
                     let distance = Int(Date().timeIntervalSince(startOfSampleDay) / 86400)
-                    let minutes = Calendar.current.dateComponents(
+                    guard let minutes = Calendar.current.dateComponents(
                         [.minute],
                         from: sample.startDate,
                         to: sample.endDate
-                    ).minute!
+                    ).minute else {
+                        return
+                    }
 
                     if distance < 14 {
                         dailyData[distance] = Double(minutes) / 60.0
@@ -164,17 +178,17 @@ class HealthDataFetcher {
 
     private func createLastTwoWeeksPredicate() -> NSPredicate {
         let now = Date()
-        let startDate = Calendar.current.date(byAdding: DateComponents(day: -14), to: now)!
+        let startDate = Calendar.current.date(byAdding: DateComponents(day: -14), to: now) ?? Date()
         return HKQuery.predicateForSamples(withStart: startDate, end: now, options: .strictStartDate)
     }
 }
 
-private extension Date {
+extension Date {
     static func startOfDay() -> Date {
-        return Calendar.current.startOfDay(for: Date())
+        Calendar.current.startOfDay(for: Date())
     }
 
     func twoWeeksAgoStartOfDay() -> Date {
-        return Calendar.current.date(byAdding: DateComponents(day: -14), to: Date.startOfDay())!
+        Calendar.current.date(byAdding: DateComponents(day: -14), to: Date.startOfDay()) ?? Date()
     }
 }

@@ -4,8 +4,8 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
 
-import SwiftUI
 import OpenAI
+import SwiftUI
 
 struct MessageInputView: View {
     @Binding var userMessage: String

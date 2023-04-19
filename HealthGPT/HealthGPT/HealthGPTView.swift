@@ -4,9 +4,10 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
 
-import SwiftUI
-import OpenAI
 import HealthKit
+import OpenAI
+import SwiftUI
+
 
 struct Message: Identifiable {
     var id = UUID()
@@ -71,11 +72,14 @@ struct MessageView: View {
                         .padding(20)
                         .foregroundColor(Color.black)
                         .background(message.isBot ?
-                                    Color(red: 1, green: 0.824, blue: 0.788) : Color(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)))
+                                    Color(red: 1, green: 0.824, blue: 0.788) :
+                                        Color(UIColor(red: 240 / 255, green: 240 / 255, blue: 240 / 255, alpha: 1.0)))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(message.isBot ? Color(red: 0.965, green: 0.592, blue: 0.518) : Color(red: 0.906, green: 0.898, blue: 0.894), lineWidth: 1)
+                                .stroke(message.isBot ?
+                                        Color(red: 0.965, green: 0.592, blue: 0.518) :
+                                            Color(red: 0.906, green: 0.898, blue: 0.894), lineWidth: 1)
                         )
             Spacer()
                 .frame(width: message.isBot ? 30 : 10)
