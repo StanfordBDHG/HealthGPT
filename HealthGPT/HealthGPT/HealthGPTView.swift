@@ -31,7 +31,6 @@ struct HealthGPTView: View {
             }
             .navigationBarTitle("HealthGPT")
         }
-        
     }
 }
 
@@ -47,7 +46,6 @@ struct ChatView: View {
     var body: some View {
         ScrollView {
             ScrollViewReader { value in
-                
                 ForEach(messages.indices, id: \.self) { message in
                     MessageView(message: messages[message]).id(message)
                 }
@@ -56,7 +54,6 @@ struct ChatView: View {
                         value.scrollTo(newValue - 1)
                     }
                 }
-                
             }
         }
     }
@@ -85,4 +82,3 @@ struct MessageView: View {
         }
     }
 }
-

@@ -5,7 +5,8 @@
 //
 
 
-/// Constants shared across the CardinalKit Teamplate Application to access storage information including the `AppStorage` and `SceneStorage`
+/// Constants shared across the CardinalKit Teamplate Application to access
+/// storage information including the `AppStorage` and `SceneStorage`
 enum StorageKeys {
     // MARK: - Onboarding
     /// A `Bool` flag indicating of the onboarding was completed.
