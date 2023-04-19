@@ -1,6 +1,6 @@
 //
 //  HealthDataQuestionView.swift
-//  TemplateApplication
+//  HealthGPT
 //
 //  Created by Varun Shenoy on 4/13/23.
 //

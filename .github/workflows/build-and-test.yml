@@ -21,6 +21,6 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       path: ./src
-      artifactname: TemplateApplication.xcresult
+      artifactname: HealthGPT.xcresult
       runsonlabels: '["macOS", "self-hosted"]'
-      scheme: TemplateApplication
+      scheme: HealthGPT

@@ -17,16 +17,16 @@ Built on top of CardinalKit (via the [CardinalKitTemplateApplication](https://gi
 ## Set Up
 
 1. Clone this repository.
-2. Open `src/TemplateApplication.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
-3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
+2. Open `src/HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
+3. Replace the OpenAI API key placeholder in `src/HealthGPT/Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard.
 4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. Otherwise, all of your results will read zero.
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
-1. Edit `src/TemplateApplication/HealthDataFetcher.swift` to create an appropriate query for your data type.
-2. Update the prompt in `src/TemplateApplication/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
+1. Edit `src/HealthGPT/HealthDataFetcher.swift` to create an appropriate query for your data type.
+2. Update the prompt in `src/HealthGPT/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
 
 For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
 
