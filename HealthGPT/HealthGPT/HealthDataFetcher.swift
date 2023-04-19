@@ -20,19 +20,23 @@ class HealthDataFetcher {
     private let healthStore = HKHealthStore()
 
     func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        guard HKHealthStore.isHealthDataAvailable() else {
+        // update the types set below to request authorization to additional pieces of data
+        guard HKHealthStore.isHealthDataAvailable(),
+              let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
+              let appleExerciseTime = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
+              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
+              let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate),
+              let sleepAnalysis = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
             completion(false)
             return
         }
 
-        // update this types set to request authorization to additional pieces of data
         let types: Set = [
-            HKObjectType.quantityType(forIdentifier: .stepCount)!,
-            HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
-            HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!,
-            HKObjectType.quantityType(forIdentifier: .bodyMass)!,
-            HKObjectType.quantityType(forIdentifier: .heartRate)!,
-            HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+            stepCount,
+            appleExerciseTime,
+            bodyMass,
+            heartRate,
+            sleepAnalysis
         ]
 
         healthStore.requestAuthorization(toShare: nil, read: types) { success, _ in
