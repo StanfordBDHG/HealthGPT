@@ -44,11 +44,12 @@ struct MessageInputView: View {
 
     var body: some View {
         HStack {
-            TextField(isQuerying ? "HealthGPT is thinking 🤔..." : "Type a message...", text: $userMessage)
+            TextField(isQuerying ? "HealthGPT is thinking 🤔..." : "Type a message...", text: $userMessage, axis: .vertical)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 8)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
+                .lineLimit(1...5)
                 .disabled(isQuerying == true)
 
             Button(action: {
