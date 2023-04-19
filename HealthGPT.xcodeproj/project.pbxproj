@@ -20,6 +20,7 @@
 		275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
 		2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* CardinalKit */; };
+		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
 		2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */; };
 		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
@@ -34,6 +35,16 @@
 		E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2F4E21DB29F0518B0067EE98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653A254C283387FE005D4D48;
+			remoteInfo = HealthGPT;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
@@ -45,6 +56,8 @@
 		275DEFF129EECA030079D453 /* Binding+Negate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Negate.swift"; sourceTree = "<group>"; };
 		275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
 		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
+		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
@@ -61,6 +74,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2F4E21D229F0518B0067EE98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		653A254A283387FE005D4D48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -107,6 +127,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		2F4E21D629F0518B0067EE98 /* HealthGPTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */,
+			);
+			path = HealthGPTUITests;
+			sourceTree = "<group>";
+		};
 		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				653A254F283387FE005D4D48 /* HealthGPT */,
+				2F4E21D629F0518B0067EE98 /* HealthGPTUITests */,
 				653A254E283387FE005D4D48 /* Products */,
 				653A258B283395A7005D4D48 /* Frameworks */,
 			);
@@ -142,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				653A254D283387FE005D4D48 /* HealthGPT.app */,
+				2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +203,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2F4E21D429F0518B0067EE98 /* HealthGPTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F4E21E029F0518B0067EE98 /* Build configuration list for PBXNativeTarget "HealthGPTUITests" */;
+			buildPhases = (
+				2F4E21D129F0518B0067EE98 /* Sources */,
+				2F4E21D229F0518B0067EE98 /* Frameworks */,
+				2F4E21D329F0518B0067EE98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F4E21DC29F0518B0067EE98 /* PBXTargetDependency */,
+			);
+			name = HealthGPTUITests;
+			productName = HealthGPTUITests;
+			productReference = 2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		653A254C283387FE005D4D48 /* HealthGPT */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653A257128338800005D4D48 /* Build configuration list for PBXNativeTarget "HealthGPT" */;
@@ -209,6 +257,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					2F4E21D429F0518B0067EE98 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 653A254C283387FE005D4D48;
+					};
 					653A254C283387FE005D4D48 = {
 						CreatedOnToolsVersion = 13.4;
 					};
@@ -236,11 +288,19 @@
 			projectRoot = "";
 			targets = (
 				653A254C283387FE005D4D48 /* HealthGPT */,
+				2F4E21D429F0518B0067EE98 /* HealthGPTUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2F4E21D329F0518B0067EE98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		653A254B283387FE005D4D48 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +335,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2F4E21D129F0518B0067EE98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		653A2549283387FE005D4D48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,7 +368,72 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2F4E21DC29F0518B0067EE98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653A254C283387FE005D4D48 /* HealthGPT */;
+			targetProxy = 2F4E21DB29F0518B0067EE98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2F4E21DD29F0518B0067EE98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Debug;
+		};
+		2F4E21DE29F0518B0067EE98 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Test;
+		};
+		2F4E21DF29F0518B0067EE98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HealthGPT;
+			};
+			name = Release;
+		};
 		2FEE10302998C89C000822E1 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -613,6 +746,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2F4E21E029F0518B0067EE98 /* Build configuration list for PBXNativeTarget "HealthGPTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F4E21DD29F0518B0067EE98 /* Debug */,
+				2F4E21DE29F0518B0067EE98 /* Test */,
+				2F4E21DF29F0518B0067EE98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		653A2548283387FE005D4D48 /* Build configuration list for PBXProject "HealthGPT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
