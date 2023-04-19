@@ -15,6 +15,20 @@ struct MessageInputView: View {
     @State private var isQuerying = false
     @State private var showingSheet = false
 
+    private var apiKey: String {
+      get {
+        guard let filePath = Bundle.main.path(forResource: "OpenAI-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'OpenAI-Info.plist'.")
+        }
+
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+          fatalError("Couldn't find key 'API_KEY' in 'OpenAI-Info.plist'.")
+        }
+        return value
+      }
+    }
+
     var body: some View {
         HStack {
             TextField(isQuerying ? "HealthGPT is thinking 🤔..." : "Type a message...", text: $userMessage)
@@ -32,7 +46,7 @@ struct MessageInputView: View {
                 userMessage = ""
                 
                 // ADD YOUR OPENAI API KEY HERE
-                let openAI = OpenAI(apiToken: "YOUR OPENAI API KEY")
+                let openAI = OpenAI(apiToken: apiKey)
                 
                 Task {
                     let healthDataFetcher = HealthDataFetcher()
