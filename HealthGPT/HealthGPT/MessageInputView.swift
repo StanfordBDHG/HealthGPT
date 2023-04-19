@@ -163,14 +163,14 @@ struct MessageInputView: View {
                                     if let activeEnergy = dayData.activeEnergy {
                                         mainText += " \(Int(activeEnergy)) calories burned,"
                                     }
-                                    if let bodyWeight = dayData.bodyWeight {
-                                        mainText += " \(bodyWeight) lbs of body weight,"
-                                    }
                                     if let exerciseMinutes = dayData.exerciseMinutes {
                                         mainText += " \(Int(exerciseMinutes)) minutes of exercise,"
                                     }
+                                    if let bodyWeight = dayData.bodyWeight {
+                                        mainText += " \(bodyWeight) lbs of body weight,"
+                                    }
 
-                                    mainPrompt += "\(dayData.date):\(mainText.dropLast()) \n"
+                                    mainPrompt += "\(dayData.date): \(mainText.dropLast()) \n"
                                 }
                                 print(mainPrompt)
 
