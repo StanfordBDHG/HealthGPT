@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7729F0A31500995C31 /* SettingsView.swift */; };
+		2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7929F0A57D00995C31 /* ChatView.swift */; };
+		2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7B29F0A59800995C31 /* MessageView.swift */; };
+		2719BC7E29F0A5A900995C31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7D29F0A5A900995C31 /* Message.swift */; };
+		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
 		2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2737200B29EEBE4300024843 /* CardinalKitHealthKit */; };
 		2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2737201429EEC16400024843 /* CardinalKitOnboarding */; };
 		275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */; };
@@ -46,6 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2719BC7729F0A31500995C31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2719BC7929F0A57D00995C31 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		2719BC7B29F0A59800995C31 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		2719BC7D29F0A5A900995C31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
 		275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
@@ -153,6 +163,11 @@
 				E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */,
 				E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */,
 				E21D86A329EDB21B00490C26 /* MessageInputView.swift */,
+				2719BC7729F0A31500995C31 /* SettingsView.swift */,
+				2719BC7929F0A57D00995C31 /* ChatView.swift */,
+				2719BC7B29F0A59800995C31 /* MessageView.swift */,
+				2719BC7D29F0A5A900995C31 /* Message.swift */,
+				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 			);
 			path = HealthGPT;
 			sourceTree = "<group>";
@@ -330,7 +345,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
+			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -351,16 +366,21 @@
 				275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */,
 				275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
+				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
+				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
+				2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
+				2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */,
 				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,
 				275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */,
+				2719BC7E29F0A5A900995C31 /* Message.swift in Sources */,
 				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
 				E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */,
 			);
