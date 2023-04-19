@@ -4,13 +4,9 @@
 # SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 #
 
-
-name: Build and Test
+name: Pull Request
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
   workflow_dispatch:
 
@@ -20,4 +16,7 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       artifactname: HealthGPT.xcresult
-      scheme: HealthGPT
+      fastlanelane: test
+  swiftlint:
+    name: SwiftLint
+    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
