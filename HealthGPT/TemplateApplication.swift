@@ -12,8 +12,7 @@ import SwiftUI
 struct TemplateApplication: App {
     @UIApplicationDelegateAdaptor(TemplateAppDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
-    
+
     var body: some Scene {
         WindowGroup {
             HomeView()

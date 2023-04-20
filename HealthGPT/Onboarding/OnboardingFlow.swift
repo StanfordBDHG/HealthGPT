@@ -12,6 +12,7 @@ struct OnboardingFlow: View {
     enum Step: String, Codable {
         case disclaimer
         case healthKitPermissions
+        case apiKey
     }
 
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
@@ -23,6 +24,8 @@ struct OnboardingFlow: View {
             Welcome(onboardingSteps: $onboardingSteps)
                 .navigationDestination(for: Step.self) { onboardingStep in
                     switch onboardingStep {
+                    case .apiKey:
+                        ApiKey(onboardingSteps: $onboardingSteps)
                     case .disclaimer:
                         Disclaimer(onboardingSteps: $onboardingSteps)
                     case .healthKitPermissions:

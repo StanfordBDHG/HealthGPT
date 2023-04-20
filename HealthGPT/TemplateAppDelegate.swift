@@ -8,6 +8,7 @@ import CardinalKit
 import CardinalKitFHIR
 import CardinalKitHealthKit
 import CardinalKitHealthKitToFHIRAdapter
+import CardinalKitSecureStorage
 import HealthKit
 import SwiftUI
 
@@ -15,6 +16,7 @@ import SwiftUI
 class TemplateAppDelegate: CardinalKitAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
+            SecureStorage()
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }

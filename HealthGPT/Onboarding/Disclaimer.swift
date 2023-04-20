@@ -36,7 +36,7 @@ struct Disclaimer: View {
             ],
             actionText: "INTERESTING_MODULES_BUTTON".moduleLocalized,
             action: {
-                onboardingSteps.append(.healthKitPermissions)
+                onboardingSteps.append(.apiKey)
             }
         )
     }
@@ -49,7 +49,7 @@ struct Disclaimer: View {
 
 
 #if DEBUG
-struct ThingsToKnow_Previews: PreviewProvider {
+struct Disclaimer_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
 
 
