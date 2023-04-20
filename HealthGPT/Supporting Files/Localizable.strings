@@ -8,23 +8,23 @@
 // MARK: - Onboarding
 // MARK: Welcome
 "WELCOME_TITLE" = "HealthGPT";
-"WELCOME_SUBTITLE" = "Demonstration of the usage of ChatGPT and HealthKit";
+"WELCOME_SUBTITLE" = "HealthGPT demonstrates how LLMs can change how we interact with digital health data.";
 
-"WELCOME_AREA1_TITLE" = "The CardinalKit Framework";
-"WELCOME_AREA1_DESCRIPTION" = "The CardinalKit Framework builds the foundation of this application.";
+"WELCOME_AREA1_TITLE" = "ChatGPT";
+"WELCOME_AREA1_DESCRIPTION" = "HealthGPT is an experimental iOS app that allows users to query health data stored in Apple Health using ChatGPT.";
 
-"WELCOME_AREA2_TITLE" = "Swift Package Manager";
-"WELCOME_AREA2_DESCRIPTION" = "CardinalKit uses the Swift Package Manager to import it as a dependency.";
+"WELCOME_AREA2_TITLE" = "Apple Health";
+"WELCOME_AREA2_DESCRIPTION" = "HealthGPT can surface data from Apple Health to use in conversations with ChatGPT.";
 
-"WELCOME_AREA3_TITLE" = "CardinalKit Modules";
-"WELCOME_AREA3_DESCRIPTION" = "CardinalKit offers several modules including HealthKit integration, questionnaires, and more ...";
+"WELCOME_AREA3_TITLE" = "The CardinalKit Framework";
+"WELCOME_AREA3_DESCRIPTION" = "HealthGPT was built with the CardinalKit open-source digital health framework at Stanford University.";
 
-"WELCOME_BUTTON" = "Learn More";
+"WELCOME_BUTTON" = "Continue";
 
 
 // MARK: Disclaimer
 "INTERESTING_MODULES_TITLE" = "Disclaimer";
-"INTERESTING_MODULES_SUBTITLE" = "HealthGPT is an experimental iOS app that allows users to interact with health data stored in Apple Health using OpenAI's ChatGPT.";
+"INTERESTING_MODULES_SUBTITLE" = "HealthGPT is an experimental iOS app that allows users to interact with health data stored in Apple Health using ChatGPT.";
 
 "INTERESTING_MODULES_AREA1_TITLE" = "Warning";
 "INTERESTING_MODULES_AREA1_DESCRIPTION" = "HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment.";
