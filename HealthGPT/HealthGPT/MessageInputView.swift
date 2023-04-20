@@ -20,8 +20,6 @@ struct MessageInputView: View {
     @State private var showAlert = false
     @State private var alertText = ""
 
-    @State private var apiKey = ""
-
     var body: some View {
         // This code is to be refactored, will temporarily disable.
         // swiftlint:disable closure_body_length
@@ -44,6 +42,15 @@ struct MessageInputView: View {
                 messages.append(newMessage)
                 let userMessageToQuery = userMessage
                 userMessage = ""
+
+                var apiKey = ""
+                if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.org") {
+                    apiKey = storedApiKey.password
+                } else {
+                    alertText = "Could not find a valid API key."
+                    self.showAlert.toggle()
+                    return
+                }
 
                 let openAI = OpenAI(apiToken: apiKey)
 
@@ -198,13 +205,6 @@ struct MessageInputView: View {
                 message: Text(alertText),
                 dismissButton: .default(Text("OK"))
             )
-        }
-        .onAppear {
-            if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.org") {
-                apiKey = storedApiKey.password
-            } else {
-                print("Could not find a valid API key.")
-            }
         }
     }
 }

@@ -46,3 +46,7 @@
 "HEALTHKIT_PERMISSIONS_SUBTITLE" = "HealthGPT can access data from HealthKit to use in conversations with ChatGPT.";
 "HEALTHKIT_PERMISSIONS_DESCRIPTION" = "Supported data types include sleep, step count, active energy, exercise minutes, heart rate, and body mass.";
 "HEALTHKIT_PERMISSIONS_BUTTON" = "Grant Access";
+
+// MARK: API Key
+"API_KEY_TITLE" = "OpenAI API Key";
+"API_KEY_SUBTITLE" = "Please copy and paste your API key into the box below.";

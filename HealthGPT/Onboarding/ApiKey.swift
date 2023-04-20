@@ -45,8 +45,8 @@ struct ApiKey: View {
         OnboardingView(
             titleView: {
                 OnboardingTitleView(
-                    title: "Enter your OpenAI API Key",
-                    subtitle: "Please obtain an API key from the OpenAI website and enter it below."
+                    title: "API_KEY_TITLE".moduleLocalized,
+                    subtitle: "API_KEY_SUBTITLE".moduleLocalized
                 )
             },
             contentView: {
@@ -107,6 +107,7 @@ struct ApiKey: View {
 
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
+        UITextField.appearance().clearButtonMode = .whileEditing
     }
 }
 
