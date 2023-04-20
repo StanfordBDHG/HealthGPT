@@ -44,7 +44,7 @@ struct MessageInputView: View {
                 userMessage = ""
 
                 var apiKey = ""
-                if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.org") {
+                if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.com") {
                     apiKey = storedApiKey.password
                 } else {
                     alertText = "Could not find a valid API key."

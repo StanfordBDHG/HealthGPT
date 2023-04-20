@@ -4,13 +4,13 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors & Project Contributors
 //
 
+import CardinalKitFHIR
 import CardinalKitOnboarding
 import SwiftUI
 
 
 struct Disclaimer: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
-
 
     var body: some View {
         SequentialOnboardingView(

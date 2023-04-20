@@ -16,25 +16,23 @@ struct ApiKey: View {
     @EnvironmentObject var secureStorage: SecureStorage<FHIR>
     @State var enteredKey = ""
 
-    private var apiKeyFromPlist: String? {
-        guard let filePath = Bundle.main.path(forResource: "OpenAI-Info", ofType: "plist"),
-              let data = FileManager.default.contents(atPath: filePath) else {
-            return nil
-        }
+    private var apiKeyFromPlist: String {
+        var result = ""
 
-        do {
-            guard let plist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
-                  let value = plist["API_KEY"] as? String else {
-                return nil
+        if let filePath = Bundle.main.path(forResource: "OpenAI-Info", ofType: "plist"),
+           let data = FileManager.default.contents(atPath: filePath) {
+            do {
+                if let plist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
+                   let value = plist["API_KEY"] as? String,
+                   !value.starts(with: "_") {
+                    result = value
+                }
+            } catch {
+                print("Error: \(error)")
             }
-
-            if value.starts(with: "_") {
-                return nil
-            }
-            return value
-        } catch {
-            return nil
         }
+        
+        return result
     }
 
     var body: some View {
@@ -49,66 +47,38 @@ struct ApiKey: View {
                 TextField("Enter API Key", text: $enteredKey)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onAppear {
+                        enteredKey = apiKeyFromPlist
+                    }
             },
             actionView: {
                 OnboardingActionsView(
-                    "Save Key",
+                    "Save API Key",
                     action: {
                         do {
                             let openAiCredentials = Credentials(
                                 username: "openai-api-key",
-                                password: enteredKey
+                                password: self.enteredKey
                             )
                             try secureStorage.store(
                                 credentials: openAiCredentials,
-                                server: "openai.org",
+                                server: "openai.com",
                                 storageScope: .keychain
                             )
-                            goToNextSection()
+                            onboardingSteps.append(.healthKitPermissions)
                         } catch {
                             print("Error when storing API Key.")
                         }
                     }
                 )
+                .disabled(self.enteredKey.isEmpty)
             }
         )
-        .onAppear {
-            // If an OpenAI API Key already exists in SecureStorage, skip this section
-            if (try? secureStorage.retrieveCredentials(
-                "openai-api-key",
-                server: "openai.org"
-            )) != nil {
-                goToNextSection()
-            }
-
-            // If an API Key is present in the OpenAI-Info.plist file, store it into SecureStorage
-            // and skip this section.
-            if let apiKeyFromPlist {
-                do {
-                    let openAiCredentials = Credentials(
-                        username: "openai-api-key",
-                        password: apiKeyFromPlist
-                    )
-                    try secureStorage.store(
-                        credentials: openAiCredentials,
-                        server: "openai.org",
-                        storageScope: .keychain
-                    )
-                    goToNextSection()
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
     }
 
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
         UITextField.appearance().clearButtonMode = .whileEditing
-    }
-
-    func goToNextSection() {
-        onboardingSteps.append(.healthKitPermissions)
     }
 }
 
