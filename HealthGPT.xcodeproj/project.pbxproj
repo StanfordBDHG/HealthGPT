@@ -355,7 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
+			shellScript = " if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  export PATH=\"$PATH:/opt/homebrew/bin\"\n  if which swiftlint > /dev/null; then\n    swiftlint\n  else\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\n fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

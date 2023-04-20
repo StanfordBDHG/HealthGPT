@@ -37,10 +37,6 @@ struct ApiKey: View {
         }
     }
 
-    func goToNextSection() {
-        onboardingSteps.append(.healthKitPermissions)
-    }
-
     var body: some View {
         OnboardingView(
             titleView: {
@@ -74,40 +70,45 @@ struct ApiKey: View {
                         }
                     }
                 )
-            }).onAppear {
-                // If an OpenAI API Key already exists in SecureStorage, skip this section
-                if (try? secureStorage.retrieveCredentials(
-                    "openai-api-key",
-                    server: "openai.org"
-                )) != nil {
-                    goToNextSection()
-                }
+            }
+        )
+        .onAppear {
+            // If an OpenAI API Key already exists in SecureStorage, skip this section
+            if (try? secureStorage.retrieveCredentials(
+                "openai-api-key",
+                server: "openai.org"
+            )) != nil {
+                goToNextSection()
+            }
 
-                // If an API Key is present in the OpenAI-Info.plist file, store it into SecureStorage
-                // and skip this section.
-                if let apiKeyFromPlist {
-                    do {
-                        let openAiCredentials = Credentials(
-                            username: "openai-api-key",
-                            password: apiKeyFromPlist
-                        )
-                        try secureStorage.store(
-                            credentials: openAiCredentials,
-                            server: "openai.org",
-                            storageScope: .keychain
-                        )
-                        goToNextSection()
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+            // If an API Key is present in the OpenAI-Info.plist file, store it into SecureStorage
+            // and skip this section.
+            if let apiKeyFromPlist {
+                do {
+                    let openAiCredentials = Credentials(
+                        username: "openai-api-key",
+                        password: apiKeyFromPlist
+                    )
+                    try secureStorage.store(
+                        credentials: openAiCredentials,
+                        server: "openai.org",
+                        storageScope: .keychain
+                    )
+                    goToNextSection()
+                } catch {
+                    print(error.localizedDescription)
                 }
             }
+        }
     }
-
 
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
         UITextField.appearance().clearButtonMode = .whileEditing
+    }
+
+    func goToNextSection() {
+        onboardingSteps.append(.healthKitPermissions)
     }
 }
 
