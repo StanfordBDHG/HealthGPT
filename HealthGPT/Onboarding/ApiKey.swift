@@ -68,7 +68,7 @@ struct ApiKey: View {
                                 server: "openai.org",
                                 storageScope: .keychain
                             )
-                            completedOnboardingFlow = true
+                            goToNextSection()
                         } catch {
                             print("Error when storing API Key.")
                         }
