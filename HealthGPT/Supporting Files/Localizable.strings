@@ -8,41 +8,45 @@
 // MARK: - Onboarding
 // MARK: Welcome
 "WELCOME_TITLE" = "HealthGPT";
-"WELCOME_SUBTITLE" = "Demonstration of the usage of ChatGPT and HealthKit";
+"WELCOME_SUBTITLE" = "HealthGPT demonstrates how LLMs can change how we interact with digital health data.";
 
-"WELCOME_AREA1_TITLE" = "The CardinalKit Framework";
-"WELCOME_AREA1_DESCRIPTION" = "The CardinalKit Framework builds the foundation of this template application.";
+"WELCOME_AREA1_TITLE" = "ChatGPT";
+"WELCOME_AREA1_DESCRIPTION" = "HealthGPT is an experimental iOS app that allows users to query health data stored in Apple Health using ChatGPT.";
 
-"WELCOME_AREA2_TITLE" = "Swift Package Manager";
-"WELCOME_AREA2_DESCRIPTION" = "CardinalKit uses the Swift Package Manager to import it as a dependency.";
+"WELCOME_AREA2_TITLE" = "Apple Health";
+"WELCOME_AREA2_DESCRIPTION" = "HealthGPT can surface data from Apple Health to use in conversations with ChatGPT.";
 
-"WELCOME_AREA3_TITLE" = "CardinalKit Modules";
-"WELCOME_AREA3_DESCRIPTION" = "CardinalKit offers several modules including HealthKit integration, questionnaires, and more ...";
+"WELCOME_AREA3_TITLE" = "The CardinalKit Framework";
+"WELCOME_AREA3_DESCRIPTION" = "HealthGPT was built with the CardinalKit open-source digital health framework at Stanford University.";
 
-"WELCOME_BUTTON" = "Learn More";
+"WELCOME_BUTTON" = "Continue";
 
 
-// MARK: Interesting Modules
-"INTERESTING_MODULES_TITLE" = "Interesting Modules";
-"INTERESTING_MODULES_SUBTITLE" = "Here are a few CardinalKit modules that are interesting to know about ...";
+// MARK: Disclaimer
+"INTERESTING_MODULES_TITLE" = "Disclaimer";
+"INTERESTING_MODULES_SUBTITLE" = "HealthGPT is an experimental iOS app that allows users to interact with health data stored in Apple Health using ChatGPT.";
 
-"INTERESTING_MODULES_AREA1_TITLE" = "Onboarding";
-"INTERESTING_MODULES_AREA1_DESCRIPTION" = "The onboarding module allows you to build an onboarding flow like this one.";
+"INTERESTING_MODULES_AREA1_TITLE" = "Warning";
+"INTERESTING_MODULES_AREA1_DESCRIPTION" = "HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment.";
 
-"INTERESTING_MODULES_AREA2_TITLE" = "FHIR";
-"INTERESTING_MODULES_AREA2_DESCRIPTION" = "The FHIR module provides a CardinalKit standard that can be used as a communication standard between modules.";
+"INTERESTING_MODULES_AREA2_TITLE" = "Warning";
+"INTERESTING_MODULES_AREA2_DESCRIPTION" = "Large language models, such as those provided by OpenAI, are known to hallucinate and at times return false information.";
 
-"INTERESTING_MODULES_AREA3_TITLE" = "Contact";
-"INTERESTING_MODULES_AREA3_DESCRIPTION" = "The contact module allows you to display contact information in your application.";
+"INTERESTING_MODULES_AREA3_TITLE" = "Warning";
+"INTERESTING_MODULES_AREA3_DESCRIPTION" = "The use of HealthGPT is at your own risk. Always consult a qualified healthcare provider for personalized advice regarding your health and well-being.";
 
-"INTERESTING_MODULES_AREA4_TITLE" = "HealthKit Data Source";
-"INTERESTING_MODULES_AREA4_DESCRIPTION" = "The HealthKit data source module allows you to fetch data from HealthKit and e.g. transform it to FHIR resources.";
+"INTERESTING_MODULES_AREA4_TITLE" = "Warning";
+"INTERESTING_MODULES_AREA4_DESCRIPTION" = "This app is for demonstration only and should not be used to process any personal health information.";
 
-"INTERESTING_MODULES_BUTTON" = "Next";
+"INTERESTING_MODULES_BUTTON" = "I Agree";
 
 
 // MARK: HealthKit
 "HEALTHKIT_PERMISSIONS_TITLE" = "HealthKit Access";
-"HEALTHKIT_PERMISSIONS_SUBTITLE" = "CardinalKit can access data from HealthKit using the HealthKitDataSource module.";
-"HEALTHKIT_PERMISSIONS_DESCRIPTION" = "This onboarding step allows you to customize the onboarding flow to explain how the application uses the HealhtKit data and allows a user to cusomize the selection.";
+"HEALTHKIT_PERMISSIONS_SUBTITLE" = "HealthGPT can access data from HealthKit to use in conversations with ChatGPT.";
+"HEALTHKIT_PERMISSIONS_DESCRIPTION" = "Supported data types include sleep, step count, active energy, exercise minutes, heart rate, and body mass. \n\n Aggregated HealthKit data for the past 14 days will be uploaded to OpenAI. \n\n Please refer to the OpenAI privacy policy for more information.";
 "HEALTHKIT_PERMISSIONS_BUTTON" = "Grant Access";
+
+// MARK: API Key
+"API_KEY_TITLE" = "OpenAI API Key";
+"API_KEY_SUBTITLE" = "Please copy and paste your API key into the box below.";

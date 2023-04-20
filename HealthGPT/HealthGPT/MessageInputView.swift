@@ -4,47 +4,21 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
 
+import CardinalKitFHIR
+import CardinalKitSecureStorage
 import OpenAI
 import SwiftUI
 
 struct MessageInputView: View {
     @Binding var userMessage: String
     @Binding var messages: [Message]
+    @EnvironmentObject var secureStorage: SecureStorage<FHIR>
 
     @State private var isQuerying = false
     @State private var showingSheet = false
 
     @State private var showAlert = false
     @State private var alertText = ""
-
-    private var apiKey: String? {
-        guard let filePath = Bundle.main.path(forResource: "OpenAI-Info", ofType: "plist"),
-              let data = FileManager.default.contents(atPath: filePath) else {
-            alertText = "Couldn't find file 'OpenAI-Info.plist'."
-            self.showAlert.toggle()
-            return nil
-        }
-
-        do {
-            guard let plist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
-                  let value = plist["API_KEY"] as? String else {
-                alertText = "Couldn't find key 'API_KEY' in 'OpenAI-Info.plist'."
-                self.showAlert.toggle()
-                return nil
-            }
-
-            if value.starts(with: "_") {
-                alertText = "Please register for an OpenAI account and get an API Key. "
-                self.showAlert.toggle()
-                return nil
-            }
-            return value
-        } catch {
-            alertText = "An error occurred while reading the 'OpenAI-Info.plist' file."
-            self.showAlert.toggle()
-            return nil
-        }
-    }
 
     var body: some View {
         // This code is to be refactored, will temporarily disable.
@@ -63,19 +37,24 @@ struct MessageInputView: View {
                 .disabled(isQuerying == true)
 
             Button(action: {
-                guard let apiKey else {
-                    return
-                }
-
                 isQuerying = true
                 let newMessage = Message(content: userMessage, isBot: false)
                 messages.append(newMessage)
                 let userMessageToQuery = userMessage
                 userMessage = ""
 
+                var apiKey = ""
+                if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.com") {
+                    apiKey = storedApiKey.password
+                } else {
+                    alertText = "Could not find a valid API key."
+                    self.showAlert.toggle()
+                    return
+                }
+
                 let openAI = OpenAI(apiToken: apiKey)
 
-                Task {
+                _Concurrency.Task {
                     let healthDataFetcher = HealthDataFetcher()
                     var healthData: [HealthData] = []
                     let calendar = Calendar.current
@@ -174,7 +153,7 @@ struct MessageInputView: View {
                                 }
                                 print(mainPrompt)
 
-                                Task {
+                                _Concurrency.Task {
                                     var currentChat: [Chat] = [.init(role: .system, content: mainPrompt)]
                                     for message in messages {
                                         currentChat.append(

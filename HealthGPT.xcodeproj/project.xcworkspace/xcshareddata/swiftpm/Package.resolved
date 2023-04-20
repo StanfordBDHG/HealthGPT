@@ -46,6 +46,15 @@
       }
     },
     {
+      "identity" : "cardinalkitstorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/CardinalKitStorage.git",
+      "state" : {
+        "revision" : "4d8eb123b083016324c38f54f9d8024566459408",
+        "version" : "0.2.2"
+      }
+    },
+    {
       "identity" : "cardinalkitviews",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/CardinalKitViews",

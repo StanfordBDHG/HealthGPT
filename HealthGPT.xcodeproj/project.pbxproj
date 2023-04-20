@@ -12,12 +12,15 @@
 		2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7B29F0A59800995C31 /* MessageView.swift */; };
 		2719BC7E29F0A5A900995C31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7D29F0A5A900995C31 /* Message.swift */; };
 		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
+		2719BC8229F150E900995C31 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC8129F150E900995C31 /* ApiKey.swift */; };
+		2719BC8729F1548900995C31 /* CardinalKitLocalStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8629F1548900995C31 /* CardinalKitLocalStorage */; };
+		2719BC8929F1548900995C31 /* CardinalKitSecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8829F1548900995C31 /* CardinalKitSecureStorage */; };
 		2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2737200B29EEBE4300024843 /* CardinalKitHealthKit */; };
 		2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2737201429EEC16400024843 /* CardinalKitOnboarding */; };
 		275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */; };
 		275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */; };
 		275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */; };
-		275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD629EEC6A60079D453 /* InterestingModules.swift */; };
+		275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD629EEC6A60079D453 /* Disclaimer.swift */; };
 		275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */; };
 		275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */; };
 		275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDC29EEC6DC0079D453 /* Welcome.swift */; };
@@ -56,10 +59,11 @@
 		2719BC7B29F0A59800995C31 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2719BC7D29F0A5A900995C31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
+		2719BC8129F150E900995C31 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
-		275DEFD629EEC6A60079D453 /* InterestingModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
+		275DEFD629EEC6A60079D453 /* Disclaimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disclaimer.swift; sourceTree = "<group>"; };
 		275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ModuleLocalized.swift"; sourceTree = "<group>"; };
 		275DEFDC29EEC6DC0079D453 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			files = (
 				2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */,
 				2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */,
+				2719BC8929F1548900995C31 /* CardinalKitSecureStorage in Frameworks */,
+				2719BC8729F1548900995C31 /* CardinalKitLocalStorage in Frameworks */,
 				2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */,
 				2FF8DBF729F041F200239E1A /* CardinalKitFHIR in Frameworks */,
 				2FF8DBFA29F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter in Frameworks */,
@@ -120,10 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */,
-				275DEFD629EEC6A60079D453 /* InterestingModules.swift */,
+				275DEFD629EEC6A60079D453 /* Disclaimer.swift */,
 				275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */,
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
+				2719BC8129F150E900995C31 /* ApiKey.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -257,6 +264,8 @@
 				2FF8DBF329F041C500239E1A /* OpenAI */,
 				2FF8DBF629F041F200239E1A /* CardinalKitFHIR */,
 				2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */,
+				2719BC8629F1548900995C31 /* CardinalKitLocalStorage */,
+				2719BC8829F1548900995C31 /* CardinalKitSecureStorage */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* HealthGPT.app */;
@@ -297,6 +306,7 @@
 				2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */,
 				2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */,
 				2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */,
+				2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -364,10 +374,11 @@
 			files = (
 				275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */,
 				275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */,
-				275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */,
+				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
+				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */,
@@ -802,6 +813,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitStorage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
 		2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitHealthKit.git";
@@ -853,6 +872,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2719BC8629F1548900995C31 /* CardinalKitLocalStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */;
+			productName = CardinalKitLocalStorage;
+		};
+		2719BC8829F1548900995C31 /* CardinalKitSecureStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */;
+			productName = CardinalKitSecureStorage;
+		};
 		2737200B29EEBE4300024843 /* CardinalKitHealthKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */;
