@@ -1,0 +1,27 @@
+#
+# This source file is part of the Stanford HealthGPT project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
+#
+
+name: Beta Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  buildandtest:
+    name: Build and Test
+    uses: ./.github/workflows/pull-request.yml
+  iosapptestflightdeployment:
+    name: iOS App TestFlight Deployment
+    needs: buildandtest
+    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    secrets: inherit
+    with:
+      artifactname: HealthGPT.xcresult
+      fastlanelane: beta
+      setupsigning: true
