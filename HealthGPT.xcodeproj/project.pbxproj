@@ -17,7 +17,7 @@
 		275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */; };
 		275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */; };
 		275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */; };
-		275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD629EEC6A60079D453 /* InterestingModules.swift */; };
+		275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD629EEC6A60079D453 /* Disclaimer.swift */; };
 		275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */; };
 		275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */; };
 		275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDC29EEC6DC0079D453 /* Welcome.swift */; };
@@ -59,7 +59,7 @@
 		275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitPermissions.swift; sourceTree = "<group>"; };
-		275DEFD629EEC6A60079D453 /* InterestingModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
+		275DEFD629EEC6A60079D453 /* Disclaimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disclaimer.swift; sourceTree = "<group>"; };
 		275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ModuleLocalized.swift"; sourceTree = "<group>"; };
 		275DEFDC29EEC6DC0079D453 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */,
-				275DEFD629EEC6A60079D453 /* InterestingModules.swift */,
+				275DEFD629EEC6A60079D453 /* Disclaimer.swift */,
 				275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */,
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
@@ -364,7 +364,7 @@
 			files = (
 				275DEFD929EEC6B80079D453 /* OnboardingFlow.swift in Sources */,
 				275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */,
-				275DEFD729EEC6A60079D453 /* InterestingModules.swift in Sources */,
+				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
