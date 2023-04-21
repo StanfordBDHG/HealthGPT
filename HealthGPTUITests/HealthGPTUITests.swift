@@ -39,8 +39,8 @@ final class HealthGPTUITests: XCTestCase {
         ]
 
         for itemClass in secItemClasses {
-            let spec: NSDictionary = [kSecClass: itemClass]
-            SecItemDelete(spec)
+            let spec: [String: Any] = [kSecClass as String: itemClass]
+            SecItemDelete(spec as CFDictionary)
         }
     }
 
