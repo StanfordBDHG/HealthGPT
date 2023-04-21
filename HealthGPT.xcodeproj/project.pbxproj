@@ -26,6 +26,10 @@
 		275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDC29EEC6DC0079D453 /* Welcome.swift */; };
 		275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF129EECA030079D453 /* Binding+Negate.swift */; };
 		275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */; };
+		27715ECD29F27FF500254A7D /* XCTestApp in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ECC29F27FF500254A7D /* XCTestApp */; };
+		27715ECF29F27FF500254A7D /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ECE29F27FF500254A7D /* XCTestExtensions */; };
+		27715ED229F2801000254A7D /* XCTRuntimeAssertions in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ED129F2801000254A7D /* XCTRuntimeAssertions */; };
+		27715ED529F2802500254A7D /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ED429F2802500254A7D /* XCTHealthKit */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
 		2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* CardinalKit */; };
 		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
@@ -92,6 +96,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27715ECD29F27FF500254A7D /* XCTestApp in Frameworks */,
+				27715ED529F2802500254A7D /* XCTHealthKit in Frameworks */,
+				27715ED229F2801000254A7D /* XCTRuntimeAssertions in Frameworks */,
+				27715ECF29F27FF500254A7D /* XCTestExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +247,12 @@
 				2F4E21DC29F0518B0067EE98 /* PBXTargetDependency */,
 			);
 			name = HealthGPTUITests;
+			packageProductDependencies = (
+				27715ECC29F27FF500254A7D /* XCTestApp */,
+				27715ECE29F27FF500254A7D /* XCTestExtensions */,
+				27715ED129F2801000254A7D /* XCTRuntimeAssertions */,
+				27715ED429F2802500254A7D /* XCTHealthKit */,
+			);
 			productName = HealthGPTUITests;
 			productReference = 2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -307,6 +321,9 @@
 				2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */,
 				2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */,
 				2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */,
+				27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
+				27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */,
+				27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -837,6 +854,30 @@
 				minimumVersion = 0.2.1;
 			};
 		};
+		27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+		27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+		27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/XCTHealthKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.3;
+			};
+		};
 		2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
@@ -891,6 +932,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */;
 			productName = CardinalKitOnboarding;
+		};
+		27715ECC29F27FF500254A7D /* XCTestApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
+			productName = XCTestApp;
+		};
+		27715ECE29F27FF500254A7D /* XCTestExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
+			productName = XCTestExtensions;
+		};
+		27715ED129F2801000254A7D /* XCTRuntimeAssertions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */;
+			productName = XCTRuntimeAssertions;
+		};
+		27715ED429F2802500254A7D /* XCTHealthKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
+			productName = XCTHealthKit;
 		};
 		2F49B7752980407B00BCB272 /* CardinalKit */ = {
 			isa = XCSwiftPackageProductDependency;
