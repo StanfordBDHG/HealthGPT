@@ -4,7 +4,6 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
 
-import Security
 import XCTest
 import XCTestExtensions
 import XCTHealthKit
@@ -13,35 +12,18 @@ import XCTHealthKit
 final class HealthGPTUITests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
-        resetKeychain()
 
         try disablePasswordAutofill()
 
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychain"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
     override func tearDownWithError() throws {
-        resetKeychain()
         try super.tearDownWithError()
-    }
-
-    func resetKeychain() {
-        let secItemClasses = [
-            kSecClassGenericPassword,
-            kSecClassInternetPassword,
-            kSecClassCertificate,
-            kSecClassKey,
-            kSecClassIdentity
-        ]
-
-        for itemClass in secItemClasses {
-            let spec: [String: Any] = [kSecClass as String: itemClass]
-            SecItemDelete(spec as CFDictionary)
-        }
     }
 
     func testOnboardingFlow() throws {

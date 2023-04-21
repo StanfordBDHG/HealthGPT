@@ -4,11 +4,28 @@
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
 
+import Security
 import SwiftUI
 
 
 private struct TemplateAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+
+    func resetKeychain() {
+        // Method written by ChatGPT
+        let secItemClasses = [
+            kSecClassGenericPassword,
+            kSecClassInternetPassword,
+            kSecClassCertificate,
+            kSecClassKey,
+            kSecClassIdentity
+        ]
+
+        for itemClass in secItemClasses {
+            let spec: [String: Any] = [kSecClass as String: itemClass]
+            SecItemDelete(spec as CFDictionary)
+        }
+    }
 
 
     func body(content: Content) -> some View {
@@ -19,6 +36,9 @@ private struct TemplateAppTestingSetup: ViewModifier {
                 }
                 if FeatureFlags.showOnboarding {
                     completedOnboardingFlow = false
+                }
+                if FeatureFlags.resetKeychain {
+                    resetKeychain()
                 }
             }
     }
