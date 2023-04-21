@@ -91,6 +91,24 @@
       }
     },
     {
+      "identity" : "xctestextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
+      "state" : {
+        "revision" : "3037f2e8ad1cd2e08a0dfbe5f0a4866445102150",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "xcthealthkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTHealthKit.git",
+      "state" : {
+        "revision" : "19395bbd14a2554e4c9d3fe5cf38aa626c807269",
+        "version" : "0.3.3"
+      }
+    },
+    {
       "identity" : "xctruntimeassertions",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
