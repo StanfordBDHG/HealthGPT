@@ -12,8 +12,10 @@ SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 
 HealthGPT is an experimental iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
 
-Built on top of [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) and the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) and OpenAI.
+Developed on top of [CardinalKit](https://github.com/StanfordBDHG/CardinalKit), the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/), and OpenAI.
 HealthGPT offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
+
+Built by [Varun Shenoy](https://varunshenoy.com) over the course of a caffeine-fueled weekend. Reach out with any questions :)
 
 ## Features
 
