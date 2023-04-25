@@ -13,6 +13,7 @@ struct OnboardingFlow: View {
         case disclaimer
         case healthKitPermissions
         case apiKey
+        case modelSelection
     }
 
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
@@ -30,6 +31,8 @@ struct OnboardingFlow: View {
                         Disclaimer(onboardingSteps: $onboardingSteps)
                     case .healthKitPermissions:
                         HealthKitPermissions()
+                    case .modelSelection:
+                        ModelSelection(onboardingSteps: $onboardingSteps)
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
