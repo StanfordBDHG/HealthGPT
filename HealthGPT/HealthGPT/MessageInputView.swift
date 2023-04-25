@@ -166,7 +166,6 @@ struct MessageInputView: View {
                                     }
                                     currentChat.append(.init(role: .user, content: userMessageToQuery))
 
-                                    // if you have access to GPT-4, you can change `model` to `.gpt4` below
                                     let query = ChatQuery(model: openAIModel, messages: currentChat)
                                     let botMessageContent = try await openAI.chats(query: query).choices[0].message.content
 

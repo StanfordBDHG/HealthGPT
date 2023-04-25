@@ -29,7 +29,8 @@ struct ModelSelection: View {
                     Text("GPT 3.5 Turbo").tag(Model.gpt3_5Turbo)
                     Text("GPT 4").tag(Model.gpt4)
                 }
-                .pickerStyle(MenuPickerStyle())
+                .pickerStyle(WheelPickerStyle())
+                .accessibilityIdentifier("modelPicker")
             },
             actionView: {
                 OnboardingActionsView(

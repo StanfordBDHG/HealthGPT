@@ -45,6 +45,7 @@ extension XCUIApplication {
         try navigateOnboardingFlowWelcome()
         try navigateOnboardingFlowDisclaimer()
         try navigateOnboardingFlowApiKey()
+        try navigateOnboardingFlowModelSelection()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
 
@@ -76,6 +77,17 @@ extension XCUIApplication {
 
         XCTAssertTrue(buttons["Save API Key"].isEnabled, "The button should be enabled if text has been entered.")
         buttons["Save API Key"].tap()
+    }
+
+    private func navigateOnboardingFlowModelSelection() throws {
+        XCTAssertTrue(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Save"].waitForExistence(timeout: 2))
+
+        let picker = pickers["modelPicker"]
+        let optionToSelect = picker.pickerWheels.element(boundBy: 0)
+        optionToSelect.adjust(toPickerWheelValue: "GPT 4")
+
+        buttons["Save"].tap()
     }
 
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
