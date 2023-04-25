@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27051AA929F727B10010211A /* ModelSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27051AA829F727B10010211A /* ModelSelection.swift */; };
 		2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7729F0A31500995C31 /* SettingsView.swift */; };
 		2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7929F0A57D00995C31 /* ChatView.swift */; };
 		2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7B29F0A59800995C31 /* MessageView.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27051AA829F727B10010211A /* ModelSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelection.swift; sourceTree = "<group>"; };
 		2719BC7729F0A31500995C31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2719BC7929F0A57D00995C31 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		2719BC7B29F0A59800995C31 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
 				2719BC8129F150E900995C31 /* ApiKey.swift */,
+				27051AA829F727B10010211A /* ModelSelection.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
+				27051AA929F727B10010211A /* ModelSelection.swift in Sources */,
 				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,

@@ -13,6 +13,7 @@ struct MessageInputView: View {
     @Binding var userMessage: String
     @Binding var messages: [Message]
     @EnvironmentObject var secureStorage: SecureStorage<FHIR>
+    @AppStorage(StorageKeys.openAIModel) var openAIModel = Model.gpt3_5Turbo
 
     @State private var isQuerying = false
     @State private var showingSheet = false
@@ -165,8 +166,7 @@ struct MessageInputView: View {
                                     }
                                     currentChat.append(.init(role: .user, content: userMessageToQuery))
 
-                                    // if you have access to GPT-4, you can change `model` to `.gpt4` below
-                                    let query = ChatQuery(model: .gpt3_5Turbo, messages: currentChat)
+                                    let query = ChatQuery(model: openAIModel, messages: currentChat)
                                     let botMessageContent = try await openAI.chats(query: query).choices[0].message.content
 
                                     messages.append(Message(content: botMessageContent, isBot: true))

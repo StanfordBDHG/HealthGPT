@@ -65,7 +65,7 @@ struct ApiKey: View {
                                 server: "openai.com",
                                 storageScope: .keychain
                             )
-                            onboardingSteps.append(.healthKitPermissions)
+                            onboardingSteps.append(.modelSelection)
                         } catch {
                             print("Error when storing API Key.")
                         }

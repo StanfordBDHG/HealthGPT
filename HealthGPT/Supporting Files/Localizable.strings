@@ -50,3 +50,7 @@
 // MARK: API Key
 "API_KEY_TITLE" = "OpenAI API Key";
 "API_KEY_SUBTITLE" = "Please copy and paste your API key into the box below.";
+
+// MARK: Model Selection
+"MODEL_SELECTION_TITLE" = "Select an OpenAI Model";
+"MODEL_SELECTION_SUBTITLE" = "If you have access to GPT4, you may select it below. Otherwise select GPT 3.5 Turbo.";
