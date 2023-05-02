@@ -2,7 +2,7 @@
 // This source file is part of the Stanford HealthGPT project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
-// Created by Varun Shenoy on 4/13/23.
+// SPDX-FileCopyrightText: Created by Varun Shenoy on 4/13/23.
 //
 
 import Foundation
