@@ -165,6 +165,7 @@
 			children = (
 				275DEFF129EECA030079D453 /* Binding+Negate.swift */,
 				275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */,
+				272FB3552A0401130010B98D /* Date+Extensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -206,7 +207,6 @@
 				2719BC7729F0A31500995C31 /* SettingsView.swift */,
 				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
-				272FB3552A0401130010B98D /* Date+Extensions.swift */,
 			);
 			path = HealthGPT;
 			sourceTree = "<group>";
