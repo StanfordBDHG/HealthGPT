@@ -12,8 +12,8 @@ import SwiftUI
 
 
 struct HealthGPTView: View {
+    @AppStorage(StorageKeys.openAIModel) var openAIModel = Model.gpt3_5Turbo
     @EnvironmentObject var secureStorage: SecureStorage<FHIR>
-    @State private var userMessage: String = ""
     @State private var messages: [Message] = []
 
     @State private var showAlert = false
@@ -55,6 +55,9 @@ struct HealthGPTView: View {
 
                 // Assign the api key to the message handler
                 messageHandler.updateAPIToken(apiKey)
+
+                // Set the OpenAI model in the message handler
+                messageHandler.updateOpenAIModel(openAIModel)
             }
         }
     }

@@ -11,7 +11,7 @@ class HealthDataFetcher {
     private let healthStore = HKHealthStore()
 
     func requestAuthorization() async -> Bool {
-        return await withCheckedContinuation { continuation in
+        await withCheckedContinuation { continuation in
             // update the types set below to request authorization to additional pieces of data
             guard HKHealthStore.isHealthDataAvailable(),
                   let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
@@ -99,7 +99,7 @@ class HealthDataFetcher {
                 predicate: predicate,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: nil
-            ) { (_, samplesOrNil, errorOrNil) in
+            ) { _, samplesOrNil, errorOrNil in
                 if let error = errorOrNil {
                     continuation.resume(throwing: error)
                 } else if let samples = samplesOrNil as? [HKCategorySample] {
@@ -131,7 +131,7 @@ class HealthDataFetcher {
     }
 
     func fetchLastTwoWeeksStepCount() async throws -> [Double] {
-        return try await fetchLastTwoWeeksQuantityData(
+        try await fetchLastTwoWeeksQuantityData(
             for: .stepCount,
             unit: HKUnit.count(),
             options: [.cumulativeSum]
@@ -139,7 +139,7 @@ class HealthDataFetcher {
     }
 
     func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
-        return try await fetchLastTwoWeeksQuantityData(
+        try await fetchLastTwoWeeksQuantityData(
             for: .activeEnergyBurned,
             unit: HKUnit.largeCalorie(),
             options: [.cumulativeSum]
@@ -147,7 +147,7 @@ class HealthDataFetcher {
     }
     
     func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
-        return try await fetchLastTwoWeeksQuantityData(
+        try await fetchLastTwoWeeksQuantityData(
             for: .appleExerciseTime,
             unit: .minute(),
             options: [.cumulativeSum]
@@ -155,7 +155,7 @@ class HealthDataFetcher {
     }
     
     func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
-        return try await fetchLastTwoWeeksQuantityData(
+        try await fetchLastTwoWeeksQuantityData(
             for: .bodyMass,
             unit: .pound(),
             options: [.discreteAverage]
@@ -163,7 +163,7 @@ class HealthDataFetcher {
     }
     
     func fetchLastTwoWeeksHeartRate() async throws -> [Double] {
-        return try await fetchLastTwoWeeksQuantityData(
+        try await fetchLastTwoWeeksQuantityData(
             for: .heartRate,
             unit: .count(),
             options: [.discreteAverage]
@@ -171,7 +171,7 @@ class HealthDataFetcher {
     }
 
     func fetchLastTwoWeeksSleep() async throws -> [Double] {
-        return try await fetchLastTwoWeeksCategoryData(for: .sleepAnalysis)
+        try await fetchLastTwoWeeksCategoryData(for: .sleepAnalysis)
     }
 
     private func createLastTwoWeeksPredicate() -> NSPredicate {

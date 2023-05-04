@@ -10,8 +10,6 @@ import SwiftUI
 
 struct MessageInputView: View {
     @EnvironmentObject var messageHandler: MessageHandler
-    @AppStorage(StorageKeys.openAIModel) var openAIModel = Model.gpt3_5Turbo
-
     @State private var showingSheet = false
     @State private var userMessage = ""
 
@@ -27,13 +25,12 @@ struct MessageInputView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .lineLimit(1...5)
-                .disabled(messageHandler.isQuerying == true)
+                .disabled(messageHandler.isQuerying)
 
             Button(action: {
                 _Concurrency.Task {
                     let userMessageToQuery = userMessage
                     userMessage = ""
-
                     await messageHandler.processUserMessage(userMessageToQuery)
                 }
             }) {

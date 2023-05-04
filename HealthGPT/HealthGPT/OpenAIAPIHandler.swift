@@ -13,7 +13,7 @@ enum OpenAIAPIError: Error {
 
 class OpenAIAPIHandler {
     private(set) var apiToken: String?
-    private let openAIModel: Model
+    private(set) var openAIModel: Model
 
     init(apiToken: String, openAIModel: Model) {
         self.apiToken = apiToken
@@ -44,5 +44,9 @@ class OpenAIAPIHandler {
 
     func updateAPIToken(_ newToken: String) {
         self.apiToken = newToken
+    }
+
+    func updateModel(_ newModel: Model) {
+        self.openAIModel = newModel
     }
 }

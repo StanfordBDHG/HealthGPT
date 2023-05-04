@@ -11,17 +11,25 @@ import OpenAI
 @MainActor
 class MessageHandler: ObservableObject {
     @Published private(set) var messages: [Message]
-    @Published private(set) var isQuerying: Bool = false
+    @Published private(set) var isQuerying = false
     private let openAIAPIHandler: OpenAIAPIHandler
     private let healthDataFetcher = HealthDataFetcher()
 
     init(apiToken: String = "", openAIModel: Model = .gpt3_5Turbo) {
         self.messages = []
-        self.openAIAPIHandler = OpenAIAPIHandler(apiToken: apiToken, openAIModel: openAIModel)
+
+        self.openAIAPIHandler = OpenAIAPIHandler(
+            apiToken: apiToken,
+            openAIModel: openAIModel
+        )
     }
 
     func updateAPIToken(_ newToken: String) {
         self.openAIAPIHandler.updateAPIToken(newToken)
+    }
+
+    func updateOpenAIModel(_ newModel: Model) {
+        self.openAIAPIHandler.updateModel(newModel)
     }
 
     func processUserMessage(_ userMessage: String) async {
@@ -87,4 +95,3 @@ class MessageHandler: ObservableObject {
         return mainPrompt
     }
 }
-
