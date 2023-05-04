@@ -43,25 +43,23 @@ struct HealthGPTView: View {
                 )
             }
             .onAppear {
-                // Look for an stored API key
-                var apiKey = ""
-                if let storedApiKey = try? secureStorage.retrieveCredentials(
-                    "openai-api-key",
-                    server: "openai.com"
-                ) {
-                    apiKey = storedApiKey.password
-                } else {
-                    alertText = "Could not find a valid API key."
-                    self.showAlert.toggle()
-                    return
-                }
-
-                // Assign the api key to the message handler
-                messageManager.updateAPIToken(apiKey)
-
-                // Set the OpenAI model in the message handler
-                messageManager.updateOpenAIModel(openAIModel)
+                updateApiKeyAndModel()
             }
         }
     }
+
+    private func updateApiKeyAndModel() {
+        guard let apiKey = try? secureStorage.retrieveCredentials(
+            "openai-api-key",
+            server: "openai.com"
+        )?.password else {
+            alertText = "Could not find a valid API key."
+            self.showAlert.toggle()
+            return
+        }
+
+        messageManager.updateAPIToken(apiKey)
+        messageManager.updateOpenAIModel(openAIModel)
+    }
+
 }
