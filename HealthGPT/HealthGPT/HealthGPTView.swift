@@ -45,7 +45,10 @@ struct HealthGPTView: View {
             .onAppear {
                 // Look for an stored API key
                 var apiKey = ""
-                if let storedApiKey = try? secureStorage.retrieveCredentials("openai-api-key", server: "openai.com") {
+                if let storedApiKey = try? secureStorage.retrieveCredentials(
+                    "openai-api-key",
+                    server: "openai.com"
+                ) {
                     apiKey = storedApiKey.password
                 } else {
                     alertText = "Could not find a valid API key."

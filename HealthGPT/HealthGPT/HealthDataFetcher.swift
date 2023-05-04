@@ -10,6 +10,9 @@ import HealthKit
 class HealthDataFetcher {
     private let healthStore = HKHealthStore()
 
+    /// Requests authorization to access the user's health data.
+    ///
+    /// - Returns: A `Bool` value indicating whether the authorization was successful.
     func requestAuthorization() async -> Bool {
         await withCheckedContinuation { continuation in
             // update the types set below to request authorization to additional pieces of data
@@ -36,7 +39,15 @@ class HealthDataFetcher {
             }
         }
     }
-    
+
+    /// Fetches the user's health data for the specified quantity type identifier for the last two weeks.
+    ///
+    /// - Parameters:
+    ///   - identifier: The `HKQuantityTypeIdentifier` representing the type of health data to fetch.
+    ///   - unit: The `HKUnit` to use for the fetched health data values.
+    ///   - options: The `HKStatisticsOptions` to use when fetching the health data.
+    /// - Returns: An array of `Double` values representing the daily health data for the specified identifier.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksQuantityData(
         for identifier: HKQuantityTypeIdentifier,
         unit: HKUnit,
@@ -84,6 +95,11 @@ class HealthDataFetcher {
         }
     }
 
+    /// Fetches the user's health data for the specified category type identifier for the last two weeks.
+    ///
+    /// - Parameter identifier: The `HKCategoryTypeIdentifier` representing the type of health data to fetch.
+    /// - Returns: An array of `Double` values representing the daily health data for the specified identifier.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksCategoryData(
         for identifier: HKCategoryTypeIdentifier
     ) async throws -> [Double] {
@@ -130,6 +146,10 @@ class HealthDataFetcher {
         }
     }
 
+    /// Fetches the user's step count data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily step counts.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksStepCount() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
             for: .stepCount,
@@ -138,6 +158,10 @@ class HealthDataFetcher {
         )
     }
 
+    /// Fetches the user's active energy burned data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily active energy burned.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
             for: .activeEnergyBurned,
@@ -145,7 +169,11 @@ class HealthDataFetcher {
             options: [.cumulativeSum]
         )
     }
-    
+
+    /// Fetches the user's exercise time data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily exercise times in minutes.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
             for: .appleExerciseTime,
@@ -153,7 +181,11 @@ class HealthDataFetcher {
             options: [.cumulativeSum]
         )
     }
-    
+
+    /// Fetches the user's body weight data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily body weights in pounds.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
             for: .bodyMass,
@@ -161,7 +193,11 @@ class HealthDataFetcher {
             options: [.discreteAverage]
         )
     }
-    
+
+    /// Fetches the user's heart rate data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily average heart rates.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksHeartRate() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
             for: .heartRate,
@@ -170,6 +206,10 @@ class HealthDataFetcher {
         )
     }
 
+    /// Fetches the user's sleep data for the last two weeks.
+    ///
+    /// - Returns: An array of `Double` values representing daily sleep duration in hours.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksSleep() async throws -> [Double] {
         try await fetchLastTwoWeeksCategoryData(for: .sleepAnalysis)
     }
@@ -178,15 +218,5 @@ class HealthDataFetcher {
         let now = Date()
         let startDate = Calendar.current.date(byAdding: DateComponents(day: -14), to: now) ?? Date()
         return HKQuery.predicateForSamples(withStart: startDate, end: now, options: .strictStartDate)
-    }
-}
-
-extension Date {
-    static func startOfDay() -> Date {
-        Calendar.current.startOfDay(for: Date())
-    }
-
-    func twoWeeksAgoStartOfDay() -> Date {
-        Calendar.current.date(byAdding: DateComponents(day: -14), to: Date.startOfDay()) ?? Date()
     }
 }

@@ -15,6 +15,11 @@ class MessageManager: ObservableObject {
     private let openAIManager: OpenAIManager
     private let healthDataFetcher = HealthDataFetcher()
 
+    /// Initializes a new instance of `MessageManager` with the specified API token and OpenAI model.
+    ///
+    /// - Parameters:
+    ///   - apiToken: The API token for the OpenAI API.
+    ///   - openAIModel: The OpenAI model to use for querying.
     init(apiToken: String = "", openAIModel: Model = .gpt3_5Turbo) {
         self.messages = []
 
@@ -24,14 +29,23 @@ class MessageManager: ObservableObject {
         )
     }
 
+    /// Updates the API token for the OpenAI API.
+    ///
+    /// - Parameter newToken: The new API token.
     func updateAPIToken(_ newToken: String) {
         self.openAIManager.updateAPIToken(newToken)
     }
 
+    /// Updates the OpenAI model to use for querying.
+    ///
+    /// - Parameter newModel: The new OpenAI model to use.
     func updateOpenAIModel(_ newModel: Model) {
         self.openAIManager.updateModel(newModel)
     }
 
+    /// Processes the user message by appending it to the messages list and sending a query to the OpenAI API.
+    ///
+    /// - Parameter userMessage: The user message to process.
     func processUserMessage(_ userMessage: String) async {
         let newMessage = Message(content: userMessage, isBot: false)
 
@@ -63,6 +77,7 @@ class MessageManager: ObservableObject {
         }
     }
 
+    /// Clears the messages list
     func clearMessages() {
         messages = []
     }

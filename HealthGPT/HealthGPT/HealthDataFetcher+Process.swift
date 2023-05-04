@@ -8,6 +8,11 @@ import Foundation
 
 
 extension HealthDataFetcher {
+    /// Fetches and processes health data for the last 14 days.
+    ///
+    /// - Returns: An array of `HealthData` objects, one for each day in the last 14 days.
+    ///
+    /// - Throws: `HealthDataFetcherError.authorizationFailed` if health data authorization fails.
     func fetchAndProcessHealthData() async throws -> [HealthData] {
         let success = await requestAuthorization()
 
