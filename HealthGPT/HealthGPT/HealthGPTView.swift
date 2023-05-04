@@ -61,5 +61,4 @@ struct HealthGPTView: View {
         messageManager.updateAPIToken(apiKey)
         messageManager.updateOpenAIModel(openAIModel)
     }
-
 }
