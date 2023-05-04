@@ -15,6 +15,7 @@ jobs:
   buildandtest:
     name: Build and Test Application
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    runs-on: [macOS, self-hosted] 
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
