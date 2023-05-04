@@ -15,16 +15,17 @@ class HealthDataFetcher {
     /// - Returns: A `Bool` value indicating whether the authorization was successful.
     func requestAuthorization() async -> Bool {
         await withCheckedContinuation { continuation in
-            // update the types set below to request authorization to additional pieces of data
-            guard HKHealthStore.isHealthDataAvailable(),
-                  let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
-                  let appleExerciseTime = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
-                  let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-                  let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate),
-                  let sleepAnalysis = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
+            /// update the types set below to request authorization to additional pieces of data
+            guard HKHealthStore.isHealthDataAvailable() else {
                 continuation.resume(returning: false)
                 return
             }
+
+            let stepCount = HKQuantityType(.stepCount)
+            let appleExerciseTime = HKQuantityType(.appleExerciseTime)
+            let bodyMass = HKQuantityType(.bodyMass)
+            let heartRate = HKQuantityType(.heartRate)
+            let sleepAnalysis = HKCategoryType(.sleepAnalysis)
 
             let types: Set = [
                 stepCount,
@@ -39,6 +40,7 @@ class HealthDataFetcher {
             }
         }
     }
+
 
     /// Fetches the user's health data for the specified quantity type identifier for the last two weeks.
     ///
