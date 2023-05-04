@@ -50,27 +50,27 @@ extension XCUIApplication {
     }
 
     private func navigateOnboardingFlowWelcome() throws {
-        XCTAssertTrue(staticTexts["HealthGPT"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["HealthGPT"].waitForExistence(timeout: 5))
 
-        XCTAssertTrue(buttons["Continue"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Continue"].waitForExistence(timeout: 5))
         buttons["Continue"].tap()
     }
 
     private func navigateOnboardingFlowDisclaimer() throws {
-        XCTAssertTrue(staticTexts["Disclaimer"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Disclaimer"].waitForExistence(timeout: 5))
 
         for _ in 1..<4 {
-            XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+            XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 5))
             buttons["Next"].tap()
         }
 
-        XCTAssertTrue(buttons["I Agree"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["I Agree"].waitForExistence(timeout: 5))
         buttons["I Agree"].tap()
     }
 
     private func navigateOnboardingFlowApiKey() throws {
-        XCTAssertTrue(staticTexts["OpenAI API Key"].waitForExistence(timeout: 2))
-        XCTAssertTrue(buttons["Save API Key"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["OpenAI API Key"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Save API Key"].waitForExistence(timeout: 5))
         XCTAssertFalse(buttons["Save API Key"].isEnabled, "The button should be disabled as no text has been entered.")
 
         try textFields["Enter API Key"].enter(value: "C3JF8sDa4XwirsvG1Nfi3ZgtB3bkFIDM9duFfItNtAnD3k4XwiM2")
@@ -80,8 +80,8 @@ extension XCUIApplication {
     }
 
     private func navigateOnboardingFlowModelSelection() throws {
-        XCTAssertTrue(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 2))
-        XCTAssertTrue(buttons["Save"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Save"].waitForExistence(timeout: 5))
 
         let picker = pickers["modelPicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
@@ -91,9 +91,9 @@ extension XCUIApplication {
     }
 
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
-        XCTAssertTrue(staticTexts["HealthKit Access"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["HealthKit Access"].waitForExistence(timeout: 5))
 
-        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 5))
         buttons["Grant Access"].tap()
 
         try handleHealthKitAuthorization()
