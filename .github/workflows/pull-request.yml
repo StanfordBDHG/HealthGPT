@@ -13,13 +13,12 @@ on:
 
 jobs:
   buildandtest:
-    runs-on:
-      labels: [self-hosted, macOS]
     name: Build and Test Application
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
+      runsonlabels: '["macOS", "self-hosted"]'
   swiftlint:
     name: SwiftLint
     uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
