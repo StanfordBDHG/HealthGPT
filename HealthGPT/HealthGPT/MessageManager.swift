@@ -51,29 +51,26 @@ class MessageManager: ObservableObject {
 
         self.messages.append(newMessage)
 
+        isQuerying = true
+
         do {
             let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
 
             let generator = PromptGenerator(with: healthData)
             let mainPrompt = generator.buildMainPrompt()
 
-            Task {
-                isQuerying = true
-                do {
-                    let botMessageContent = try await self.openAIManager.queryAPI(
-                        mainPrompt: mainPrompt,
-                        messages: self.messages
-                    )
-                    let botMessage = Message(content: botMessageContent, isBot: true)
-                    self.messages.append(botMessage)
-                    isQuerying = false
-                } catch {
-                    print("Error querying OpenAI API: \(error)")
-                    isQuerying = false
-                }
-            }
+            let botMessageContent = try await self.openAIManager.queryAPI(
+                mainPrompt: mainPrompt,
+                messages: self.messages
+            )
+
+            let botMessage = Message(content: botMessageContent, isBot: true)
+            self.messages.append(botMessage)
+
+            isQuerying = false
         } catch {
-            print("Error fetching and processing health data: \(error)")
+            print("Error querying OpenAI API: \(error)")
+            isQuerying = false
         }
     }
 
