@@ -6,54 +6,46 @@
 
 import HealthKit
 
-struct HealthData: Codable {
-    var date: String
-    var steps: Double?
-    var activeEnergy: Double?
-    var exerciseMinutes: Double?
-    var bodyWeight: Double?
-    var sleepHours: Double?
-    var heartRate: Double?
-}
 
 class HealthDataFetcher {
     private let healthStore = HKHealthStore()
 
-    func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        // update the types set below to request authorization to additional pieces of data
-        guard HKHealthStore.isHealthDataAvailable(),
-              let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
-              let appleExerciseTime = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
-              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-              let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate),
-              let sleepAnalysis = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
-            completion(false)
-            return
-        }
+    func requestAuthorization() async -> Bool {
+        return await withCheckedContinuation { continuation in
+            // update the types set below to request authorization to additional pieces of data
+            guard HKHealthStore.isHealthDataAvailable(),
+                  let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
+                  let appleExerciseTime = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
+                  let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
+                  let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate),
+                  let sleepAnalysis = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
+                continuation.resume(returning: false)
+                return
+            }
 
-        let types: Set = [
-            stepCount,
-            appleExerciseTime,
-            bodyMass,
-            heartRate,
-            sleepAnalysis
-        ]
+            let types: Set = [
+                stepCount,
+                appleExerciseTime,
+                bodyMass,
+                heartRate,
+                sleepAnalysis
+            ]
 
-        healthStore.requestAuthorization(toShare: nil, read: types) { success, _ in
-            completion(success)
+            healthStore.requestAuthorization(toShare: nil, read: types) { success, _ in
+                continuation.resume(returning: success)
+            }
         }
     }
     
     func fetchLastTwoWeeksQuantityData(
         for identifier: HKQuantityTypeIdentifier,
         unit: HKUnit,
-        options: HKStatisticsOptions,
-        completion: @escaping ([Double]) -> Void
-    ) {
+        options: HKStatisticsOptions
+    ) async throws -> [Double] {
         let predicate = createLastTwoWeeksPredicate()
 
         guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
-            return
+            throw HealthDataFetcherError.invalidObjectType
         }
 
         let query = HKStatisticsCollectionQuery(
@@ -64,120 +56,122 @@ class HealthDataFetcher {
             intervalComponents: DateComponents(day: 1)
         )
 
-        var dailyData: [Double] = []
+        return try await withCheckedThrowingContinuation { continuation in
+            query.initialResultsHandler = { _, results, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let statsCollection = results {
+                    var dailyData: [Double] = []
 
-        query.initialResultsHandler = { _, results, _ in
-            if let statsCollection = results {
-                statsCollection.enumerateStatistics(
-                    from: Date().twoWeeksAgoStartOfDay(),
-                    to: Date.startOfDay()
-                ) { statistics, _ in
-                    if let quantity = statistics.sumQuantity() {
-                        dailyData.append(quantity.doubleValue(for: unit))
-                    } else {
-                        dailyData.append(0)
+                    statsCollection.enumerateStatistics(
+                        from: Date().twoWeeksAgoStartOfDay(),
+                        to: Date.startOfDay()
+                    ) { statistics, _ in
+                        if let quantity = statistics.sumQuantity() {
+                            dailyData.append(quantity.doubleValue(for: unit))
+                        } else {
+                            dailyData.append(0)
+                        }
                     }
+
+                    continuation.resume(returning: dailyData)
+                } else {
+                    continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
                 }
-
-                completion(dailyData)
-            } else {
-                completion([])
             }
-        }
 
-        healthStore.execute(query)
+            healthStore.execute(query)
+        }
     }
 
     func fetchLastTwoWeeksCategoryData(
-        for identifier: HKCategoryTypeIdentifier,
-        completion: @escaping ([Double]) -> Void
-    ) {
+        for identifier: HKCategoryTypeIdentifier
+    ) async throws -> [Double] {
         let predicate = createLastTwoWeeksPredicate()
 
         guard let sampleType = HKObjectType.categoryType(forIdentifier: identifier) else {
-            return
+            throw HealthDataFetcherError.invalidObjectType
         }
 
-        let query = HKSampleQuery(
-            sampleType: sampleType,
-            predicate: predicate,
-            limit: HKObjectQueryNoLimit,
-            sortDescriptors: nil
-        ) { _, samples, _ in
-            var dailyData: [Double] = [Double](repeating: 0, count: 14)
-            if let samples = samples as? [HKCategorySample] {
-                for sample in samples {
-                    let startOfSampleDay = Calendar.current.startOfDay(for: sample.startDate)
-                    let distance = Int(Date().timeIntervalSince(startOfSampleDay) / 86400)
-                    guard let minutes = Calendar.current.dateComponents(
-                        [.minute],
-                        from: sample.startDate,
-                        to: sample.endDate
-                    ).minute else {
-                        return
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(
+                sampleType: sampleType,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: nil
+            ) { (_, samplesOrNil, errorOrNil) in
+                if let error = errorOrNil {
+                    continuation.resume(throwing: error)
+                } else if let samples = samplesOrNil as? [HKCategorySample] {
+                    var dailyData: [Double] = [Double](repeating: 0, count: 14)
+                    for sample in samples {
+                        let startOfSampleDay = Calendar.current.startOfDay(for: sample.startDate)
+                        let distance = Int(Date().timeIntervalSince(startOfSampleDay) / 86400)
+                        guard let minutes = Calendar.current.dateComponents(
+                            [.minute],
+                            from: sample.startDate,
+                            to: sample.endDate
+                        ).minute else {
+                            return
+                        }
+
+                        if distance < 14 {
+                            dailyData[distance] = Double(minutes) / 60.0
+                        }
                     }
 
-                    if distance < 14 {
-                        dailyData[distance] = Double(minutes) / 60.0
-                    }
+                    continuation.resume(returning: dailyData)
+                } else {
+                    continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
                 }
-
-                completion(dailyData)
-            } else {
-                completion([])
             }
-        }
 
-        healthStore.execute(query)
+            healthStore.execute(query)
+        }
     }
 
-    func fetchLastTwoWeeksStepCount(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(
+    func fetchLastTwoWeeksStepCount() async throws -> [Double] {
+        return try await fetchLastTwoWeeksQuantityData(
             for: .stepCount,
             unit: HKUnit.count(),
-            options: [.cumulativeSum],
-            completion: completion
+            options: [.cumulativeSum]
         )
     }
 
-    func fetchLastTwoWeeksActiveEnergy(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(
+    func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
+        return try await fetchLastTwoWeeksQuantityData(
             for: .activeEnergyBurned,
             unit: HKUnit.largeCalorie(),
-            options: [.cumulativeSum],
-            completion: completion
+            options: [.cumulativeSum]
         )
     }
     
-    func fetchLastTwoWeeksExerciseTime(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(
+    func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
+        return try await fetchLastTwoWeeksQuantityData(
             for: .appleExerciseTime,
             unit: .minute(),
-            options: [.cumulativeSum],
-            completion: completion
+            options: [.cumulativeSum]
         )
     }
     
-    func fetchLastTwoWeeksBodyWeight(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(
+    func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
+        return try await fetchLastTwoWeeksQuantityData(
             for: .bodyMass,
             unit: .pound(),
-            options: [.discreteAverage],
-            completion: completion
+            options: [.discreteAverage]
         )
     }
     
-    func fetchLastTwoWeeksHeartRate(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksQuantityData(
+    func fetchLastTwoWeeksHeartRate() async throws -> [Double] {
+        return try await fetchLastTwoWeeksQuantityData(
             for: .heartRate,
             unit: .count(),
-            options: [.discreteAverage],
-            completion: completion
+            options: [.discreteAverage]
         )
     }
 
-    func fetchLastTwoWeeksSleep(completion: @escaping ([Double]) -> Void) {
-        fetchLastTwoWeeksCategoryData(for: .sleepAnalysis, completion: completion)
+    func fetchLastTwoWeeksSleep() async throws -> [Double] {
+        return try await fetchLastTwoWeeksCategoryData(for: .sleepAnalysis)
     }
 
     private func createLastTwoWeeksPredicate() -> NSPredicate {
