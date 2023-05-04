@@ -9,14 +9,14 @@ import SwiftUI
 
 
 struct MessageInputView: View {
-    @EnvironmentObject var messageHandler: MessageHandler
+    @EnvironmentObject var messageManager: MessageManager
     @State private var showingSheet = false
     @State private var userMessage = ""
 
     var body: some View {
         HStack {
             TextField(
-                messageHandler.isQuerying ? "HealthGPT is thinking 🤔..." : "Type a message...",
+                messageManager.isQuerying ? "HealthGPT is thinking 🤔..." : "Type a message...",
                 text: $userMessage,
                 axis: .vertical
             )
@@ -25,13 +25,13 @@ struct MessageInputView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .lineLimit(1...5)
-                .disabled(messageHandler.isQuerying)
+                .disabled(messageManager.isQuerying)
 
             Button(action: {
                 _Concurrency.Task {
                     let userMessageToQuery = userMessage
                     userMessage = ""
-                    await messageHandler.processUserMessage(userMessageToQuery)
+                    await messageManager.processUserMessage(userMessageToQuery)
                 }
             }) {
                 Image(systemName: "paperplane.fill")

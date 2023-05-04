@@ -7,15 +7,15 @@
 import SwiftUI
 
 struct ChatView: View {
-    @EnvironmentObject var messageHandler: MessageHandler
+    @EnvironmentObject var messageManager: MessageManager
 
     var body: some View {
         ScrollView {
             ScrollViewReader { value in
-                ForEach(messageHandler.messages.indices, id: \.self) { message in
-                    MessageView(message: messageHandler.messages[message]).id(message)
+                ForEach(messageManager.messages.indices, id: \.self) { message in
+                    MessageView(message: messageManager.messages[message]).id(message)
                 }
-                .onChange(of: messageHandler.messages.count) { newValue in
+                .onChange(of: messageManager.messages.count) { newValue in
                     withAnimation {
                         value.scrollTo(newValue - 1)
                     }

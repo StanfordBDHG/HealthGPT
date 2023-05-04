@@ -19,20 +19,20 @@ struct HealthGPTView: View {
     @State private var showAlert = false
     @State private var alertText = ""
 
-    @StateObject private var messageHandler = MessageHandler()
+    @StateObject private var messageManager = MessageManager()
 
     var body: some View {
         NavigationView {
             VStack {
                 ChatView()
-                    .environmentObject(messageHandler)
+                    .environmentObject(messageManager)
                     .gesture(
                         TapGesture().onEnded {
                             UIApplication.shared.hideKeyboard()
                         }
                     )
                 MessageInputView()
-                    .environmentObject(messageHandler)
+                    .environmentObject(messageManager)
             }
             .navigationBarTitle("HealthGPT")
             .alert(isPresented: $showAlert) {
@@ -54,10 +54,10 @@ struct HealthGPTView: View {
                 }
 
                 // Assign the api key to the message handler
-                messageHandler.updateAPIToken(apiKey)
+                messageManager.updateAPIToken(apiKey)
 
                 // Set the OpenAI model in the message handler
-                messageHandler.updateOpenAIModel(openAIModel)
+                messageManager.updateOpenAIModel(openAIModel)
             }
         }
     }

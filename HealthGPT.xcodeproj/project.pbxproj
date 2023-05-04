@@ -16,8 +16,8 @@
 		2719BC8229F150E900995C31 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC8129F150E900995C31 /* ApiKey.swift */; };
 		2719BC8729F1548900995C31 /* CardinalKitLocalStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8629F1548900995C31 /* CardinalKitLocalStorage */; };
 		2719BC8929F1548900995C31 /* CardinalKitSecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8829F1548900995C31 /* CardinalKitSecureStorage */; };
-		272FB34A2A03CB640010B98D /* OpenAIAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3492A03CB640010B98D /* OpenAIAPIHandler.swift */; };
-		272FB34C2A03CC890010B98D /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34B2A03CC890010B98D /* MessageHandler.swift */; };
+		272FB34A2A03CB640010B98D /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3492A03CB640010B98D /* OpenAIManager.swift */; };
+		272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34B2A03CC890010B98D /* MessageManager.swift */; };
 		272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */; };
 		272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */; };
 		272FB3522A03D14C0010B98D /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3512A03D14C0010B98D /* HealthData.swift */; };
@@ -72,8 +72,8 @@
 		2719BC7D29F0A5A900995C31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
 		2719BC8129F150E900995C31 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
-		272FB3492A03CB640010B98D /* OpenAIAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIHandler.swift; sourceTree = "<group>"; };
-		272FB34B2A03CC890010B98D /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
+		272FB3492A03CB640010B98D /* OpenAIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIManager.swift; sourceTree = "<group>"; };
+		272FB34B2A03CC890010B98D /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataFetcher+Process.swift"; sourceTree = "<group>"; };
 		272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcherError.swift; sourceTree = "<group>"; };
 		272FB3512A03D14C0010B98D /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -197,10 +197,10 @@
 				272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */,
 				E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */,
 				2719BC7D29F0A5A900995C31 /* Message.swift */,
-				272FB34B2A03CC890010B98D /* MessageHandler.swift */,
+				272FB34B2A03CC890010B98D /* MessageManager.swift */,
 				E21D86A329EDB21B00490C26 /* MessageInputView.swift */,
 				2719BC7B29F0A59800995C31 /* MessageView.swift */,
-				272FB3492A03CB640010B98D /* OpenAIAPIHandler.swift */,
+				272FB3492A03CB640010B98D /* OpenAIManager.swift */,
 				2719BC7729F0A31500995C31 /* SettingsView.swift */,
 				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
@@ -415,9 +415,9 @@
 				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
-				272FB34A2A03CB640010B98D /* OpenAIAPIHandler.swift in Sources */,
+				272FB34A2A03CB640010B98D /* OpenAIManager.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
-				272FB34C2A03CC890010B98D /* MessageHandler.swift in Sources */,
+				272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */,
 				27051AA929F727B10010211A /* ModelSelection.swift in Sources */,
 				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,

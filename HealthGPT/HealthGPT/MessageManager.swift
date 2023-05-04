@@ -9,27 +9,27 @@ import OpenAI
 
 
 @MainActor
-class MessageHandler: ObservableObject {
+class MessageManager: ObservableObject {
     @Published private(set) var messages: [Message]
     @Published private(set) var isQuerying = false
-    private let openAIAPIHandler: OpenAIAPIHandler
+    private let openAIManager: OpenAIManager
     private let healthDataFetcher = HealthDataFetcher()
 
     init(apiToken: String = "", openAIModel: Model = .gpt3_5Turbo) {
         self.messages = []
 
-        self.openAIAPIHandler = OpenAIAPIHandler(
+        self.openAIManager = OpenAIManager(
             apiToken: apiToken,
             openAIModel: openAIModel
         )
     }
 
     func updateAPIToken(_ newToken: String) {
-        self.openAIAPIHandler.updateAPIToken(newToken)
+        self.openAIManager.updateAPIToken(newToken)
     }
 
     func updateOpenAIModel(_ newModel: Model) {
-        self.openAIAPIHandler.updateModel(newModel)
+        self.openAIManager.updateModel(newModel)
     }
 
     func processUserMessage(_ userMessage: String) async {
@@ -46,7 +46,7 @@ class MessageHandler: ObservableObject {
             Task {
                 isQuerying = true
                 do {
-                    let botMessageContent = try await self.openAIAPIHandler.queryAPI(
+                    let botMessageContent = try await self.openAIManager.queryAPI(
                         mainPrompt: mainPrompt,
                         messages: self.messages
                     )

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var messageHandler: MessageHandler
+    @EnvironmentObject var messageManager: MessageManager
 
     let disclaimer = """
     HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.
@@ -21,7 +21,7 @@ struct SettingsView: View {
 
     var body: some View {
         Button("Clear Current Thread") {
-            messageHandler.clearMessages()
+            messageManager.clearMessages()
             dismiss()
         }
         .padding()

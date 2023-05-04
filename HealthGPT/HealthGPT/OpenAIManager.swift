@@ -11,7 +11,7 @@ enum OpenAIAPIError: Error {
     case noAPIToken
 }
 
-class OpenAIAPIHandler {
+class OpenAIManager {
     private(set) var apiToken: String?
     private(set) var openAIModel: Model
 
