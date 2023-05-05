@@ -118,8 +118,6 @@ class HealthDataFetcher {
                             dailyData[distance] = Double(minutes) / 60.0
                         }
                     }
-
-                    print(dailyData)
                     continuation.resume(returning: dailyData)
                 } else {
                     continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
