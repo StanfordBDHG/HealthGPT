@@ -165,7 +165,10 @@ class HealthDataFetcher {
             let allAsleepValuesPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(equalTo: HKCategoryValueSleepAnalysis.allAsleepValues)
             let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateRangePredicate, allAsleepValuesPredicate])
 
-            let descriptor = HKSampleQueryDescriptor(predicates: [.categorySample(type: sleepType, predicate: compoundPredicate)], sortDescriptors: [])
+            let descriptor = HKSampleQueryDescriptor(
+                predicates: [.categorySample(type: sleepType, predicate: compoundPredicate)],
+                sortDescriptors: []
+            )
             
             let results = try await descriptor.result(for: healthStore)
 
