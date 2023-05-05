@@ -10,8 +10,8 @@ SPDX-License-Identifier: MIT
 
 # HealthGPT
 
-[![Build and Test](https://github.com/StanfordBDHG/HealthGPT/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanHealthGPTfordBDHG/CardinalKit/actions/workflows/build-and-test.yml)
-[![codecov](https://codecov.io/gh/StanfordBDHG/HealthGPTHealthGPT/branch/main/graph/badge.svg)](https://codecov.io/gh/StanfordBDHG/HealthGPT)
+[![Beta Deployment](https://github.com/StanfordBDHG/HealthGPT/actions/workflows/beta-deployment.yml/badge.svg)](https://github.com/StanfordBDHG/HealthGPT/actions/workflows/beta-deployment.yml)
+[![codecov](https://codecov.io/gh/StanfordBDHG/HealthGPT/branch/main/graph/badge.svg?token=5BEldGX6G1)](https://codecov.io/gh/StanfordBDHG/HealthGPT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7850785.svg)](https://doi.org/10.5281/zenodo.7850785)
 
 ![Example Conversation](Figures/Example.png)
