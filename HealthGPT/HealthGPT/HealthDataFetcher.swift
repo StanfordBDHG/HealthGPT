@@ -80,56 +80,6 @@ class HealthDataFetcher {
         return dailyData
     }
 
-    /// Fetches the user's health data for the specified category type identifier for the last two weeks.
-    ///
-    /// - Parameter identifier: The `HKCategoryTypeIdentifier` representing the type of health data to fetch.
-    /// - Returns: An array of `Double` values representing the daily health data for the specified identifier.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksCategoryData(
-        for identifier: HKCategoryTypeIdentifier
-    ) async throws -> [Double] {
-        guard let categoryType = HKObjectType.categoryType(forIdentifier: identifier) else {
-            throw HealthDataFetcherError.invalidObjectType
-        }
-
-        let predicate = createLastTwoWeeksPredicate()
-
-        return try await withCheckedThrowingContinuation { continuation in
-            let query = HKSampleQuery(
-                sampleType: categoryType,
-                predicate: predicate,
-                limit: HKObjectQueryNoLimit,
-                sortDescriptors: nil
-            ) { _, samplesOrNil, errorOrNil in
-                if let error = errorOrNil {
-                    continuation.resume(throwing: error)
-                } else if let samples = samplesOrNil as? [HKCategorySample] {
-                    var dailyData: [Double] = [Double](repeating: 0, count: 14)
-                    for sample in samples {
-                        let startOfSampleDay = Calendar.current.startOfDay(for: sample.startDate)
-                        let distance = Int(Date().timeIntervalSince(startOfSampleDay) / 86400)
-                        guard let minutes = Calendar.current.dateComponents(
-                            [.minute],
-                            from: sample.startDate,
-                            to: sample.endDate
-                        ).minute else {
-                            return
-                        }
-
-                        if distance < 14 {
-                            dailyData[distance] = Double(minutes) / 60.0
-                        }
-                    }
-                    continuation.resume(returning: dailyData)
-                } else {
-                    continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
-                }
-            }
-
-            healthStore.execute(query)
-        }
-    }
-
     /// Fetches the user's step count data for the last two weeks.
     ///
     /// - Returns: An array of `Double` values representing daily step counts.
@@ -195,7 +145,40 @@ class HealthDataFetcher {
     /// - Returns: An array of `Double` values representing daily sleep duration in hours.
     /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
     func fetchLastTwoWeeksSleep() async throws -> [Double] {
-        try await fetchLastTwoWeeksCategoryData(for: .sleepAnalysis)
+        var dailySleepData: [Double] = []
+        
+        // We go through all possible days in the last two weeks.
+        for day in -14..<0 {
+            // We start the calculation at 3 PM the previous day to 3 PM on the day in question.
+            guard let startOfSleepDay = Calendar.current.date(byAdding: DateComponents(day: day - 1), to: Date.startOfDay()),
+                  let startOfSleep = Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: startOfSleepDay),
+                  let endOfSleepDay = Calendar.current.date(byAdding: DateComponents(day: day), to: Date.startOfDay()),
+                  let endOfSleep = Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: endOfSleepDay) else {
+                dailySleepData.append(0)
+                continue
+            }
+            
+            
+            let sleepType = HKCategoryType(.sleepAnalysis)
+
+            let dateRangePredicate = HKQuery.predicateForSamples(withStart: startOfSleep, end: endOfSleep, options: .strictEndDate)
+            let allAsleepValuesPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(equalTo: HKCategoryValueSleepAnalysis.allAsleepValues)
+            let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateRangePredicate, allAsleepValuesPredicate])
+
+            let descriptor = HKSampleQueryDescriptor(predicates: [.categorySample(type: sleepType, predicate: compoundPredicate)], sortDescriptors: [])
+            
+            let results = try await descriptor.result(for: healthStore)
+
+            var secondsAsleep = 0.0
+            for result in results {
+                secondsAsleep += result.endDate.timeIntervalSince(result.startDate)
+            }
+            
+            // Append the hours of sleep for that date
+            dailySleepData.append(secondsAsleep / (60 * 60))
+        }
+        
+        return dailySleepData
     }
 
     private func createLastTwoWeeksPredicate() -> NSPredicate {
