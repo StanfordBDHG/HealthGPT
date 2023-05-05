@@ -3,6 +3,8 @@
 //
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
+// SPDX-License-Identifier: MIT
+//
 
 /// A collection of feature flags for the HealthGPT app.
 enum FeatureFlags {

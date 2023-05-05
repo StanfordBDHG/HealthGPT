@@ -3,6 +3,8 @@
 //
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
+// SPDX-License-Identifier: MIT
+//
 
 extension String {
     var moduleLocalized: String {

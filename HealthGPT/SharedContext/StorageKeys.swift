@@ -3,6 +3,8 @@
 //
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
 //
+// SPDX-License-Identifier: MIT
+//
 
 
 /// Constants shared across the CardinalKit Teamplate Application to access
