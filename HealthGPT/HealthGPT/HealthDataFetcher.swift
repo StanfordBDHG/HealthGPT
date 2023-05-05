@@ -13,34 +13,21 @@ class HealthDataFetcher {
     /// Requests authorization to access the user's health data.
     ///
     /// - Returns: A `Bool` value indicating whether the authorization was successful.
-    func requestAuthorization() async -> Bool {
-        await withCheckedContinuation { continuation in
-            /// update the types set below to request authorization to additional pieces of data
-            guard HKHealthStore.isHealthDataAvailable() else {
-                continuation.resume(returning: false)
-                return
-            }
-
-            let stepCount = HKQuantityType(.stepCount)
-            let appleExerciseTime = HKQuantityType(.appleExerciseTime)
-            let bodyMass = HKQuantityType(.bodyMass)
-            let heartRate = HKQuantityType(.heartRate)
-            let sleepAnalysis = HKCategoryType(.sleepAnalysis)
-
-            let types: Set = [
-                stepCount,
-                appleExerciseTime,
-                bodyMass,
-                heartRate,
-                sleepAnalysis
-            ]
-
-            healthStore.requestAuthorization(toShare: nil, read: types) { success, _ in
-                continuation.resume(returning: success)
-            }
+    func requestAuthorization() async throws {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            throw HKError(.errorHealthDataUnavailable)
         }
-    }
 
+        let types: Set = [
+            HKQuantityType(.stepCount),
+            HKQuantityType(.appleExerciseTime),
+            HKQuantityType(.bodyMass),
+            HKQuantityType(.heartRate),
+            HKCategoryType(.sleepAnalysis)
+        ]
+
+        try await healthStore.requestAuthorization(toShare: Set<HKSampleType>(), read: types)
+    }
 
     /// Fetches the user's health data for the specified quantity type identifier for the last two weeks.
     ///
