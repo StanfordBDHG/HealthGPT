@@ -18,6 +18,9 @@ jobs:
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
+  reuse_action:
+    name: REUSE Compliance Check
+    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
   swiftlint:
     name: SwiftLint
     uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
