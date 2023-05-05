@@ -42,46 +42,40 @@ class HealthDataFetcher {
         unit: HKUnit,
         options: HKStatisticsOptions
     ) async throws -> [Double] {
-        let predicate = createLastTwoWeeksPredicate()
-
         guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
             throw HealthDataFetcherError.invalidObjectType
         }
 
-        let query = HKStatisticsCollectionQuery(
-            quantityType: quantityType,
-            quantitySamplePredicate: predicate,
+        let predicate = createLastTwoWeeksPredicate()
+
+        let quantityLastTwoWeeks = HKSamplePredicate.quantitySample(
+            type: quantityType,
+            predicate: predicate
+        )
+
+        let query = HKStatisticsCollectionQueryDescriptor(
+            predicate: quantityLastTwoWeeks,
             options: options,
             anchorDate: Date.startOfDay(),
             intervalComponents: DateComponents(day: 1)
         )
 
-        return try await withCheckedThrowingContinuation { continuation in
-            query.initialResultsHandler = { _, results, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else if let statsCollection = results {
-                    var dailyData: [Double] = []
+        let quantityCounts = try await query.result(for: healthStore)
 
-                    statsCollection.enumerateStatistics(
-                        from: Date().twoWeeksAgoStartOfDay(),
-                        to: Date.startOfDay()
-                    ) { statistics, _ in
-                        if let quantity = statistics.sumQuantity() {
-                            dailyData.append(quantity.doubleValue(for: unit))
-                        } else {
-                            dailyData.append(0)
-                        }
-                    }
+        var dailyData = [Double]()
 
-                    continuation.resume(returning: dailyData)
-                } else {
-                    continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
-                }
+        quantityCounts.enumerateStatistics(
+            from: Date().twoWeeksAgoStartOfDay(),
+            to: Date.startOfDay()
+        ) { statistics, _ in
+            if let quantity = statistics.sumQuantity() {
+                dailyData.append(quantity.doubleValue(for: unit))
+            } else {
+                dailyData.append(0)
             }
-
-            healthStore.execute(query)
         }
+
+        return dailyData
     }
 
     /// Fetches the user's health data for the specified category type identifier for the last two weeks.
@@ -92,15 +86,15 @@ class HealthDataFetcher {
     func fetchLastTwoWeeksCategoryData(
         for identifier: HKCategoryTypeIdentifier
     ) async throws -> [Double] {
-        let predicate = createLastTwoWeeksPredicate()
-
-        guard let sampleType = HKObjectType.categoryType(forIdentifier: identifier) else {
+        guard let categoryType = HKObjectType.categoryType(forIdentifier: identifier) else {
             throw HealthDataFetcherError.invalidObjectType
         }
 
+        let predicate = createLastTwoWeeksPredicate()
+
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
-                sampleType: sampleType,
+                sampleType: categoryType,
                 predicate: predicate,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: nil
@@ -125,6 +119,7 @@ class HealthDataFetcher {
                         }
                     }
 
+                    print(dailyData)
                     continuation.resume(returning: dailyData)
                 } else {
                     continuation.resume(throwing: HealthDataFetcherError.resultsNotFound)
