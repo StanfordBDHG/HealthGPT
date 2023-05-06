@@ -20,9 +20,16 @@ jobs:
     with:
       artifactname: HealthGPT.xcresult
       fastlanelane: test
+      runsonlabels: '["macOS", "self-hosted"]'
   reuse_action:
     name: REUSE Compliance Check
     uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
   swiftlint:
     name: SwiftLint
     uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
+  uploadcoveragereport:
+    name: Upload Coverage Report
+    needs: buildandtest
+    uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
+    with:
+      coveragereports: HealthGPT.xcresult
