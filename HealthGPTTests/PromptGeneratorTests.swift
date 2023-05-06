@@ -22,7 +22,6 @@ class PromptGeneratorTests: XCTestCase {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = dateFormatter.string(from: date)
 
-            // Create random, believable health data
             let steps = Double.random(in: 5000..<10000)
             let activeEnergy = Double.random(in: 100..<500)
             let exerciseMinutes = Double.random(in: 10..<100)
@@ -46,10 +45,11 @@ class PromptGeneratorTests: XCTestCase {
     func testBuildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()
+        let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
+
         XCTAssertNotNil(mainPrompt)
-        XCTAssertTrue(mainPrompt.contains("HealthGPT"))
-        XCTAssertTrue(mainPrompt.contains("14 days"))
-        XCTAssertTrue(mainPrompt.contains("Today is"))
+        XCTAssertTrue(mainPrompt.contains("You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. Given the context, provide a short response that could answer the user's question. Do NOT provide statistics. If numbers seem low, provide advice on how they can improve.\n\nSome health metrics over the past two weeks (14 days) to incorporate is given below. If a value is zero, the user has not inputted anything for that day."))
+        XCTAssertTrue(mainPrompt.contains("Today is \(today)"))
 
         for healthDataItem in sampleHealthData {
             XCTAssertTrue(mainPrompt.contains(healthDataItem.date))
