@@ -37,7 +37,7 @@ class OpenAIManager {
     ///
     /// - Returns: The content of the response from the API.
     func queryAPI(mainPrompt: String, messages: [Message]) async throws -> String {
-        guard let apiToken else {
+        guard let apiToken, !apiToken.isEmpty else {
             throw OpenAIAPIError.noAPIToken
         }
 
