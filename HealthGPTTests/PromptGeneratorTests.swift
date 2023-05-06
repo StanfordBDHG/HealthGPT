@@ -21,14 +21,23 @@ class PromptGeneratorTests: XCTestCase {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = dateFormatter.string(from: date)
+
+            // Create random, believable health data
+            let steps = Double.random(in: 5000..<10000)
+            let activeEnergy = Double.random(in: 100..<500)
+            let exerciseMinutes = Double.random(in: 10..<100)
+            let bodyWeight = Double.random(in: 100..<120)
+            let sleepHours = Double.random(in: 4..<9)
+
             let healthDataItem = HealthData(
                 date: dateString,
-                steps: 1000.0,
-                activeEnergy: 200.0,
-                exerciseMinutes: 30.0,
-                bodyWeight: 150,
-                sleepHours: 7.0
+                steps: steps,
+                activeEnergy: activeEnergy,
+                exerciseMinutes: exerciseMinutes,
+                bodyWeight: bodyWeight,
+                sleepHours: sleepHours
             )
+
             healthData.append(healthDataItem)
         }
         return healthData
