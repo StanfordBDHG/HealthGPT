@@ -16,8 +16,10 @@ SPDX-License-Identifier: MIT
 
 ![Example Conversation](Figures/Example.png)
 
-HealthGPT is an experimental iOS app based on the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication) that allows users to interact with their health data stored in the Apple Health app using natural language.
+HealthGPT is an experimental iOS app based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) that allows users to interact with their health data stored in the Apple Health app using natural language.
 The application offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
+
+The initial prototype based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) and the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
 
 ## Features
 
