@@ -40,6 +40,17 @@
                ReferencedContainer = "container:HealthGPT.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27B249592A06590E0091E52C"
+               BuildableName = "HealthGPTTests.xctest"
+               BlueprintName = "HealthGPTTests"
+               ReferencedContainer = "container:HealthGPT.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

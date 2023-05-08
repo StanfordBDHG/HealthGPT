@@ -1,15 +1,16 @@
 //
 // This source file is part of the Stanford HealthGPT project
 //
-// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors
-// SPDX-FileCopyrightText: Created by Varun Shenoy on 4/13/23.
+// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
 //
 
 import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var messages: [Message]
+    @EnvironmentObject var messageManager: MessageManager
 
     let disclaimer = """
     HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.
@@ -22,7 +23,7 @@ struct SettingsView: View {
 
     var body: some View {
         Button("Clear Current Thread") {
-            messages = []
+            messageManager.clearMessages()
             dismiss()
         }
         .padding()

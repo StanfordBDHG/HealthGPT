@@ -3,6 +3,8 @@
 //
 // SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors & Project Contributors
 //
+// SPDX-License-Identifier: MIT
+//
 
 import CardinalKitFHIR
 import CardinalKitOnboarding
