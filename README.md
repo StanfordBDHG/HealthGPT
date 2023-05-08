@@ -16,11 +16,10 @@ SPDX-License-Identifier: MIT
 
 ![Example Conversation](Figures/Example.png)
 
-HealthGPT is an experimental iOS app that allows users to interact with their health data stored in the Apple Health app using natural language.
+HealthGPT is an experimental iOS app based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) that allows users to interact with their health data stored in the Apple Health app using natural language.
 The application offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
 
 The initial prototype based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) and the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
-
 
 ## Features
 
@@ -49,9 +48,7 @@ Otherwise, all of your results will read zero.
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
 1. Edit `HealthGPT/HealthGPT/HealthDataFetcher.swift` to create an appropriate query for your data type.
-2. Update the prompt in `HealthGPT/HealthGPT/MessageInputView.swift` to pass the newly acquired data to the OpenAI API.
-
-For any other quick changes (such as adding an onboarding flow), refer to the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) repo.
+2. Update the prompt in `HealthGPT/HealthGPT/PromptGenerator.swift` to pass the newly acquired data to the OpenAI API.
 
 
 ## Contributing

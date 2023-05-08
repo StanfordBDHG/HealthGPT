@@ -8,8 +8,12 @@ SPDX-License-Identifier: MIT
    
 -->
 
-HealthKitGPT & CardinalKit Template App Contributors
+HealthGPT
 ====================================================
+
+The first version of HealthGPT was developed by [Varun Shenoy](https://varunshenoy.com/) in April 2023 in collaboration with the Stanford CardinalKit team.
+
+Contributors to HealthGPT include:
 
 * [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
 * [Varun Shenoy](https://github.com/varunshenoy)
