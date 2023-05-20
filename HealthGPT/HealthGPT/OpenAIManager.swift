@@ -36,12 +36,11 @@ class OpenAIManager {
     ///   - messages: The array of messages used in the conversation.
     ///
     /// - Returns: The content of the response from the API.
-    func queryAPI(mainPrompt: String, messages: [Message]) async throws -> String {
+    func queryAPI(mainPrompt: String, messages: [Message]) async throws -> AsyncThrowingStream<ChatStreamResult, Error> {
         guard let apiToken, !apiToken.isEmpty else {
             throw OpenAIAPIError.noAPIToken
         }
 
-        let openAI = OpenAI(apiToken: apiToken)
         var currentChat: [Chat] = [.init(role: .system, content: mainPrompt)]
 
         for message in messages {
@@ -53,9 +52,9 @@ class OpenAIManager {
             )
         }
 
+        let openAIClient = OpenAI(apiToken: apiToken)
         let query = ChatQuery(model: openAIModel, messages: currentChat)
-        let botMessageContent = try await openAI.chats(query: query).choices[0].message.content
-        return botMessageContent
+        return openAIClient.chatsStream(query: query)
     }
 
     /// Updates the API token for the OpenAI API.

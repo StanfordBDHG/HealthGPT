@@ -1064,7 +1064,7 @@
 			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.2;
+				minimumVersion = 0.2.1;
 			};
 		};
 		2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */ = {

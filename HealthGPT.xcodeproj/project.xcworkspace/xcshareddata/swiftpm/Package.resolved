@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "65748811327527fad88a1a0d141911fd6072b720",
-        "version" : "0.1.2"
+        "revision" : "4da423fe637a628ebee8f214217a9e96060a5222",
+        "version" : "0.2.1"
       }
     },
     {
