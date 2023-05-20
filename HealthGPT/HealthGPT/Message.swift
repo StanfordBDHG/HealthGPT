@@ -9,7 +9,7 @@
 import Foundation
 
 struct Message: Identifiable {
-    var id = UUID()
+    var id: String = UUID().uuidString
     var content: String
     var isBot: Bool
 }

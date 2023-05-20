@@ -62,14 +62,33 @@ class MessageManager: ObservableObject {
             let generator = PromptGenerator(with: healthData)
             let mainPrompt = generator.buildMainPrompt()
 
-            let botMessageContent = try await self.openAIManager.queryAPI(
+            let botMessageStream = try await self.openAIManager.queryAPI(
                 mainPrompt: mainPrompt,
                 messages: self.messages
             )
 
-            let botMessage = Message(content: botMessageContent, isBot: true)
-            self.messages.append(botMessage)
-
+            for try await partialBotMessageResult in botMessageStream {
+                for choice in partialBotMessageResult.choices {
+                    let botMessage = Message(
+                        id: partialBotMessageResult.id,
+                        content: choice.delta.content ?? "",
+                        isBot: true
+                    )
+                    if let existingBotMessageIndex = self.messages.firstIndex(where: {
+                        $0.id == partialBotMessageResult.id
+                    }) {
+                        let previousBotMessage = messages[existingBotMessageIndex]
+                        let combinedBotMessage = Message(
+                            id: botMessage.id,
+                            content: previousBotMessage.content + botMessage.content,
+                            isBot: true
+                        )
+                        self.messages[existingBotMessageIndex] = combinedBotMessage
+                    } else {
+                        self.messages.append(botMessage)
+                    }
+                }
+            }
             isQuerying = false
         } catch {
             print("Error querying OpenAI API: \(error)")
