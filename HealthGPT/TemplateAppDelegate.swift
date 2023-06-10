@@ -6,16 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
-import CardinalKit
-import CardinalKitFHIR
-import CardinalKitHealthKit
-import CardinalKitHealthKitToFHIRAdapter
-import CardinalKitSecureStorage
+import Spezi
+import SpeziFHIR
+import SpeziHealthKit
+import SpeziHealthKitToFHIRAdapter
+import SpeziSecureStorage
 import HealthKit
 import SwiftUI
 
 
-class TemplateAppDelegate: CardinalKitAppDelegate {
+class TemplateAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             SecureStorage()

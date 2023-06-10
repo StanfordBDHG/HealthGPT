@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import CardinalKit
+import Spezi
 import SwiftUI
 
 
@@ -28,7 +28,7 @@ struct TemplateApplication: App {
                     OnboardingFlow()
                 }
                 .testingSetup()
-                .cardinalKit(appDelegate)
+                .spezi(appDelegate)
         }
     }
 }

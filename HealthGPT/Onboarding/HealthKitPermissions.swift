@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import CardinalKitFHIR
-import CardinalKitHealthKit
-import CardinalKitOnboarding
+import SpeziFHIR
+import SpeziHealthKit
+import SpeziOnboarding
 import SwiftUI
 
 
