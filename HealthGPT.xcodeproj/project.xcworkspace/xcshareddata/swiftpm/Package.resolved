@@ -107,6 +107,15 @@
         "revision" : "19395bbd14a2554e4c9d3fe5cf38aa626c807269",
         "version" : "0.3.3"
       }
+    },
+    {
+      "identity" : "xctruntimeassertions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git",
+      "state" : {
+        "revision" : "8471ac76b9bb5645ba5ccb36a893919fccbf8851",
+        "version" : "0.2.3"
+      }
     }
   ],
   "version" : 2
