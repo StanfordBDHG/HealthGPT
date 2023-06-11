@@ -10,7 +10,7 @@ import Security
 import SwiftUI
 
 
-private struct TemplateAppTestingSetup: ViewModifier {
+private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
     func resetKeychain() {
@@ -49,6 +49,6 @@ private struct TemplateAppTestingSetup: ViewModifier {
 
 extension View {
     func testingSetup() -> some View {
-        self.modifier(TemplateAppTestingSetup())
+        self.modifier(HealthGPTAppTestingSetup())
     }
 }

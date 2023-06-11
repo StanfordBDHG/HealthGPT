@@ -46,12 +46,12 @@
 		27B249672A065D360091E52C /* PromptGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B249662A065D360091E52C /* PromptGeneratorTests.swift */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
 		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
-		2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */; };
-		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
+		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
+		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
 		2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF329F041C500239E1A /* OpenAI */; };
-		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
+		653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* HealthGPTApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
 		E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D86A329EDB21B00490C26 /* MessageInputView.swift */; };
@@ -105,13 +105,13 @@
 		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
 		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
-		2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppTestingSetup.swift; sourceTree = "<group>"; };
-		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
+		2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppTestingSetup.swift; sourceTree = "<group>"; };
+		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
 		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
+		653A2550283387FE005D4D48 /* HealthGPTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcher.swift; sourceTree = "<group>"; };
@@ -271,9 +271,9 @@
 				275DEFD129EEC6620079D453 /* Onboarding */,
 				275DEFCC29EEC58A0079D453 /* SharedContext */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
-				2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */,
-				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
-				2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */,
+				2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */,
+				653A2550283387FE005D4D48 /* HealthGPTApplication.swift */,
+				2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */,
 			);
 			path = HealthGPT;
 			sourceTree = "<group>";
@@ -497,13 +497,13 @@
 				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,
-				2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */,
+				2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */,
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */,
-				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
+				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
 				272FB3542A03F1860010B98D /* PromptGenerator.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
@@ -513,7 +513,7 @@
 				272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */,
 				272FB3562A0401130010B98D /* Date+Extensions.swift in Sources */,
 				2719BC7E29F0A5A900995C31 /* Message.swift in Sources */,
-				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
+				653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */,
 				E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

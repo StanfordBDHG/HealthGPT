@@ -15,7 +15,7 @@ import SpeziSecureStorage
 import SwiftUI
 
 
-class TemplateAppDelegate: SpeziAppDelegate {
+class HealthGPTAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             SecureStorage()
