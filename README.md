@@ -16,16 +16,16 @@ SPDX-License-Identifier: MIT
 
 ![Example Conversation](Figures/Example.png)
 
-HealthGPT is an experimental iOS app based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) that allows users to interact with their health data stored in the Apple Health app using natural language.
+HealthGPT is an experimental iOS app based on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) that allows users to interact with their health data stored in the Apple Health app using natural language.
 The application offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
 
-The initial prototype based on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) and the [CardinalKitTemplateApplication](https://github.com/StanfordBDHG/CardinalKitTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
+The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) (formerly CardinalKit) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
 
 ## Features
 
 - Chat-style interface for user-friendly health data interaction
 - Integration with the Apple Health app to ensure seamless first-party data usage
-- Extensible architecture built on [CardinalKit](https://github.com/StanfordBDHG/CardinalKit) for easy customization
+- Extensible architecture built on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) for easy customization
 - GPT-3.5 + GPT-4 access through the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
 - Out of the box support for querying sleep, step count, active energy, exercise minutes, heart rate, and body mass.
 

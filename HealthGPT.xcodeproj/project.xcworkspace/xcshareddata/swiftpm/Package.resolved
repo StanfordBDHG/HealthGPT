@@ -1,69 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "cardinalkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKit",
-      "state" : {
-        "revision" : "b5476acaeb57092068a945e7750ab84ce02ddbc6",
-        "version" : "0.4.1"
-      }
-    },
-    {
-      "identity" : "cardinalkitfhir",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitFHIR.git",
-      "state" : {
-        "revision" : "08bb7850b72ea5593dff6d9b104db03a4cfe8997",
-        "version" : "0.2.1"
-      }
-    },
-    {
-      "identity" : "cardinalkithealthkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitHealthKit.git",
-      "state" : {
-        "revision" : "91c4a61689485ab76e3b6777f9477c7c8147184f",
-        "version" : "0.1.0"
-      }
-    },
-    {
-      "identity" : "cardinalkithealthkittofhiradapter",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitHealthKitToFHIRAdapter.git",
-      "state" : {
-        "revision" : "b5bc6e8a26672880714311fc6afd8ee050e1dc97",
-        "version" : "0.2.0"
-      }
-    },
-    {
-      "identity" : "cardinalkitonboarding",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitOnboarding.git",
-      "state" : {
-        "revision" : "5f3d47dfcbdfb2fbb7e9484cc15f798b2730085f",
-        "version" : "0.2.1"
-      }
-    },
-    {
-      "identity" : "cardinalkitstorage",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitStorage.git",
-      "state" : {
-        "revision" : "4d8eb123b083016324c38f54f9d8024566459408",
-        "version" : "0.2.2"
-      }
-    },
-    {
-      "identity" : "cardinalkitviews",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/CardinalKitViews",
-      "state" : {
-        "revision" : "eefa262d96a930fb6339de194a2e574b5fbc8810",
-        "version" : "0.2.1"
-      }
-    },
-    {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/FHIRModels",
@@ -91,12 +28,75 @@
       }
     },
     {
+      "identity" : "spezi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/Spezi.git",
+      "state" : {
+        "revision" : "57ddc03668efce968e1376fbd686915c76d1dfa7",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "spezifhir",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziFHIR.git",
+      "state" : {
+        "revision" : "6303e65ba339f89b86a6dc09aab243b50de33cd7",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "spezihealthkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
+      "state" : {
+        "revision" : "7ae7c344c052fb7bdc9490cb4296b87a0abb8326",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "spezihealthkittofhiradapter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziHealthKitToFHIRAdapter.git",
+      "state" : {
+        "revision" : "e43f2c05cebcd16a697397721e6a2d72bf418a9c",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "spezionboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
+      "state" : {
+        "revision" : "10109f18d7958098dbbc4c32786d237a57400f85",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "spezistorage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
+      "state" : {
+        "revision" : "5dc128a257a6b4f7d2f4d96803c0cf89238bb922",
+        "version" : "0.3.1"
+      }
+    },
+    {
+      "identity" : "speziviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziViews",
+      "state" : {
+        "revision" : "c6975e84c735b8b8a13740012c1c194f48893fa8",
+        "version" : "0.3.0"
+      }
+    },
+    {
       "identity" : "xctestextensions",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "3037f2e8ad1cd2e08a0dfbe5f0a4866445102150",
-        "version" : "0.4.0"
+        "revision" : "54fd8030dbd0f34426ab28ff2593611dd5506357",
+        "version" : "0.4.2"
       }
     },
     {
@@ -111,10 +111,10 @@
     {
       "identity" : "xctruntimeassertions",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
+      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git",
       "state" : {
-        "revision" : "654b3e49219c0e2303ae8b4ea8edf5e12d168e12",
-        "version" : "0.2.1"
+        "revision" : "8471ac76b9bb5645ba5ccb36a893919fccbf8851",
+        "version" : "0.2.3"
       }
     }
   ],

@@ -6,13 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import CardinalKit
+import Spezi
 import SwiftUI
 
 
 @main
-struct TemplateApplication: App {
-    @UIApplicationDelegateAdaptor(TemplateAppDelegate.self) var appDelegate
+struct HealthGPTApplication: App {
+    @UIApplicationDelegateAdaptor(HealthGPTAppDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
     var body: some Scene {
@@ -28,7 +28,7 @@ struct TemplateApplication: App {
                     OnboardingFlow()
                 }
                 .testingSetup()
-                .cardinalKit(appDelegate)
+                .spezi(appDelegate)
         }
     }
 }

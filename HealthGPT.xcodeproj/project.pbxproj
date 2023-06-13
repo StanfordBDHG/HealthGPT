@@ -14,8 +14,6 @@
 		2719BC7E29F0A5A900995C31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7D29F0A5A900995C31 /* Message.swift */; };
 		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
 		2719BC8229F150E900995C31 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC8129F150E900995C31 /* ApiKey.swift */; };
-		2719BC8729F1548900995C31 /* CardinalKitLocalStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8629F1548900995C31 /* CardinalKitLocalStorage */; };
-		2719BC8929F1548900995C31 /* CardinalKitSecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2719BC8829F1548900995C31 /* CardinalKitSecureStorage */; };
 		272FB34A2A03CB640010B98D /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3492A03CB640010B98D /* OpenAIManager.swift */; };
 		272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34B2A03CC890010B98D /* MessageManager.swift */; };
 		272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */; };
@@ -23,8 +21,6 @@
 		272FB3522A03D14C0010B98D /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3512A03D14C0010B98D /* HealthData.swift */; };
 		272FB3542A03F1860010B98D /* PromptGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3532A03F1860010B98D /* PromptGenerator.swift */; };
 		272FB3562A0401130010B98D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3552A0401130010B98D /* Date+Extensions.swift */; };
-		2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2737200B29EEBE4300024843 /* CardinalKitHealthKit */; };
-		2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2737201429EEC16400024843 /* CardinalKitOnboarding */; };
 		275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCD29EEC5AD0079D453 /* StorageKeys.swift */; };
 		275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFCF29EEC5D20079D453 /* FeatureFlags.swift */; };
 		275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */; };
@@ -34,23 +30,28 @@
 		275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFDC29EEC6DC0079D453 /* Welcome.swift */; };
 		275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF129EECA030079D453 /* Binding+Negate.swift */; };
 		275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DEFF329EECA170079D453 /* CodableArray+RawRepresentable.swift */; };
-		27715ECD29F27FF500254A7D /* XCTestApp in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ECC29F27FF500254A7D /* XCTestApp */; };
-		27715ECF29F27FF500254A7D /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ECE29F27FF500254A7D /* XCTestExtensions */; };
-		27715ED229F2801000254A7D /* XCTRuntimeAssertions in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ED129F2801000254A7D /* XCTRuntimeAssertions */; };
-		27715ED529F2802500254A7D /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27715ED429F2802500254A7D /* XCTHealthKit */; };
+		27859BFF2A34F15E00397C85 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 27859BFE2A34F15E00397C85 /* Spezi */; };
+		27859C012A34F15E00397C85 /* XCTSpezi in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C002A34F15E00397C85 /* XCTSpezi */; };
+		27859C042A34F16B00397C85 /* SpeziHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C032A34F16B00397C85 /* SpeziHealthKit */; };
+		27859C072A34F17800397C85 /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C062A34F17800397C85 /* SpeziOnboarding */; };
+		27859C0A2A34F18900397C85 /* SpeziFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C092A34F18900397C85 /* SpeziFHIR */; };
+		27859C0D2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */; };
+		27859C102A34F1A900397C85 /* SpeziLocalStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C0F2A34F1A900397C85 /* SpeziLocalStorage */; };
+		27859C122A34F1A900397C85 /* SpeziSecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C112A34F1A900397C85 /* SpeziSecureStorage */; };
+		27859C202A34F2BF00397C85 /* XCTestApp in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C1F2A34F2BF00397C85 /* XCTestApp */; };
+		27859C222A34F2BF00397C85 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C212A34F2BF00397C85 /* XCTestExtensions */; };
+		27859C252A34F2D000397C85 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C242A34F2D000397C85 /* XCTHealthKit */; };
+		27859C282A34F2DE00397C85 /* XCTRuntimeAssertions in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C272A34F2DE00397C85 /* XCTRuntimeAssertions */; };
 		27B249652A0659310091E52C /* OpenAIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B249642A0659310091E52C /* OpenAIManagerTests.swift */; };
 		27B249672A065D360091E52C /* PromptGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B249662A065D360091E52C /* PromptGeneratorTests.swift */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
-		2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* CardinalKit */; };
 		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
-		2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */; };
-		2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */; };
+		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
+		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
 		2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF329F041C500239E1A /* OpenAI */; };
-		2FF8DBF729F041F200239E1A /* CardinalKitFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF629F041F200239E1A /* CardinalKitFHIR */; };
-		2FF8DBFA29F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */; };
-		653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* TemplateApplication.swift */; };
+		653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* HealthGPTApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
 		E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D86A329EDB21B00490C26 /* MessageInputView.swift */; };
@@ -104,13 +105,13 @@
 		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
 		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
-		2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppTestingSetup.swift; sourceTree = "<group>"; };
-		2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAppDelegate.swift; sourceTree = "<group>"; };
+		2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppTestingSetup.swift; sourceTree = "<group>"; };
+		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
 		2FC9759E2978E39600BA99FE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A2550283387FE005D4D48 /* TemplateApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApplication.swift; sourceTree = "<group>"; };
+		653A2550283387FE005D4D48 /* HealthGPTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcher.swift; sourceTree = "<group>"; };
@@ -131,10 +132,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27715ECD29F27FF500254A7D /* XCTestApp in Frameworks */,
-				27715ED529F2802500254A7D /* XCTHealthKit in Frameworks */,
-				27715ED229F2801000254A7D /* XCTRuntimeAssertions in Frameworks */,
-				27715ECF29F27FF500254A7D /* XCTestExtensions in Frameworks */,
+				27859C202A34F2BF00397C85 /* XCTestApp in Frameworks */,
+				27859C222A34F2BF00397C85 /* XCTestExtensions in Frameworks */,
+				27859C282A34F2DE00397C85 /* XCTRuntimeAssertions in Frameworks */,
+				27859C252A34F2D000397C85 /* XCTHealthKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,14 +143,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2737200C29EEBE4300024843 /* CardinalKitHealthKit in Frameworks */,
-				2737201529EEC16400024843 /* CardinalKitOnboarding in Frameworks */,
-				2719BC8929F1548900995C31 /* CardinalKitSecureStorage in Frameworks */,
-				2719BC8729F1548900995C31 /* CardinalKitLocalStorage in Frameworks */,
+				27859C072A34F17800397C85 /* SpeziOnboarding in Frameworks */,
+				27859C012A34F15E00397C85 /* XCTSpezi in Frameworks */,
+				27859C042A34F16B00397C85 /* SpeziHealthKit in Frameworks */,
+				27859BFF2A34F15E00397C85 /* Spezi in Frameworks */,
+				27859C102A34F1A900397C85 /* SpeziLocalStorage in Frameworks */,
+				27859C0D2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter in Frameworks */,
 				2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */,
-				2FF8DBF729F041F200239E1A /* CardinalKitFHIR in Frameworks */,
-				2FF8DBFA29F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter in Frameworks */,
-				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
+				27859C0A2A34F18900397C85 /* SpeziFHIR in Frameworks */,
+				27859C122A34F1A900397C85 /* SpeziSecureStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,9 +271,9 @@
 				275DEFD129EEC6620079D453 /* Onboarding */,
 				275DEFCC29EEC58A0079D453 /* SharedContext */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
-				2F5E32BC297E05EA003432F8 /* TemplateAppDelegate.swift */,
-				653A2550283387FE005D4D48 /* TemplateApplication.swift */,
-				2F4E23822989D51F0013F3D9 /* TemplateAppTestingSetup.swift */,
+				2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */,
+				653A2550283387FE005D4D48 /* HealthGPTApplication.swift */,
+				2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */,
 			);
 			path = HealthGPT;
 			sourceTree = "<group>";
@@ -320,10 +322,10 @@
 			);
 			name = HealthGPTUITests;
 			packageProductDependencies = (
-				27715ECC29F27FF500254A7D /* XCTestApp */,
-				27715ECE29F27FF500254A7D /* XCTestExtensions */,
-				27715ED129F2801000254A7D /* XCTRuntimeAssertions */,
-				27715ED429F2802500254A7D /* XCTHealthKit */,
+				27859C1F2A34F2BF00397C85 /* XCTestApp */,
+				27859C212A34F2BF00397C85 /* XCTestExtensions */,
+				27859C242A34F2D000397C85 /* XCTHealthKit */,
+				27859C272A34F2DE00397C85 /* XCTRuntimeAssertions */,
 			);
 			productName = HealthGPTUITests;
 			productReference = 2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */;
@@ -344,14 +346,15 @@
 			);
 			name = HealthGPT;
 			packageProductDependencies = (
-				2F49B7752980407B00BCB272 /* CardinalKit */,
-				2737200B29EEBE4300024843 /* CardinalKitHealthKit */,
-				2737201429EEC16400024843 /* CardinalKitOnboarding */,
 				2FF8DBF329F041C500239E1A /* OpenAI */,
-				2FF8DBF629F041F200239E1A /* CardinalKitFHIR */,
-				2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */,
-				2719BC8629F1548900995C31 /* CardinalKitLocalStorage */,
-				2719BC8829F1548900995C31 /* CardinalKitSecureStorage */,
+				27859BFE2A34F15E00397C85 /* Spezi */,
+				27859C002A34F15E00397C85 /* XCTSpezi */,
+				27859C032A34F16B00397C85 /* SpeziHealthKit */,
+				27859C062A34F17800397C85 /* SpeziOnboarding */,
+				27859C092A34F18900397C85 /* SpeziFHIR */,
+				27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */,
+				27859C0F2A34F1A900397C85 /* SpeziLocalStorage */,
+				27859C112A34F1A900397C85 /* SpeziSecureStorage */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* HealthGPT.app */;
@@ -390,16 +393,16 @@
 			);
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
-				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */,
-				2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */,
-				2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */,
 				2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */,
-				2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */,
-				2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */,
-				2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */,
-				27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
-				27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */,
-				27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */,
+				27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */,
+				27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */,
+				27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */,
+				27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
+				27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */,
+				27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */,
+				27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
+				27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */,
+				27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -494,13 +497,13 @@
 				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				E21D86A429EDB21B00490C26 /* MessageInputView.swift in Sources */,
-				2F4E23832989D51F0013F3D9 /* TemplateAppTestingSetup.swift in Sources */,
+				2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */,
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */,
-				2F5E32BD297E05EA003432F8 /* TemplateAppDelegate.swift in Sources */,
+				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
 				272FB3542A03F1860010B98D /* PromptGenerator.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
@@ -510,7 +513,7 @@
 				272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */,
 				272FB3562A0401130010B98D /* Date+Extensions.swift in Sources */,
 				2719BC7E29F0A5A900995C31 /* Message.swift in Sources */,
-				653A2551283387FE005D4D48 /* TemplateApplication.swift in Sources */,
+				653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */,
 				E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,8 +723,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
@@ -879,8 +882,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
@@ -926,8 +929,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The CardinalKit Template Application uses the step count to demonstrate CardinalKit's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The Spezi Template Application uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
@@ -1003,47 +1006,63 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */ = {
+		27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitStorage.git";
+			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.2;
+				minimumVersion = 0.5.1;
 			};
 		};
-		2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */ = {
+		27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitHealthKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
-		2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitOnboarding.git";
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.2.1;
 			};
 		};
-		27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
+		27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziHealthKitToFHIRAdapter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziStorage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+		27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
+				minimumVersion = 0.4.2;
 			};
 		};
-		27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
-			};
-		};
-		27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
+		27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/XCTHealthKit.git";
 			requirement = {
@@ -1051,12 +1070,12 @@
 				minimumVersion = 0.3.3;
 			};
 		};
-		2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */ = {
+		27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKit";
+			repositoryURL = "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.4.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
 			};
 		};
 		2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
@@ -1067,84 +1086,73 @@
 				minimumVersion = 0.2.1;
 			};
 		};
-		2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitFHIR.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
-			};
-		};
-		2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordBDHG/CardinalKitHealthKitToFHIRAdapter.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2719BC8629F1548900995C31 /* CardinalKitLocalStorage */ = {
+		27859BFE2A34F15E00397C85 /* Spezi */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */;
-			productName = CardinalKitLocalStorage;
+			package = 27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */;
+			productName = Spezi;
 		};
-		2719BC8829F1548900995C31 /* CardinalKitSecureStorage */ = {
+		27859C002A34F15E00397C85 /* XCTSpezi */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2719BC8529F1548800995C31 /* XCRemoteSwiftPackageReference "CardinalKitStorage" */;
-			productName = CardinalKitSecureStorage;
+			package = 27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */;
+			productName = XCTSpezi;
 		};
-		2737200B29EEBE4300024843 /* CardinalKitHealthKit */ = {
+		27859C032A34F16B00397C85 /* SpeziHealthKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2737200A29EEBE4300024843 /* XCRemoteSwiftPackageReference "CardinalKitHealthKit" */;
-			productName = CardinalKitHealthKit;
+			package = 27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */;
+			productName = SpeziHealthKit;
 		};
-		2737201429EEC16400024843 /* CardinalKitOnboarding */ = {
+		27859C062A34F17800397C85 /* SpeziOnboarding */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2737201329EEC16400024843 /* XCRemoteSwiftPackageReference "CardinalKitOnboarding" */;
-			productName = CardinalKitOnboarding;
+			package = 27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */;
+			productName = SpeziOnboarding;
 		};
-		27715ECC29F27FF500254A7D /* XCTestApp */ = {
+		27859C092A34F18900397C85 /* SpeziFHIR */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
+			package = 27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
+			productName = SpeziFHIR;
+		};
+		27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */;
+			productName = SpeziHealthKitToFHIRAdapter;
+		};
+		27859C0F2A34F1A900397C85 /* SpeziLocalStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */;
+			productName = SpeziLocalStorage;
+		};
+		27859C112A34F1A900397C85 /* SpeziSecureStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */;
+			productName = SpeziSecureStorage;
+		};
+		27859C1F2A34F2BF00397C85 /* XCTestApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
 			productName = XCTestApp;
 		};
-		27715ECE29F27FF500254A7D /* XCTestExtensions */ = {
+		27859C212A34F2BF00397C85 /* XCTestExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 27715ECB29F27FF500254A7D /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
+			package = 27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
 			productName = XCTestExtensions;
 		};
-		27715ED129F2801000254A7D /* XCTRuntimeAssertions */ = {
+		27859C242A34F2D000397C85 /* XCTHealthKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 27715ED029F2801000254A7D /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */;
-			productName = XCTRuntimeAssertions;
-		};
-		27715ED429F2802500254A7D /* XCTHealthKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27715ED329F2802500254A7D /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
+			package = 27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
 		};
-		2F49B7752980407B00BCB272 /* CardinalKit */ = {
+		27859C272A34F2DE00397C85 /* XCTRuntimeAssertions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "CardinalKit" */;
-			productName = CardinalKit;
+			package = 27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */;
+			productName = XCTRuntimeAssertions;
 		};
 		2FF8DBF329F041C500239E1A /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAI;
-		};
-		2FF8DBF629F041F200239E1A /* CardinalKitFHIR */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FF8DBF529F041F200239E1A /* XCRemoteSwiftPackageReference "CardinalKitFHIR" */;
-			productName = CardinalKitFHIR;
-		};
-		2FF8DBF929F0421E00239E1A /* CardinalKitHealthKitToFHIRAdapter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FF8DBF829F0421E00239E1A /* XCRemoteSwiftPackageReference "CardinalKitHealthKitToFHIRAdapter" */;
-			productName = CardinalKitHealthKitToFHIRAdapter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,7 +7,7 @@
 //
 
 
-/// Constants shared across the CardinalKit Teamplate Application to access
+/// Constants shared across the HealthGPT Application to access
 /// storage information including the `AppStorage` and `SceneStorage`
 enum StorageKeys {
     // MARK: - Onboarding

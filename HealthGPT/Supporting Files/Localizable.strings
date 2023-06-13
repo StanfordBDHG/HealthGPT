@@ -17,8 +17,8 @@
 "WELCOME_AREA2_TITLE" = "Apple Health";
 "WELCOME_AREA2_DESCRIPTION" = "HealthGPT can surface data from Apple Health to use in conversations with ChatGPT.";
 
-"WELCOME_AREA3_TITLE" = "The CardinalKit Framework";
-"WELCOME_AREA3_DESCRIPTION" = "HealthGPT was built with the CardinalKit open-source digital health framework at Stanford University.";
+"WELCOME_AREA3_TITLE" = "The Spezi Framework";
+"WELCOME_AREA3_DESCRIPTION" = "HealthGPT was built with the Spezi open-source digital health framework at Stanford University.";
 
 "WELCOME_BUTTON" = "Continue";
 
