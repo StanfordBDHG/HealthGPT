@@ -24,7 +24,7 @@ struct HealthGPTView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ChatView()
+                ChatView($messages)
                     .environmentObject(messageManager)
                     .gesture(
                         TapGesture().onEnded {
@@ -42,23 +42,6 @@ struct HealthGPTView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
-            .onAppear {
-                updateApiKeyAndModel()
-            }
         }
-    }
-
-    private func updateApiKeyAndModel() {
-        guard let apiKey = try? secureStorage.retrieveCredentials(
-            "openai-api-key",
-            server: "openai.com"
-        )?.password else {
-            alertText = "Could not find a valid API key."
-            self.showAlert.toggle()
-            return
-        }
-
-        messageManager.updateAPIToken(apiKey)
-        //messageManager.updateOpenAIModel(openAIModel.rawValue)
     }
 }

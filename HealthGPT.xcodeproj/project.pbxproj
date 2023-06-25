@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		27051AA929F727B10010211A /* ModelSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27051AA829F727B10010211A /* ModelSelection.swift */; };
 		2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7729F0A31500995C31 /* SettingsView.swift */; };
-		2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7929F0A57D00995C31 /* ChatView.swift */; };
 		2719BC7C29F0A59800995C31 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7B29F0A59800995C31 /* MessageView.swift */; };
 		2719BC7E29F0A5A900995C31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7D29F0A5A900995C31 /* Message.swift */; };
 		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
@@ -79,7 +78,6 @@
 /* Begin PBXFileReference section */
 		27051AA829F727B10010211A /* ModelSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelection.swift; sourceTree = "<group>"; };
 		2719BC7729F0A31500995C31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2719BC7929F0A57D00995C31 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		2719BC7B29F0A59800995C31 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2719BC7D29F0A5A900995C31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 		2FF8DBF129F0414E00239E1A /* HealthGPT */ = {
 			isa = PBXGroup;
 			children = (
-				2719BC7929F0A57D00995C31 /* ChatView.swift */,
 				272FB3512A03D14C0010B98D /* HealthData.swift */,
 				E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */,
 				272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */,
@@ -493,7 +490,6 @@
 				275DEFDD29EEC6DC0079D453 /* Welcome.swift in Sources */,
 				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
-				2719BC7A29F0A57D00995C31 /* ChatView.swift in Sources */,
 				272FB34A2A03CB640010B98D /* OpenAIManager.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
 				272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */,
