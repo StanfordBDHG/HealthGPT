@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "4da423fe637a628ebee8f214217a9e96060a5222",
-        "version" : "0.2.1"
+        "revision" : "b1161597810167a035ae403c81ac6f1a542e41f9",
+        "version" : "0.2.2"
       }
     },
     {
@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "speziml",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziML.git",
+      "state" : {
+        "revision" : "c04f5d0ca5781958f7e39ee61ac4cfb4f78bec85",
+        "version" : "0.1.6"
+      }
+    },
+    {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
@@ -95,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "54fd8030dbd0f34426ab28ff2593611dd5506357",
-        "version" : "0.4.2"
+        "revision" : "da65dfa343ef6bf041b2c322448c9d5e1a0bdaa9",
+        "version" : "0.4.4"
       }
     },
     {
