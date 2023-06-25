@@ -6,16 +6,15 @@
 // SPDX-License-Identifier: MIT
 //
 
-import HealthKit
-import OpenAI
+import SwiftUI
+import SpeziOpenAI
 import SpeziFHIR
 import SpeziSecureStorage
-import SwiftUI
 
 struct HealthGPTView: View {
-    @AppStorage(StorageKeys.openAIModel) var openAIModel = Model.gpt3_5Turbo
+    @AppStorage(StorageKeys.openAIModel) var openAIModel: Model = .gpt3_5Turbo
     @EnvironmentObject var secureStorage: SecureStorage<FHIR>
-    @State private var messages: [Message] = []
+    @State private var messages: [Chat] = []
 
     @State private var showAlert = false
     @State private var alertText = ""
@@ -60,6 +59,6 @@ struct HealthGPTView: View {
         }
 
         messageManager.updateAPIToken(apiKey)
-        messageManager.updateOpenAIModel(openAIModel)
+        //messageManager.updateOpenAIModel(openAIModel.rawValue)
     }
 }

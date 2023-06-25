@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "da65dfa343ef6bf041b2c322448c9d5e1a0bdaa9",
-        "version" : "0.4.4"
+        "revision" : "54fd8030dbd0f34426ab28ff2593611dd5506357",
+        "version" : "0.4.2"
       }
     },
     {
