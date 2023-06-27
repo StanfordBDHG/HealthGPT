@@ -8,8 +8,8 @@
 
 
 import Foundation
-import SpeziOpenAI
 import SpeziFHIR
+import SpeziOpenAI
 
 
 @MainActor

@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
-import SpeziOpenAI
 import SpeziFHIR
+import SpeziOpenAI
 import SpeziSecureStorage
+import SwiftUI
 
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.openAIModel) var openAIModel: Model = .gpt3_5Turbo
