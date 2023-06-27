@@ -68,7 +68,7 @@ class MessageManager: ObservableObject {
                 for choice in partialBotMessageResult.choices {
                     let botMessage = Chat(
                         role: .assistant,
-                        content: choice.delta.content ?? nil,
+                        content: choice.delta.content ?? "",
                         name: partialBotMessageResult.id
                     )
                     if let existingBotMessageIndex = self.messages.firstIndex(where: {
