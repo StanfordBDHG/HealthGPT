@@ -36,26 +36,26 @@ class OpenAIManager {
     ///   - messages: The array of messages used in the conversation.
     ///
     /// - Returns: The content of the response from the API.
-    func queryAPI(mainPrompt: String, messages: [Message]) async throws -> AsyncThrowingStream<ChatStreamResult, Error> {
-        guard let apiToken, !apiToken.isEmpty else {
-            throw OpenAIAPIError.noAPIToken
-        }
-
-        var currentChat: [Chat] = [.init(role: .system, content: mainPrompt)]
-
-        for message in messages {
-            currentChat.append(
-                .init(
-                    role: message.isBot ? .assistant : .user,
-                    content: message.content
-                )
-            )
-        }
-
-        let openAIClient = OpenAI(apiToken: apiToken)
-        let query = ChatQuery(model: openAIModel, messages: currentChat)
-        return openAIClient.chatsStream(query: query)
-    }
+//    func queryAPI(mainPrompt: String, messages: [Message]) async throws -> AsyncThrowingStream<ChatStreamResult, Error> {
+//        guard let apiToken, !apiToken.isEmpty else {
+//            throw OpenAIAPIError.noAPIToken
+//        }
+//
+//        var currentChat: [Chat] = [.init(role: .system, content: mainPrompt)]
+//
+//        for message in messages {
+//            currentChat.append(
+//                .init(
+//                    role: message.isBot ? .assistant : .user,
+//                    content: message.content
+//                )
+//            )
+//        }
+//
+//        let openAIClient = OpenAI(apiToken: apiToken)
+//        let query = ChatQuery(model: openAIModel, messages: currentChat)
+//        return openAIClient.chatsStream(query: query)
+//    }
 
     /// Updates the API token for the OpenAI API.
     ///
