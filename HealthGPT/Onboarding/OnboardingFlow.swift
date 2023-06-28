@@ -23,10 +23,6 @@ struct OnboardingFlow: View {
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
-    
-    // TODO: EDIT ONBOARDING FLOW
-    
-
     var body: some View {
         NavigationStack(path: $onboardingSteps) {
             Welcome(onboardingSteps: $onboardingSteps)
