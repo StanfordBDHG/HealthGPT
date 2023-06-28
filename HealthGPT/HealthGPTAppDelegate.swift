@@ -8,10 +8,10 @@
 
 import HealthKit
 import Spezi
-import SpeziOpenAI
 import SpeziFHIR
 import SpeziHealthKit
 import SpeziHealthKitToFHIRAdapter
+import SpeziOpenAI
 import SpeziSecureStorage
 import SwiftUI
 
