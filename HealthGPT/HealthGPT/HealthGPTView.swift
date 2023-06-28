@@ -80,5 +80,4 @@ struct HealthGPTView: View {
             gettingAnswer = false
         }
     }
-    
 }
