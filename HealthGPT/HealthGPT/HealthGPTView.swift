@@ -12,51 +12,73 @@ import SpeziSecureStorage
 import SwiftUI
 
 struct HealthGPTView: View {
-    @AppStorage(StorageKeys.openAIModel) var openAIModel: Model = .gpt3_5Turbo
-    @EnvironmentObject var secureStorage: SecureStorage<FHIR>
-    @State private var chat: [Chat] = []
-
-    @State private var showAlert = false
-    @State private var alertText = ""
-
-    @StateObject private var messageManager = MessageManager()
+    @EnvironmentObject var openAPIComponent: OpenAIComponent<FHIR>
+    @State private var messages: [Chat] = []
+    @State private var gettingAnswer = false
+    
+    private let healthDataFetcher = HealthDataFetcher()
 
     var body: some View {
         NavigationView {
             VStack {
-                ChatView($chat)
-                    .environmentObject(messageManager)
+                ChatView($messages, disableInput: $gettingAnswer)
+                    .navigationBarTitle("HealthGPT")
                     .gesture(
                         TapGesture().onEnded {
                             UIApplication.shared.hideKeyboard()
                         }
                     )
+                    .onChange(of: messages) { _ in
+                        if !gettingAnswer {
+                            getAnswer()
+                        }
+                    }
             }
-            .navigationBarTitle("HealthGPT")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Alert"),
-                    message: Text(alertText),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
-//            .onAppear {
-//                updateApiKeyAndModel()
-//            }
+            //  create a sheet with settingsview, add a button
+            //  SettingsView(chat: $messages)
         }
     }
     
-    private func updateApiKeyAndModel() {
-        guard let apiKey = try? secureStorage.retrieveCredentials(
-            "openai-api-key",
-            server: "openai.com"
-        )?.password else {
-            alertText = "Could not find a valid API key."
-            self.showAlert.toggle()
-            return
+    private func getAnswer() {
+        _Concurrency.Task {
+            do {
+                gettingAnswer = true
+                
+                // add chat
+                let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
+
+                let generator = PromptGenerator(with: healthData)
+                let mainPrompt = generator.buildMainPrompt()
+                
+                // create full prompt
+                var fullPrompt = [Chat(role: .system, content: mainPrompt)]
+                for message in messages {
+                    fullPrompt.append(Chat(role: message.role, content: message.content))
+                }
+                
+                // add mainprompt to front of self.messages
+                let chatStreamResults = try await openAPIComponent.queryAPI(withChat: fullPrompt)
+                
+                for try await chatStreamResult in chatStreamResults {
+                    for choice in chatStreamResult.choices {
+                        if messages.last?.role == .assistant {
+                            let previousChatMessage = messages.last ?? Chat(role: .assistant, content: "")
+                            messages[messages.count - 1] = Chat(
+                                role: .assistant,
+                                content: (previousChatMessage.content ?? "") + (choice.delta.content ?? "")
+                            )
+                        } else {
+                            messages.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
+                        }
+                    }
+                }
+                
+                gettingAnswer = false
+            } catch {
+                print(error)
+            }
+            gettingAnswer = false
         }
-        
-        messageManager.updateAPIToken(apiKey)
-        messageManager.updateOpenAIModel(openAIModel)
     }
+    
 }

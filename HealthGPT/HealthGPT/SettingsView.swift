@@ -6,12 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziOpenAI
 import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var messageManager: MessageManager
-
+    // pass in chat.
+    @Binding var chat : [Chat]
     let disclaimer = """
     HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.
 
@@ -23,7 +24,7 @@ struct SettingsView: View {
 
     var body: some View {
         Button("Clear Current Thread") {
-            messageManager.clearMessages()
+            chat = []
             dismiss()
         }
         .padding()

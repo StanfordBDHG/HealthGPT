@@ -10,8 +10,6 @@
 		27051AA929F727B10010211A /* ModelSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27051AA829F727B10010211A /* ModelSelection.swift */; };
 		2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7729F0A31500995C31 /* SettingsView.swift */; };
 		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
-		2719BC8229F150E900995C31 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC8129F150E900995C31 /* ApiKey.swift */; };
-		272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34B2A03CC890010B98D /* MessageManager.swift */; };
 		272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */; };
 		272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */; };
 		272FB3522A03D14C0010B98D /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3512A03D14C0010B98D /* HealthData.swift */; };
@@ -74,8 +72,6 @@
 		27051AA829F727B10010211A /* ModelSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSelection.swift; sourceTree = "<group>"; };
 		2719BC7729F0A31500995C31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
-		2719BC8129F150E900995C31 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
-		272FB34B2A03CC890010B98D /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataFetcher+Process.swift"; sourceTree = "<group>"; };
 		272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcherError.swift; sourceTree = "<group>"; };
 		272FB3512A03D14C0010B98D /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -160,7 +156,6 @@
 		275DEFD129EEC6620079D453 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				2719BC8129F150E900995C31 /* ApiKey.swift */,
 				275DEFD629EEC6A60079D453 /* Disclaimer.swift */,
 				275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */,
 				27051AA829F727B10010211A /* ModelSelection.swift */,
@@ -217,7 +212,6 @@
 				272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */,
 				272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */,
 				E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */,
-				272FB34B2A03CC890010B98D /* MessageManager.swift */,
 				2719BC7729F0A31500995C31 /* SettingsView.swift */,
 				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
@@ -475,9 +469,7 @@
 				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
-				272FB34C2A03CC890010B98D /* MessageManager.swift in Sources */,
 				27051AA929F727B10010211A /* ModelSelection.swift in Sources */,
-				2719BC8229F150E900995C31 /* ApiKey.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */,
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,

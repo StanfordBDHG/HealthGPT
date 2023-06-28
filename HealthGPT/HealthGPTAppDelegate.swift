@@ -8,6 +8,7 @@
 
 import HealthKit
 import Spezi
+import SpeziOpenAI
 import SpeziFHIR
 import SpeziHealthKit
 import SpeziHealthKitToFHIRAdapter
@@ -18,6 +19,7 @@ import SwiftUI
 class HealthGPTAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
+            OpenAIComponent()
             SecureStorage()
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit

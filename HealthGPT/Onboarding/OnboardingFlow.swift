@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziFHIR
+import SpeziOpenAI
 import SwiftUI
 
 
@@ -13,7 +15,7 @@ import SwiftUI
 struct OnboardingFlow: View {
     enum Step: String, Codable {
         case disclaimer
-        case apiKey
+        case openAIAPIKey
         case modelSelection
         case healthKitPermissions
     }
@@ -21,6 +23,9 @@ struct OnboardingFlow: View {
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
+    
+    // TODO: EDIT ONBOARDING FLOW
+    
 
     var body: some View {
         NavigationStack(path: $onboardingSteps) {
@@ -29,10 +34,14 @@ struct OnboardingFlow: View {
                     switch onboardingStep {
                     case .disclaimer:
                         Disclaimer(onboardingSteps: $onboardingSteps)
-                    case .apiKey:
-                        ApiKey(onboardingSteps: $onboardingSteps)
+                    case .openAIAPIKey:
+                        OpenAIAPIKeyOnboardingStep<FHIR> {
+                            onboardingSteps.append(.modelSelection)
+                        }
                     case .modelSelection:
-                        ModelSelection(onboardingSteps: $onboardingSteps)
+                        OpenAIModelSelectionOnboardingStep<FHIR> {
+                            onboardingSteps.append(.healthKitPermissions)
+                        }
                     case .healthKitPermissions:
                         HealthKitPermissions()
                     }
