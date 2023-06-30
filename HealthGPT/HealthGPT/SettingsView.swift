@@ -21,6 +21,7 @@ struct SettingsView: View {
     Remember to log your data and wear your Apple Watch throughout the day for the most accurate results.
     """
 
+    
     var body: some View {
         Button("Clear Current Thread") {
             chat = []

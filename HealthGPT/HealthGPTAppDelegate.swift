@@ -15,6 +15,7 @@ import SpeziOpenAI
 import SpeziSecureStorage
 import SwiftUI
 
+//let healthDataInterpreter = HealthDataInterpreter()
 
 class HealthGPTAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {

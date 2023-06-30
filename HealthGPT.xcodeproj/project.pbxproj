@@ -48,6 +48,7 @@
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
 		E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */; };
+		F381BD3C2A4DE41900BCEB69 /* HealthDataInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F381BD3B2A4DE41900BCEB69 /* HealthDataInterpreter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcher.swift; sourceTree = "<group>"; };
 		E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTView.swift; sourceTree = "<group>"; };
 		E26542A229E8D70100094BAD /* OpenAI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenAI; path = "/Users/varunshenoy/Library/Developer/Xcode/DerivedData/TemplateApplication-fhjipkzkgfsoxiezldfjbwynfudi/SourcePackages/checkouts/OpenAI"; sourceTree = "<absolute>"; };
+		F381BD3B2A4DE41900BCEB69 /* HealthDataInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataInterpreter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				2719BC7729F0A31500995C31 /* SettingsView.swift */,
 				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
+				F381BD3B2A4DE41900BCEB69 /* HealthDataInterpreter.swift */,
 			);
 			path = HealthGPT;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
+				F381BD3C2A4DE41900BCEB69 /* HealthDataInterpreter.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
@@ -709,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.dan.healthgpt;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdhg.healthgpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -868,7 +872,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.dan.healthgpt;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdhg.healthgpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -913,7 +917,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.dan.healthgpt;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdhg.healthgpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
