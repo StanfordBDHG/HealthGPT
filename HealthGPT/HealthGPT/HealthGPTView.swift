@@ -13,9 +13,16 @@ import SwiftUI
 
 struct HealthGPTView: View {
     @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
+<<<<<<< Updated upstream
     @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
 
     @State private var messages: [Chat] = []
+=======
+    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
+    
+    // I want to generate the main prompt here instead of initializing it as empty (from the health data interpreter)
+    @State private var messages: [Chat] = [] //try await healthDataInterpreter.generateMainPrompt()
+>>>>>>> Stashed changes
     @State private var gettingAnswer = false
     @State private var showSettings = false
     
@@ -67,17 +74,7 @@ struct HealthGPTView: View {
                     fullPrompt.append(Chat(role: message.role, content: message.content))
                 }
                 
-                // add main prompt to front of self.messages if chat is not empty
-                if !messages.isEmpty {
-                    messages.insert(Chat(role: .system, content: mainPrompt), at: 0)
-                }
-                
                 let chatStreamResults = try await openAPIComponent.queryAPI(withChat: fullPrompt)
-                
-                // remove main prompt from self.messages if chat is not empty
-                if !messages.isEmpty {
-                    messages.remove(at: 0)
-                }
                 
                 for try await chatStreamResult in chatStreamResults {
                     for choice in chatStreamResult.choices {

@@ -27,6 +27,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             OpenAIComponent()
+            HealthDataInterpreter()
             SecureStorage()
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
