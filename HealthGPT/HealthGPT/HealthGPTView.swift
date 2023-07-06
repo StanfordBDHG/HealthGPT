@@ -13,7 +13,7 @@ import SwiftUI
 
 struct HealthGPTView: View {
     @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
-    //@EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
+    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
 
     @State private var messages: [Chat] = []
     @State private var gettingAnswer = false
@@ -49,6 +49,7 @@ struct HealthGPTView: View {
             )
         }
     }
+    
     private func getAnswer() {
         _Concurrency.Task {
             do {

@@ -15,9 +15,15 @@ import SpeziOpenAI
 import SpeziSecureStorage
 import SwiftUI
 
-//let healthDataInterpreter = HealthDataInterpreter()
 
 class HealthGPTAppDelegate: SpeziAppDelegate {
+    private lazy var healthDataInterpreter: HealthDataInterpreter = {
+            return HealthDataInterpreter(
+                openAPIComponent: OpenAIComponent<FHIR>,
+                healthDataFetcher: healthKit.resolve()
+            )
+        }()
+    
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             OpenAIComponent()

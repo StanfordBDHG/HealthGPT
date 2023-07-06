@@ -8,46 +8,51 @@
 import Foundation
 import Spezi
 import SpeziOpenAI
+import SpeziFHIR
 import SpeziLocalStorage
 
-class HealthDataInterpreter: DefaultInitializable {
-//    //@Dependency private var openAIComponent = OpenAIComponent()
-//    //@Dependency private var localStorage: LocalStorage
-//
-//    @Published var messages: [Chat] = []
-//
-    required init() {}
-//
-//    func configure() {
-//        if let cachedMessages: [Chat] = try? localStorage.read(storageKey: "HealthDataInterpreter.Messages") {
-//            self.messages = cachedMessages
-//        }
-//    }
-//
-//    func processUserMessage(_ message: String) async throws {
-//        let chat = Chat(role: .user, content: message)
-//        messages.append(chat)
-//
-//        let prompt = generatePrompt()
-//        let fullPrompt = [prompt] + messages
-//
-//        let chatStreamResults = try await openAIComponent.queryAPI(withChat: fullPrompt)
-//
-//        for try await chatStreamResult in chatStreamResults {
-//            for choice in chatStreamResult.choices {
-//                let assistantMessage = Chat(role: .assistant, content: choice.text ?? "")
-//                messages.append(assistantMessage)
-//            }
-//        }
-//
-//        try await saveMessages()
-//    }
-//
-//    private func generatePrompt() -> Chat {
-//        Chat(role: .system, content: "Replace this with your prompt generation logic")
-//    }
-//
-//    private func saveMessages() async throws {
-//        try await localStorage.store(messages, storageKey: "HealthDataInterpreter.Messages")
-//    }
+// confused on this part!
+class HealthDataInterpreter: ObservableObject {
+    private let openAPIComponent: OpenAIComponent<FHIR>
+    private let healthDataFetcher: HealthDataFetcher
+    @Published var messages: [Chat] = []
+    
+    init(openAPIComponent: OpenAIComponent<FHIR>, healthDataFetcher: HealthDataFetcher) {
+        self.openAPIComponent = openAPIComponent
+        self.healthDataFetcher = healthDataFetcher
+    }
+    
+    func configure() async {
+        do {
+            let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
+            let generator = PromptGenerator(with: healthData)
+            let mainPrompt = generator.buildMainPrompt()
+            
+            // Create the full prompt
+            var fullPrompt = [Chat(role: .system, content: mainPrompt)]
+            for message in messages {
+                fullPrompt.append(Chat(role: message.role, content: message.content))
+            }
+            
+            // Query the API with the full prompt
+            let chatStreamResults = try await openAPIComponent.queryAPI(withChat: fullPrompt)
+            
+            // Process the API response and update the messages
+            for try await chatStreamResult in chatStreamResults {
+                for choice in chatStreamResult.choices {
+                    if messages.last?.role == .assistant {
+                        let previousChatMessage = messages.last ?? Chat(role: .assistant, content: "")
+                        messages[messages.count - 1] = Chat(
+                            role: .assistant,
+                            content: (previousChatMessage.content ?? "") + (choice.delta.content ?? "")
+                        )
+                    } else {
+                        messages.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
