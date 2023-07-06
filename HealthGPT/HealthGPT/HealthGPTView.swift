@@ -13,16 +13,10 @@ import SwiftUI
 
 struct HealthGPTView: View {
     @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
-<<<<<<< Updated upstream
-    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
-
-    @State private var messages: [Chat] = []
-=======
     @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
     
     // I want to generate the main prompt here instead of initializing it as empty (from the health data interpreter)
     @State private var messages: [Chat] = [] //try await healthDataInterpreter.generateMainPrompt()
->>>>>>> Stashed changes
     @State private var gettingAnswer = false
     @State private var showSettings = false
     
