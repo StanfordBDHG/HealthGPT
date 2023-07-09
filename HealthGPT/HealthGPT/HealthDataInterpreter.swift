@@ -11,41 +11,49 @@ import SpeziFHIR
 import SpeziOpenAI
 import Foundation
 
+//healthdata interpreter has a getanswer property. add here.
+
 class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
+    @Published var runningPrompt: [Chat] = [] {
+        didSet {
+            _Concurrency.Task {
+                if runningPrompt.last?.role == .user {
+                    try await queryOpenAI()
+                }
+            }
+        }
+    }
+    @Published var querying: Bool = false
+    
     required init() {}
 
-    func generateMainPrompt() async throws -> [Chat] {
+    func generateMainPrompt() async throws {
         let healthDataFetcher = HealthDataFetcher()
         let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
 
         let generator = PromptGenerator(with: healthData)
         let mainPrompt = generator.buildMainPrompt()
-        return [Chat(role: .system, content: mainPrompt)]
+        runningPrompt =  [Chat(role: .system, content: mainPrompt)]
     }
     
-    func queryPrompt(oldPrompt: [Chat], newMessage: [Chat]) async throws -> [Chat] {
+    func queryOpenAI() async throws {
+        querying = true
         var openAPIComponent: OpenAIComponent<FHIR> = OpenAIComponent()
-        // Why can't I modify the passed in variables 'oldPrompt' and 'messages'
-        var messages = newMessage
-        var runningPrompt = oldPrompt
-        for message in messages {
-            runningPrompt.append(Chat(role: message.role, content: message.content))
-        }
         let chatStreamResults = try await openAPIComponent.queryAPI(withChat: runningPrompt)
         
         for try await chatStreamResult in chatStreamResults {
             for choice in chatStreamResult.choices {
-                if messages.last?.role == .assistant {
-                    let previousChatMessage = messages.last ?? Chat(role: .assistant, content: "")
-                    messages[messages.count - 1] = Chat(
+                if runningPrompt.last?.role == .assistant {
+                    let previousChatMessage = runningPrompt.last ?? Chat(role: .assistant, content: "")
+                    runningPrompt[runningPrompt.count - 1] = Chat(
                         role: .assistant,
                         content: (previousChatMessage.content ?? "") + (choice.delta.content ?? "")
                     )
                 } else {
-                    messages.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
+                    runningPrompt.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
                 }
             }
         }
-        return messages
+        querying = false
     }
 }

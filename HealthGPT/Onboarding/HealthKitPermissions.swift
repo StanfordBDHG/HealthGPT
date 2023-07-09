@@ -14,6 +14,7 @@ import SwiftUI
 
 struct HealthKitPermissions: View {
     @EnvironmentObject var healthKitDataSource: HealthKit<FHIR>
+    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @State var healthKitProcessing = false
 
@@ -47,6 +48,7 @@ struct HealthKitPermissions: View {
                             } else {
                                 try await healthKitDataSource.askForAuthorization()
                             }
+                            try await healthDataInterpreter.generateMainPrompt()
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
