@@ -13,14 +13,17 @@ import Foundation
 
 //healthdata interpreter has a getanswer property. add here.
 
-class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
-    @Published var runningPrompt: [Chat] = [] {
+@MainActor class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
+    var runningPrompt: [Chat] = [] {
         didSet {
             _Concurrency.Task {
                 if runningPrompt.last?.role == .user {
                     try await queryOpenAI()
                 }
             }
+        }
+        willSet {
+            objectWillChange.send()
         }
     }
     @Published var querying: Bool = false
@@ -38,7 +41,7 @@ class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, 
     
     func queryOpenAI() async throws {
         querying = true
-        var openAPIComponent: OpenAIComponent<FHIR> = OpenAIComponent()
+        let openAPIComponent: OpenAIComponent<FHIR> = OpenAIComponent()
         let chatStreamResults = try await openAPIComponent.queryAPI(withChat: runningPrompt)
         
         for try await chatStreamResult in chatStreamResults {

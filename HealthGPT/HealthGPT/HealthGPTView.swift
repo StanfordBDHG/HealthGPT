@@ -26,11 +26,22 @@ struct HealthGPTView: View {
                             UIApplication.shared.hideKeyboard()
                         }
                     )
-                    .onChange(of: $healthDataInterpreter.runningPrompt) { _ in
-                        if !$healthDataInterpreter.querying{
-                            healthDataInterpreter.queryOpenAI()
-                        }
-                    }
+            }
+            .task {
+                do {
+                    try await healthDataInterpreter.generateMainPrompt()
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            }
+            .task(id:StorageKeys.onboardingFlowComplete){
+                do {
+                    try await healthDataInterpreter.generateMainPrompt()
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView(chat: $healthDataInterpreter.runningPrompt)
