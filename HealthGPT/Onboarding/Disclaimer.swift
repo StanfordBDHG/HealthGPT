@@ -38,7 +38,7 @@ struct Disclaimer: View {
             ],
             actionText: "INTERESTING_MODULES_BUTTON".moduleLocalized,
             action: {
-                onboardingSteps.append(.apiKey)
+                onboardingSteps.append(.openAIAPIKey)
             }
         )
     }

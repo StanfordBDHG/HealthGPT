@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "4da423fe637a628ebee8f214217a9e96060a5222",
-        "version" : "0.2.1"
+        "revision" : "b1161597810167a035ae403c81ac6f1a542e41f9",
+        "version" : "0.2.2"
       }
     },
     {
@@ -61,6 +61,15 @@
       "state" : {
         "revision" : "e43f2c05cebcd16a697397721e6a2d72bf418a9c",
         "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "speziml",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziML.git",
+      "state" : {
+        "revision" : "025805b51db912f5fbd5b9480e5d80d24b7dc648",
+        "version" : "0.1.7"
       }
     },
     {
