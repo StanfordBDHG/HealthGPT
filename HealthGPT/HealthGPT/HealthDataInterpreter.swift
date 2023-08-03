@@ -11,24 +11,37 @@ import SpeziFHIR
 import SpeziOpenAI
 import Foundation
 
-//healthdata interpreter has a getanswer property. add here.
-
-@MainActor class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
+class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject,
+                                                          ObservableObjectProvider {
+    var querying: Bool = false {
+        willSet {
+            _Concurrency.Task { @MainActor in
+                objectWillChange.send()
+            }
+        }
+    }
+    
     var runningPrompt: [Chat] = [] {
+        willSet {
+            _Concurrency.Task { @MainActor in
+                objectWillChange.send()
+            }
+        }
         didSet {
             _Concurrency.Task {
                 if runningPrompt.last?.role == .user {
-                    try await queryOpenAI()
+                    do {
+                        try await queryOpenAI()
+                    } catch {
+                        print(error)
+                    }
                 }
             }
         }
-        willSet {
-            objectWillChange.send()
-        }
     }
-    @Published var querying: Bool = false
     
     required init() {}
+
 
     func generateMainPrompt() async throws {
         let healthDataFetcher = HealthDataFetcher()

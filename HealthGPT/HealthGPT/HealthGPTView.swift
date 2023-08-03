@@ -12,6 +12,7 @@ import SpeziSecureStorage
 import SwiftUI
 
 struct HealthGPTView: View {
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
     @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
     @State private var showSettings = false
@@ -27,22 +28,12 @@ struct HealthGPTView: View {
                         }
                     )
             }
-            .task {
-                do {
-                    try await healthDataInterpreter.generateMainPrompt()
-                }
-                catch {
-                    print(error.localizedDescription)
-                }
+            .onAppear {
+                generatePrompt()
             }
-            .task(id:StorageKeys.onboardingFlowComplete){
-                do {
-                    try await healthDataInterpreter.generateMainPrompt()
-                }
-                catch {
-                    print(error.localizedDescription)
-                }
-            }
+            .onChange(of: completedOnboardingFlow, perform: { _ in
+                generatePrompt()
+            })
             .sheet(isPresented: $showSettings) {
                 SettingsView(chat: $healthDataInterpreter.runningPrompt)
             }
@@ -53,6 +44,13 @@ struct HealthGPTView: View {
                 Image(systemName: "gearshape")
             }
             )
+        }
+    }
+    
+    private func generatePrompt() {
+        _Concurrency.Task {
+            guard completedOnboardingFlow else { return }
+            try await healthDataInterpreter.generateMainPrompt()
         }
     }
 }
