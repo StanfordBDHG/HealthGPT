@@ -377,7 +377,7 @@ deployment_target: # Availability checks or attributes shouldn’t be using olde
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - .build
   - .swiftpm
-  - .deriveddata
+  - .derivedData
 
 closure_body_length: # Closure bodies should not span too many lines.
   - 35 # warning - default: 20
