@@ -11,7 +11,7 @@ SPDX-License-Identifier: MIT
 HealthGPT
 ====================================================
 
-The first version of HealthGPT was developed by [Varun Shenoy](https://varunshenoy.com/) in April 2023 in collaboration with the Stanford CardinalKit team.
+The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com) in April 2023 in collaboration with the Stanford Biodesign Digital Health team.
 
 Contributors to HealthGPT include:
 

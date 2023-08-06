@@ -439,7 +439,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#  export PATH=\"$PATH:/opt/homebrew/bin\"\n#  if which swiftlint > /dev/null; then\n#    swiftlint\n#  else\n#   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#  fi\n# fi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  export PATH=\"$PATH:/opt/homebrew/bin\"\n  if which swiftlint > /dev/null; then\n    swiftlint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -980,7 +980,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.1;
+				minimumVersion = 0.5.3;
 			};
 		};
 		27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */ = {

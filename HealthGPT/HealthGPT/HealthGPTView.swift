@@ -8,7 +8,6 @@
 
 import SpeziFHIR
 import SpeziOpenAI
-import SpeziSecureStorage
 import SwiftUI
 
 struct HealthGPTView: View {
@@ -31,9 +30,9 @@ struct HealthGPTView: View {
             .onAppear {
                 generatePrompt()
             }
-            .onChange(of: completedOnboardingFlow, perform: { _ in
+            .onChange(of: completedOnboardingFlow) { _ in
                 generatePrompt()
-            })
+            }
             .sheet(isPresented: $showSettings) {
                 SettingsView(chat: $healthDataInterpreter.runningPrompt)
             }
@@ -42,7 +41,7 @@ struct HealthGPTView: View {
                 showSettings = true
             }) {
                 Image(systemName: "gearshape")
-            }
+                                    }
             )
         }
     }

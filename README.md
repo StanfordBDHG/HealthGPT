@@ -19,7 +19,7 @@ SPDX-License-Identifier: MIT
 HealthGPT is an experimental iOS app based on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) that allows users to interact with their health data stored in the Apple Health app using natural language.
 The application offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
 
-The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) (formerly CardinalKit) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
+The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
 
 ## Features
 

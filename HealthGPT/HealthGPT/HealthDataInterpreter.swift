@@ -6,14 +6,17 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 import Spezi
 import SpeziFHIR
 import SpeziOpenAI
-import Foundation
 
-class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject,
-                                                          ObservableObjectProvider {
-    var querying: Bool = false {
+
+class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
+    @Dependency var openAIComponent = OpenAIComponent()
+    
+    
+    var querying = false {
         willSet {
             _Concurrency.Task { @MainActor in
                 objectWillChange.send()
@@ -40,6 +43,7 @@ class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, 
         }
     }
     
+    
     required init() {}
 
 
@@ -49,13 +53,13 @@ class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, 
 
         let generator = PromptGenerator(with: healthData)
         let mainPrompt = generator.buildMainPrompt()
-        runningPrompt =  [Chat(role: .system, content: mainPrompt)]
+        runningPrompt = [Chat(role: .system, content: mainPrompt)]
     }
     
     func queryOpenAI() async throws {
         querying = true
-        let openAPIComponent: OpenAIComponent<FHIR> = OpenAIComponent()
-        let chatStreamResults = try await openAPIComponent.queryAPI(withChat: runningPrompt)
+        
+        let chatStreamResults = try await openAIComponent.queryAPI(withChat: runningPrompt)
         
         for try await chatStreamResult in chatStreamResults {
             for choice in chatStreamResult.choices {
@@ -70,6 +74,7 @@ class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, 
                 }
             }
         }
+        
         querying = false
     }
 }
