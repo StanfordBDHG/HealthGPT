@@ -36,19 +36,23 @@ struct HealthGPTView: View {
             .sheet(isPresented: $showSettings) {
                 SettingsView(chat: $healthDataInterpreter.runningPrompt)
             }
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                showSettings = true
-            }) {
-                Image(systemName: "gearshape")
-                                    }
-            )
+            .navigationBarItems(
+                trailing:
+                    Button(
+                        action: {
+                            showSettings = true
+                        })
+                {
+                    Image(systemName: "gearshape")
+                })
         }
     }
     
     private func generatePrompt() {
         _Concurrency.Task {
-            guard completedOnboardingFlow else { return }
+            guard completedOnboardingFlow else {
+                return
+            }
             try await healthDataInterpreter.generateMainPrompt()
         }
     }
