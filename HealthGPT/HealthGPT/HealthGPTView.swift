@@ -41,10 +41,12 @@ struct HealthGPTView: View {
                     Button(
                         action: {
                             showSettings = true
-                        })
-                {
-                    Image(systemName: "gearshape")
-                })
+                        },
+                        label: {
+                            Image(systemName: "gearshape")
+                        }
+                    )
+            )
         }
     }
     
