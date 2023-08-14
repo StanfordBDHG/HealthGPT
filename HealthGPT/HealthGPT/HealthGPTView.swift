@@ -16,6 +16,7 @@ struct HealthGPTView: View {
     @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
     @State private var showSettings = false
     
+    
     var body: some View {
         NavigationView {
             VStack {
