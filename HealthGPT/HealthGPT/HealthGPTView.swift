@@ -50,6 +50,7 @@ struct HealthGPTView: View {
         }
     }
     
+    
     private func generatePrompt() {
         _Concurrency.Task {
             guard completedOnboardingFlow else {
