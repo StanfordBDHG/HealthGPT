@@ -6,60 +6,59 @@
 // SPDX-License-Identifier: MIT
 //
 
-import HealthKit
-import OpenAI
 import SpeziFHIR
-import SpeziSecureStorage
+import SpeziOpenAI
 import SwiftUI
 
+
 struct HealthGPTView: View {
-    @AppStorage(StorageKeys.openAIModel) var openAIModel = Model.gpt3_5Turbo
-    @EnvironmentObject var secureStorage: SecureStorage<FHIR>
-    @State private var messages: [Message] = []
-
-    @State private var showAlert = false
-    @State private var alertText = ""
-
-    @StateObject private var messageManager = MessageManager()
-
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
+    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
+    @State private var showSettings = false
+    
+    
     var body: some View {
         NavigationView {
             VStack {
-                ChatView()
-                    .environmentObject(messageManager)
+                ChatView($healthDataInterpreter.runningPrompt, disableInput: $healthDataInterpreter.querying)
+                    .navigationBarTitle("WELCOME_TITLE")
                     .gesture(
                         TapGesture().onEnded {
                             UIApplication.shared.hideKeyboard()
                         }
                     )
-                MessageInputView()
-                    .environmentObject(messageManager)
-            }
-            .navigationBarTitle("HealthGPT")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Alert"),
-                    message: Text(alertText),
-                    dismissButton: .default(Text("OK"))
-                )
             }
             .onAppear {
-                updateApiKeyAndModel()
+                generatePrompt()
             }
+            .onChange(of: completedOnboardingFlow) { _ in
+                generatePrompt()
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView(chat: $healthDataInterpreter.runningPrompt)
+            }
+            .navigationBarItems(
+                trailing:
+                    Button(
+                        action: {
+                            showSettings = true
+                        },
+                        label: {
+                            Image(systemName: "gearshape")
+                        }
+                    )
+            )
         }
     }
-
-    private func updateApiKeyAndModel() {
-        guard let apiKey = try? secureStorage.retrieveCredentials(
-            "openai-api-key",
-            server: "openai.com"
-        )?.password else {
-            alertText = "Could not find a valid API key."
-            self.showAlert.toggle()
-            return
+    
+    
+    private func generatePrompt() {
+        _Concurrency.Task {
+            guard completedOnboardingFlow else {
+                return
+            }
+            try await healthDataInterpreter.generateMainPrompt()
         }
-
-        messageManager.updateAPIToken(apiKey)
-        messageManager.updateOpenAIModel(openAIModel)
     }
 }

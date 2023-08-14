@@ -1,11 +1,11 @@
 #
-# This source file is part of the CardinalKit open-source project
+# This source file is part of the Stanford HealthGPT open-source project
 #
 # SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
 # SPDX-License-Identifier: MIT
-#
-  
+# 
+
 # The whitelist_rules configuration also includes rules that are enabled by default to provide a good overview of all rules.
 only_rules:
   # All Images that provide context should have an accessibility label. Purely decorative images can be hidden from accessibility.
@@ -141,8 +141,6 @@ only_rules:
   - implicitly_unwrapped_optional
   # Identifiers should use inclusive language that avoids discrimination against groups of people based on race, gender, or socioeconomic status
   - inclusive_language
-  # If defer is at the end of its parent scope, it will be executed right where it is anyway.
-  - inert_defer
   # Prefer using Set.isDisjoint(with:) over Set.intersection(_:).isEmpty.
   - is_disjoint
   # Discouraged explicit usage of the default separator.
@@ -166,8 +164,6 @@ only_rules:
   - legacy_multiple
   # Struct extension properties and methods are preferred over legacy functions
   - legacy_nsgeometry_functions
-  # Prefer Swift value types to bridged Objective-C reference types
-  - legacy_objc_type
   # Prefer using type.random(in:) over legacy functions.
   - legacy_random
   # Lines should not span too many characters.
@@ -331,8 +327,6 @@ only_rules:
   - unowned_variable_capture
   # Catch statements should not declare error variables without type casting.
   - untyped_error_in_catch
-  # Unused reference in a capture list should be removed.
-  - unused_capture_list
   # Unused parameter in a closure should be replaced with _.
   - unused_closure_parameter
   # Unused control flow label should be removed.
@@ -372,6 +366,9 @@ only_rules:
   - xctfail_message
   # The variable should be placed on the left, the constant on the right of a comparison operator.
   - yoda_condition
+
+attributes:
+  attributes_with_arguments_always_on_line_above: false
 
 deployment_target: # Availability checks or attributes shouldn’t be using older versions that are satisfied by the deployment target.
   iOSApplicationExtension_deployment_target: 16.0
