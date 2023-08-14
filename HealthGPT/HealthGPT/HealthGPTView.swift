@@ -10,6 +10,7 @@ import SpeziFHIR
 import SpeziOpenAI
 import SwiftUI
 
+
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
