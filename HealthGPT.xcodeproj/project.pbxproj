@@ -27,8 +27,6 @@
 		27859C012A34F15E00397C85 /* XCTSpezi in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C002A34F15E00397C85 /* XCTSpezi */; };
 		27859C042A34F16B00397C85 /* SpeziHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C032A34F16B00397C85 /* SpeziHealthKit */; };
 		27859C072A34F17800397C85 /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C062A34F17800397C85 /* SpeziOnboarding */; };
-		27859C0A2A34F18900397C85 /* SpeziFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C092A34F18900397C85 /* SpeziFHIR */; };
-		27859C0D2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */; };
 		27859C102A34F1A900397C85 /* SpeziLocalStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C0F2A34F1A900397C85 /* SpeziLocalStorage */; };
 		27859C122A34F1A900397C85 /* SpeziSecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C112A34F1A900397C85 /* SpeziSecureStorage */; };
 		27859C202A34F2BF00397C85 /* XCTestApp in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C1F2A34F2BF00397C85 /* XCTestApp */; };
@@ -37,6 +35,9 @@
 		27859C282A34F2DE00397C85 /* XCTRuntimeAssertions in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C272A34F2DE00397C85 /* XCTRuntimeAssertions */; };
 		27B249672A065D360091E52C /* PromptGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B249662A065D360091E52C /* PromptGeneratorTests.swift */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
+		2F4242952A8B0393006E2B01 /* OpenAIAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242942A8B0393006E2B01 /* OpenAIAPIKey.swift */; };
+		2F4242972A8B03A5006E2B01 /* OpenAIModelSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242962A8B03A5006E2B01 /* OpenAIModelSelection.swift */; };
+		2F4242992A8B0432006E2B01 /* HealthGPTStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242982A8B0432006E2B01 /* HealthGPTStandard.swift */; };
 		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
 		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
 		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
@@ -88,6 +89,9 @@
 		27B2495A2A06590E0091E52C /* HealthGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B249662A065D360091E52C /* PromptGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptGeneratorTests.swift; sourceTree = "<group>"; };
 		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
+		2F4242942A8B0393006E2B01 /* OpenAIAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIKey.swift; sourceTree = "<group>"; };
+		2F4242962A8B03A5006E2B01 /* OpenAIModelSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIModelSelection.swift; sourceTree = "<group>"; };
+		2F4242982A8B0432006E2B01 /* HealthGPTStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTStandard.swift; sourceTree = "<group>"; };
 		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppTestingSetup.swift; sourceTree = "<group>"; };
@@ -134,9 +138,7 @@
 				27859BFF2A34F15E00397C85 /* Spezi in Frameworks */,
 				4A0549192A48088600F316A2 /* SpeziOpenAI in Frameworks */,
 				27859C102A34F1A900397C85 /* SpeziLocalStorage in Frameworks */,
-				27859C0D2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter in Frameworks */,
 				2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */,
-				27859C0A2A34F18900397C85 /* SpeziFHIR in Frameworks */,
 				27859C122A34F1A900397C85 /* SpeziSecureStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +160,8 @@
 			children = (
 				275DEFD629EEC6A60079D453 /* Disclaimer.swift */,
 				275DEFD429EEC6870079D453 /* HealthKitPermissions.swift */,
+				2F4242942A8B0393006E2B01 /* OpenAIAPIKey.swift */,
+				2F4242962A8B03A5006E2B01 /* OpenAIModelSelection.swift */,
 				275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */,
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
@@ -251,6 +255,7 @@
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */,
 				653A2550283387FE005D4D48 /* HealthGPTApplication.swift */,
+				2F4242982A8B0432006E2B01 /* HealthGPTStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */,
 			);
 			path = HealthGPT;
@@ -329,8 +334,6 @@
 				27859C002A34F15E00397C85 /* XCTSpezi */,
 				27859C032A34F16B00397C85 /* SpeziHealthKit */,
 				27859C062A34F17800397C85 /* SpeziOnboarding */,
-				27859C092A34F18900397C85 /* SpeziFHIR */,
-				27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */,
 				27859C0F2A34F1A900397C85 /* SpeziLocalStorage */,
 				27859C112A34F1A900397C85 /* SpeziSecureStorage */,
 				4A0549182A48088600F316A2 /* SpeziOpenAI */,
@@ -376,8 +379,6 @@
 				27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */,
 				27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */,
 				27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */,
-				27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
-				27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */,
 				27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */,
 				27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
 				27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */,
@@ -470,6 +471,8 @@
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
+				2F4242992A8B0432006E2B01 /* HealthGPTStandard.swift in Sources */,
+				2F4242972A8B03A5006E2B01 /* OpenAIModelSelection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */,
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
@@ -484,6 +487,7 @@
 				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,
 				275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */,
 				272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */,
+				2F4242952A8B0393006E2B01 /* OpenAIAPIKey.swift in Sources */,
 				272FB3562A0401130010B98D /* Date+Extensions.swift in Sources */,
 				653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */,
 				E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */,
@@ -687,7 +691,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -846,7 +850,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -891,10 +895,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "HealthGPT/Supporting Files/HealthGPT.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 637867499T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HealthGPT/Supporting Files/Info.plist";
@@ -920,6 +926,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdhg.healthgpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = HealthGPT;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -980,7 +987,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.3;
+				minimumVersion = 0.7.1;
 			};
 		};
 		27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */ = {
@@ -988,7 +995,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.1;
 			};
 		};
 		27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
@@ -996,23 +1003,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
-			};
-		};
-		27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
-			};
-		};
-		27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziHealthKitToFHIRAdapter.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				minimumVersion = 0.4.2;
 			};
 		};
 		27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */ = {
@@ -1020,7 +1011,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziStorage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.1;
+				minimumVersion = 0.4.1;
 			};
 		};
 		27859C1E2A34F2BF00397C85 /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
@@ -1028,7 +1019,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.2;
+				minimumVersion = 0.4.6;
 			};
 		};
 		27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -1036,7 +1027,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.3;
+				minimumVersion = 0.3.5;
 			};
 		};
 		27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */ = {
@@ -1044,7 +1035,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.3;
+				minimumVersion = 0.2.5;
 			};
 		};
 		2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
@@ -1052,15 +1043,15 @@
 			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.2.3;
 			};
 		};
 		4A0549172A48088600F316A2 /* XCRemoteSwiftPackageReference "SpeziML" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziML.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.6;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1085,16 +1076,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */;
 			productName = SpeziOnboarding;
-		};
-		27859C092A34F18900397C85 /* SpeziFHIR */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27859C082A34F18900397C85 /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
-			productName = SpeziFHIR;
-		};
-		27859C0C2A34F19900397C85 /* SpeziHealthKitToFHIRAdapter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 27859C0B2A34F19900397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKitToFHIRAdapter" */;
-			productName = SpeziHealthKitToFHIRAdapter;
 		};
 		27859C0F2A34F1A900397C85 /* SpeziLocalStorage */ = {
 			isa = XCSwiftPackageProductDependency;
