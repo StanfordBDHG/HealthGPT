@@ -8,11 +8,10 @@
 
 import Foundation
 import Spezi
-import SpeziFHIR
 import SpeziOpenAI
 
 
-class HealthDataInterpreter<ComponentStandard: Standard>: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
+class HealthDataInterpreter: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
     @Dependency var openAIComponent = OpenAIComponent()
     
     

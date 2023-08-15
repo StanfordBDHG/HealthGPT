@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct Welcome: View {
-    @Binding private var onboardingSteps: [OnboardingFlow.Step]
+    @EnvironmentObject private var onboardingNavigationPath: OnboardingNavigationPath
 
 
     var body: some View {
@@ -37,25 +37,17 @@ struct Welcome: View {
             ],
             actionText: "WELCOME_BUTTON".moduleLocalized,
             action: {
-                onboardingSteps.append(.disclaimer)
+                onboardingNavigationPath.nextStep()
             }
         )
-    }
-
-
-    init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
-        self._onboardingSteps = onboardingSteps
     }
 }
 
 
 #if DEBUG
 struct Welcome_Previews: PreviewProvider {
-    @State private static var path: [OnboardingFlow.Step] = []
-
-
     static var previews: some View {
-        Welcome(onboardingSteps: $path)
+        Welcome()
     }
 }
 #endif

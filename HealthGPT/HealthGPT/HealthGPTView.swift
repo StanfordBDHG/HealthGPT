@@ -6,15 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziFHIR
 import SpeziOpenAI
 import SwiftUI
 
 
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    @EnvironmentObject private var openAPIComponent: OpenAIComponent<FHIR>
-    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter<FHIR>
+    @EnvironmentObject private var openAPIComponent: OpenAIComponent
+    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
     @State private var showSettings = false
     
     
