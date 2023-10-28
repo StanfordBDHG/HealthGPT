@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "a51a7fde78173e57b9166d38d1f665d17a3c4383",
-        "version" : "0.2.3"
+        "revision" : "c45f3320ffa760f043c0239f724850c0e4f8bde5",
+        "version" : "0.2.4"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziML.git",
       "state" : {
-        "revision" : "700ab5e524ec4f12f3012b514ea24822bdc6066b",
-        "version" : "0.2.2"
+        "revision" : "63cb6659876c58529407d7fa3556228345f9faa1",
+        "version" : "0.2.6"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
       "state" : {
-        "revision" : "8e84137a08510f051d93cca546fdce3acb67e012",
-        "version" : "0.4.2"
+        "revision" : "0ea46a66c17615e1a933481a07434bfd41717c54",
+        "version" : "0.6.0"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews",
       "state" : {
-        "revision" : "3131708f262064231751a8963eb263f8648b6879",
-        "version" : "0.4.1"
+        "revision" : "4b7cc423fd823123d354ec1d541ca7d2e0a9d6e3",
+        "version" : "0.5.1"
       }
     },
     {
