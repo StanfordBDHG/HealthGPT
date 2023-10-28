@@ -21,7 +21,7 @@ struct HealthGPTView: View {
 
     
     var body: some View {
-        // swiftlint:disable next closure_body_length
+        // swiftlint:disable closure_body_length
         NavigationView {
             VStack {
                 ChatView($healthDataInterpreter.runningPrompt, disableInput: $healthDataInterpreter.querying)
