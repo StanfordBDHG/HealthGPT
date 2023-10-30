@@ -21,7 +21,6 @@ struct HealthGPTView: View {
 
     
     var body: some View {
-        // swiftlint:disable closure_body_length
         NavigationView {
             VStack {
                 ChatView($healthDataInterpreter.runningPrompt, disableInput: $healthDataInterpreter.querying)
@@ -33,31 +32,10 @@ struct HealthGPTView: View {
                     )
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
-                            Button(
-                                action: {
-                                    showSettings = true
-                                },
-                                label: {
-                                    Image(systemName: "gearshape")
-                                        .accessibilityLabel(Text("OPEN_SETTINGS"))
-                                }
-                            )
+                            settingsButton
                         }
                         ToolbarItem(placement: .primaryAction) {
-                            Button(
-                                action: {
-                                    textToSpeech.toggle()
-                                },
-                                label: {
-                                    if textToSpeech {
-                                        Image(systemName: "speaker")
-                                            .accessibilityLabel(Text("SPEAKER_ENABLED"))
-                                    } else {
-                                        Image(systemName: "speaker.slash")
-                                            .accessibilityLabel(Text("SPEAKER_DISABLED"))
-                                    }
-                                }
-                            )
+                            textToSpeechButton
                         }
                     }
             }
@@ -78,6 +56,35 @@ struct HealthGPTView: View {
                 SettingsView(chat: $healthDataInterpreter.runningPrompt)
             }
         }
+    }
+
+    private var settingsButton: some View {
+        Button(
+            action: {
+                showSettings = true
+            },
+            label: {
+                Image(systemName: "gearshape")
+                    .accessibilityLabel(Text("OPEN_SETTINGS"))
+            }
+        )
+    }
+
+    private var textToSpeechButton: some View {
+        Button(
+            action: {
+                textToSpeech.toggle()
+            },
+            label: {
+                if textToSpeech {
+                    Image(systemName: "speaker")
+                        .accessibilityLabel(Text("SPEAKER_ENABLED"))
+                } else {
+                    Image(systemName: "speaker.slash")
+                        .accessibilityLabel(Text("SPEAKER_DISABLED"))
+                }
+            }
+        )
     }
 
     private func generatePrompt() {
