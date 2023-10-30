@@ -37,10 +37,11 @@
 		27859C282A34F2DE00397C85 /* XCTRuntimeAssertions in Frameworks */ = {isa = PBXBuildFile; productRef = 27859C272A34F2DE00397C85 /* XCTRuntimeAssertions */; };
 		27B249672A065D360091E52C /* PromptGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B249662A065D360091E52C /* PromptGeneratorTests.swift */; };
 		27BA6BE429EF9A910079DC17 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */; };
+		27E2CD172AEF564000998FCA /* HealthGPTViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E2CD162AEF564000998FCA /* HealthGPTViewUITests.swift */; };
 		2F4242952A8B0393006E2B01 /* OpenAIAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242942A8B0393006E2B01 /* OpenAIAPIKey.swift */; };
 		2F4242972A8B03A5006E2B01 /* OpenAIModelSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242962A8B03A5006E2B01 /* OpenAIModelSelection.swift */; };
 		2F4242992A8B0432006E2B01 /* HealthGPTStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4242982A8B0432006E2B01 /* HealthGPTStandard.swift */; };
-		2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */; };
+		2F4E21D829F0518B0067EE98 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* OnboardingUITests.swift */; };
 		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
 		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
 		2FC9759F2978E39600BA99FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FC9759E2978E39600BA99FE /* Localizable.strings */; };
@@ -91,11 +92,12 @@
 		27B2495A2A06590E0091E52C /* HealthGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B249662A065D360091E52C /* PromptGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptGeneratorTests.swift; sourceTree = "<group>"; };
 		27BA6BE329EF9A910079DC17 /* OpenAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
+		27E2CD162AEF564000998FCA /* HealthGPTViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTViewUITests.swift; sourceTree = "<group>"; };
 		2F4242942A8B0393006E2B01 /* OpenAIAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIKey.swift; sourceTree = "<group>"; };
 		2F4242962A8B03A5006E2B01 /* OpenAIModelSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIModelSelection.swift; sourceTree = "<group>"; };
 		2F4242982A8B0432006E2B01 /* HealthGPTStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTStandard.swift; sourceTree = "<group>"; };
 		2F4E21D529F0518B0067EE98 /* HealthGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTUITests.swift; sourceTree = "<group>"; };
+		2F4E21D729F0518B0067EE98 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
@@ -194,7 +196,8 @@
 		2F4E21D629F0518B0067EE98 /* HealthGPTUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2F4E21D729F0518B0067EE98 /* HealthGPTUITests.swift */,
+				2F4E21D729F0518B0067EE98 /* OnboardingUITests.swift */,
+				27E2CD162AEF564000998FCA /* HealthGPTViewUITests.swift */,
 			);
 			path = HealthGPTUITests;
 			sourceTree = "<group>";
@@ -463,7 +466,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F4E21D829F0518B0067EE98 /* HealthGPTUITests.swift in Sources */,
+				27E2CD172AEF564000998FCA /* HealthGPTViewUITests.swift in Sources */,
+				2F4E21D829F0518B0067EE98 /* OnboardingUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

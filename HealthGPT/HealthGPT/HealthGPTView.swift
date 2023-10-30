@@ -68,6 +68,7 @@ struct HealthGPTView: View {
                     .accessibilityLabel(Text("OPEN_SETTINGS"))
             }
         )
+        .accessibilityIdentifier("settingsButton")
     }
 
     private var textToSpeechButton: some View {
@@ -85,6 +86,7 @@ struct HealthGPTView: View {
                 }
             }
         )
+        .accessibilityIdentifier("textToSpeechButton")
     }
 
     private func generatePrompt() {
