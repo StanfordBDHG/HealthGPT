@@ -16,7 +16,7 @@ final class HealthGPTViewUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychain"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
@@ -26,10 +26,11 @@ final class HealthGPTViewUITests: XCTestCase {
 
     func testTextToSpeechToggle() throws {
         let app = XCUIApplication()
-        try app.handleHealthKitAuthorization()
-        
+        try app.conductOnboardingIfNeeded()
+
         let ttsButton = app.buttons["textToSpeechButton"]
         XCTAssertTrue(ttsButton.waitForExistence(timeout: 5))
+
         XCTAssertEqual(ttsButton.label, "Text to speech is disabled, press to enable text to speech.")
         ttsButton.tap()
         XCTAssertEqual(ttsButton.label, "Text to speech is enabled, press to disable text to speech.")
@@ -37,7 +38,7 @@ final class HealthGPTViewUITests: XCTestCase {
 
     func testSettingsView() throws {
         let app = XCUIApplication()
-        try app.handleHealthKitAuthorization()
+        try app.conductOnboardingIfNeeded()
 
         let settingsButton = app.buttons["settingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
