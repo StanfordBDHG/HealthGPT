@@ -11,7 +11,7 @@ import XCTestExtensions
 import XCTHealthKit
 
 
-final class HealthGPTUITests: XCTestCase {
+final class OnboardingUITests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
 

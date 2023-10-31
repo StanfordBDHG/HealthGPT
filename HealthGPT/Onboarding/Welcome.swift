@@ -20,17 +20,17 @@ struct Welcome: View {
             subtitle: "WELCOME_SUBTITLE".moduleLocalized,
             areas: [
                 .init(
-                    icon: Image(systemName: "shippingbox.fill"),
+                    icon: Image(systemName: "shippingbox.fill"), // swiftlint:disable:this accessibility_label_for_image
                     title: "WELCOME_AREA1_TITLE".moduleLocalized,
                     description: "WELCOME_AREA1_DESCRIPTION".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "applewatch.side.right"),
+                    icon: Image(systemName: "applewatch.side.right"), // swiftlint:disable:this accessibility_label_for_image
                     title: "WELCOME_AREA2_TITLE".moduleLocalized,
                     description: "WELCOME_AREA2_DESCRIPTION".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "list.bullet.clipboard.fill"),
+                    icon: Image(systemName: "list.bullet.clipboard.fill"), // swiftlint:disable:this accessibility_label_for_image
                     title: "WELCOME_AREA3_TITLE".moduleLocalized,
                     description: "WELCOME_AREA3_DESCRIPTION".moduleLocalized
                 )

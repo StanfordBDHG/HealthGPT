@@ -35,6 +35,7 @@ struct SettingsView: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.red, lineWidth: 1)
         )
+        .accessibilityIdentifier("clearThreadButton")
 
         Text(disclaimer)
         .foregroundColor(.gray)

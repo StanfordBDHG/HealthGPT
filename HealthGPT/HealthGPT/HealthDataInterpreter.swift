@@ -9,11 +9,12 @@
 import Foundation
 import Spezi
 import SpeziOpenAI
+import SpeziSpeechSynthesizer
 
 
 class HealthDataInterpreter: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
     @Dependency var openAIComponent = OpenAIComponent()
-    
+
     
     var querying = false {
         willSet {

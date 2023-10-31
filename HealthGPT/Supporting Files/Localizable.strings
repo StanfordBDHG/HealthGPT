@@ -55,3 +55,8 @@
 // MARK: Model Selection
 "MODEL_SELECTION_TITLE" = "Select an OpenAI Model";
 "MODEL_SELECTION_SUBTITLE" = "If you have access to GPT4, you may select it below. Otherwise select GPT 3.5 Turbo.";
+
+// MARK: HealthGPT View
+"SPEAKER_DISABLED" = "Text to speech is disabled, press to enable text to speech.";
+"SPEAKER_ENABLED" = "Text to speech is enabled, press to disable text to speech.";
+"OPEN_SETTINGS" = "Press to open the settings editor.";
