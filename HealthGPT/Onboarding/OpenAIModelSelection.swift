@@ -16,7 +16,10 @@ struct OpenAIModelSelection: View {
     
     
     var body: some View {
-        LLMOpenAIModelOnboardingStep {_ in
+        LLMOpenAIModelOnboardingStep(
+            actionText: "OPEN_AI_MODEL_SAVE_ACTION",
+            models: [.gpt4_turbo_preview, .gpt4, .gpt3_5Turbo]
+        ) {_ in
             onboardingNavigationPath.nextStep()
         }
     }

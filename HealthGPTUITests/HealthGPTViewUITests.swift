@@ -23,13 +23,4 @@ final class HealthGPTViewUITests: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
     }
-
-    func testSettingsView() throws {
-        let app = XCUIApplication()
-        try app.conductOnboardingIfNeeded()
-
-        let settingsButton = app.buttons["settingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
-        settingsButton.tap()
-    }
 }

@@ -25,9 +25,14 @@ struct HealthGPTView: View {
                 if let llm = healthDataInterpreter.llm {
                     let contextBinding = Binding { llm.context } set: { llm.context = $0 }
                     ChatView(contextBinding)
+                        .speak(llm.context, muted: !textToSpeech)
+                        .speechToolbarButton(muted: !$textToSpeech)
+                        .viewStateAlert(state: llm.state)
                         .onChange(of: llm.context, initial: true) { _, _ in
                             Task {
-                                try? await healthDataInterpreter.queryLLM()
+                                if llm.state != .generating {
+                                    try? await healthDataInterpreter.queryLLM()
+                                }
                             }
                         }
                         .navigationTitle("WELCOME_TITLE")
@@ -39,6 +44,11 @@ struct HealthGPTView: View {
                         .sheet(isPresented: $showSettings) {
                             SettingsView()
                         }
+                }
+            }
+            .onAppear {
+                Task {
+                    await healthDataInterpreter.prepareLLM()
                 }
             }
         }

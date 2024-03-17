@@ -83,13 +83,13 @@ extension XCUIApplication {
 
     private func navigateOnboardingFlowModelSelection() throws {
         XCTAssertTrue(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 10))
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 10))
+        XCTAssertTrue(buttons["Save OpenAI Model"].waitForExistence(timeout: 10))
 
         let picker = pickers["modelPicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
         optionToSelect.adjust(toPickerWheelValue: "GPT 4")
 
-        buttons["Next"].tap()
+        buttons["Save OpenAI Model"].tap()
     }
 
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {

@@ -16,23 +16,16 @@ struct SettingsView: View {
         case openAIModelSelection
     }
     
-    @Environment(\.dismiss) private var dismiss
     @State private var path = NavigationPath()
+    @Environment(\.dismiss) private var dismiss
+    @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                Section("SETTINGS_OPENAI") {
-                    NavigationLink(value: SettingsDestinations.openAIKey) {
-                        Text("SETTINGS_OPENAI_KEY")
-                    }
-                    NavigationLink(value: SettingsDestinations.openAIModelSelection) {
-                        Text("SETTINGS_OPENAI_MODEL")
-                    }
-                }
-                Section("SETTINGS_DISCLAIMER_TITLE") {
-                    Text("SETTINGS_DISCLAIMER_TEXT")
-                }
+                openAISettings
+                speechSettings
+                disclaimer
             }
             .navigationTitle("SETTINGS_TITLE")
             .navigationDestination(for: SettingsDestinations.self) { destination in
@@ -45,6 +38,31 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private var openAISettings: some View {
+        Section("SETTINGS_OPENAI") {
+            NavigationLink(value: SettingsDestinations.openAIKey) {
+                Text("SETTINGS_OPENAI_KEY")
+            }
+            NavigationLink(value: SettingsDestinations.openAIModelSelection) {
+                Text("SETTINGS_OPENAI_MODEL")
+            }
+        }
+    }
+    
+    private var speechSettings: some View {
+        Section("SETTINGS_SPEECH") {
+            Toggle(isOn: $enableTextToSpeech) {
+                Text("SETTINGS_SPEECH_TEXT_TO_SPEECH")
+            }
+        }
+    }
+    
+    private var disclaimer: some View {
+        Section("SETTINGS_DISCLAIMER_TITLE") {
+            Text("SETTINGS_DISCLAIMER_TEXT")
         }
     }
     

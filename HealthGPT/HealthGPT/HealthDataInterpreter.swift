@@ -28,11 +28,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         )
     }
 
-    required init() {
-        Task {
-            await prepareLLM()
-        }
-    }
+    required init() { }
     
     func generateSystemPrompt() async throws -> String {
         let healthDataFetcher = HealthDataFetcher()

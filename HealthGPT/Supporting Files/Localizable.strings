@@ -66,6 +66,8 @@
 "SETTINGS_OPENAI" = "Open AI Settings";
 "SETTINGS_OPENAI_KEY" = "Open AI API Key";
 "SETTINGS_OPENAI_MODEL" = "Open AI Model";
+"SETTINGS_SPEECH" = "Speech Settings";
+"SETTINGS_SPEECH_TEXT_TO_SPEECH" = "Enable Text to Speech";
 "SETTINGS_CANCEL" = "Cancel";
 "OPEN_AI_KEY_SAVE_ACTION" = "Save API Key";
 "OPEN_AI_MODEL_SAVE_ACTION" = "Save OpenAI Model";
