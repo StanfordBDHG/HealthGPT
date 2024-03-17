@@ -8,73 +8,69 @@
 
 import Foundation
 import Spezi
-import SpeziOpenAI
+import SpeziChat
+import SpeziLLM
+import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 
 
-class HealthDataInterpreter: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
-    @Dependency var openAIComponent = OpenAIComponent()
-
+@Observable
+class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible {
+    @ObservationIgnored @Dependency private var llmRunner: LLMRunner
     
-    var querying = false {
-        willSet {
-            _Concurrency.Task { @MainActor in
-                objectWillChange.send()
-            }
+    var llm: (any LLMSession)?
+    
+    var llmSchema: LLMOpenAISchema {
+        .init(
+            parameters: .init(
+                modelType: .gpt4_turbo_preview
+            )
+        )
+    }
+
+    required init() {
+        Task {
+            await prepareLLM()
         }
     }
     
-    var runningPrompt: [Chat] = [] {
-        willSet {
-            _Concurrency.Task { @MainActor in
-                objectWillChange.send()
-            }
-        }
-        didSet {
-            _Concurrency.Task {
-                if runningPrompt.last?.role == .user {
-                    do {
-                        try await queryOpenAI()
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    required init() {}
-
-
-    func generateMainPrompt() async throws {
+    func generateSystemPrompt() async throws -> String {
         let healthDataFetcher = HealthDataFetcher()
         let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
-
         let generator = PromptGenerator(with: healthData)
         let mainPrompt = generator.buildMainPrompt()
-        runningPrompt = [Chat(role: .system, content: mainPrompt)]
+        return mainPrompt
     }
     
-    func queryOpenAI() async throws {
-        querying = true
-        
-        let chatStreamResults = try await openAIComponent.queryAPI(withChat: runningPrompt)
-        
-        for try await chatStreamResult in chatStreamResults {
-            for choice in chatStreamResult.choices {
-                if runningPrompt.last?.role == .assistant {
-                    let previousChatMessage = runningPrompt.last ?? Chat(role: .assistant, content: "")
-                    runningPrompt[runningPrompt.count - 1] = Chat(
-                        role: .assistant,
-                        content: (previousChatMessage.content ?? "") + (choice.delta.content ?? "")
-                    )
-                } else {
-                    runningPrompt.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
-                }
-            }
+    @MainActor
+    func prepareLLM() async {
+        guard llm == nil else {
+            return
         }
         
-        querying = false
+        let llm = llmRunner(with: llmSchema)
+        
+        guard let systemPrompt = try? await self.generateSystemPrompt() else {
+            return
+        }
+        
+        llm.context.append(systemMessage: systemPrompt)
+        self.llm = llm
+    }
+    
+    @MainActor
+    func queryLLM() async throws {
+        guard let llm,
+              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
+            return
+        }
+        
+        guard let stream = try? await llm.generate() else {
+            return
+        }
+        
+        for try await token in stream {
+            llm.context.append(assistantOutput: token)
+        }
     }
 }

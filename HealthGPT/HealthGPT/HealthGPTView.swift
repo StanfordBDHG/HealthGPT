@@ -6,7 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziOpenAI
+import SpeziChat
+import SpeziLLM
+import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 import SwiftUI
 
@@ -14,46 +16,27 @@ import SwiftUI
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.enableTextToSpeech) private var textToSpeech = StorageKeys.Defaults.enableTextToSpeech
-    @EnvironmentObject private var openAPIComponent: OpenAIComponent
-    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
+    @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @State private var showSettings = false
-    @StateObject private var speechSynthesizer = SpeechSynthesizer()
-
     
     var body: some View {
         NavigationView {
             VStack {
-                ChatView($healthDataInterpreter.runningPrompt, disableInput: $healthDataInterpreter.querying)
-                    .navigationTitle("WELCOME_TITLE")
-                    .gesture(
-                        TapGesture().onEnded {
-                            UIApplication.shared.hideKeyboard()
+                if let llm = healthDataInterpreter.llm {
+                    let contextBinding = Binding { llm.context } set: { llm.context = $0 }
+                    ChatView(contextBinding)
+                        .onChange(of: llm.context, initial: true) { _, _ in
+                            Task {
+                                try? await healthDataInterpreter.queryLLM()
+                            }
                         }
-                    )
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            settingsButton
+                        .navigationTitle("WELCOME_TITLE")
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                settingsButton
+                            }
                         }
-                        ToolbarItem(placement: .primaryAction) {
-                            textToSpeechButton
-                        }
-                    }
-            }
-            .onAppear {
-                generatePrompt()
-            }
-            .onChange(of: completedOnboardingFlow) { _ in
-                generatePrompt()
-            }
-            .onChange(of: healthDataInterpreter.querying) { _ in
-                if textToSpeech,
-                    healthDataInterpreter.runningPrompt.last?.role == .assistant,
-                    let lastMessageContent = healthDataInterpreter.runningPrompt.last?.content {
-                    speechSynthesizer.speak(lastMessageContent)
                 }
-            }
-            .sheet(isPresented: $showSettings) {
-                SettingsView(chat: $healthDataInterpreter.runningPrompt)
             }
         }
     }
@@ -69,32 +52,5 @@ struct HealthGPTView: View {
             }
         )
         .accessibilityIdentifier("settingsButton")
-    }
-
-    private var textToSpeechButton: some View {
-        Button(
-            action: {
-                textToSpeech.toggle()
-            },
-            label: {
-                if textToSpeech {
-                    Image(systemName: "speaker")
-                        .accessibilityLabel(Text("SPEAKER_ENABLED"))
-                } else {
-                    Image(systemName: "speaker.slash")
-                        .accessibilityLabel(Text("SPEAKER_DISABLED"))
-                }
-            }
-        )
-        .accessibilityIdentifier("textToSpeechButton")
-    }
-
-    private func generatePrompt() {
-        _Concurrency.Task {
-            guard completedOnboardingFlow else {
-                return
-            }
-            try await healthDataInterpreter.generateMainPrompt()
-        }
     }
 }

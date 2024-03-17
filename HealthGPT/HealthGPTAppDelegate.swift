@@ -9,18 +9,23 @@
 import HealthKit
 import Spezi
 import SpeziHealthKit
-import SpeziOpenAI
+import SpeziLLM
+import SpeziLLMOpenAI
+import SpeziSpeechSynthesizer
 import SwiftUI
 
 
 class HealthGPTAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: HealthGPTStandard()) {
-            OpenAIComponent()
-            HealthDataInterpreter()
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }
+            LLMRunner {
+                LLMOpenAIPlatform(configuration: .init(concurrentStreams: 20))
+            }
+            HealthDataInterpreter()
+            SpeechSynthesizer()
         }
     }
 

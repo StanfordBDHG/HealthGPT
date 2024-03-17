@@ -6,12 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziOpenAI
+import SpeziChat
+import SpeziLLMOpenAI
 import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var chat: [Chat]
+    @Binding var chat: [ChatEntity]
     let disclaimer = """
     HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.
 

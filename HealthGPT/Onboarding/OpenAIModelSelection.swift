@@ -6,17 +6,17 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziLLMOpenAI
 import SpeziOnboarding
-import SpeziOpenAI
 import SwiftUI
 
 
 struct OpenAIModelSelection: View {
-    @EnvironmentObject private var onboardingNavigationPath: OnboardingNavigationPath
+    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     
     
     var body: some View {
-        OpenAIModelSelectionOnboardingStep {
+        LLMOpenAIModelOnboardingStep {_ in
             onboardingNavigationPath.nextStep()
         }
     }
