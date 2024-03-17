@@ -19,7 +19,8 @@ struct SettingsView: View {
     @State private var path = NavigationPath()
     @Environment(\.dismiss) private var dismiss
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
-    
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -32,8 +33,8 @@ struct SettingsView: View {
                 navigate(to: destination)
             }
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("SETTINGS_CANCEL") {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("SETTINGS_DONE") {
                         dismiss()
                     }
                 }
@@ -75,9 +76,9 @@ struct SettingsView: View {
                 }
             case .openAIModelSelection:
                 LLMOpenAIModelOnboardingStep(
-                    actionText: "OPEN_AI_MODEL_SAVE_ACTION",
-                    models: [.gpt4_turbo_preview, .gpt4, .gpt3_5Turbo]
-                ) { _ in
+                    actionText: "OPEN_AI_MODEL_SAVE_ACTION"
+                ) { model in
+                    openAIModel = model
                     path.removeLast()
                 }
             }

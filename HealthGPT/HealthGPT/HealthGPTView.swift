@@ -16,6 +16,8 @@ import SwiftUI
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.enableTextToSpeech) private var textToSpeech = StorageKeys.Defaults.enableTextToSpeech
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @State private var showSettings = false
     
@@ -48,7 +50,7 @@ struct HealthGPTView: View {
             }
             .onAppear {
                 Task {
-                    await healthDataInterpreter.prepareLLM()
+                    try? await healthDataInterpreter.prepareLLM(with: openAIModel)
                 }
             }
         }

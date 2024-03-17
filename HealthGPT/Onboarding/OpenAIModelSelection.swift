@@ -13,13 +13,14 @@ import SwiftUI
 
 struct OpenAIModelSelection: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+
     
     var body: some View {
         LLMOpenAIModelOnboardingStep(
-            actionText: "OPEN_AI_MODEL_SAVE_ACTION",
-            models: [.gpt4_turbo_preview, .gpt4, .gpt3_5Turbo]
-        ) {_ in
+            actionText: "OPEN_AI_MODEL_SAVE_ACTION"
+        ) { model in
+            openAIModel = model
             onboardingNavigationPath.nextStep()
         }
     }

@@ -20,36 +20,24 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     
     var llm: (any LLMSession)?
     
-    var llmSchema: LLMOpenAISchema {
-        .init(
-            parameters: .init(
-                modelType: .gpt4_turbo_preview
-            )
-        )
-    }
-
     required init() { }
     
     func generateSystemPrompt() async throws -> String {
         let healthDataFetcher = HealthDataFetcher()
         let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
-        let generator = PromptGenerator(with: healthData)
-        let mainPrompt = generator.buildMainPrompt()
-        return mainPrompt
+        return PromptGenerator(with: healthData).buildMainPrompt()
     }
     
     @MainActor
-    func prepareLLM() async {
+    func prepareLLM(with model: LLMOpenAIModelType) async throws {
         guard llm == nil else {
             return
         }
         
+        let llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
         let llm = llmRunner(with: llmSchema)
         
-        guard let systemPrompt = try? await self.generateSystemPrompt() else {
-            return
-        }
-        
+        let systemPrompt = try await self.generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
         self.llm = llm
     }
@@ -61,9 +49,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
             return
         }
         
-        guard let stream = try? await llm.generate() else {
-            return
-        }
+        let stream = try await llm.generate()
         
         for try await token in stream {
             llm.context.append(assistantOutput: token)

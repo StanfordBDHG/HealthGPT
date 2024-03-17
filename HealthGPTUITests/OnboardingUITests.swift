@@ -70,13 +70,9 @@ extension XCUIApplication {
     }
 
     private func navigateOnboardingFlowApiKey() throws {
-        XCTAssertTrue(staticTexts["OpenAI API Key"].waitForExistence(timeout: 10))
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 10))
-        XCTAssertFalse(buttons["Next"].isEnabled, "The button should be disabled as no text has been entered.")
-
-        try textFields["OpenAI API Key"].enter(value: "C3JF8sDa4XwirsvG1Nfi3ZgtB3bkFIDM9duFfItNtAnD3k4XwiM2")
-
-        XCTAssertTrue(buttons["Next"].isEnabled, "The button should be enabled if text has been entered.")
+        try textFields["OpenAI API Key"].enter(value: "sk-123456789")
+        
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
 

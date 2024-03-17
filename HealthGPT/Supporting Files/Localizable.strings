@@ -68,8 +68,8 @@
 "SETTINGS_OPENAI_MODEL" = "Open AI Model";
 "SETTINGS_SPEECH" = "Speech Settings";
 "SETTINGS_SPEECH_TEXT_TO_SPEECH" = "Enable Text to Speech";
-"SETTINGS_CANCEL" = "Cancel";
+"SETTINGS_DONE" = "Done";
 "OPEN_AI_KEY_SAVE_ACTION" = "Save API Key";
 "OPEN_AI_MODEL_SAVE_ACTION" = "Save OpenAI Model";
 "SETTINGS_DISCLAIMER_TITLE" = "Disclaimer";
-"SETTINGS_DISCLAIMER_TEXT" = "HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.Currently, HealthGPT is accessing your step count, sleep analysis, exercise minutes, active calories burned, body weight, and heart rate, all from data stored in the Health app. Remember to log your data and wear your Apple Watch throughout the day for the most accurate results.";
+"SETTINGS_DISCLAIMER_TEXT" = "HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions. Currently, HealthGPT is accessing your step count, sleep analysis, exercise minutes, active calories burned, body weight, and heart rate, all from data stored in the Health app. Remember to log your data and wear your Apple Watch throughout the day for the most accurate results.";
