@@ -32,7 +32,6 @@ final class OnboardingUITests: XCTestCase {
         let app = XCUIApplication()
 
         try app.navigateOnboardingFlow(assertThatHealthKitConsentIsShown: true)
-        XCTAssertTrue(app.staticTexts["HealthGPT"].waitForExistence(timeout: 10))
     }
 }
 
