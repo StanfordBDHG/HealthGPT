@@ -60,3 +60,14 @@
 "SPEAKER_DISABLED" = "Text to speech is disabled, press to enable text to speech.";
 "SPEAKER_ENABLED" = "Text to speech is enabled, press to disable text to speech.";
 "OPEN_SETTINGS" = "Press to open the settings editor.";
+
+// MARK: Settings View
+"SETTINGS_TITLE" = "Settings";
+"SETTINGS_OPENAI" = "Open AI Settings";
+"SETTINGS_OPENAI_KEY" = "Open AI API Key";
+"SETTINGS_OPENAI_MODEL" = "Open AI Model";
+"SETTINGS_CANCEL" = "Cancel";
+"OPEN_AI_KEY_SAVE_ACTION" = "Save API Key";
+"OPEN_AI_MODEL_SAVE_ACTION" = "Save OpenAI Model";
+"SETTINGS_DISCLAIMER_TITLE" = "Disclaimer";
+"SETTINGS_DISCLAIMER_TEXT" = "HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.Currently, HealthGPT is accessing your step count, sleep analysis, exercise minutes, active calories burned, body weight, and heart rate, all from data stored in the Health app. Remember to log your data and wear your Apple Watch throughout the day for the most accurate results.";

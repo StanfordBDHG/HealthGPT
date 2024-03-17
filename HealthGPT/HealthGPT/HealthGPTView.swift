@@ -36,6 +36,9 @@ struct HealthGPTView: View {
                                 settingsButton
                             }
                         }
+                        .sheet(isPresented: $showSettings) {
+                            SettingsView()
+                        }
                 }
             }
         }

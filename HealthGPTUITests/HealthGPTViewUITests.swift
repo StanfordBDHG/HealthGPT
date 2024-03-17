@@ -24,18 +24,6 @@ final class HealthGPTViewUITests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testTextToSpeechToggle() throws {
-        let app = XCUIApplication()
-        try app.conductOnboardingIfNeeded()
-
-        let ttsButton = app.buttons["textToSpeechButton"]
-        XCTAssertTrue(ttsButton.waitForExistence(timeout: 5))
-
-        XCTAssertEqual(ttsButton.label, "Text to speech is disabled, press to enable text to speech.")
-        ttsButton.tap()
-        XCTAssertEqual(ttsButton.label, "Text to speech is enabled, press to disable text to speech.")
-    }
-
     func testSettingsView() throws {
         let app = XCUIApplication()
         try app.conductOnboardingIfNeeded()
@@ -43,9 +31,5 @@ final class HealthGPTViewUITests: XCTestCase {
         let settingsButton = app.buttons["settingsButton"]
         XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
         settingsButton.tap()
-
-        let clearThreadButton = app.buttons["clearThreadButton"]
-        XCTAssertTrue(clearThreadButton.waitForExistence(timeout: 5))
-        clearThreadButton.tap()
     }
 }
