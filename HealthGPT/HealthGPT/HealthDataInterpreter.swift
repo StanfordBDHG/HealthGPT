@@ -34,7 +34,14 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
             return
         }
         
-        let llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
+        var llmSchema: any LLMSchema
+        
+        if FeatureFlags.mockMode {
+            llmSchema = LLMMockSchema()
+        } else {
+            llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
+        }
+        
         let llm = llmRunner(with: llmSchema)
         
         let systemPrompt = try await self.generateSystemPrompt()

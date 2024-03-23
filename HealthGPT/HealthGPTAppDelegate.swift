@@ -23,6 +23,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             }
             LLMRunner {
                 LLMOpenAIPlatform(configuration: .init(concurrentStreams: 20))
+                LLMMockPlatform()
             }
             HealthDataInterpreter()
             SpeechSynthesizer()
