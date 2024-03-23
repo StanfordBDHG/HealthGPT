@@ -189,6 +189,16 @@
         }
       }
     },
+    "LOADING_CHAT_VIEW" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading the chat window..."
+          }
+        }
+      }
+    },
     "MODEL_SELECTION_SUBTITLE" : {
       "extractionState" : "manual",
       "localizations" : {

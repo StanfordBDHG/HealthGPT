@@ -76,7 +76,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--mockMode"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

@@ -23,4 +23,33 @@ final class HealthGPTViewUITests: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
     }
+    
+    func testChatView() throws {
+        let app = XCUIApplication()
+        try app.conductOnboardingIfNeeded()
+        
+        XCTAssert(app.buttons["Record Message"].waitForExistence(timeout: 2))
+        
+        try app.textViews["Message Input Textfield"].enter(value: "New Message!", dismissKeyboard: false)
+        
+        XCTAssert(app.buttons["Send Message"].waitForExistence(timeout: 2))
+        app.buttons["Send Message"].tap()
+        
+        sleep(3)
+        
+        XCTAssert(app.staticTexts["Mock Message from SpeziLLM!"].waitForExistence(timeout: 5))
+    }
+    
+    func testSettingsView() throws {
+        let app = XCUIApplication()
+        try app.conductOnboardingIfNeeded()
+
+        let settingsButton = app.buttons["settingsButton"]
+        XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+        settingsButton.tap()
+        
+        XCTAssert(app.staticTexts["Settings"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Done"].waitForExistence(timeout: 2))
+        app.buttons["Done"].tap()
+    }
 }
