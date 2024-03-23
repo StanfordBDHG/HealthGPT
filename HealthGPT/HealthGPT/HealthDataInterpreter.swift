@@ -19,16 +19,24 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @ObservationIgnored @Dependency private var llmRunner: LLMRunner
     
     var llm: (any LLMSession)?
+    var systemPrompt = ""
     
     required init() { }
     
-    func generateSystemPrompt() async throws -> String {
+    private func generateSystemPrompt() async throws -> String {
         let healthDataFetcher = HealthDataFetcher()
         let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
     
     @MainActor
+    /// Creates an `LLMSchema`, sets it up for use with an `LLMRunner`, injects the system prompt
+    /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
+    /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
+    ///
+    /// If the `--mockMode` feature flag is set, this function will use `LLMMockSchema()`, otherwise
+    /// will use `LLMOpenAISchema` with the model type specified in the `model` parameter.
+    /// - Parameter model: the type of OpenAI model to use
     func prepareLLM(with model: LLMOpenAIModelType) async throws {
         guard llm == nil else {
             return
@@ -44,12 +52,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         
         let llm = llmRunner(with: llmSchema)
         
-        let systemPrompt = try await self.generateSystemPrompt()
+        systemPrompt = try await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
         self.llm = llm
     }
     
     @MainActor
+    /// Queries the LLM using the current session in the `llm` property and adds the output to the context.
     func queryLLM() async throws {
         guard let llm,
               llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
@@ -61,5 +70,12 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         for try await token in stream {
             llm.context.append(assistantOutput: token)
         }
+    }
+    
+    @MainActor
+    /// Resets the LLM context and re-injects the system prompt.
+    func resetChat() {
+        llm?.context.reset()
+        llm?.context.append(systemMessage: systemPrompt)
     }
 }

@@ -11,6 +11,7 @@ import Spezi
 import SpeziHealthKit
 import SpeziLLM
 import SpeziLLMOpenAI
+import SpeziSecureStorage
 import SpeziSpeechSynthesizer
 import SwiftUI
 
@@ -27,6 +28,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             }
             HealthDataInterpreter()
             SpeechSynthesizer()
+            SecureStorage()
         }
     }
 

@@ -252,6 +252,26 @@
         }
       }
     },
+    "SETTINGS_CHAT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat Settings"
+          }
+        }
+      }
+    },
+    "SETTINGS_CHAT_RESET" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Chat"
+          }
+        }
+      }
+    },
     "SETTINGS_DISCLAIMER_TEXT" : {
       "localizations" : {
         "en" : {

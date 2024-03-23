@@ -6,28 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Security
+import SpeziSecureStorage
 import SwiftUI
 
 
 private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-
-    func resetKeychain() {
-        // Method written by ChatGPT
-        let secItemClasses = [
-            kSecClassGenericPassword,
-            kSecClassInternetPassword,
-            kSecClassCertificate,
-            kSecClassKey,
-            kSecClassIdentity
-        ]
-
-        for itemClass in secItemClasses {
-            let spec: [String: Any] = [kSecClass as String: itemClass]
-            SecItemDelete(spec as CFDictionary)
-        }
-    }
+    @Environment(SecureStorage.self) var secureStorage
 
 
     func body(content: Content) -> some View {
@@ -39,8 +24,12 @@ private struct HealthGPTAppTestingSetup: ViewModifier {
                 if FeatureFlags.showOnboarding {
                     completedOnboardingFlow = false
                 }
-                if FeatureFlags.resetKeychain {
-                    resetKeychain()
+                if FeatureFlags.resetSecureStorage {
+                    do {
+                        try secureStorage.deleteAllCredentials()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
             }
     }

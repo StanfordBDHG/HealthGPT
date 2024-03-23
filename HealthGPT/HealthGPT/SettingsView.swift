@@ -18,6 +18,7 @@ struct SettingsView: View {
     
     @State private var path = NavigationPath()
     @Environment(\.dismiss) private var dismiss
+    @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
 
@@ -25,6 +26,7 @@ struct SettingsView: View {
         NavigationStack(path: $path) {
             List {
                 openAISettings
+                chatSettings
                 speechSettings
                 disclaimer
             }
@@ -39,6 +41,7 @@ struct SettingsView: View {
                     }
                 }
             }
+                .accessibilityIdentifier("settingsList")
         }
     }
     
@@ -47,9 +50,24 @@ struct SettingsView: View {
             NavigationLink(value: SettingsDestinations.openAIKey) {
                 Text("SETTINGS_OPENAI_KEY")
             }
+                .accessibilityIdentifier("openAIKey")
             NavigationLink(value: SettingsDestinations.openAIModelSelection) {
                 Text("SETTINGS_OPENAI_MODEL")
             }
+                .accessibilityIdentifier("openAIModel")
+        }
+    }
+    
+    private var chatSettings: some View {
+        Section("SETTINGS_CHAT") {
+            Button("SETTINGS_CHAT_RESET") {
+                Task {
+                    await healthDataInterpreter.resetChat()
+                    dismiss()
+                }
+            }
+                .buttonStyle(PlainButtonStyle())
+                .accessibilityIdentifier("resetButton")
         }
     }
     

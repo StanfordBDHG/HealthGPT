@@ -16,7 +16,7 @@ final class HealthGPTViewUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetKeychain", "--mockMode"]
+        app.launchArguments = ["--showOnboarding", "--resetSecureStorage", "--mockMode"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
@@ -49,7 +49,25 @@ final class HealthGPTViewUITests: XCTestCase {
         settingsButton.tap()
         
         XCTAssert(app.staticTexts["Settings"].waitForExistence(timeout: 2))
-        XCTAssert(app.buttons["Done"].waitForExistence(timeout: 2))
+        
+        XCTAssertTrue(app.buttons["Open AI API Key"].exists)
+        app.buttons["Open AI API Key"].tap()
+        app.navigationBars.buttons["Settings"].tap()
+        
+        XCTAssertTrue(app.buttons["Open AI Model"].exists)
+        app.buttons["Open AI Model"].tap()
+        app.navigationBars.buttons["Settings"].tap()
+        
+        XCTAssertTrue(app.staticTexts["Enable Text to Speech"].exists)
+        
+        XCTAssert(app.buttons["Done"].exists)
         app.buttons["Done"].tap()
+        
+        settingsButton.tap()
+        XCTAssertTrue(app.buttons["Reset Chat"].exists)
+        app.buttons["Reset Chat"].tap()
+        
+        XCTAssert(app.staticTexts["HealthGPT"].waitForExistence(timeout: 2))
+        XCTAssert(app.staticTexts["Mock Message from SpeziLLM!"].waitForExistence(timeout: 5))
     }
 }
