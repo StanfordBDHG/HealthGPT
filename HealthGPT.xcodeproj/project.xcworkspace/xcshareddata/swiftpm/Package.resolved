@@ -1,4 +1,5 @@
 {
+  "originHash" : "98a3d0589c1bc602c69147b70f8a44c2f8b44cfc1469b8ed82df6bf8db92de53",
   "pins" : [
     {
       "identity" : "llama.cpp",
@@ -59,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziLLM",
       "state" : {
-        "revision" : "ca379106637c69fd0138360643d0129176a8ca6b",
-        "version" : "0.7.1"
+        "revision" : "dc37b91ed55c9d50eaf58e645d454cb62e3681d1",
+        "version" : "0.7.2"
       }
     },
     {
@@ -136,5 +137,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
