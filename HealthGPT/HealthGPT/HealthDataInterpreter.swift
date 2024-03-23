@@ -29,7 +29,6 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
     
-    @MainActor
     /// Creates an `LLMSchema`, sets it up for use with an `LLMRunner`, injects the system prompt
     /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
     /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
@@ -37,6 +36,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// If the `--mockMode` feature flag is set, this function will use `LLMMockSchema()`, otherwise
     /// will use `LLMOpenAISchema` with the model type specified in the `model` parameter.
     /// - Parameter model: the type of OpenAI model to use
+    @MainActor
     func prepareLLM(with model: LLMOpenAIModelType) async throws {
         guard llm == nil else {
             return
@@ -57,8 +57,8 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         self.llm = llm
     }
     
-    @MainActor
     /// Queries the LLM using the current session in the `llm` property and adds the output to the context.
+    @MainActor
     func queryLLM() async throws {
         guard let llm,
               llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
@@ -72,8 +72,8 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         }
     }
     
-    @MainActor
     /// Resets the LLM context and re-injects the system prompt.
+    @MainActor
     func resetChat() {
         llm?.context.reset()
         llm?.context.append(systemMessage: systemPrompt)
