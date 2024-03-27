@@ -39,7 +39,7 @@ struct HealthGPTView: View {
                     }
                     .onChange(of: llm.context, initial: true) { _, _ in
                         Task {
-                            if llm.state != .generating {
+                            if llm.state != .generating && llm.context.last?.role != .system {
                                 do {
                                     try await healthDataInterpreter.queryLLM()
                                 } catch {
