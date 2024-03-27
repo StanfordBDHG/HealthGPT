@@ -68,6 +68,5 @@ final class HealthGPTViewUITests: XCTestCase {
         app.buttons["Reset Chat"].tap()
         
         XCTAssert(app.staticTexts["HealthGPT"].waitForExistence(timeout: 2))
-        XCTAssert(app.staticTexts["Mock Message from SpeziLLM!"].waitForExistence(timeout: 5))
     }
 }

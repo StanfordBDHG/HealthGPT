@@ -23,10 +23,10 @@ The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) a
 
 ## Features
 
-- Chat-style interface for user-friendly health data interaction
-- Integration with the Apple Health app to ensure seamless first-party data usage
-- Extensible architecture built on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) for easy customization
-- GPT-3.5 + GPT-4 access through the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
+- Extensible architecture built on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) for easy customization.
+- Chat-style interface for user-friendly health data interaction using the [SpeziChat](https://github.com/StanfordSpezi/SpeziChat) module.
+- Integration with the Apple Health app to ensure seamless first-party data usage.
+- GPT-3.5 + GPT-4 queries through the [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) module.
 - Out of the box support for querying sleep, step count, active energy, exercise minutes, heart rate, and body mass.
 
 
@@ -47,8 +47,9 @@ Otherwise, all of your results will read zero.
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
-1. Edit `HealthGPT/HealthGPT/HealthDataFetcher.swift` to create an appropriate query for your data type.
-2. Update the prompt in `HealthGPT/HealthGPT/PromptGenerator.swift` to pass the newly acquired data to the OpenAI API.
+1. Update the SpeziHealthKit configuration in [`HealthGPT/HealthGPT/AppDelegate.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPTAppDelegate.swift) to include the additional data type(s).
+2. Edit [`HealthGPT/HealthGPT/HealthDataFetcher.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/HealthDataFetcher.swift) to create appropriate query for your data type(s).
+3. Update the prompt in [`HealthGPT/HealthGPT/PromptGenerator.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/PromptGenerator.swift) to pass the newly acquired data to the OpenAI API.
 
 
 ## Contributing
