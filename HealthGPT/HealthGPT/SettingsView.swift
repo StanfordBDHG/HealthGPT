@@ -22,6 +22,7 @@ struct SettingsView: View {
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
 
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {

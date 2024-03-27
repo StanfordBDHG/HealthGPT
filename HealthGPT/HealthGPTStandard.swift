@@ -11,7 +11,7 @@ import SpeziHealthKit
 import SwiftUI
 
 
-actor HealthGPTStandard: Standard, ObservableObject, HealthKitConstraint {
+actor HealthGPTStandard: Standard, HealthKitConstraint {
     func add(sample: HKSample) async { }
     func remove(sample: HKDeletedObject) async { }
 }

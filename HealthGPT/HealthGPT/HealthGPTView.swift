@@ -52,10 +52,8 @@ struct HealthGPTView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
-        .onAppear {
-            Task {
-                try? await healthDataInterpreter.prepareLLM(with: openAIModel)
-            }
+        .task {
+            try? await healthDataInterpreter.prepareLLM(with: openAIModel)
         }
     }
     

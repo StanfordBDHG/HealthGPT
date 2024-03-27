@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import SpeziSecureStorage
 import SwiftUI
 
@@ -14,6 +15,7 @@ private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @Environment(SecureStorage.self) var secureStorage
 
+    let logger = Logger(subsystem: "HealthGPT", category: "Testing")
 
     func body(content: Content) -> some View {
         content
@@ -28,7 +30,7 @@ private struct HealthGPTAppTestingSetup: ViewModifier {
                     do {
                         try secureStorage.deleteAllCredentials()
                     } catch {
-                        print(error.localizedDescription)
+                        logger.error("Could not clear secure storage: \(error.localizedDescription)")
                     }
                 }
             }

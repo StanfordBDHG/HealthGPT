@@ -23,11 +23,10 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
                 healthKit
             }
             LLMRunner {
-                LLMOpenAIPlatform(configuration: .init(concurrentStreams: 20))
+                LLMOpenAIPlatform()
                 LLMMockPlatform()
             }
             HealthDataInterpreter()
-            SpeechSynthesizer()
             SecureStorage()
         }
     }

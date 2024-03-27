@@ -19,9 +19,10 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @ObservationIgnored @Dependency private var llmRunner: LLMRunner
     
     var llm: (any LLMSession)?
-    var systemPrompt = ""
+    @ObservationIgnored var systemPrompt = ""
     
     required init() { }
+    
     
     private func generateSystemPrompt() async throws -> String {
         let healthDataFetcher = HealthDataFetcher()
