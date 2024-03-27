@@ -20,6 +20,8 @@ struct HealthGPTView: View {
     
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @State private var showSettings = false
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
     
     var body: some View {
         NavigationStack {
@@ -38,7 +40,12 @@ struct HealthGPTView: View {
                     .onChange(of: llm.context, initial: true) { _, _ in
                         Task {
                             if llm.state != .generating {
-                                try? await healthDataInterpreter.queryLLM()
+                                do {
+                                    try await healthDataInterpreter.queryLLM()
+                                } catch {
+                                    showErrorAlert = true
+                                    errorMessage = "Error querying LLM: \(error.localizedDescription)"
+                                }
                             }
                         }
                     }
@@ -52,8 +59,18 @@ struct HealthGPTView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
+        .alert("ERROR_ALERT_TITLE", isPresented: $showErrorAlert) {
+            Button("ERROR_ALERT_CANCEL", role: .cancel) {}
+        } message: {
+            Text(errorMessage)
+        }
         .task {
-            try? await healthDataInterpreter.prepareLLM(with: openAIModel)
+            do {
+                try await healthDataInterpreter.prepareLLM(with: openAIModel)
+            } catch {
+                showErrorAlert = true
+                errorMessage = "Error preparing LLM: \(error.localizedDescription)"
+            }
         }
     }
     

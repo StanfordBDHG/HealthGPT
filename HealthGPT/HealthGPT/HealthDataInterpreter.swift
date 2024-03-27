@@ -52,7 +52,6 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         }
         
         let llm = llmRunner(with: llmSchema)
-        
         systemPrompt = try await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
         self.llm = llm
