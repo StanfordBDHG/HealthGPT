@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import SpeziChat
 import SpeziLLMOpenAI
 import SwiftUI
@@ -21,6 +22,8 @@ struct SettingsView: View {
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+    let logger = Logger(subsystem: "HealthGPT", category: "Settings")
+
 
     
     var body: some View {
@@ -98,8 +101,17 @@ struct SettingsView: View {
                     actionText: "OPEN_AI_MODEL_SAVE_ACTION",
                     models: [.gpt3_5Turbo, .gpt4, .gpt4_turbo_preview]
                 ) { model in
-                    openAIModel = model
-                    path.removeLast()
+                    Task {
+                        openAIModel = model
+                        
+                        do {
+                            try await healthDataInterpreter.prepareLLM(with: model)
+                        } catch {
+                            logger.error("Error updating model: \(error.localizedDescription)")
+                        }
+                        
+                        path.removeLast()
+                    }
                 }
             }
         }

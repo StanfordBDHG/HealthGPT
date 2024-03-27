@@ -19,7 +19,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @ObservationIgnored @Dependency private var llmRunner: LLMRunner
     
     var llm: (any LLMSession)?
-    @ObservationIgnored var systemPrompt = ""
+    @ObservationIgnored private var systemPrompt = ""
     
     required init() { }
     
@@ -39,10 +39,6 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// - Parameter model: the type of OpenAI model to use
     @MainActor
     func prepareLLM(with model: LLMOpenAIModelType) async throws {
-        guard llm == nil else {
-            return
-        }
-        
         var llmSchema: any LLMSchema
         
         if FeatureFlags.mockMode {
