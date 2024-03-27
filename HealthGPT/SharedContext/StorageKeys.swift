@@ -19,7 +19,7 @@ enum StorageKeys {
     static let onboardingFlowComplete = "onboardingFlow.complete"
     /// A `Step` flag indicating the current step in the onboarding process.
     static let onboardingFlowStep = "onboardingFlow.step"
-    /// An `AIModel` flag indicating the OpenAI model to use
+    /// An `LLMOpenAIModelType` flag indicating the OpenAI model to use
     static let openAIModel = "openAI.model"
     /// A `Bool` flag indicating if messages should be spoken.
     static let enableTextToSpeech = "settings.enableTextToSpeech"

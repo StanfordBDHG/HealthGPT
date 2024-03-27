@@ -20,7 +20,7 @@ struct HealthGPTApplication: App {
         WindowGroup {
             Group {
                 if completedOnboardingFlow {
-                    HomeView()
+                    HealthGPTView()
                 } else {
                     EmptyView()
                 }

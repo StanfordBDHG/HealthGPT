@@ -7,8 +7,8 @@
 //
 
 import HealthKit
+import SpeziLLMOpenAI
 import SpeziOnboarding
-import SpeziOpenAI
 import SwiftUI
 
 

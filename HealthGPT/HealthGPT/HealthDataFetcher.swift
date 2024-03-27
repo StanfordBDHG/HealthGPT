@@ -7,10 +7,15 @@
 //
 
 import HealthKit
+import Spezi
 
 
-class HealthDataFetcher {
-    private let healthStore = HKHealthStore()
+@Observable
+class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
+    @ObservationIgnored private let healthStore = HKHealthStore()
+    
+    required init() { }
+    
 
     /// Requests authorization to access the user's health data.
     ///
