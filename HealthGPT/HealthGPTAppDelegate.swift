@@ -27,6 +27,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
                 LLMMockPlatform()
             }
             HealthDataInterpreter()
+            HealthDataFetcher()
             SecureStorage()
         }
     }

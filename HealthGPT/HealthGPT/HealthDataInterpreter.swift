@@ -17,6 +17,7 @@ import SpeziSpeechSynthesizer
 @Observable
 class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency private var llmRunner: LLMRunner
+    @ObservationIgnored @Dependency private var healthDataFetcher: HealthDataFetcher
     
     var llm: (any LLMSession)?
     @ObservationIgnored private var systemPrompt = ""
@@ -25,7 +26,6 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     
     
     private func generateSystemPrompt() async throws -> String {
-        let healthDataFetcher = HealthDataFetcher()
         let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
         return PromptGenerator(with: healthData).buildMainPrompt()
     }

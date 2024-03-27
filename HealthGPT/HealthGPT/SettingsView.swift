@@ -24,7 +24,6 @@ struct SettingsView: View {
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
     let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
-
     
     var body: some View {
         NavigationStack(path: $path) {
