@@ -23,12 +23,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @ObservationIgnored private var systemPrompt = ""
     
     required init() { }
-    
-    
-    private func generateSystemPrompt() async -> String {
-        let healthData = await healthDataFetcher.fetchAndProcessHealthData()
-        return PromptGenerator(with: healthData).buildMainPrompt()
-    }
+
     
     /// Creates an `LLMSchema`, sets it up for use with an `LLMRunner`, injects the system prompt
     /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
@@ -70,8 +65,17 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     
     /// Resets the LLM context and re-injects the system prompt.
     @MainActor
-    func resetChat() {
+    func resetChat() async {
+        systemPrompt = await generateSystemPrompt()
         llm?.context.reset()
         llm?.context.append(systemMessage: systemPrompt)
+    }
+    
+    /// Fetches updated health data using the `HealthDataFetcher`
+    /// and passes it to the `PromptGenerator` to create the system prompt.
+    private func generateSystemPrompt() async -> String {
+        let healthData = await healthDataFetcher.fetchAndProcessHealthData()
+        print(healthData)
+        return PromptGenerator(with: healthData).buildMainPrompt()
     }
 }
