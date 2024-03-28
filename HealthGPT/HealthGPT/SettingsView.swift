@@ -102,13 +102,7 @@ struct SettingsView: View {
                 ) { model in
                     Task {
                         openAIModel = model
-                        
-                        do {
-                            try await healthDataInterpreter.prepareLLM(with: model)
-                        } catch {
-                            logger.error("Error updating model: \(error.localizedDescription)")
-                        }
-                        
+                        await healthDataInterpreter.prepareLLM(with: model)
                         path.removeLast()
                     }
                 }

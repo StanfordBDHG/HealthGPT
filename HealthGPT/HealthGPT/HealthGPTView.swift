@@ -65,12 +65,7 @@ struct HealthGPTView: View {
             Text(errorMessage)
         }
         .task {
-            do {
-                try await healthDataInterpreter.prepareLLM(with: openAIModel)
-            } catch {
-                showErrorAlert = true
-                errorMessage = "Error preparing LLM: \(error.localizedDescription)"
-            }
+            await healthDataInterpreter.prepareLLM(with: openAIModel)
         }
     }
     

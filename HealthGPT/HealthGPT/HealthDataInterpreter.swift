@@ -25,8 +25,8 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     required init() { }
     
     
-    private func generateSystemPrompt() async throws -> String {
-        let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
+    private func generateSystemPrompt() async -> String {
+        let healthData = await healthDataFetcher.fetchAndProcessHealthData()
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
     
@@ -38,7 +38,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// will use `LLMOpenAISchema` with the model type specified in the `model` parameter.
     /// - Parameter model: the type of OpenAI model to use
     @MainActor
-    func prepareLLM(with model: LLMOpenAIModelType) async throws {
+    func prepareLLM(with model: LLMOpenAIModelType) async {
         var llmSchema: any LLMSchema
         
         if FeatureFlags.mockMode {
@@ -48,7 +48,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         }
         
         let llm = llmRunner(with: llmSchema)
-        systemPrompt = try await generateSystemPrompt()
+        systemPrompt = await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
         self.llm = llm
     }
