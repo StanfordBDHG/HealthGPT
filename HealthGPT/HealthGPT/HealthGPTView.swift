@@ -27,7 +27,7 @@ struct HealthGPTView: View {
         NavigationStack {
             if let llm = healthDataInterpreter.llm {
                 let contextBinding = Binding { llm.context } set: { llm.context = $0 }
-                ChatView(contextBinding)
+                ChatView(contextBinding, exportFormat: .text)
                     .speak(llm.context, muted: !textToSpeech)
                     .speechToolbarButton(muted: !$textToSpeech)
                     .viewStateAlert(state: llm.state)
