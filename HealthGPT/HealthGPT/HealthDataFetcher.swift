@@ -7,29 +7,15 @@
 //
 
 import HealthKit
+import Spezi
 
 
-class HealthDataFetcher {
-    private let healthStore = HKHealthStore()
-
-    /// Requests authorization to access the user's health data.
-    ///
-    /// - Returns: A `Bool` value indicating whether the authorization was successful.
-    func requestAuthorization() async throws {
-        guard HKHealthStore.isHealthDataAvailable() else {
-            throw HKError(.errorHealthDataUnavailable)
-        }
-
-        let types: Set = [
-            HKQuantityType(.stepCount),
-            HKQuantityType(.appleExerciseTime),
-            HKQuantityType(.bodyMass),
-            HKQuantityType(.heartRate),
-            HKCategoryType(.sleepAnalysis)
-        ]
-
-        try await healthStore.requestAuthorization(toShare: Set<HKSampleType>(), read: types)
-    }
+@Observable
+class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
+    @ObservationIgnored private let healthStore = HKHealthStore()
+    
+    required init() { }
+    
 
     /// Fetches the user's health data for the specified quantity type identifier for the last two weeks.
     ///

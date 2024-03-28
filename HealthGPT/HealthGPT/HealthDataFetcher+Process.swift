@@ -14,11 +14,7 @@ extension HealthDataFetcher {
     /// Fetches and processes health data for the last 14 days.
     ///
     /// - Returns: An array of `HealthData` objects, one for each day in the last 14 days.
-    ///
-    /// - Throws: `HealthDataFetcherError.authorizationFailed` if health data authorization fails.
-    func fetchAndProcessHealthData() async throws -> [HealthData] {
-        try await requestAuthorization()
-
+    func fetchAndProcessHealthData() async -> [HealthData] {
         let calendar = Calendar.current
         let today = Date()
         var healthData: [HealthData] = []

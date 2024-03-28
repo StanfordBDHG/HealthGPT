@@ -1,12 +1,22 @@
 {
+  "originHash" : "98a3d0589c1bc602c69147b70f8a44c2f8b44cfc1469b8ed82df6bf8db92de53",
   "pins" : [
+    {
+      "identity" : "llama.cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/llama.cpp",
+      "state" : {
+        "revision" : "7bfd6d4b5bbc9fd47bd023bdbb35f96c827977f3",
+        "version" : "0.2.1"
+      }
+    },
     {
       "identity" : "openai",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "c45f3320ffa760f043c0239f724850c0e4f8bde5",
-        "version" : "0.2.4"
+        "revision" : "35afc9a6ee127b8f22a85a31aec2036a987478af",
+        "version" : "0.2.6"
       }
     },
     {
@@ -14,8 +24,26 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi.git",
       "state" : {
-        "revision" : "9ad506d4d2e36eb7a0c1ff8cc6bb0ef9c972724c",
-        "version" : "0.7.1"
+        "revision" : "c43e4fa3d3938a847de2b677091a34ddaea5bc76",
+        "version" : "1.2.3"
+      }
+    },
+    {
+      "identity" : "spezichat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziChat",
+      "state" : {
+        "revision" : "2334583105224b0c04fc36989db82b000021d31d",
+        "version" : "0.1.9"
+      }
+    },
+    {
+      "identity" : "spezifoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
+      "state" : {
+        "revision" : "01af5b91a54f30ddd121258e81aff2ddc2a99ff9",
+        "version" : "1.0.4"
       }
     },
     {
@@ -23,17 +51,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
       "state" : {
-        "revision" : "f8f664549e81c8fa107a1fff616e0eaca6e8a6fa",
-        "version" : "0.3.1"
+        "revision" : "1e9cb5a6036ac7f4ff37ea1c3ed4898103339ad1",
+        "version" : "0.5.3"
       }
     },
     {
-      "identity" : "speziml",
+      "identity" : "spezillm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziML.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziLLM",
       "state" : {
-        "revision" : "63cb6659876c58529407d7fa3556228345f9faa1",
-        "version" : "0.2.6"
+        "revision" : "dc37b91ed55c9d50eaf58e645d454cb62e3681d1",
+        "version" : "0.7.2"
       }
     },
     {
@@ -41,8 +69,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
       "state" : {
-        "revision" : "0ea46a66c17615e1a933481a07434bfd41717c54",
-        "version" : "0.6.0"
+        "revision" : "4971a82e94996ce0c3d8ecf64fdeec874a1f20d6",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "spezispeech",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziSpeech",
+      "state" : {
+        "revision" : "60b8cdbf6f3d58b0d75eadf30db50f88848069aa",
+        "version" : "1.0.1"
       }
     },
     {
@@ -50,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "77666f57cc0b7f148bc3949f173db8498ef9b4a6",
-        "version" : "0.4.1"
+        "revision" : "b958df9b31f24800388a7bfc28f457ce7b82556c",
+        "version" : "1.0.2"
       }
     },
     {
@@ -59,8 +96,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews",
       "state" : {
-        "revision" : "4b7cc423fd823123d354ec1d541ca7d2e0a9d6e3",
-        "version" : "0.5.1"
+        "revision" : "4d2a724d97c8f19ac7de7aa2c046b1cb3ef7b279",
+        "version" : "1.3.1"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "94cf62b3ba8d4bed62680a282d4c25f9c63c2efb",
+        "version" : "1.1.0"
       }
     },
     {
@@ -68,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "625477e0937294cb3fd6e7bbf72b78f951644b1d",
-        "version" : "0.4.6"
+        "revision" : "1fe9b8e76aeb7a132af37bfa0892160c9b662dcc",
+        "version" : "0.4.10"
       }
     },
     {
@@ -86,10 +132,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git",
       "state" : {
-        "revision" : "9226052589b8faece98861bc3d7b33b3ebfe4f5a",
-        "version" : "0.2.5"
+        "revision" : "51da3403f128b120705571ce61e0fe190f8889e6",
+        "version" : "1.0.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

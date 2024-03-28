@@ -6,29 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Security
+import OSLog
+import SpeziSecureStorage
 import SwiftUI
 
 
 private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @Environment(SecureStorage.self) var secureStorage
 
-    func resetKeychain() {
-        // Method written by ChatGPT
-        let secItemClasses = [
-            kSecClassGenericPassword,
-            kSecClassInternetPassword,
-            kSecClassCertificate,
-            kSecClassKey,
-            kSecClassIdentity
-        ]
-
-        for itemClass in secItemClasses {
-            let spec: [String: Any] = [kSecClass as String: itemClass]
-            SecItemDelete(spec as CFDictionary)
-        }
-    }
-
+    let logger = Logger(subsystem: "HealthGPT", category: "Testing")
 
     func body(content: Content) -> some View {
         content
@@ -39,8 +26,12 @@ private struct HealthGPTAppTestingSetup: ViewModifier {
                 if FeatureFlags.showOnboarding {
                     completedOnboardingFlow = false
                 }
-                if FeatureFlags.resetKeychain {
-                    resetKeychain()
+                if FeatureFlags.resetSecureStorage {
+                    do {
+                        try secureStorage.deleteAllCredentials()
+                    } catch {
+                        logger.error("Could not clear secure storage: \(error.localizedDescription)")
+                    }
                 }
             }
     }

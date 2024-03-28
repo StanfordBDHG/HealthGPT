@@ -14,19 +14,20 @@ SPDX-License-Identifier: MIT
 [![codecov](https://codecov.io/gh/StanfordBDHG/HealthGPT/branch/main/graph/badge.svg?token=5BEldGX6G1)](https://codecov.io/gh/StanfordBDHG/HealthGPT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7850785.svg)](https://doi.org/10.5281/zenodo.7850785)
 
-![Example Conversation](Figures/Example.png)
+|<picture><source media="(prefers-color-scheme: dark)" srcset="Figures/Chat-dark.png"><img src="Figures/Chat.png" width="250" alt="Screenshot showing an example conversation with HealthGPT" /></picture>|<picture><source media="(prefers-color-scheme: dark)" srcset="Figures/Settings-dark.png"><img src="Figures/Settings.png" width="250" alt="Screenshot showing settings for HealthGPT." /></picture>|<picture><source media="(prefers-color-scheme: dark)" srcset="Figures/Export-dark.png"><img src="Figures/Export.png" width="250" alt="Screenshot showing chat export for HealthGPT." /></picture>|
+|:--:|:--:|:--:|
+|Example Conversation|Settings|Export Chat|
 
-HealthGPT is an experimental iOS app based on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) that allows users to interact with their health data stored in the Apple Health app using natural language.
-The application offers an easy-to-extend solution for those looking to make large language model powered apps within the Apple Health ecosystem.
+HealthGPT is an experimental iOS app based on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) that allows users to interact with their health data stored in the Apple Health app using natural language. The application offers an easy-to-extend solution for those looking to make large language model (LLM) powered apps within the Apple Health ecosystem.
 
-The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
+HealthGPT is an open-source project of the [Stanford Biodesign Digital Health](https://bdh.stanford.edu/) team. The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
 
 ## Features
 
-- Chat-style interface for user-friendly health data interaction
-- Integration with the Apple Health app to ensure seamless first-party data usage
-- Extensible architecture built on [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) for easy customization
-- GPT-3.5 + GPT-4 access through the [OpenAI](https://github.com/MacPaw/OpenAI) Swift module
+- Extensible architecture built on the [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) open-source digital health development framework for easy customization.
+- Chat-style interface for user-friendly health data interaction using the [SpeziChat](https://github.com/StanfordSpezi/SpeziChat) module with speech-to-text (recognition) as well as text-to-speech (synthesize) accessibility capabilities and chat export functionality.
+- Integration with the Apple Health app via [SpeziHealthKit](https://github.com/StanfordSpezi/SpeziHealthKit).
+- GPT-3.5 + GPT-4 queries through the [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) module.
 - Out of the box support for querying sleep, step count, active energy, exercise minutes, heart rate, and body mass.
 
 
@@ -34,21 +35,21 @@ The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) a
 
 HealthGPT is provided for general informational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. Large language models, such as those provided by OpenAI, are known to hallucinate and at times return false information. The use of HealthGPT is at your own risk. Always consult a qualified healthcare provider for personalized advice regarding your health and well-being. Aggregated HealthKit data for the past 14 days will be uploaded to OpenAI. Please refer to the [OpenAI privacy policy](https://openai.com/policies/privacy-policy) for more information.
 
-
 ## Set Up
 
-1. Clone this repository.
-2. Open `HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
-3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard. You can also paste your key into the app during onboarding.
-4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
+Building and running HealthGPT requires a Mac with [Xcode 15.2](https://developer.apple.com/xcode/) or newer installed.
 
-Note: if you're using the simulator, you will need to manually add data in the Health app. 
-Otherwise, all of your results will read zero.
+1. Clone this repository to your local computer.
+2. Open `HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
+3. Run the app (on an iOS device or in the iOS simulator) and play with HealthGPT on your own data 🚀
+
+Note: If you are running HealthGPT using the simulator, you will need to manually add data in the Apple Health app. Otherwise, all of your results will read zero.
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
-1. Edit `HealthGPT/HealthGPT/HealthDataFetcher.swift` to create an appropriate query for your data type.
-2. Update the prompt in `HealthGPT/HealthGPT/PromptGenerator.swift` to pass the newly acquired data to the OpenAI API.
+1. Update the SpeziHealthKit configuration in [`HealthGPT/HealthGPT/AppDelegate.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPTAppDelegate.swift) to include the additional data type(s). For more information about configuring SpeziHealthKit, please refer to the [official documentation](https://swiftpackageindex.com/StanfordSpezi/SpeziHealthKit/0.5.3/documentation/spezihealthkit).
+2. Edit [`HealthGPT/HealthGPT/HealthDataFetcher.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/HealthDataFetcher.swift) to create appropriate query for your data type(s).
+3. Update the prompt in [`HealthGPT/HealthGPT/PromptGenerator.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/PromptGenerator.swift) to pass the newly acquired data to the OpenAI API.
 
 
 ## Contributing

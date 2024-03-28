@@ -6,40 +6,111 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziOpenAI
+import OSLog
+import SpeziChat
+import SpeziLLMOpenAI
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(\.dismiss) var dismiss
-    @Binding var chat: [Chat]
-    let disclaimer = """
-    HealthGPT is powered by the OpenAI API. Data submitted here is not used for training OpenAI's models according to their terms and conditions.
-
-    Currently, HealthGPT is accessing your step count, sleep analysis, exercise minutes, \
-    active calories burned, body weight, and heart rate, all from data stored in the Health app.
-
-    Remember to log your data and wear your Apple Watch throughout the day for the most accurate results.
-    """
+    private enum SettingsDestinations {
+        case openAIKey
+        case openAIModelSelection
+    }
+    
+    @State private var path = NavigationPath()
+    @Environment(\.dismiss) private var dismiss
+    @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
+    @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+    let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
     
     var body: some View {
-        Button("Clear Current Thread") {
-            chat = []
-            dismiss()
+        NavigationStack(path: $path) {
+            List {
+                openAISettings
+                chatSettings
+                speechSettings
+                disclaimer
+            }
+            .navigationTitle("SETTINGS_TITLE")
+            .navigationDestination(for: SettingsDestinations.self) { destination in
+                navigate(to: destination)
+            }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("SETTINGS_DONE") {
+                        dismiss()
+                    }
+                }
+            }
+                .accessibilityIdentifier("settingsList")
         }
-        .padding()
-        .background(.white)
-        .cornerRadius(20)
-        .foregroundColor(.red)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.red, lineWidth: 1)
-        )
-        .accessibilityIdentifier("clearThreadButton")
-
-        Text(disclaimer)
-        .foregroundColor(.gray)
-        .padding(20)
-        .font(.system(size: 15))
     }
+    
+    private var openAISettings: some View {
+        Section("SETTINGS_OPENAI") {
+            NavigationLink(value: SettingsDestinations.openAIKey) {
+                Text("SETTINGS_OPENAI_KEY")
+            }
+                .accessibilityIdentifier("openAIKey")
+            NavigationLink(value: SettingsDestinations.openAIModelSelection) {
+                Text("SETTINGS_OPENAI_MODEL")
+            }
+                .accessibilityIdentifier("openAIModel")
+        }
+    }
+    
+    private var chatSettings: some View {
+        Section("SETTINGS_CHAT") {
+            Button("SETTINGS_CHAT_RESET") {
+                Task {
+                    await healthDataInterpreter.resetChat()
+                    dismiss()
+                }
+            }
+                .buttonStyle(PlainButtonStyle())
+                .accessibilityIdentifier("resetButton")
+        }
+    }
+    
+    private var speechSettings: some View {
+        Section("SETTINGS_SPEECH") {
+            Toggle(isOn: $enableTextToSpeech) {
+                Text("SETTINGS_SPEECH_TEXT_TO_SPEECH")
+            }
+        }
+    }
+    
+    private var disclaimer: some View {
+        Section("SETTINGS_DISCLAIMER_TITLE") {
+            Text("SETTINGS_DISCLAIMER_TEXT")
+        }
+    }
+    
+    private func navigate(to destination: SettingsDestinations) -> some View {
+        Group {
+            switch destination {
+            case .openAIKey:
+                LLMOpenAIAPITokenOnboardingStep(actionText: "OPEN_AI_KEY_SAVE_ACTION") {
+                    path.removeLast()
+                }
+            case .openAIModelSelection:
+                LLMOpenAIModelOnboardingStep(
+                    actionText: "OPEN_AI_MODEL_SAVE_ACTION",
+                    models: [.gpt3_5Turbo, .gpt4, .gpt4_turbo_preview]
+                ) { model in
+                    Task {
+                        openAIModel = model
+                        await healthDataInterpreter.prepareLLM(with: model)
+                        path.removeLast()
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    SettingsView()
 }

@@ -8,73 +8,73 @@
 
 import Foundation
 import Spezi
-import SpeziOpenAI
+import SpeziChat
+import SpeziLLM
+import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 
 
-class HealthDataInterpreter: DefaultInitializable, Component, ObservableObject, ObservableObjectProvider {
-    @Dependency var openAIComponent = OpenAIComponent()
+@Observable
+class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible {
+    @ObservationIgnored @Dependency private var llmRunner: LLMRunner
+    @ObservationIgnored @Dependency private var healthDataFetcher: HealthDataFetcher
+    
+    var llm: (any LLMSession)?
+    @ObservationIgnored private var systemPrompt = ""
+    
+    required init() { }
 
     
-    var querying = false {
-        willSet {
-            _Concurrency.Task { @MainActor in
-                objectWillChange.send()
-            }
+    /// Creates an `LLMSchema`, sets it up for use with an `LLMRunner`, injects the system prompt
+    /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
+    /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
+    ///
+    /// If the `--mockMode` feature flag is set, this function will use `LLMMockSchema()`, otherwise
+    /// will use `LLMOpenAISchema` with the model type specified in the `model` parameter.
+    /// - Parameter model: the type of OpenAI model to use
+    @MainActor
+    func prepareLLM(with model: LLMOpenAIModelType) async {
+        var llmSchema: any LLMSchema
+        
+        if FeatureFlags.mockMode {
+            llmSchema = LLMMockSchema()
+        } else {
+            llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
+        }
+        
+        let llm = llmRunner(with: llmSchema)
+        systemPrompt = await generateSystemPrompt()
+        llm.context.append(systemMessage: systemPrompt)
+        self.llm = llm
+    }
+    
+    /// Queries the LLM using the current session in the `llm` property and adds the output to the context.
+    @MainActor
+    func queryLLM() async throws {
+        guard let llm,
+              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
+            return
+        }
+        
+        let stream = try await llm.generate()
+        
+        for try await token in stream {
+            llm.context.append(assistantOutput: token)
         }
     }
     
-    var runningPrompt: [Chat] = [] {
-        willSet {
-            _Concurrency.Task { @MainActor in
-                objectWillChange.send()
-            }
-        }
-        didSet {
-            _Concurrency.Task {
-                if runningPrompt.last?.role == .user {
-                    do {
-                        try await queryOpenAI()
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
+    /// Resets the LLM context and re-injects the system prompt.
+    @MainActor
+    func resetChat() async {
+        systemPrompt = await generateSystemPrompt()
+        llm?.context.reset()
+        llm?.context.append(systemMessage: systemPrompt)
     }
     
-    
-    required init() {}
-
-
-    func generateMainPrompt() async throws {
-        let healthDataFetcher = HealthDataFetcher()
-        let healthData = try await healthDataFetcher.fetchAndProcessHealthData()
-
-        let generator = PromptGenerator(with: healthData)
-        let mainPrompt = generator.buildMainPrompt()
-        runningPrompt = [Chat(role: .system, content: mainPrompt)]
-    }
-    
-    func queryOpenAI() async throws {
-        querying = true
-        
-        let chatStreamResults = try await openAIComponent.queryAPI(withChat: runningPrompt)
-        
-        for try await chatStreamResult in chatStreamResults {
-            for choice in chatStreamResult.choices {
-                if runningPrompt.last?.role == .assistant {
-                    let previousChatMessage = runningPrompt.last ?? Chat(role: .assistant, content: "")
-                    runningPrompt[runningPrompt.count - 1] = Chat(
-                        role: .assistant,
-                        content: (previousChatMessage.content ?? "") + (choice.delta.content ?? "")
-                    )
-                } else {
-                    runningPrompt.append(Chat(role: .assistant, content: choice.delta.content ?? ""))
-                }
-            }
-        }
-        
-        querying = false
+    /// Fetches updated health data using the `HealthDataFetcher`
+    /// and passes it to the `PromptGenerator` to create the system prompt.
+    private func generateSystemPrompt() async -> String {
+        let healthData = await healthDataFetcher.fetchAndProcessHealthData()
+        return PromptGenerator(with: healthData).buildMainPrompt()
     }
 }

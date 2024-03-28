@@ -6,7 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziOpenAI
+import SpeziChat
+import SpeziLLM
+import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 import SwiftUI
 
@@ -14,50 +16,59 @@ import SwiftUI
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.enableTextToSpeech) private var textToSpeech = StorageKeys.Defaults.enableTextToSpeech
-    @EnvironmentObject private var openAPIComponent: OpenAIComponent
-    @EnvironmentObject private var healthDataInterpreter: HealthDataInterpreter
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+    
+    @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @State private var showSettings = false
-    @StateObject private var speechSynthesizer = SpeechSynthesizer()
-
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ChatView($healthDataInterpreter.runningPrompt, disableInput: $healthDataInterpreter.querying)
+        NavigationStack {
+            if let llm = healthDataInterpreter.llm {
+                let contextBinding = Binding { llm.context } set: { llm.context = $0 }
+                ChatView(contextBinding, exportFormat: .text)
+                    .speak(llm.context, muted: !textToSpeech)
+                    .speechToolbarButton(muted: !$textToSpeech)
+                    .viewStateAlert(state: llm.state)
                     .navigationTitle("WELCOME_TITLE")
-                    .gesture(
-                        TapGesture().onEnded {
-                            UIApplication.shared.hideKeyboard()
-                        }
-                    )
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             settingsButton
                         }
                         ToolbarItem(placement: .primaryAction) {
-                            textToSpeechButton
+                            resetChatButton
                         }
                     }
-            }
-            .onAppear {
-                generatePrompt()
-            }
-            .onChange(of: completedOnboardingFlow) { _ in
-                generatePrompt()
-            }
-            .onChange(of: healthDataInterpreter.querying) { _ in
-                if textToSpeech,
-                    healthDataInterpreter.runningPrompt.last?.role == .assistant,
-                    let lastMessageContent = healthDataInterpreter.runningPrompt.last?.content {
-                    speechSynthesizer.speak(lastMessageContent)
-                }
-            }
-            .sheet(isPresented: $showSettings) {
-                SettingsView(chat: $healthDataInterpreter.runningPrompt)
+                    .onChange(of: llm.context, initial: true) { _, _ in
+                        Task {
+                            if !llm.context.isEmpty && llm.state != .generating && llm.context.last?.role != .system {
+                                do {
+                                    try await healthDataInterpreter.queryLLM()
+                                } catch {
+                                    showErrorAlert = true
+                                    errorMessage = "Error querying LLM: \(error.localizedDescription)"
+                                }
+                            }
+                        }
+                    }
+            } else {
+                loadingChatView
             }
         }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
+        .alert("ERROR_ALERT_TITLE", isPresented: $showErrorAlert) {
+            Button("ERROR_ALERT_CANCEL", role: .cancel) {}
+        } message: {
+            Text(errorMessage)
+        }
+        .task {
+            await healthDataInterpreter.prepareLLM(with: openAIModel)
+        }
     }
-
+    
     private var settingsButton: some View {
         Button(
             action: {
@@ -70,31 +81,26 @@ struct HealthGPTView: View {
         )
         .accessibilityIdentifier("settingsButton")
     }
-
-    private var textToSpeechButton: some View {
+    
+    private var resetChatButton: some View {
         Button(
             action: {
-                textToSpeech.toggle()
+                Task {
+                    await healthDataInterpreter.resetChat()
+                }
             },
             label: {
-                if textToSpeech {
-                    Image(systemName: "speaker")
-                        .accessibilityLabel(Text("SPEAKER_ENABLED"))
-                } else {
-                    Image(systemName: "speaker.slash")
-                        .accessibilityLabel(Text("SPEAKER_DISABLED"))
-                }
+                Image(systemName: "arrow.counterclockwise")
+                    .accessibilityLabel(Text("RESET"))
             }
         )
-        .accessibilityIdentifier("textToSpeechButton")
+        .accessibilityIdentifier("resetChatButton")
     }
-
-    private func generatePrompt() {
-        _Concurrency.Task {
-            guard completedOnboardingFlow else {
-                return
-            }
-            try await healthDataInterpreter.generateMainPrompt()
+    
+    private var loadingChatView: some View {
+        VStack {
+            Text("LOADING_CHAT_VIEW")
+            ProgressView()
         }
     }
 }
