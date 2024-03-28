@@ -39,8 +39,7 @@ HealthGPT is provided for general informational purposes only and is not intende
 
 1. Clone this repository.
 2. Open `HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
-3. Replace the OpenAI API key placeholder in `Supporting Files/OpenAI-Info.plist` with your own from OpenAI's dashboard. You can also paste your key into the app during onboarding.
-4. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
+3. Run the app (on device or in the simulator) and play with HealthGPT on your own data 🚀
 
 Note: if you're using the simulator, you will need to manually add data in the Health app. 
 Otherwise, all of your results will read zero.
