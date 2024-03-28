@@ -36,6 +36,9 @@ struct HealthGPTView: View {
                         ToolbarItem(placement: .primaryAction) {
                             settingsButton
                         }
+                        ToolbarItem(placement: .primaryAction) {
+                            resetChatButton
+                        }
                     }
                     .onChange(of: llm.context, initial: true) { _, _ in
                         Task {
@@ -50,10 +53,7 @@ struct HealthGPTView: View {
                         }
                     }
             } else {
-                VStack {
-                    Text("LOADING_CHAT_VIEW")
-                    ProgressView()
-                }
+                loadingChatView
             }
         }
         .sheet(isPresented: $showSettings) {
@@ -80,5 +80,27 @@ struct HealthGPTView: View {
             }
         )
         .accessibilityIdentifier("settingsButton")
+    }
+    
+    private var resetChatButton: some View {
+        Button(
+            action: {
+                Task {
+                    await healthDataInterpreter.resetChat()
+                }
+            },
+            label: {
+                Image(systemName: "arrow.counterclockwise")
+                    .accessibilityLabel(Text("RESET"))
+            }
+        )
+        .accessibilityIdentifier("resetChatButton")
+    }
+    
+    private var loadingChatView: some View {
+        VStack {
+            Text("LOADING_CHAT_VIEW")
+            ProgressView()
+        }
     }
 }

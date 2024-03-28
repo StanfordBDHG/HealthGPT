@@ -75,7 +75,6 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// and passes it to the `PromptGenerator` to create the system prompt.
     private func generateSystemPrompt() async -> String {
         let healthData = await healthDataFetcher.fetchAndProcessHealthData()
-        print(healthData)
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
 }

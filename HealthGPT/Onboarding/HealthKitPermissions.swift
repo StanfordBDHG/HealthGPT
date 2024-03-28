@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI
@@ -15,6 +16,7 @@ struct HealthKitPermissions: View {
     @Environment(HealthKit.self) var healthKitDataSource
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @State var healthKitProcessing = false
+    let logger = Logger(subsystem: "HealthGPT", category: "Onboarding")
 
 
     var body: some View {
@@ -48,7 +50,7 @@ struct HealthKitPermissions: View {
                                 try await healthKitDataSource.askForAuthorization()
                             }
                         } catch {
-                            print("Could not request HealthKit permissions.")
+                            logger.error("Could not request HealthKit permissions: \(error.localizedDescription)")
                         }
                         onboardingNavigationPath.nextStep()
                         healthKitProcessing = false

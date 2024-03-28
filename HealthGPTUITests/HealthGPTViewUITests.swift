@@ -69,4 +69,13 @@ final class HealthGPTViewUITests: XCTestCase {
         
         XCTAssert(app.staticTexts["HealthGPT"].waitForExistence(timeout: 2))
     }
+    
+    func testResetChat() throws {
+        let app = XCUIApplication()
+        try app.conductOnboardingIfNeeded()
+        
+        let resetChatButton = app.buttons["resetChatButton"]
+        XCTAssertTrue(resetChatButton.waitForExistence(timeout: 5))
+        resetChatButton.tap()
+    }
 }

@@ -272,6 +272,16 @@
         }
       }
     },
+    "RESET" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
     "SETTINGS_CHAT" : {
       "localizations" : {
         "en" : {
