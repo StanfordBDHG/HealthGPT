@@ -24,6 +24,7 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     secrets: inherit
     with:
+      runsonlabels: '["macOS", "self-hosted"]'
       artifactname: HealthGPT.xcresult
       fastlanelane: beta
       setupsigning: true
