@@ -33,6 +33,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Build and test
 
+### ios codeql
+
+```sh
+[bundle exec] fastlane ios codeql
+```
+
+CodeQL
+
 ### ios build
 
 ```sh
