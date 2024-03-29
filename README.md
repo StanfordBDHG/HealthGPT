@@ -22,6 +22,9 @@ HealthGPT is an experimental iOS app based on [Stanford Spezi](https://github.co
 
 HealthGPT is an open-source project of the [Stanford Biodesign Digital Health](https://bdh.stanford.edu/) team. The initial prototype based on [Spezi](https://github.com/StanfordSpezi/Spezi) and the [SpeziTemplateApplication](https://github.com/StanfordSpezi/SpeziTemplateApplication/) was built by [Varun Shenoy](https://varunshenoy.com).
 
+> [!NOTE] 
+> Do you want to try HealthGPT? You can download it to your iOS device using [TestFlight](https://testflight.apple.com/join/1wYMt3em)!
+
 ## Features
 
 - Extensible architecture built on the [Stanford Spezi](https://github.com/StanfordSpezi/Spezi) open-source digital health development framework for easy customization.
