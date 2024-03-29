@@ -17,17 +17,39 @@ platform :ios do
   desc "Build and test"
   lane :test do
     run_tests(
-      code_coverage: true,
+      skip_build: true,
       derived_data_path: ".derivedData",
+      code_coverage: true,
+      devices: ["iPhone 15 Pro"],
+      disable_slide_to_type: false,
+      concurrent_workers: 1,
+      max_concurrent_simulators: 1,
       result_bundle: true,
-      output_directory: "."
+      output_directory: ".",
+      xcargs: "-skipPackagePluginValidation"
+    )
+  end
+
+  desc "CodeQL"
+  lane :codeql do
+    build_app(
+      skip_archive: true,
+      skip_codesigning: true,
+      derived_data_path: ".derivedData",
+      xcargs: "-skipPackagePluginValidation"
     )
   end
 
   desc "Build app"
   lane :build do
     build_app(
-      derived_data_path: ".derivedData"
+      derived_data_path: ".derivedData",
+      xcargs: "-skipPackagePluginValidation",
+      export_options: {
+        provisioningProfiles: {
+          "edu.stanford.bdhg.healthgpt" => "HealthGPT"
+        }
+      }
     )
   end
 
@@ -44,16 +66,17 @@ platform :ios do
   desc "Publish a beta release to internal TestFlight testers"
   lane :beta do
     signin
-    increment_build_number({
-      build_number: latest_testflight_build_number + 1,
-      xcodeproj: "HealthGPT.xcodeproj"
-    })
+    increment_build_number(
+      {
+        build_number: latest_testflight_build_number + 1
+      }
+    )
     build
     commit = last_git_commit
     upload_to_testflight(
       distribute_external: true,
       groups: [
-        "Internal Testers"
+        "External Testers"
       ],
       submit_beta_review: true,
       notify_external_testers: true,
