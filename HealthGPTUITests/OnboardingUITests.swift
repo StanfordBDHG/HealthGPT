@@ -73,8 +73,16 @@ extension XCUIApplication {
         
         let picker = pickers["llmSourcePicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
-        optionToSelect.adjust(toPickerWheelValue: "Open AI LLM")
+        optionToSelect.adjust(toPickerWheelValue: "On-device LLM")
         
+        XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
+        buttons["Save Choice"].tap()
+        
+        XCTAssertTrue(staticTexts["LLM Download"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Back"].waitForExistence(timeout: 2))
+        buttons["Back"].tap()
+        
+        optionToSelect.adjust(toPickerWheelValue: "Open AI LLM")
         XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
         buttons["Save Choice"].tap()
     }
