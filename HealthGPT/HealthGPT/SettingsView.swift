@@ -28,7 +28,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                if !FeatureFlags.localLLM && !FeatureFlags.mockMode {
+                if !FeatureFlags.localLLM {
                     openAISettings
                 }
 
