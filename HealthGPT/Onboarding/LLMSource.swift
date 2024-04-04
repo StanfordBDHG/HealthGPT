@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpeziLLMOpenAI
 
 
 enum LLMSource: String, CaseIterable, Identifiable, Codable {
