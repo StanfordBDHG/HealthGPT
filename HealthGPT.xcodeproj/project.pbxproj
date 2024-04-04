@@ -44,6 +44,8 @@
 		63439A4E2BA6069E008BDBFD /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4D2BA6069E008BDBFD /* SpeziLLM */; };
 		63439A502BA6069E008BDBFD /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4F2BA6069E008BDBFD /* SpeziLLMOpenAI */; };
 		634523F12BAEF62E00A6E2A1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */; };
+		63497B6C2BBF095A001F8419 /* LLMSourceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */; };
+		63497B6E2BBF0C0B001F8419 /* LLMSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6D2BBF0C0B001F8419 /* LLMSource.swift */; };
 		63DAAF712BBEB14A009E5E19 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = 63DAAF702BBEB14A009E5E19 /* SpeziLLMLocal */; };
 		63DAAF732BBEB14A009E5E19 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = 63DAAF722BBEB14A009E5E19 /* SpeziLLMLocalDownload */; };
 		63DAAF752BBEB24D009E5E19 /* LLMLocalDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */; };
@@ -100,6 +102,8 @@
 		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
 		634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSourceSelection.swift; sourceTree = "<group>"; };
+		63497B6D2BBF0C0B001F8419 /* LLMSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSource.swift; sourceTree = "<group>"; };
 		63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMLocalDownload.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* HealthGPTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTApplication.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
 				63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */,
+				63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */,
+				63497B6D2BBF0C0B001F8419 /* LLMSource.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -482,11 +488,13 @@
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
+				63497B6E2BBF0C0B001F8419 /* LLMSource.swift in Sources */,
 				F381BD3C2A4DE41900BCEB69 /* HealthDataInterpreter.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
 				272FB3542A03F1860010B98D /* PromptGenerator.swift in Sources */,
+				63497B6C2BBF095A001F8419 /* LLMSourceSelection.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
 				2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */,
 				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,

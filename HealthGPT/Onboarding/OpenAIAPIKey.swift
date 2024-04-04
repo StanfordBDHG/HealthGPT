@@ -17,7 +17,7 @@ struct OpenAIAPIKey: View {
     
     var body: some View {
         LLMOpenAIAPITokenOnboardingStep {
-            onboardingNavigationPath.nextStep()
+            onboardingNavigationPath.append(customView: OpenAIModelSelection())
         }
     }
 }

@@ -12,6 +12,7 @@
 enum StorageKeys {
     enum Defaults {
         static let enableTextToSpeech = false
+        static let llmSource = LLMSource.openai
     }
 
     // MARK: - Onboarding
@@ -19,6 +20,8 @@ enum StorageKeys {
     static let onboardingFlowComplete = "onboardingFlow.complete"
     /// A `Step` flag indicating the current step in the onboarding process.
     static let onboardingFlowStep = "onboardingFlow.step"
+    /// An `LLMSource` flag indicating the source of the model (local vs. OpenAI)
+    static let llmSource = "llmsource"
     /// An `LLMOpenAIModelType` flag indicating the OpenAI model to use
     static let openAIModel = "openAI.model"
     /// A `Bool` flag indicating if messages should be spoken.

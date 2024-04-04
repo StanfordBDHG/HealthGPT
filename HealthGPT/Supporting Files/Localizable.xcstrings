@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "API_KEY_SUBTITLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -219,12 +222,52 @@
         }
       }
     },
+    "LLM_SOURCE_SELECTION_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Choice"
+          }
+        }
+      }
+    },
+    "LLM_SOURCE_SELECTION_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an on-device or OpenAI LLM"
+          }
+        }
+      }
+    },
+    "LLM_SOURCE_SELECTION_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LLM Source Selection"
+          }
+        }
+      }
+    },
     "LOADING_CHAT_VIEW" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading the chat window..."
+          }
+        }
+      }
+    },
+    "LOCAL_LLM_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On-device LLM"
           }
         }
       }
@@ -278,6 +321,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Press to open the settings editor."
+          }
+        }
+      }
+    },
+    "OPENAI_LLM_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open AI LLM"
           }
         }
       }

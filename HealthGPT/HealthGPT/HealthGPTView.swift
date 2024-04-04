@@ -11,11 +11,13 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 import SwiftUI
+import SpeziLLMLocal
 
 
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.enableTextToSpeech) private var textToSpeech = StorageKeys.Defaults.enableTextToSpeech
+    @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
     
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
@@ -66,7 +68,13 @@ struct HealthGPTView: View {
             Text(errorMessage)
         }
         .task {
-            await healthDataInterpreter.prepareLLM(with: openAIModel)
+            if FeatureFlags.mockMode {
+                await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
+            } else if FeatureFlags.localLLM || llmSource == .local {
+                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(modelPath: .cachesDirectory.appending(path: "llm.gguf")))
+            } else {
+                await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+            }
         }
     }
     
