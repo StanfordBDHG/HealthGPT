@@ -41,7 +41,7 @@ struct LLMSourceSelection: View {
     }
     
     private var sourceSelector: some View {
-        Picker("", selection: $llmSource) {
+        Picker("LLM_SOURCE_PICKER_LABEL", selection: $llmSource) {
             ForEach(LLMSource.allCases) { source in
                 Text(source.localizedDescription)
                     .tag(source)

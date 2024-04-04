@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "API_KEY_SUBTITLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -218,6 +215,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The Llama2 7B model will be downloaded."
+          }
+        }
+      }
+    },
+    "LLM_SOURCE_PICKER_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an LLM source"
           }
         }
       }
