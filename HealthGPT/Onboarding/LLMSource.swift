@@ -10,8 +10,8 @@ import Foundation
 
 
 enum LLMSource: String, CaseIterable, Identifiable, Codable {
-    case local
     case openai
+    case local
     
     var id: String {
         self.rawValue

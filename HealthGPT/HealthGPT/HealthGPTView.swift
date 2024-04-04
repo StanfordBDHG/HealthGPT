@@ -8,10 +8,10 @@
 
 import SpeziChat
 import SpeziLLM
+import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 import SwiftUI
-import SpeziLLMLocal
 
 
 struct HealthGPTView: View {

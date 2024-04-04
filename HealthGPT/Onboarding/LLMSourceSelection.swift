@@ -48,6 +48,7 @@ struct LLMSourceSelection: View {
             }
         }
         .pickerStyle(.inline)
+        .accessibilityIdentifier("llmSourcePicker")
     }
 }
 
