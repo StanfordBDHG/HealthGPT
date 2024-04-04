@@ -28,7 +28,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                openAISettings
+                if !FeatureFlags.localLLM && !FeatureFlags.mockMode {
+                    openAISettings
+                }
+
                 chatSettings
                 speechSettings
                 disclaimer

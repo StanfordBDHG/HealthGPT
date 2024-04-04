@@ -17,6 +17,8 @@ enum FeatureFlags {
     static let showOnboarding = CommandLine.arguments.contains("--showOnboarding")
     /// Resets all credentials in Secure Storage when the application is launched in order to facilitate testing of OpenAI API keys.
     static let resetSecureStorage = CommandLine.arguments.contains("--resetSecureStorage")
+    /// Configures SpeziLLM to use a local model stored on the device downloaded during onboarding
+    static let localLLM = CommandLine.arguments.contains("--localLLM")
     /// Configures SpeziLLM to mock all generated responses for development and UI tests
     static let mockMode = CommandLine.arguments.contains("--mockMode")
 }

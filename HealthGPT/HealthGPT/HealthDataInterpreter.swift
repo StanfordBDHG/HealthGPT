@@ -10,6 +10,7 @@ import Foundation
 import Spezi
 import SpeziChat
 import SpeziLLM
+import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 
@@ -38,6 +39,8 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         
         if FeatureFlags.mockMode {
             llmSchema = LLMMockSchema()
+        } else if FeatureFlags.localLLM {
+            llmSchema = LLMLocalSchema(modelPath: .cachesDirectory.appending(path: "llm.gguf"))
         } else {
             llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
         }
@@ -52,7 +55,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @MainActor
     func queryLLM() async throws {
         guard let llm,
-              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
+              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant() }) ) else {
             return
         }
         

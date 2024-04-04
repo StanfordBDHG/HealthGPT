@@ -416,6 +416,9 @@
         }
       }
     },
+    "The Llama2 7B model will be downloaded for local execution." : {
+
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
       "extractionState" : "manual",
       "localizations" : {

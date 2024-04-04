@@ -21,8 +21,14 @@ struct OnboardingFlow: View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
             Disclaimer()
-            OpenAIAPIKey()
-            OpenAIModelSelection()
+            
+            if FeatureFlags.localLLM {
+                LLMLocalDownload()
+            } else {
+                OpenAIAPIKey()
+                OpenAIModelSelection()
+            }
+            
             if HKHealthStore.isHealthDataAvailable() {
                 HealthKitPermissions()
             }

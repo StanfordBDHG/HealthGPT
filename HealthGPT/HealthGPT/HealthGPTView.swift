@@ -26,9 +26,10 @@ struct HealthGPTView: View {
     var body: some View {
         NavigationStack {
             if let llm = healthDataInterpreter.llm {
-                let contextBinding = Binding { llm.context } set: { llm.context = $0 }
+                let contextBinding = Binding { llm.context.chatEntity } set: { llm.context = $0.llmContextEntity }
+                
                 ChatView(contextBinding, exportFormat: .text)
-                    .speak(llm.context, muted: !textToSpeech)
+                    .speak(llm.context.chatEntity, muted: !textToSpeech)
                     .speechToolbarButton(muted: !$textToSpeech)
                     .viewStateAlert(state: llm.state)
                     .navigationTitle("WELCOME_TITLE")
@@ -101,6 +102,56 @@ struct HealthGPTView: View {
         VStack {
             Text("LOADING_CHAT_VIEW")
             ProgressView()
+        }
+    }
+}
+
+extension Array where Element == LLMContextEntity {
+    var chatEntity: [ChatEntity] {
+        self.map { llmContextEntity in
+            let role: ChatEntity.Role
+            
+            switch llmContextEntity.role {
+            case .user:
+                role = .user
+            case .assistant:
+                role = .assistant
+            case .system, .tool:
+                role = .hidden(type: .unknown)
+            }
+            
+            return ChatEntity(
+                role: role,
+                content: llmContextEntity.content,
+                complete: llmContextEntity.complete,
+                id: llmContextEntity.id,
+                date: llmContextEntity.date
+            )
+        }
+    }
+}
+
+extension Array where Element == ChatEntity {
+    var llmContextEntity: [LLMContextEntity] {
+        self.map { chatEntity in
+            let role: LLMContextEntity.Role
+            
+            switch chatEntity.role {
+            case .user:
+                role = .user
+            case .assistant:
+                role = .assistant()
+            case .hidden:
+                role = .system
+            }
+
+            return LLMContextEntity(
+                role: role,
+                content: chatEntity.content,
+                complete: chatEntity.complete,
+                id: chatEntity.id,
+                date: chatEntity.date
+            )
         }
     }
 }
