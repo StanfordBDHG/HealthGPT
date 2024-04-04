@@ -16,7 +16,7 @@ struct LLMLocalDownload: View {
 
     var body: some View {
         LLMLocalDownloadView(
-            downloadDescription: "The Llama2 7B model will be downloaded for local execution.",
+            downloadDescription: "LLAMA2_DOWNLOAD_DESCRIPTION",
             llmDownloadUrl: LLMLocalDownloadManager.LLMUrlDefaults.llama2ChatModelUrl,
             llmStorageUrl: .cachesDirectory.appending(path: "llm.gguf")
         ) {

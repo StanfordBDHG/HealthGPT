@@ -209,6 +209,16 @@
         }
       }
     },
+    "LLAMA2_DOWNLOAD_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Llama2 7B model will be downloaded."
+          }
+        }
+      }
+    },
     "LOADING_CHAT_VIEW" : {
       "localizations" : {
         "en" : {
@@ -415,9 +425,6 @@
           }
         }
       }
-    },
-    "The Llama2 7B model will be downloaded for local execution." : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "extractionState" : "manual",
