@@ -43,6 +43,7 @@ extension XCUIApplication {
     func navigateOnboardingFlow(assertThatHealthKitConsentIsShown: Bool = true) throws {
         try navigateOnboardingFlowWelcome()
         try navigateOnboardingFlowDisclaimer()
+        try navigateOnboardingFlowLLMSourceSelection()
         try navigateOnboardingFlowApiKey()
         try navigateOnboardingFlowModelSelection()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
@@ -65,6 +66,25 @@ extension XCUIApplication {
 
         XCTAssertTrue(buttons["I Agree"].waitForExistence(timeout: 10))
         buttons["I Agree"].tap()
+    }
+    
+    private func navigateOnboardingFlowLLMSourceSelection() throws {
+        XCTAssertTrue(staticTexts["LLM Source Selection"].waitForExistence(timeout: 5))
+        
+        let picker = pickers["llmSourcePicker"]
+        let optionToSelect = picker.pickerWheels.element(boundBy: 0)
+        optionToSelect.adjust(toPickerWheelValue: "On-device LLM")
+        
+        XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
+        buttons["Save Choice"].tap()
+        
+        XCTAssertTrue(staticTexts["LLM Download"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Back"].waitForExistence(timeout: 2))
+        buttons["Back"].tap()
+        
+        optionToSelect.adjust(toPickerWheelValue: "Open AI LLM")
+        XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
+        buttons["Save Choice"].tap()
     }
 
     private func navigateOnboardingFlowApiKey() throws {

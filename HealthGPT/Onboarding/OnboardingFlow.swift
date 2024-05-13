@@ -15,14 +15,20 @@ import SwiftUI
 /// Displays an multi-step onboarding flow for the HealthGPT Application.
 struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @AppStorage(StorageKeys.llmSource) var llmSource = StorageKeys.Defaults.llmSource
     
     
     var body: some View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
             Disclaimer()
-            OpenAIAPIKey()
-            OpenAIModelSelection()
+            
+            if FeatureFlags.localLLM {
+                LLMLocalDownload()
+            } else {
+                LLMSourceSelection()
+            }
+            
             if HKHealthStore.isHealthDataAvailable() {
                 HealthKitPermissions()
             }

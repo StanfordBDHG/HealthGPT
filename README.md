@@ -31,6 +31,7 @@ HealthGPT is an open-source project of the [Stanford Biodesign Digital Health](h
 - Chat-style interface for user-friendly health data interaction using the [SpeziChat](https://github.com/StanfordSpezi/SpeziChat) module with speech-to-text (recognition) as well as text-to-speech (synthesize) accessibility capabilities and chat export functionality.
 - Integration with the Apple Health app via [SpeziHealthKit](https://github.com/StanfordSpezi/SpeziHealthKit).
 - GPT-3.5 + GPT-4 queries through the [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) module.
+- Option for privacy preserving local execution of LLM queries using [SpeziLLMLocal](https://swiftpackageindex.com/stanfordspezi/spezillm/documentation/spezillmlocal) with [Llama3 8B](https://llama.meta.com/llama3/), including automated download and storage of model files during onboarding.
 - Out of the box support for querying sleep, step count, active energy, exercise minutes, heart rate, and body mass.
 
 

@@ -10,6 +10,7 @@ import HealthKit
 import Spezi
 import SpeziHealthKit
 import SpeziLLM
+import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSecureStorage
 import SpeziSpeechSynthesizer
@@ -24,6 +25,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             }
             LLMRunner {
                 LLMOpenAIPlatform()
+                LLMLocalPlatform()
                 LLMMockPlatform()
             }
             HealthDataInterpreter()

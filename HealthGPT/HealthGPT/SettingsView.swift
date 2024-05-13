@@ -21,6 +21,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
+    @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
     let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
@@ -28,7 +29,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                openAISettings
+                if !FeatureFlags.localLLM && !(llmSource == .local) {
+                    openAISettings
+                }
+
                 chatSettings
                 speechSettings
                 disclaimer
@@ -102,7 +106,7 @@ struct SettingsView: View {
                 ) { model in
                     Task {
                         openAIModel = model
-                        await healthDataInterpreter.prepareLLM(with: model)
+                        await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: model)))
                         path.removeLast()
                     }
                 }

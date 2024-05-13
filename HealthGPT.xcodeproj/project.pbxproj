@@ -41,10 +41,14 @@
 		2F4E21D829F0518B0067EE98 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* OnboardingUITests.swift */; };
 		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
 		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
-		2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8DBF329F041C500239E1A /* OpenAI */; };
 		63439A4E2BA6069E008BDBFD /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4D2BA6069E008BDBFD /* SpeziLLM */; };
 		63439A502BA6069E008BDBFD /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4F2BA6069E008BDBFD /* SpeziLLMOpenAI */; };
 		634523F12BAEF62E00A6E2A1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */; };
+		63497B6C2BBF095A001F8419 /* LLMSourceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */; };
+		63497B6E2BBF0C0B001F8419 /* LLMSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63497B6D2BBF0C0B001F8419 /* LLMSource.swift */; };
+		63DAAF712BBEB14A009E5E19 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = 63DAAF702BBEB14A009E5E19 /* SpeziLLMLocal */; };
+		63DAAF732BBEB14A009E5E19 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = 63DAAF722BBEB14A009E5E19 /* SpeziLLMLocalDownload */; };
+		63DAAF752BBEB24D009E5E19 /* LLMLocalDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */; };
 		653A2551283387FE005D4D48 /* HealthGPTApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* HealthGPTApplication.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		E21D86A029EDB17500490C26 /* HealthDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D869F29EDB17500490C26 /* HealthDataFetcher.swift */; };
@@ -98,6 +102,9 @@
 		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
 		634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSourceSelection.swift; sourceTree = "<group>"; };
+		63497B6D2BBF0C0B001F8419 /* LLMSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSource.swift; sourceTree = "<group>"; };
+		63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMLocalDownload.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* HealthGPTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,14 +138,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DAAF712BBEB14A009E5E19 /* SpeziLLMLocal in Frameworks */,
 				63439A4E2BA6069E008BDBFD /* SpeziLLM in Frameworks */,
 				27859C072A34F17800397C85 /* SpeziOnboarding in Frameworks */,
 				27859C012A34F15E00397C85 /* XCTSpezi in Frameworks */,
+				63DAAF732BBEB14A009E5E19 /* SpeziLLMLocalDownload in Frameworks */,
 				27859C042A34F16B00397C85 /* SpeziHealthKit in Frameworks */,
 				27859BFF2A34F15E00397C85 /* Spezi in Frameworks */,
 				27859C102A34F1A900397C85 /* SpeziLocalStorage in Frameworks */,
 				63439A502BA6069E008BDBFD /* SpeziLLMOpenAI in Frameworks */,
-				2FF8DBF429F041C500239E1A /* OpenAI in Frameworks */,
 				27859C122A34F1A900397C85 /* SpeziSecureStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +173,9 @@
 				275DEFD829EEC6B80079D453 /* OnboardingFlow.swift */,
 				275DEFDA29EEC6CA0079D453 /* String+ModuleLocalized.swift */,
 				275DEFDC29EEC6DC0079D453 /* Welcome.swift */,
+				63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */,
+				63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */,
+				63497B6D2BBF0C0B001F8419 /* LLMSource.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -328,7 +339,6 @@
 			);
 			name = HealthGPT;
 			packageProductDependencies = (
-				2FF8DBF329F041C500239E1A /* OpenAI */,
 				27859BFE2A34F15E00397C85 /* Spezi */,
 				27859C002A34F15E00397C85 /* XCTSpezi */,
 				27859C032A34F16B00397C85 /* SpeziHealthKit */,
@@ -337,6 +347,8 @@
 				27859C112A34F1A900397C85 /* SpeziSecureStorage */,
 				63439A4D2BA6069E008BDBFD /* SpeziLLM */,
 				63439A4F2BA6069E008BDBFD /* SpeziLLMOpenAI */,
+				63DAAF702BBEB14A009E5E19 /* SpeziLLMLocal */,
+				63DAAF722BBEB14A009E5E19 /* SpeziLLMLocalDownload */,
 			);
 			productName = TemplateApplication;
 			productReference = 653A254D283387FE005D4D48 /* HealthGPT.app */;
@@ -375,7 +387,6 @@
 			);
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
-				2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */,
 				27859BFD2A34F15E00397C85 /* XCRemoteSwiftPackageReference "Spezi" */,
 				27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */,
 				27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */,
@@ -470,17 +481,20 @@
 				275DEFD729EEC6A60079D453 /* Disclaimer.swift in Sources */,
 				275DEFF429EECA180079D453 /* CodableArray+RawRepresentable.swift in Sources */,
 				2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */,
+				63DAAF752BBEB24D009E5E19 /* LLMLocalDownload.swift in Sources */,
 				2F4242992A8B0432006E2B01 /* HealthGPTStandard.swift in Sources */,
 				2F4242972A8B03A5006E2B01 /* OpenAIModelSelection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */,
 				272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */,
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
+				63497B6E2BBF0C0B001F8419 /* LLMSource.swift in Sources */,
 				F381BD3C2A4DE41900BCEB69 /* HealthDataInterpreter.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,
 				275DEFD529EEC6870079D453 /* HealthKitPermissions.swift in Sources */,
 				272FB3542A03F1860010B98D /* PromptGenerator.swift in Sources */,
+				63497B6C2BBF095A001F8419 /* LLMSourceSelection.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
 				2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */,
 				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,
@@ -680,6 +694,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Test;
@@ -725,6 +740,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -787,6 +803,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -841,6 +858,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -887,6 +905,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -936,6 +955,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-TemplateApplication_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1043,20 +1063,12 @@
 				minimumVersion = 1.0.1;
 			};
 		};
-		2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.6;
-			};
-		};
 		63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.1;
+				minimumVersion = 0.8.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1112,11 +1124,6 @@
 			package = 27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */;
 			productName = XCTRuntimeAssertions;
 		};
-		2FF8DBF329F041C500239E1A /* OpenAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FF8DBF229F041C500239E1A /* XCRemoteSwiftPackageReference "OpenAI" */;
-			productName = OpenAI;
-		};
 		63439A4D2BA6069E008BDBFD /* SpeziLLM */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */;
@@ -1126,6 +1133,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */;
 			productName = SpeziLLMOpenAI;
+		};
+		63DAAF702BBEB14A009E5E19 /* SpeziLLMLocal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocal;
+		};
+		63DAAF722BBEB14A009E5E19 /* SpeziLLMLocalDownload */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocalDownload;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

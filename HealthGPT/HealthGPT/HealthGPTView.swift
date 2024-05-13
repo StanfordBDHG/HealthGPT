@@ -8,6 +8,7 @@
 
 import SpeziChat
 import SpeziLLM
+import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 import SwiftUI
@@ -16,6 +17,7 @@ import SwiftUI
 struct HealthGPTView: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.enableTextToSpeech) private var textToSpeech = StorageKeys.Defaults.enableTextToSpeech
+    @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
     
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
@@ -26,9 +28,10 @@ struct HealthGPTView: View {
     var body: some View {
         NavigationStack {
             if let llm = healthDataInterpreter.llm {
-                let contextBinding = Binding { llm.context } set: { llm.context = $0 }
+                let contextBinding = Binding { llm.context.chat } set: { llm.context.chat = $0 }
+                
                 ChatView(contextBinding, exportFormat: .text)
-                    .speak(llm.context, muted: !textToSpeech)
+                    .speak(llm.context.chat, muted: !textToSpeech)
                     .speechToolbarButton(muted: !$textToSpeech)
                     .viewStateAlert(state: llm.state)
                     .navigationTitle("WELCOME_TITLE")
@@ -65,7 +68,16 @@ struct HealthGPTView: View {
             Text(errorMessage)
         }
         .task {
-            await healthDataInterpreter.prepareLLM(with: openAIModel)
+            if FeatureFlags.mockMode {
+                await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
+            } else if FeatureFlags.localLLM || llmSource == .local {
+                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(
+                    modelPath: .cachesDirectory.appending(path: "llm.gguf"),
+                    formatChat: LLMLocalSchema.PromptFormattingDefaults.llama3
+                ))
+            } else {
+                await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+            }
         }
     }
     

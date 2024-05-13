@@ -10,6 +10,7 @@ import Foundation
 import Spezi
 import SpeziChat
 import SpeziLLM
+import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 
@@ -23,26 +24,16 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @ObservationIgnored private var systemPrompt = ""
     
     required init() { }
-
     
-    /// Creates an `LLMSchema`, sets it up for use with an `LLMRunner`, injects the system prompt
+    
+    /// Creates an `LLMRunner`, from an `LLMSchema` and injects the system prompt
     /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
     /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
     ///
-    /// If the `--mockMode` feature flag is set, this function will use `LLMMockSchema()`, otherwise
-    /// will use `LLMOpenAISchema` with the model type specified in the `model` parameter.
-    /// - Parameter model: the type of OpenAI model to use
+    /// - Parameter schema: the LLMSchema to use
     @MainActor
-    func prepareLLM(with model: LLMOpenAIModelType) async {
-        var llmSchema: any LLMSchema
-        
-        if FeatureFlags.mockMode {
-            llmSchema = LLMMockSchema()
-        } else {
-            llmSchema = LLMOpenAISchema(parameters: .init(modelType: model))
-        }
-        
-        let llm = llmRunner(with: llmSchema)
+    func prepareLLM(with schema: any LLMSchema) async {
+        let llm = llmRunner(with: schema)
         systemPrompt = await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
         self.llm = llm
@@ -52,7 +43,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     @MainActor
     func queryLLM() async throws {
         guard let llm,
-              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant }) ) else {
+              llm.context.last?.role == .user || !(llm.context.contains(where: { $0.role == .assistant() }) ) else {
             return
         }
         
