@@ -16,8 +16,8 @@ struct LLMLocalDownload: View {
 
     var body: some View {
         LLMLocalDownloadView(
-            downloadDescription: "LLAMA2_DOWNLOAD_DESCRIPTION",
-            llmDownloadUrl: LLMLocalDownloadManager.LLMUrlDefaults.llama2ChatModelUrl,
+            downloadDescription: "LLAMA3_DOWNLOAD_DESCRIPTION",
+            llmDownloadUrl: LLMLocalDownloadManager.LLMUrlDefaults.llama3InstructModelUrl,
             llmStorageUrl: .cachesDirectory.appending(path: "llm.gguf")
         ) {
             onboardingNavigationPath.nextStep()

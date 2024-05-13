@@ -209,12 +209,12 @@
         }
       }
     },
-    "LLAMA2_DOWNLOAD_DESCRIPTION" : {
+    "LLAMA3_DOWNLOAD_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Llama2 7B model will be downloaded."
+            "value" : "The Llama3 8B model will be downloaded."
           }
         }
       }
