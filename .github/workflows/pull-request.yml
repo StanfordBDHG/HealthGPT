@@ -33,3 +33,5 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
       coveragereports: HealthGPT.xcresult
+    secrets:
+      token: ${{ secrets.CODECOV_TOKEN }}
