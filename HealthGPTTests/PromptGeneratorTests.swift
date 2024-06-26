@@ -10,10 +10,15 @@
 import XCTest
 
 class PromptGeneratorTests: XCTestCase {
-    var sampleHealthData: [HealthData] = createSampleHealthData()
+    var sampleHealthData: HealthData = createSampleHealthData()
 
-    private static func createSampleHealthData() -> [HealthData] {
-        var healthData: [HealthData] = []
+    private static func createSampleHealthData() -> HealthData {
+        var healthData: HealthData = HealthData(dailyActivityData: createSampleActivityData(), ehrData: createSampleEHRData())
+        return healthData
+    }
+        
+    private static func createSampleActivityData() -> [ActivityData] {
+        var activityData: [ActivityData] = []
         for day in 0...13 {
             guard let date = Calendar.current.date(byAdding: .day, value: -(13 - day), to: Date()) else {
                 continue
@@ -28,7 +33,7 @@ class PromptGeneratorTests: XCTestCase {
             let bodyWeight = Double.random(in: 100..<120)
             let sleepHours = Double.random(in: 4..<9)
 
-            let healthDataItem = HealthData(
+            let activityDataItem = ActivityData(
                 date: dateString,
                 steps: steps,
                 activeEnergy: activeEnergy,
@@ -37,9 +42,13 @@ class PromptGeneratorTests: XCTestCase {
                 sleepHours: sleepHours
             )
 
-            healthData.append(healthDataItem)
+            activityData.append(activityDataItem)
         }
-        return healthData
+        return activityData
+    }
+    
+    private static func createSampleEHRData() -> [String] {
+        return []
     }
 
     func testBuildMainPrompt() {
@@ -54,7 +63,7 @@ class PromptGeneratorTests: XCTestCase {
         
         XCTAssertTrue(mainPrompt.contains("Today is \(today)"))
 
-        for healthDataItem in sampleHealthData {
+        for healthDataItem in sampleHealthData.dailyActivityData {
             XCTAssertTrue(mainPrompt.contains(healthDataItem.date))
             if let steps = healthDataItem.steps {
                 XCTAssertTrue(mainPrompt.contains("\(Int(steps)) steps"))
