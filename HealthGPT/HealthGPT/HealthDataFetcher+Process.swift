@@ -14,22 +14,25 @@ extension HealthDataFetcher {
     /// Fetches and processes health data for the last 14 days.
     ///
     /// - Returns: An array of `HealthData` objects, one for each day in the last 14 days.
-    func fetchAndProcessHealthData() async -> [HealthData] {
+    func fetchAndProcessHealthData() async -> HealthData {
         let calendar = Calendar.current
         let today = Date()
-        var healthData: [HealthData] = []
+        var healthData: HealthData = HealthData(dailyActivityData: [], ehrData: [])
 
+        // Fetch activity data
+        var activityData: [ActivityData] = []
+        
         // Create an array of HealthData objects for the last 14 days
         for day in 1...14 {
             guard let endDate = calendar.date(byAdding: .day, value: -day, to: today) else { continue }
-            healthData.append(
-                HealthData(
+            activityData.append(
+                ActivityData(
                     date: DateFormatter.localizedString(from: endDate, dateStyle: .short, timeStyle: .none)
                 )
             )
         }
 
-        healthData = healthData.reversed()
+        activityData = activityData.reversed()
 
         async let stepCounts = fetchLastTwoWeeksStepCount()
         async let sleepHours = fetchLastTwoWeeksSleep()
@@ -44,12 +47,18 @@ extension HealthDataFetcher {
         let fetchedBodyMass = try? await bodyMass
 
         for day in 0...13 {
-            healthData[day].steps = fetchedStepCounts?[day]
-            healthData[day].sleepHours = fetchedSleepHours?[day]
-            healthData[day].activeEnergy = fetchedCaloriesBurned?[day]
-            healthData[day].exerciseMinutes = fetchedExerciseTime?[day]
-            healthData[day].bodyWeight = fetchedBodyMass?[day]
+            activityData[day].steps = fetchedStepCounts?[day]
+            activityData[day].sleepHours = fetchedSleepHours?[day]
+            activityData[day].activeEnergy = fetchedCaloriesBurned?[day]
+            activityData[day].exerciseMinutes = fetchedExerciseTime?[day]
+            activityData[day].bodyWeight = fetchedBodyMass?[day]
         }
+
+        healthData.dailyActivityData = activityData
+        
+        // Fetch EHR data
+        let fetchedEhrData = try? await fetchAllEHRRecords()
+        healthData.ehrData = fetchedEhrData
 
         return healthData
     }

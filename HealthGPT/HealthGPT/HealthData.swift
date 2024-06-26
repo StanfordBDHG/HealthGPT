@@ -11,6 +11,11 @@ import Foundation
 
 
 struct HealthData: Codable {
+    var dailyActivityData: [ActivityData]
+    var ehrData: [String]?
+}
+
+struct ActivityData: Codable {
     var date: String
     var steps: Double?
     var activeEnergy: Double?

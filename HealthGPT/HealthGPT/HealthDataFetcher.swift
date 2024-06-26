@@ -169,6 +169,97 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
         
         return dailySleepData
     }
+    
+    /// Fetches the user's complete ehr data.
+    ///
+    /// - Returns: An array of `String` values representing ehr data as FHIR json strings.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
+    func fetchAllEHRRecords() async throws -> [String] {
+        let clinicalTypes: [HKClinicalTypeIdentifier: String] = [
+            .allergyRecord: "Allergies",
+            //.clinicalNoteRecord: "Clinical notes", // Uncomment or remove based on availability in your HealthKit version
+            .conditionRecord: "Conditions",
+            .immunizationRecord: "Immunizations",
+            .labResultRecord: "Lab results",
+            .medicationRecord: "Medications",
+            .procedureRecord: "Procedures",
+            .vitalSignRecord: "Vital signs",
+            //.coverageRecord: "Coverage records" // Note: Some identifiers might not be available in all iOS versions.
+        ]
+
+        var allRecords: [HKClinicalRecord] = []
+
+        for (clinicalTypeIdentifier, typeString) in clinicalTypes {
+            guard let clinicalType = HKObjectType.clinicalType(forIdentifier: clinicalTypeIdentifier) else {
+                continue // Or handle the error as needed
+            }
+
+            let records = try await fetchEHRRecordsByType(for: clinicalType)
+            allRecords.append(contentsOf: records)
+        }
+        
+        // Convert clinical records to JSON strings
+        let ehrRecordStrings: [String] = allRecords.compactMap {
+            clinicalRecord in
+            if let fhirRecord = clinicalRecord.fhirResource,
+               let fhirData = String(data: fhirRecord.data, encoding: .utf8) {
+                return fhirData
+            }
+            return nil
+        }
+
+        return ehrRecordStrings
+    }
+
+    private func fetchEHRRecordsByType(for clinicalType: HKClinicalType) async throws -> [HKClinicalRecord] {
+        try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(sampleType: clinicalType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { query, samples, error in
+                
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                let clinicalRecords = samples as? [HKClinicalRecord] ?? []
+                continuation.resume(returning: clinicalRecords)
+            }
+            
+            healthStore.execute(query)
+        }
+    }
+    
+    /// Fetches the user's ehr data for a specific type.
+    ///
+    /// - Returns: An array of `String` values representing ehr data of the given type.
+    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
+    func fetchEHRDataForType(for type: HKClinicalType) async throws -> [String] {
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(sampleType: type, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in
+                
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let ehrSamples = samples as? [HKClinicalRecord] else {
+                    continuation.resume(returning: []) // Resume with an empty array if no samples are found
+                    return
+                }
+                
+                let records: [String] = ehrSamples.compactMap { clinicalRecord in
+                    if let fhirRecord = clinicalRecord.fhirResource,
+                       let fhirData = String(data: fhirRecord.data, encoding: .utf8) {
+                        return fhirData
+                    }
+                    return nil
+                }
+                
+                continuation.resume(returning: records)
+            }
+            
+            healthStore.execute(query)
+        }
+    }
 
     private func createLastTwoWeeksPredicate() -> NSPredicate {
         let now = Date()

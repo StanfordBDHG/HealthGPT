@@ -44,7 +44,16 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
                     HKQuantityType(.appleExerciseTime),
                     HKQuantityType(.bodyMass),
                     HKQuantityType(.heartRate),
-                    HKCategoryType(.sleepAnalysis)
+                    HKCategoryType(.sleepAnalysis),
+                    HKObjectType.clinicalType(forIdentifier: .allergyRecord)!,
+                    //HKObjectType.clinicalType(forIdentifier: .clinicalNoteRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .conditionRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .coverageRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .immunizationRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .labResultRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .medicationRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .procedureRecord)!,
+                    HKObjectType.clinicalType(forIdentifier: .vitalSignRecord)!,
                 ],
                 deliverySetting: .manual()
             )
