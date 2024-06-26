@@ -1,0 +1,203 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:practitioner-1",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-1",
+        "identifier": [
+          {
+            "system": "http://hospital.smarthealthit.org",
+            "value": "67890"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Smith",
+            "given": [
+              "Jane"
+            ]
+          }
+        ],
+        "gender": "female"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:encounter-1",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "encounter-1",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/practitioner-1"
+            }
+          }
+        ],
+        "period": {
+          "start": "2024-06-20T09:00:00Z",
+          "end": "2024-06-20T09:30:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "encounter": {
+          "reference": "Encounter/encounter-1"
+        },
+        "effectiveDateTime": "2024-06-20T09:00:00Z",
+        "valueQuantity": {
+          "value": 120,
+          "unit": "beats/minute",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-2",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6",
+              "display": "Systolic blood pressure"
+            }
+          ],
+          "text": "Systolic blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "encounter": {
+          "reference": "Encounter/encounter-1"
+        },
+        "effectiveDateTime": "2024-06-20T09:00:00Z",
+        "valueQuantity": {
+          "value": 160,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-3",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4",
+              "display": "Diastolic blood pressure"
+            }
+          ],
+          "text": "Diastolic blood pressure"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "encounter": {
+          "reference": "Encounter/encounter-1"
+        },
+        "effectiveDateTime": "2024-06-20T09:00:00Z",
+        "valueQuantity": {
+          "value": 100,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-4",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Electrocardiogram"
+            }
+          ],
+          "text": "Electrocardiogram"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "encounter": {
+          "reference": "Encounter/encounter-1"
+        },
+        "effectiveDateTime": "2024-06-20T09:00:00Z",
+        "valueString": "Abnormal ECG findings, suggestive of heart disease"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:clinical-note",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "clinical-note",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11506-3",
+              "display": "Note"
+            }
+          ],
+          "text": "Clinical Note"
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "encounter": {
+          "reference": "Encounter/encounter-1"
+        },
+        "effectiveDateTime": "2024-06-20T09:00:00Z",
+        "issued": "2024-06-20T09:30:00Z",
+        "valueString": "Patient has normal vital signs and blood values. No follow-up required."
+      }
+    }
+  ]
+}
+

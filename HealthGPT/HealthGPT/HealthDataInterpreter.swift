@@ -62,10 +62,26 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         llm?.context.append(systemMessage: systemPrompt)
     }
     
+    /// Resets the LLM context and re-injects the system prompt with testdata.
+    @MainActor
+    func generateTestData(testdata: String) async {
+        systemPrompt = await generateSystemPromptWithTestData(testdata: [testdata])
+        llm?.context.reset()
+        llm?.context.append(systemMessage: systemPrompt)
+    }
+    
     /// Fetches updated health data using the `HealthDataFetcher`
     /// and passes it to the `PromptGenerator` to create the system prompt.
     private func generateSystemPrompt() async -> String {
         let healthData = await healthDataFetcher.fetchAndProcessHealthData()
+        return PromptGenerator(with: healthData).buildMainPrompt()
+    }
+    
+    /// Injects testdata
+    /// and passes it to the `PromptGenerator` to create the system prompt.
+    private func generateSystemPromptWithTestData(testdata: [String]) async -> String {
+        var healthData = await healthDataFetcher.fetchAndProcessHealthData()
+        healthData.ehrData = testdata
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
 }

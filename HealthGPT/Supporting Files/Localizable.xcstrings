@@ -24,6 +24,9 @@
         }
       }
     },
+    "Clear" : {
+
+    },
     "ERROR_ALERT_CANCEL" : {
       "localizations" : {
         "en" : {
@@ -208,6 +211,9 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
     },
     "LLAMA3_DOWNLOAD_DESCRIPTION" : {
       "localizations" : {
@@ -432,6 +438,17 @@
         }
       }
     },
+    "SETTINGS_POPULATE_TESTDATA" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populate testdata"
+          }
+        }
+      }
+    },
     "SETTINGS_SPEECH" : {
       "localizations" : {
         "en" : {
@@ -448,6 +465,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable Text to Speech"
+          }
+        }
+      }
+    },
+    "SETTINGS_TESTDATA" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testdata"
+          }
+        }
+      }
+    },
+    "SETTINGS_TESTDATA_ANOMALY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testdata: Anomaly"
+          }
+        }
+      }
+    },
+    "SETTINGS_TESTDATA_APPOINTMENT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testdata: Upcoming appointment"
+          }
+        }
+      }
+    },
+    "SETTINGS_TESTDATA_CUSTOM" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testdata: Own resource"
           }
         }
       }

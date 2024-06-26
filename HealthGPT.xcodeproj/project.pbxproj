@@ -41,6 +41,9 @@
 		2F4E21D829F0518B0067EE98 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E21D729F0518B0067EE98 /* OnboardingUITests.swift */; };
 		2F4E23832989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */; };
 		2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */; };
+		4580588C2C2C79810039F20C /* HealthDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4580588B2C2C79810039F20C /* HealthDataGenerator.swift */; };
+		4580588F2C2CBD1B0039F20C /* AppointmentReminderFHIRBundle.json in Resources */ = {isa = PBXBuildFile; fileRef = 4580588E2C2CBD1B0039F20C /* AppointmentReminderFHIRBundle.json */; };
+		458058912C2CBDC50039F20C /* CareAnomalyFHIRBundle.json in Resources */ = {isa = PBXBuildFile; fileRef = 458058902C2CBDC50039F20C /* CareAnomalyFHIRBundle.json */; };
 		63439A4E2BA6069E008BDBFD /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4D2BA6069E008BDBFD /* SpeziLLM */; };
 		63439A502BA6069E008BDBFD /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 63439A4F2BA6069E008BDBFD /* SpeziLLMOpenAI */; };
 		634523F12BAEF62E00A6E2A1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */; };
@@ -101,6 +104,9 @@
 		2F4E23822989D51F0013F3D9 /* HealthGPTAppTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* HealthGPTAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTAppDelegate.swift; sourceTree = "<group>"; };
 		2FAEC07F297F583900C11C42 /* HealthGPT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthGPT.entitlements; sourceTree = "<group>"; };
+		4580588B2C2C79810039F20C /* HealthDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataGenerator.swift; sourceTree = "<group>"; };
+		4580588E2C2CBD1B0039F20C /* AppointmentReminderFHIRBundle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppointmentReminderFHIRBundle.json; sourceTree = "<group>"; };
+		458058902C2CBDC50039F20C /* CareAnomalyFHIRBundle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CareAnomalyFHIRBundle.json; sourceTree = "<group>"; };
 		634523F02BAEF62D00A6E2A1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSourceSelection.swift; sourceTree = "<group>"; };
 		63497B6D2BBF0C0B001F8419 /* LLMSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSource.swift; sourceTree = "<group>"; };
@@ -230,8 +236,18 @@
 				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
 				F381BD3B2A4DE41900BCEB69 /* HealthDataInterpreter.swift */,
+				4580588B2C2C79810039F20C /* HealthDataGenerator.swift */,
 			);
 			path = HealthGPT;
+			sourceTree = "<group>";
+		};
+		4580588D2C2CBC770039F20C /* FHIRTestData */ = {
+			isa = PBXGroup;
+			children = (
+				4580588E2C2CBD1B0039F20C /* AppointmentReminderFHIRBundle.json */,
+				458058902C2CBDC50039F20C /* CareAnomalyFHIRBundle.json */,
+			);
+			path = FHIRTestData;
 			sourceTree = "<group>";
 		};
 		653A2544283387FE005D4D48 = {
@@ -258,6 +274,7 @@
 		653A254F283387FE005D4D48 /* HealthGPT */ = {
 			isa = PBXGroup;
 			children = (
+				4580588D2C2CBC770039F20C /* FHIRTestData */,
 				2FF8DBF129F0414E00239E1A /* HealthGPT */,
 				275DEFEE29EEC9E30079D453 /* Helper */,
 				275DEFD129EEC6620079D453 /* Onboarding */,
@@ -426,7 +443,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4580588F2C2CBD1B0039F20C /* AppointmentReminderFHIRBundle.json in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
+				458058912C2CBDC50039F20C /* CareAnomalyFHIRBundle.json in Resources */,
 				634523F12BAEF62E00A6E2A1 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +508,7 @@
 				275DEFD029EEC5D20079D453 /* FeatureFlags.swift in Sources */,
 				272FB3522A03D14C0010B98D /* HealthData.swift in Sources */,
 				63497B6E2BBF0C0B001F8419 /* LLMSource.swift in Sources */,
+				4580588C2C2C79810039F20C /* HealthDataGenerator.swift in Sources */,
 				F381BD3C2A4DE41900BCEB69 /* HealthDataInterpreter.swift in Sources */,
 				275DEFF229EECA030079D453 /* Binding+Negate.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* HealthGPTAppDelegate.swift in Sources */,

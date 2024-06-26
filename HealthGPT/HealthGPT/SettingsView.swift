@@ -11,20 +11,24 @@ import SpeziChat
 import SpeziLLMOpenAI
 import SwiftUI
 
+let appointmentReminderFHIRTestData = readJSONFile(fileName: "AppointmentReminderFHIRBundle")
+let careAnomalyFHIRTestData = readJSONFile(fileName: "CareAnomalyFHIRBundle")
+
 struct SettingsView: View {
     private enum SettingsDestinations {
         case openAIKey
         case openAIModelSelection
+        case testDataViewer
     }
     
     @State private var path = NavigationPath()
+    @State private var testDataInputText: String = ""
     @Environment(\.dismiss) private var dismiss
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
     let logger = Logger(subsystem: "HealthGPT", category: "Settings")
-
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -35,6 +39,7 @@ struct SettingsView: View {
 
                 chatSettings
                 speechSettings
+                testData
                 disclaimer
             }
             .navigationTitle("SETTINGS_TITLE")
@@ -86,6 +91,35 @@ struct SettingsView: View {
         }
     }
     
+    private var testData: some View {
+        Section("SETTINGS_TESTDATA") {
+            NavigationLink(destination: navigate(to: .testDataViewer)
+                .onAppear {
+                    testDataInputText = appointmentReminderFHIRTestData ?? ""
+                }) {
+                Text("SETTINGS_TESTDATA_APPOINTMENT")
+            }
+            .accessibilityIdentifier("testdataButton")
+            
+            NavigationLink(destination: navigate(to: .testDataViewer)
+                .onAppear {
+                    testDataInputText = careAnomalyFHIRTestData ?? ""
+                }) {
+                Text("SETTINGS_TESTDATA_ANOMALY")
+            }
+            .accessibilityIdentifier("testdataButton")
+            
+            NavigationLink(destination: navigate(to: .testDataViewer)
+                .onAppear {
+                    testDataInputText = ""
+                }) {
+                Text("SETTINGS_TESTDATA_CUSTOM")
+            }
+            .accessibilityIdentifier("testdataButton")
+            
+        }
+    }
+    
     private var disclaimer: some View {
         Section("SETTINGS_DISCLAIMER_TITLE") {
             Text("SETTINGS_DISCLAIMER_TEXT")
@@ -95,6 +129,43 @@ struct SettingsView: View {
     private func navigate(to destination: SettingsDestinations) -> some View {
         Group {
             switch destination {
+            case .testDataViewer:
+                VStack {
+                    TextEditor(text: $testDataInputText)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+                    HStack {
+                        Button(action: {
+                            testDataInputText = ""
+                        }) {
+                            Text("Clear")
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+
+                        Spacer()
+
+                        Button(action: {
+                            Task {
+                                await healthDataInterpreter.generateTestData(testdata: testDataInputText)
+                                dismiss()
+                            }
+                        }) {
+                            Text("SETTINGS_POPULATE_TESTDATA")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                }
+                .padding()
             case .openAIKey:
                 LLMOpenAIAPITokenOnboardingStep(actionText: "OPEN_AI_KEY_SAVE_ACTION") {
                     path.removeLast()
@@ -112,6 +183,30 @@ struct SettingsView: View {
                 }
             }
         }
+    }
+}
+
+private func readJSONFile(fileName: String) -> String? {
+    // Locate the JSON file in the app bundle
+    guard let fileURL = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+        print("JSON file not found")
+        return nil
+    }
+    
+    do {
+        // Read the file content
+        let data = try Data(contentsOf: fileURL)
+        
+        // Convert the data to a string
+        if let jsonString = String(data: data, encoding: .utf8) {
+            return jsonString
+        } else {
+            print("Unable to convert data to string")
+            return nil
+        }
+    } catch {
+        print("Error reading file: \(error.localizedDescription)")
+        return nil
     }
 }
 
