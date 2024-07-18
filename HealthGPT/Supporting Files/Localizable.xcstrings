@@ -513,6 +513,17 @@
         }
       }
     },
+    "SETTINGS_TESTDATA_CUSTOM_WEB" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testdata: From web data generator"
+          }
+        }
+      }
+    },
     "SETTINGS_TITLE" : {
       "comment" : "MARK: Settings View",
       "localizations" : {
@@ -543,6 +554,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Text to speech is enabled, press to disable text to speech."
+          }
+        }
+      }
+    },
+    "URL_TESTDATA_GENERATOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://smemas-data-generator.streamlit.app/"
           }
         }
       }

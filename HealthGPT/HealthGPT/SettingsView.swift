@@ -10,6 +10,7 @@ import OSLog
 import SpeziChat
 import SpeziLLMOpenAI
 import SwiftUI
+import SafariServices
 
 let appointmentReminderFHIRTestData = readJSONFile(fileName: "AppointmentReminderFHIRBundle")
 let careAnomalyFHIRTestData = readJSONFile(fileName: "CareAnomalyFHIRBundle")
@@ -23,6 +24,8 @@ struct SettingsView: View {
     
     @State private var path = NavigationPath()
     @State private var testDataInputText: String = ""
+    @State private var isSafariViewPresented: Bool = false
+    @State private var isNavigatingToTestDataViewer: Bool = false
     @Environment(\.dismiss) private var dismiss
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
@@ -117,6 +120,25 @@ struct SettingsView: View {
             }
             .accessibilityIdentifier("testdataButton")
             
+            Button(action: {
+                isSafariViewPresented = true
+            }) {
+                Text("SETTINGS_TESTDATA_CUSTOM_WEB")
+            }
+            .accessibilityIdentifier("testdataButton")
+            .sheet(isPresented: $isSafariViewPresented) {
+                if let url = URL(string: "https://smemas-data-generator.streamlit.app/") {
+                    SafariView(url: url) { copiedText in
+                        testDataInputText = copiedText
+                        isNavigatingToTestDataViewer = true
+                    }
+                }
+            }
+            .background(
+                NavigationLink(destination: navigate(to: .testDataViewer), isActive: $isNavigatingToTestDataViewer) {
+                    EmptyView()
+                }
+            )
         }
     }
     
@@ -209,6 +231,43 @@ private func readJSONFile(fileName: String) -> String? {
         return nil
     }
 }
+
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
+    var onDismiss: (String) -> Void
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let safariVC = SFSafariViewController(url: url, configuration: config)
+        safariVC.delegate = context.coordinator
+        return safariVC
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
+    
+    class Coordinator: NSObject, SFSafariViewControllerDelegate {
+        var parent: SafariView
+        
+        init(_ parent: SafariView) {
+            self.parent = parent
+        }
+        
+        func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+            parent.onDismiss(fetchTextFromClipboard())
+        }
+        
+        private func fetchTextFromClipboard() -> String {
+            return UIPasteboard.general.string ?? ""
+        }
+    }
+}
+
+
 
 #Preview {
     SettingsView()
