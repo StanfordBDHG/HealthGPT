@@ -10,6 +10,7 @@ import HealthKit
 import Spezi
 import SpeziHealthKit
 import SpeziLLM
+import SpeziLLMFog
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSecureStorage
@@ -26,6 +27,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             LLMRunner {
                 LLMOpenAIPlatform()
                 LLMLocalPlatform()
+                LLMFogPlatform(configuration: .init(caCertificate: nil))    // No TLS 
                 LLMMockPlatform()
             }
             HealthDataInterpreter()

@@ -32,8 +32,10 @@ struct LLMSourceSelection: View {
                 ) {
                     if llmSource == .local {
                         onboardingNavigationPath.append(customView: LLMLocalDownload())
-                    } else {
+                    } else if llmSource == .openai {
                         onboardingNavigationPath.append(customView: OpenAIAPIKey())
+                    } else {
+                        onboardingNavigationPath.nextStep()
                     }
                 }
             }

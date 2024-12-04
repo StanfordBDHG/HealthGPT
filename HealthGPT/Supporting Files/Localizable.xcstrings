@@ -44,6 +44,16 @@
         }
       }
     },
+    "FOG_LLM_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fog LLM"
+          }
+        }
+      }
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {

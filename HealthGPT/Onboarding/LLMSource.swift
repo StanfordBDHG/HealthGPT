@@ -12,6 +12,8 @@ import Foundation
 enum LLMSource: String, CaseIterable, Identifiable, Codable {
     case openai
     case local
+    case fog
+    
     
     var id: String {
         self.rawValue
@@ -23,6 +25,8 @@ enum LLMSource: String, CaseIterable, Identifiable, Codable {
             LocalizedStringResource("LOCAL_LLM_LABEL")
         case .openai:
             LocalizedStringResource("OPENAI_LLM_LABEL")
+        case .fog:
+            LocalizedStringResource("FOG_LLM_LABEL")
         }
     }
 }

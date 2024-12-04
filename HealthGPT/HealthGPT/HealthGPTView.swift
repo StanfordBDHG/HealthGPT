@@ -8,6 +8,7 @@
 
 import SpeziChat
 import SpeziLLM
+import SpeziLLMFog
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
@@ -71,9 +72,19 @@ struct HealthGPTView: View {
             if FeatureFlags.mockMode {
                 await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
             } else if FeatureFlags.localLLM || llmSource == .local {
-                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(modelPath: .cachesDirectory.appending(path: "llm.gguf")))
-            } else {
+                await healthDataInterpreter.prepareLLM(with:
+                    LLMLocalSchema(
+                        modelPath: .cachesDirectory.appending(path: "llm.gguf"),
+                        parameters: .init(systemPrompt: nil)    // Disable default system prompt for local LLM
+                    )
+                )
+            } else if llmSource == .openai {
                 await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+            } else {
+                await healthDataInterpreter.prepareLLM(with:
+                        LLMFogSchema(parameters: .init(modelType: .llama7B, authToken: { nil })
+                    )
+                )
             }
         }
     }
