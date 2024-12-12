@@ -106,7 +106,7 @@ struct SettingsView: View {
                 ) { model in
                     Task {
                         openAIModel = model
-                        await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: model)))
+                        try? await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: model)))
                         path.removeLast()
                     }
                 }

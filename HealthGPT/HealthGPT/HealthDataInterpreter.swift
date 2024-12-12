@@ -32,10 +32,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     ///
     /// - Parameter schema: the LLMSchema to use
     @MainActor
-    func prepareLLM(with schema: any LLMSchema) async {
+    func prepareLLM(with schema: any LLMSchema) async throws {
         let llm = llmRunner(with: schema)
         systemPrompt = await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
+        if let localLLM = llm as? LLMLocalSession {
+            try await localLLM.setup()
+        }
         self.llm = llm
     }
     
