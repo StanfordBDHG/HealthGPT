@@ -30,7 +30,7 @@ final class HealthGPTViewUITests: XCTestCase {
         
         XCTAssert(app.buttons["Record Message"].waitForExistence(timeout: 2))
         
-        try app.textViews["Message Input Textfield"].enter(value: "New Message!", dismissKeyboard: false)
+        try app.textFields["Message Input Textfield"].enter(value: "New Message!")
         
         XCTAssert(app.buttons["Send Message"].waitForExistence(timeout: 2))
         app.buttons["Send Message"].tap()
