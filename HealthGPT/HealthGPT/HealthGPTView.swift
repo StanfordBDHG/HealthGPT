@@ -71,10 +71,7 @@ struct HealthGPTView: View {
             if FeatureFlags.mockMode {
                 await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
             } else if FeatureFlags.localLLM || llmSource == .local {
-                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(
-                    modelPath: .cachesDirectory.appending(path: "llm.gguf"),
-                    formatChat: LLMLocalSchema.PromptFormattingDefaults.llama3
-                ))
+                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(model: .llama3_8B_4bit))
             } else {
                 await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
             }

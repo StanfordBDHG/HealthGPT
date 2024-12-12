@@ -17,8 +17,8 @@ import SpeziSpeechSynthesizer
 
 @Observable
 class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency private var llmRunner: LLMRunner
-    @ObservationIgnored @Dependency private var healthDataFetcher: HealthDataFetcher
+    @ObservationIgnored @Dependency(LLMRunner.self) private var llmRunner
+    @ObservationIgnored @Dependency(HealthDataFetcher.self) private var healthDataFetcher
     
     var llm: (any LLMSession)?
     @ObservationIgnored private var systemPrompt = ""
