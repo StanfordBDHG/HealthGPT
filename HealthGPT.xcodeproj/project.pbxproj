@@ -1068,7 +1068,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
+				minimumVersion = 0.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
