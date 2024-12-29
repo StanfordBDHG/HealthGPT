@@ -30,7 +30,7 @@ final class HealthGPTViewUITests: XCTestCase {
         
         XCTAssert(app.buttons["Record Message"].waitForExistence(timeout: 2))
         
-        try app.textViews["Message Input Textfield"].enter(value: "New Message!", dismissKeyboard: false)
+        try app.textFields["Message Input Textfield"].enter(value: "New Message!")
         
         XCTAssert(app.buttons["Send Message"].waitForExistence(timeout: 2))
         app.buttons["Send Message"].tap()
@@ -56,7 +56,12 @@ final class HealthGPTViewUITests: XCTestCase {
         
         XCTAssertTrue(app.buttons["Open AI Model"].exists)
         app.buttons["Open AI Model"].tap()
-        app.navigationBars.buttons["Settings"].tap()
+        
+        let picker = app.pickers["modelPicker"]
+        let optionToSelect = picker.pickerWheels.element(boundBy: 0)
+        optionToSelect.adjust(toPickerWheelValue: "GPT 4")
+        
+        app.buttons["Save OpenAI Model"].tap()
         
         XCTAssertTrue(app.staticTexts["Enable Text to Speech"].exists)
         

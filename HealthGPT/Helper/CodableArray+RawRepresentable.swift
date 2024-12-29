@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Array: RawRepresentable where Element: Codable {
+extension Array: @retroactive RawRepresentable where Element: Codable {
     public var rawValue: String {
         guard let data = try? JSONEncoder().encode(self),
               let rawValue = String(data: data, encoding: .utf8) else {
