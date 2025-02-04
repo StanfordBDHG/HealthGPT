@@ -7,17 +7,17 @@
 //
 
 import Testing
+import XCTest
 import XCTestExtensions
 import XCTHealthKit
-import XCTest
 
 struct OnboardingUITests {
     let app: XCUIApplication
 
     init() async throws {
-        app = XCUIApplication()
+        app = await XCUIApplication()
         app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
-        app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
+        await app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
     
     @Test
