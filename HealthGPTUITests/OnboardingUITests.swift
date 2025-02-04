@@ -1,12 +1,19 @@
+//
+// This source file is part of the Stanford HealthGPT project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+
 import Testing
 import XCTestExtensions
 import XCTHealthKit
-import XCTest // Retain XCTest if extensions from XCTest (e.g. XCUIApplication) are needed
+import XCTest
 
 struct OnboardingUITests {
     let app: XCUIApplication
 
-    // Async initializer performing setup.
     init() async throws {
         app = XCUIApplication()
         app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]

@@ -1,8 +1,15 @@
+//
+// This source file is part of the Stanford HealthGPT project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+
 import Testing
 @testable import HealthGPT
 
 struct PromptGeneratorTests {
-    // Convert the static helper function as before.
     private static func createSampleHealthData() -> [HealthData] {
         var healthData: [HealthData] = []
         for day in 0...13 {
@@ -18,7 +25,7 @@ struct PromptGeneratorTests {
             let exerciseMinutes = Double.random(in: 10..<100)
             let bodyWeight = Double.random(in: 100..<120)
             let sleepHours = Double.random(in: 4..<9)
-
+            
             let healthDataItem = HealthData(
                 date: dateString,
                 steps: steps,
@@ -34,7 +41,6 @@ struct PromptGeneratorTests {
         return healthData
     }
     
-    // Instance property for sample data.
     let sampleHealthData: [HealthData] = Self.createSampleHealthData()
     
     @Test
