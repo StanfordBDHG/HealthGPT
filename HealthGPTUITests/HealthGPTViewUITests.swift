@@ -1,60 +1,42 @@
-//
-// This source file is part of the Stanford HealthGPT project
-//
-// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
-//
-// SPDX-License-Identifier: MIT
-//
-
-import XCTest
+import Testing
 import XCTestExtensions
+import XCTest // Retain XCTest if needed for UI testing classes
 
+struct HealthGPTViewUITests {
+    let app: XCUIApplication
 
-final class HealthGPTViewUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        continueAfterFailure = false
-
-        let app = XCUIApplication()
+    // Async initializer performing setup.
+    init() async throws {
+        app = XCUIApplication()
         app.launchArguments = ["--showOnboarding", "--resetSecureStorage", "--mockMode"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
-
-    override func tearDownWithError() throws {
-        try super.tearDownWithError()
-    }
     
-    func testChatView() throws {
-        let app = XCUIApplication()
+    @Test
+    func chatView() throws {
         try app.conductOnboardingIfNeeded()
-        
-        XCTAssert(app.buttons["Record Message"].waitForExistence(timeout: 2))
-        
+        try #require(app.buttons["Record Message"].waitForExistence(timeout: 2), "Record Message button not found")
         try app.textFields["Message Input Textfield"].enter(value: "New Message!")
-        
-        XCTAssert(app.buttons["Send Message"].waitForExistence(timeout: 2))
+        try #require(app.buttons["Send Message"].waitForExistence(timeout: 2), "Send Message button not found")
         app.buttons["Send Message"].tap()
-        
         sleep(3)
-        
-        XCTAssert(app.staticTexts["Mock Message from SpeziLLM!"].waitForExistence(timeout: 5))
+        try #require(app.staticTexts["Mock Message from SpeziLLM!"].waitForExistence(timeout: 5), "Mock message not found")
     }
     
-    func testSettingsView() throws {
-        let app = XCUIApplication()
+    @Test
+    func settingsView() throws {
         try app.conductOnboardingIfNeeded()
-
         let settingsButton = app.buttons["settingsButton"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 5))
+        try #require(settingsButton.waitForExistence(timeout: 5), "Settings button not found")
         settingsButton.tap()
         
-        XCTAssert(app.staticTexts["Settings"].waitForExistence(timeout: 2))
+        try #require(app.staticTexts["Settings"].waitForExistence(timeout: 2), "Settings static text not found")
         
-        XCTAssertTrue(app.buttons["Open AI API Key"].exists)
+        #expect(app.buttons["Open AI API Key"].exists, "Open AI API Key button should exist")
         app.buttons["Open AI API Key"].tap()
         app.navigationBars.buttons["Settings"].tap()
         
-        XCTAssertTrue(app.buttons["Open AI Model"].exists)
+        #expect(app.buttons["Open AI Model"].exists, "Open AI Model button should exist")
         app.buttons["Open AI Model"].tap()
         
         let picker = app.pickers["modelPicker"]
@@ -63,24 +45,23 @@ final class HealthGPTViewUITests: XCTestCase {
         
         app.buttons["Save OpenAI Model"].tap()
         
-        XCTAssertTrue(app.staticTexts["Enable Text to Speech"].exists)
+        #expect(app.staticTexts["Enable Text to Speech"].exists, "Enable Text to Speech text should exist")
         
-        XCTAssert(app.buttons["Done"].exists)
+        #expect(app.buttons["Done"].exists, "Done button should exist")
         app.buttons["Done"].tap()
         
         settingsButton.tap()
-        XCTAssertTrue(app.buttons["Reset Chat"].exists)
+        #expect(app.buttons["Reset Chat"].exists, "Reset Chat button should exist")
         app.buttons["Reset Chat"].tap()
         
-        XCTAssert(app.staticTexts["HealthGPT"].waitForExistence(timeout: 2))
+        try #require(app.staticTexts["HealthGPT"].waitForExistence(timeout: 2), "HealthGPT static text not found after resetting chat")
     }
     
-    func testResetChat() throws {
-        let app = XCUIApplication()
+    @Test
+    func resetChat() throws {
         try app.conductOnboardingIfNeeded()
-        
         let resetChatButton = app.buttons["resetChatButton"]
-        XCTAssertTrue(resetChatButton.waitForExistence(timeout: 5))
+        try #require(resetChatButton.waitForExistence(timeout: 5), "Reset Chat button not found")
         resetChatButton.tap()
     }
 }

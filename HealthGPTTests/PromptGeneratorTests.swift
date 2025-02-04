@@ -1,17 +1,8 @@
-//
-// This source file is part of the Stanford HealthGPT project
-//
-// SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
-//
-// SPDX-License-Identifier: MIT
-//
-
+import Testing
 @testable import HealthGPT
-import XCTest
 
-class PromptGeneratorTests: XCTestCase {
-    var sampleHealthData: [HealthData] = createSampleHealthData()
-
+struct PromptGeneratorTests {
+    // Convert the static helper function as before.
     private static func createSampleHealthData() -> [HealthData] {
         var healthData: [HealthData] = []
         for day in 0...13 {
@@ -34,42 +25,47 @@ class PromptGeneratorTests: XCTestCase {
                 activeEnergy: activeEnergy,
                 exerciseMinutes: exerciseMinutes,
                 bodyWeight: bodyWeight,
-                sleepHours: sleepHours
+                sleepHours: sleepHours,
+                heartRate: nil
             )
 
             healthData.append(healthDataItem)
         }
         return healthData
     }
-
-    func testBuildMainPrompt() {
+    
+    // Instance property for sample data.
+    let sampleHealthData: [HealthData] = Self.createSampleHealthData()
+    
+    @Test
+    func buildMainPrompt() throws {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()
         let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
-
-        XCTAssertNotNil(mainPrompt)
-
-        // swiftlint:disable:next line_length
-        XCTAssertTrue(mainPrompt.contains("You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. Given the context, provide a short response that could answer the user's question. Do NOT provide statistics. If numbers seem low, provide advice on how they can improve.\n\nSome health metrics over the past two weeks (14 days) to incorporate is given below. If a value is zero, the user has not inputted anything for that day."))
         
-        XCTAssertTrue(mainPrompt.contains("Today is \(today)"))
-
+        // Instead of XCTAssertNotNil(mainPrompt), we require that mainPrompt is not an empty string.
+        try #require(!mainPrompt.isEmpty, "Main prompt should not be empty")
+        
+        try #require(mainPrompt.contains("You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. Given the context, provide a short response that could answer the user's question. Do NOT provide statistics. If numbers seem low, provide advice on how they can improve.\n\nSome health metrics over the past two weeks (14 days) to incorporate is given below. If a value is zero, the user has not inputted anything for that day."), "Main prompt missing expected description")
+        
+        try #require(mainPrompt.contains("Today is \(today)"), "Main prompt should contain today's date")
+        
         for healthDataItem in sampleHealthData {
-            XCTAssertTrue(mainPrompt.contains(healthDataItem.date))
+            try #require(mainPrompt.contains(healthDataItem.date), "Main prompt missing date: \(healthDataItem.date)")
             if let steps = healthDataItem.steps {
-                XCTAssertTrue(mainPrompt.contains("\(Int(steps)) steps"))
+                try #require(mainPrompt.contains("\(Int(steps)) steps"), "Main prompt missing steps info for date \(healthDataItem.date)")
             }
             if let sleepHours = healthDataItem.sleepHours {
-                XCTAssertTrue(mainPrompt.contains("\(Int(sleepHours)) hours of sleep"))
+                try #require(mainPrompt.contains("\(Int(sleepHours)) hours of sleep"), "Main prompt missing sleep hours for date \(healthDataItem.date)")
             }
             if let activeEnergy = healthDataItem.activeEnergy {
-                XCTAssertTrue(mainPrompt.contains("\(Int(activeEnergy)) calories burned"))
+                try #require(mainPrompt.contains("\(Int(activeEnergy)) calories burned"), "Main prompt missing active energy for date \(healthDataItem.date)")
             }
             if let exerciseMinutes = healthDataItem.exerciseMinutes {
-                XCTAssertTrue(mainPrompt.contains("\(Int(exerciseMinutes)) minutes of exercise"))
+                try #require(mainPrompt.contains("\(Int(exerciseMinutes)) minutes of exercise"), "Main prompt missing exercise minutes for date \(healthDataItem.date)")
             }
             if let bodyWeight = healthDataItem.bodyWeight {
-                XCTAssertTrue(mainPrompt.contains("\(bodyWeight) lbs of body weight"))
+                try #require(mainPrompt.contains("\(bodyWeight) lbs of body weight"), "Main prompt missing body weight for date \(healthDataItem.date)")
             }
         }
     }
