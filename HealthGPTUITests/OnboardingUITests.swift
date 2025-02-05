@@ -6,27 +6,29 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Testing
 import XCTest
 import XCTestExtensions
 import XCTHealthKit
 
-struct OnboardingUITests {
-    let app: XCUIApplication
-    
-    init() async throws {
-        self.app = await OnboardingUITests.createConfiguredApp()
+
+final class OnboardingUITests: XCTestCase {
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+
+        continueAfterFailure = false
+
+        let app = XCUIApplication()
+        app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
+        app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
-   @MainActor
-   private static func createConfiguredApp() -> XCUIApplication {
-       let app = XCUIApplication()
-       app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
-       return app
-   }
-    
-    @Test
-    func onboardingFlow() throws {
+    override func tearDownWithError() throws {
+        try super.tearDownWithError()
+    }
+
+    func testOnboardingFlow() throws {
+        let app = XCUIApplication()
+
         try app.navigateOnboardingFlow(assertThatHealthKitConsentIsShown: true)
     }
 }
@@ -34,7 +36,7 @@ struct OnboardingUITests {
 extension XCUIApplication {
     func conductOnboardingIfNeeded() throws {
         if self.staticTexts["HealthGPT"].waitForExistence(timeout: 10) {
-            try self.navigateOnboardingFlow(assertThatHealthKitConsentIsShown: false)
+            try navigateOnboardingFlow(assertThatHealthKitConsentIsShown: false)
         }
     }
 
@@ -48,59 +50,67 @@ extension XCUIApplication {
     }
 
     private func navigateOnboardingFlowWelcome() throws {
-        try #require(staticTexts["HealthGPT"].waitForExistence(timeout: 10), "HealthGPT static text not found in Welcome step")
-        try #require(buttons["Continue"].waitForExistence(timeout: 10), "Continue button not found in Welcome step")
+        XCTAssertTrue(staticTexts["HealthGPT"].waitForExistence(timeout: 10))
+
+        XCTAssertTrue(buttons["Continue"].waitForExistence(timeout: 10))
         buttons["Continue"].tap()
     }
 
     private func navigateOnboardingFlowDisclaimer() throws {
-        try #require(staticTexts["Disclaimer"].waitForExistence(timeout: 10), "Disclaimer static text not found")
+        XCTAssertTrue(staticTexts["Disclaimer"].waitForExistence(timeout: 10))
+
         for _ in 1..<4 {
-            try #require(buttons["Next"].waitForExistence(timeout: 10), "Next button not found in Disclaimer step")
+            XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 10))
             buttons["Next"].tap()
         }
-        try #require(buttons["I Agree"].waitForExistence(timeout: 10), "I Agree button not found in Disclaimer step")
+
+        XCTAssertTrue(buttons["I Agree"].waitForExistence(timeout: 10))
         buttons["I Agree"].tap()
     }
     
     private func navigateOnboardingFlowLLMSourceSelection() throws {
-        try #require(staticTexts["LLM Source Selection"].waitForExistence(timeout: 5), "LLM Source Selection static text not found")
+        XCTAssertTrue(staticTexts["LLM Source Selection"].waitForExistence(timeout: 5))
         
         let picker = pickers["llmSourcePicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
         optionToSelect.adjust(toPickerWheelValue: "On-device LLM")
         
-        try #require(buttons["Save Choice"].waitForExistence(timeout: 5), "Save Choice button not found during LLM Source Selection")
+        XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
         buttons["Save Choice"].tap()
         
-        try #require(staticTexts["LLM Download"].waitForExistence(timeout: 5), "LLM Download static text not found")
-        try #require(buttons["Back"].waitForExistence(timeout: 2), "Back button not found during LLM Source Selection")
+        XCTAssertTrue(staticTexts["LLM Download"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttons["Back"].waitForExistence(timeout: 2))
         buttons["Back"].tap()
         
         optionToSelect.adjust(toPickerWheelValue: "Open AI LLM")
-        try #require(buttons["Save Choice"].waitForExistence(timeout: 5), "Save Choice button not found after switching to Open AI LLM")
+        XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
         buttons["Save Choice"].tap()
     }
 
     private func navigateOnboardingFlowApiKey() throws {
         try textFields["OpenAI API Key"].enter(value: "sk-123456789")
-        try #require(buttons["Next"].waitForExistence(timeout: 2), "Next button not found in API Key step")
+        
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
 
     private func navigateOnboardingFlowModelSelection() throws {
-        try #require(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 10), "Select an OpenAI Model static text not found")
-        try #require(buttons["Save OpenAI Model"].waitForExistence(timeout: 10), "Save OpenAI Model button not found")
+        XCTAssertTrue(staticTexts["Select an OpenAI Model"].waitForExistence(timeout: 10))
+        XCTAssertTrue(buttons["Save OpenAI Model"].waitForExistence(timeout: 10))
+
         let picker = pickers["modelPicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
         optionToSelect.adjust(toPickerWheelValue: "GPT 4")
+
         buttons["Save OpenAI Model"].tap()
     }
 
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
-        try #require(staticTexts["HealthKit Access"].waitForExistence(timeout: 10), "HealthKit Access static text not found")
-        try #require(buttons["Grant Access"].waitForExistence(timeout: 10), "Grant Access button not found")
+        XCTAssertTrue(staticTexts["HealthKit Access"].waitForExistence(timeout: 10))
+
+        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 10))
         buttons["Grant Access"].tap()
+
         try handleHealthKitAuthorization()
     }
 }
