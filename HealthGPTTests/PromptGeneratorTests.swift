@@ -12,6 +12,8 @@ import Foundation
 import Testing
 
 struct PromptGeneratorTests {
+    let sampleHealthData: [HealthData] = Self.createSampleHealthData()
+    
     private static func createSampleHealthData() -> [HealthData] {
         var healthData: [HealthData] = []
         for day in 0...13 {
@@ -42,8 +44,6 @@ struct PromptGeneratorTests {
         }
         return healthData
     }
-    
-    let sampleHealthData: [HealthData] = Self.createSampleHealthData()
     
     @Test
     func buildMainPrompt() throws {

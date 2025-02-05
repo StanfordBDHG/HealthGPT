@@ -13,12 +13,17 @@ import XCTHealthKit
 
 struct OnboardingUITests {
     let app: XCUIApplication
-
+    
     init() async throws {
-        app = await XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
-        await app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
+        self.app = await OnboardingUITests.createConfiguredApp()
     }
+
+   @MainActor
+   private static func createConfiguredApp() -> XCUIApplication {
+       let app = XCUIApplication()
+       app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
+       return app
+   }
     
     @Test
     func onboardingFlow() throws {
