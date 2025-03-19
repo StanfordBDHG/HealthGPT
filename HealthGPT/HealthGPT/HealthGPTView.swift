@@ -68,15 +68,17 @@ struct HealthGPTView: View {
             Text(errorMessage)
         }
         .task {
-            if FeatureFlags.mockMode {
-                await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
-            } else if FeatureFlags.localLLM || llmSource == .local {
-                await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(
-                    modelPath: .cachesDirectory.appending(path: "llm.gguf"),
-                    formatChat: LLMLocalSchema.PromptFormattingDefaults.llama3
-                ))
-            } else {
-                await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+            do {
+                if FeatureFlags.mockMode {
+                    try await healthDataInterpreter.prepareLLM(with: LLMMockSchema())
+                } else if FeatureFlags.localLLM || llmSource == .local {
+                    try await healthDataInterpreter.prepareLLM(with: LLMLocalSchema(model: .llama3_8B_4bit))
+                } else {
+                    try await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+                }
+            } catch {
+                showErrorAlert = true
+                errorMessage = "Error querying LLM: \(error.localizedDescription)"
             }
         }
     }

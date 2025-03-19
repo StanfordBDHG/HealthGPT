@@ -17,8 +17,8 @@ import SpeziSpeechSynthesizer
 
 @Observable
 class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency private var llmRunner: LLMRunner
-    @ObservationIgnored @Dependency private var healthDataFetcher: HealthDataFetcher
+    @ObservationIgnored @Dependency(LLMRunner.self) private var llmRunner
+    @ObservationIgnored @Dependency(HealthDataFetcher.self) private var healthDataFetcher
     
     var llm: (any LLMSession)?
     @ObservationIgnored private var systemPrompt = ""
@@ -32,10 +32,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     ///
     /// - Parameter schema: the LLMSchema to use
     @MainActor
-    func prepareLLM(with schema: any LLMSchema) async {
+    func prepareLLM(with schema: any LLMSchema) async throws {
         let llm = llmRunner(with: schema)
         systemPrompt = await generateSystemPrompt()
         llm.context.append(systemMessage: systemPrompt)
+        if let localLLM = llm as? LLMLocalSession {
+            try await localLLM.setup()
+        }
         self.llm = llm
     }
     

@@ -41,13 +41,17 @@ HealthGPT is provided for general informational purposes only and is not intende
 
 ## Set Up
 
-Building and running HealthGPT requires a Mac with [Xcode 15.2](https://developer.apple.com/xcode/) or newer installed.
+Building and running HealthGPT requires a Mac with [Xcode 16.2](https://developer.apple.com/xcode/) or newer installed.
 
 1. Clone this repository to your local computer.
 2. Open `HealthGPT.xcodeproj` in Xcode. Wait for all dependencies to install and indexing to finish.
 3. Run the app (on an iOS device or in the iOS simulator) and play with HealthGPT on your own data 🚀
 
-Note: If you are running HealthGPT using the simulator, you will need to manually add data in the Apple Health app. Otherwise, all of your results will read zero.
+> [!IMPORTANT]  
+> If you are running HealthGPT using the simulator, you will need to manually add data in the Apple Health app. Otherwise, all of your results will read zero.
+
+> [!IMPORTANT]  
+> Running HealthGPT with a local LLM requires installing the app on a physical device, as [SpeziLLMLocal](https://swiftpackageindex.com/stanfordspezi/spezillm/documentation/spezillmlocal) requires a modern Metal MTLGPUFamily and simulators do not provide that.
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 

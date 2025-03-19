@@ -19,7 +19,7 @@ struct OpenAIModelSelection: View {
     var body: some View {
         LLMOpenAIModelOnboardingStep(
             actionText: "OPEN_AI_MODEL_SAVE_ACTION",
-            models: [.gpt3_5Turbo, .gpt4, .gpt4_turbo_preview]
+            models: [.gpt3_5Turbo, .gpt4, .gpt4_o]
         ) { model in
             openAIModel = model
             onboardingNavigationPath.nextStep()
