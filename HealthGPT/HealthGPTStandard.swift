@@ -12,6 +12,17 @@ import SwiftUI
 
 
 actor HealthGPTStandard: Standard, HealthKitConstraint {
-    func add(sample: HKSample) async { }
-    func remove(sample: HKDeletedObject) async { }
+    func handleNewSamples<Sample>(
+        _ addedSamples: some Collection,
+        ofType sampleType: SpeziHealthKit.SampleType<Sample>
+    ) async where Sample: SpeziHealthKit._HKSampleWithSampleType {
+        // Not implemented
+    }
+    
+    func handleDeletedObjects<Sample>(
+        _ deletedObjects: some Collection<HKDeletedObject>,
+        ofType sampleType: SpeziHealthKit.SampleType<Sample>
+    ) async where Sample: SpeziHealthKit._HKSampleWithSampleType {
+        // Not implemented
+    }
 }

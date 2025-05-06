@@ -22,7 +22,7 @@ struct SettingsView: View {
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
-    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIModelType.gpt4
+    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIParameters.ModelType.gpt4o
     let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
     
@@ -102,7 +102,15 @@ struct SettingsView: View {
             case .openAIModelSelection:
                 LLMOpenAIModelOnboardingStep(
                     actionText: "OPEN_AI_MODEL_SAVE_ACTION",
-                    models: [.gpt3_5Turbo, .gpt4, .gpt4_o]
+                    models: [
+                        .gpt3_5_turbo,
+                        .gpt4_turbo,
+                        .gpt4o,
+                        .o1,
+                        .o1_mini,
+                        .o3_mini,
+                        .o3_mini_high
+                    ]
                 ) { model in
                     Task {
                         openAIModel = model

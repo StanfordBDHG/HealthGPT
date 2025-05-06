@@ -12,7 +12,7 @@ import SpeziHealthKit
 import SpeziLLM
 import SpeziLLMLocal
 import SpeziLLMOpenAI
-import SpeziSecureStorage
+import SpeziKeychainStorage
 import SpeziSpeechSynthesizer
 import SwiftUI
 
@@ -30,24 +30,19 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             }
             HealthDataInterpreter()
             HealthDataFetcher()
-            SecureStorage()
+            KeychainStorage()
         }
     }
 
 
     private var healthKit: HealthKit {
         HealthKit {
-            CollectSamples(
-                [
-                    HKQuantityType(.stepCount),
-                    HKQuantityType(.activeEnergyBurned),
-                    HKQuantityType(.appleExerciseTime),
-                    HKQuantityType(.bodyMass),
-                    HKQuantityType(.heartRate),
-                    HKCategoryType(.sleepAnalysis)
-                ],
-                deliverySetting: .manual()
-            )
+            CollectSample(.stepCount, start: .manual)
+            CollectSample(.activeEnergyBurned, start: .manual)
+            CollectSample(.appleExerciseTime, start: .manual)
+            CollectSample(.bodyMass, start: .manual)
+            CollectSample(.heartRate, start: .manual)
+            CollectSample(.sleepAnalysis, start: .manual)
         }
     }
 }

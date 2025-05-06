@@ -16,7 +16,7 @@ final class HealthGPTViewUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetSecureStorage", "--mockMode"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychainStorage", "--mockMode"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 

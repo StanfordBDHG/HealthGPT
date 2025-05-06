@@ -18,7 +18,7 @@ final class OnboardingUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychainStorage"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
