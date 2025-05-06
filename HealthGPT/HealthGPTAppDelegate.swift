@@ -9,10 +9,10 @@
 import HealthKit
 import Spezi
 import SpeziHealthKit
+import SpeziKeychainStorage
 import SpeziLLM
 import SpeziLLMLocal
 import SpeziLLMOpenAI
-import SpeziKeychainStorage
 import SpeziSpeechSynthesizer
 import SwiftUI
 
