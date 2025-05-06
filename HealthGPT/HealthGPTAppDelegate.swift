@@ -33,16 +33,21 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
             KeychainStorage()
         }
     }
-
-
+    
+    
     private var healthKit: HealthKit {
         HealthKit {
-            CollectSample(.stepCount, start: .manual)
-            CollectSample(.activeEnergyBurned, start: .manual)
-            CollectSample(.appleExerciseTime, start: .manual)
-            CollectSample(.bodyMass, start: .manual)
-            CollectSample(.heartRate, start: .manual)
-            CollectSample(.sleepAnalysis, start: .manual)
+            RequestReadAccess(
+                quantity:
+                    [
+                        .activeEnergyBurned,
+                        .appleExerciseTime,
+                        .bodyMass,
+                        .heartRate,
+                        .stepCount
+                    ]
+            )
+            RequestReadAccess(category: [.sleepAnalysis])
         }
     }
 }
