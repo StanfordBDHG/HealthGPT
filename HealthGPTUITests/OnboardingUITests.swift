@@ -18,7 +18,7 @@ final class OnboardingUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetSecureStorage"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychainStorage"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
@@ -100,7 +100,7 @@ extension XCUIApplication {
 
         let picker = pickers["modelPicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
-        optionToSelect.adjust(toPickerWheelValue: "GPT 4")
+        optionToSelect.adjust(toPickerWheelValue: "gpt-4o")
 
         buttons["Save OpenAI Model"].tap()
     }

@@ -16,7 +16,7 @@ final class HealthGPTViewUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--resetSecureStorage", "--mockMode"]
+        app.launchArguments = ["--showOnboarding", "--resetKeychainStorage", "--mockMode"]
         app.deleteAndLaunch(withSpringboardAppName: "HealthGPT")
     }
 
@@ -59,7 +59,7 @@ final class HealthGPTViewUITests: XCTestCase {
         
         let picker = app.pickers["modelPicker"]
         let optionToSelect = picker.pickerWheels.element(boundBy: 0)
-        optionToSelect.adjust(toPickerWheelValue: "GPT 4")
+        optionToSelect.adjust(toPickerWheelValue: "gpt-4o")
         
         app.buttons["Save OpenAI Model"].tap()
         

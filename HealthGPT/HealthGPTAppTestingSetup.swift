@@ -7,13 +7,13 @@
 //
 
 import OSLog
-import SpeziSecureStorage
+@_spi(Internal) import SpeziKeychainStorage
 import SwiftUI
 
 
 private struct HealthGPTAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    @Environment(SecureStorage.self) var secureStorage
+    @Environment(KeychainStorage.self) var keychainStorage
 
     let logger = Logger(subsystem: "HealthGPT", category: "Testing")
 
@@ -26,9 +26,9 @@ private struct HealthGPTAppTestingSetup: ViewModifier {
                 if FeatureFlags.showOnboarding {
                     completedOnboardingFlow = false
                 }
-                if FeatureFlags.resetSecureStorage {
+                if FeatureFlags.resetKeychainStorage {
                     do {
-                        try secureStorage.deleteAllCredentials()
+                        try keychainStorage.deleteAllCredentials(accessGroup: .any)
                     } catch {
                         logger.error("Could not clear secure storage: \(error.localizedDescription)")
                     }
