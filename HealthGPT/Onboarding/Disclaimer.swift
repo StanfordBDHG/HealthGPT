@@ -7,11 +7,12 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 struct Disclaimer: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
     
     
     var body: some View {

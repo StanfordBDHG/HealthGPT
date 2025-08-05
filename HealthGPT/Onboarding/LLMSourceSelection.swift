@@ -7,15 +7,16 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 struct LLMSourceSelection: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
     @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     
     var body: some View {
         OnboardingView(
-            contentView: {
+            content: {
                 VStack {
                     OnboardingTitleView(
                         title: "LLM_SOURCE_SELECTION_TITLE",
@@ -26,7 +27,7 @@ struct LLMSourceSelection: View {
                     Spacer()
                 }
             },
-            actionView: {
+            footer: {
                 OnboardingActionsView(
                     "LLM_SOURCE_SELECTION_BUTTON"
                 ) {

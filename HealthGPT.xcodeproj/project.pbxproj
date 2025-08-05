@@ -531,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanfordBDHG.HealthGPTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -550,7 +550,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanfordBDHG.HealthGPTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -569,7 +569,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanfordBDHG.HealthGPTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -588,7 +588,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -607,7 +607,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -626,7 +626,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.HealthGPTUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -726,7 +726,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -891,7 +891,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -940,7 +940,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UITemplateApplicationlicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UITemplateApplicationlicationSupportsIndirectInputEvents = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1012,7 +1012,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.0;
+				minimumVersion = 1.9.0;
 			};
 		};
 		27859C022A34F16A00397C85 /* XCRemoteSwiftPackageReference "SpeziHealthKit" */ = {
@@ -1020,15 +1020,15 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.3;
+				minimumVersion = 1.2.0;
 			};
 		};
 		27859C052A34F17800397C85 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
+				branch = "2.0.0-alpha.8";
+				kind = branch;
 			};
 		};
 		27859C0E2A34F1A900397C85 /* XCRemoteSwiftPackageReference "SpeziStorage" */ = {
@@ -1044,7 +1044,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.2.0;
 			};
 		};
 		27859C232A34F2D000397C85 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -1052,7 +1052,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.5;
+				minimumVersion = 1.1.0;
 			};
 		};
 		27859C262A34F2DE00397C85 /* XCRemoteSwiftPackageReference "XCTRuntimeAssertions" */ = {
@@ -1060,15 +1060,15 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.3;
+				minimumVersion = 2.1.0;
 			};
 		};
 		63439A4C2BA6069E008BDBFD /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.1;
+				branch = "feat/proper-swift-concurrency";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

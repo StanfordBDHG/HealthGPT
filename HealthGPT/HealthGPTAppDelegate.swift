@@ -24,7 +24,7 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
                 healthKit
             }
             LLMRunner {
-                LLMOpenAIPlatform()
+                LLMOpenAIPlatform(configuration: .init(authToken: .keychain(tag: .openAIKey, username: "edu.stanford.healthgpt")))
                 LLMLocalPlatform()
                 LLMMockPlatform()
             }

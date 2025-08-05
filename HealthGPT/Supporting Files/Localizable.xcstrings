@@ -337,7 +337,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open AI LLM"
+            "value" : "Remote OpenAI LLM"
           }
         }
       }

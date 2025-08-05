@@ -7,11 +7,11 @@
 //
 
 import SpeziLLMLocalDownload
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 struct LLMLocalDownload: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
 
 
     var body: some View {

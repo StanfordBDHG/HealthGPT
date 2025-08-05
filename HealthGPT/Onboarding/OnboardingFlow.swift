@@ -8,7 +8,7 @@
 
 import HealthKit
 import SpeziLLMOpenAI
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
@@ -19,16 +19,16 @@ struct OnboardingFlow: View {
     
     
     var body: some View {
-        OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
+        ManagedNavigationStack(didComplete: $completedOnboardingFlow) {
             Welcome()
             Disclaimer()
-            
+
             if FeatureFlags.localLLM {
                 LLMLocalDownload()
             } else {
                 LLMSourceSelection()
             }
-            
+
             if HKHealthStore.isHealthDataAvailable() {
                 HealthKitPermissions()
             }
