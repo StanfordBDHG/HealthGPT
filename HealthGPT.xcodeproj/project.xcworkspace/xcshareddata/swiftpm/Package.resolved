@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi.git",
       "state" : {
-        "revision" : "49ed1ddcfb7d0f753990b55578c33a887513fb39",
-        "version" : "1.8.1"
+        "revision" : "6bed41a437cba200a8ce0182e6a30dc787bbc836",
+        "version" : "1.9.1"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
-        "revision" : "6e66cc6a843ef3e1273c6370c04183f0c5325e68",
-        "version" : "2.1.5"
+        "revision" : "759e28cd36338d83900eef3a0839fd9edecf616d",
+        "version" : "2.2.0"
       }
     },
     {
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
       "state" : {
-        "revision" : "9d7f54852d40da9376a5189b124ad30c76d9d78d",
-        "version" : "1.1.3"
+        "revision" : "4fab93e2ba8b62ddc45f50a61043d7df376243ba",
+        "version" : "1.2.3"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "b5dfb4a551d3f4243e2798133d6da2414a70e274",
-        "version" : "2.1.0"
+        "revision" : "eda8a13d2a9c3570f1b8767a338fa720c2e37c75",
+        "version" : "2.1.1"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git",
       "state" : {
-        "revision" : "f560ec8410af032dd485ca9386e8c2b5d3e1a1f8",
-        "version" : "1.1.3"
+        "revision" : "d3394b8c432f4e3d30cdf14cb5892695e923b06d",
+        "version" : "2.1.0"
       }
     },
     {

@@ -37,6 +37,13 @@ class HealthGPTAppDelegate: SpeziAppDelegate {
     
     private var healthKit: HealthKit {
         HealthKit {
+            CollectSample(.stepCount)
+            CollectSample(.activeEnergyBurned)
+            CollectSample(.appleExerciseTime)
+            CollectSample(.bodyMass)
+            CollectSample(.heartRate)
+            CollectSample(.sleepAnalysis)
+            
             RequestReadAccess(
                 quantity:
                     [
