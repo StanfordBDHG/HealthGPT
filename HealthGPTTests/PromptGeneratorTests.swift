@@ -7,9 +7,10 @@
 //
 
 @testable import HealthGPT
-import XCTest
+import Foundation
+import Testing
 
-class PromptGeneratorTests: XCTestCase {
+struct PromptGeneratorTests {
     var sampleHealthData: [HealthData] = createSampleHealthData()
 
     private static func createSampleHealthData() -> [HealthData] {
@@ -42,34 +43,34 @@ class PromptGeneratorTests: XCTestCase {
         return healthData
     }
 
-    func testBuildMainPrompt() {
+    @Test func buildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()
         let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
 
-        XCTAssertNotNil(mainPrompt)
+        #expect(mainPrompt != nil)
 
         // swiftlint:disable:next line_length
-        XCTAssertTrue(mainPrompt.contains("You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. Given the context, provide a short response that could answer the user's question. Do NOT provide statistics. If numbers seem low, provide advice on how they can improve.\n\nSome health metrics over the past two weeks (14 days) to incorporate is given below. If a value is zero, the user has not inputted anything for that day."))
+        #expect(mainPrompt.contains("You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. Given the context, provide a short response that could answer the user's question. Do NOT provide statistics. If numbers seem low, provide advice on how they can improve.\n\nSome health metrics over the past two weeks (14 days) to incorporate is given below. If a value is zero, the user has not inputted anything for that day."))
         
-        XCTAssertTrue(mainPrompt.contains("Today is \(today)"))
+        #expect(mainPrompt.contains("Today is \(today)"))
 
         for healthDataItem in sampleHealthData {
-            XCTAssertTrue(mainPrompt.contains(healthDataItem.date))
+            #expect(mainPrompt.contains(healthDataItem.date))
             if let steps = healthDataItem.steps {
-                XCTAssertTrue(mainPrompt.contains("\(Int(steps)) steps"))
+                #expect(mainPrompt.contains("\(Int(steps)) steps"))
             }
             if let sleepHours = healthDataItem.sleepHours {
-                XCTAssertTrue(mainPrompt.contains("\(Int(sleepHours)) hours of sleep"))
+                #expect(mainPrompt.contains("\(Int(sleepHours)) hours of sleep"))
             }
             if let activeEnergy = healthDataItem.activeEnergy {
-                XCTAssertTrue(mainPrompt.contains("\(Int(activeEnergy)) calories burned"))
+                #expect(mainPrompt.contains("\(Int(activeEnergy)) calories burned"))
             }
             if let exerciseMinutes = healthDataItem.exerciseMinutes {
-                XCTAssertTrue(mainPrompt.contains("\(Int(exerciseMinutes)) minutes of exercise"))
+                #expect(mainPrompt.contains("\(Int(exerciseMinutes)) minutes of exercise"))
             }
             if let bodyWeight = healthDataItem.bodyWeight {
-                XCTAssertTrue(mainPrompt.contains("\(bodyWeight) lbs of body weight"))
+                #expect(mainPrompt.contains("\(bodyWeight) lbs of body weight"))
             }
         }
     }
