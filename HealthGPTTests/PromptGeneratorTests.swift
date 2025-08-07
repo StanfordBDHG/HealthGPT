@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-@testable import HealthGPT
 import Foundation
+@testable import HealthGPT
 import Testing
 
 struct PromptGeneratorTests {
@@ -43,7 +43,8 @@ struct PromptGeneratorTests {
         return healthData
     }
 
-    @Test func buildMainPrompt() {
+    @Test
+    func buildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()
         let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
