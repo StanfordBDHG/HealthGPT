@@ -10,6 +10,7 @@ import Foundation
 @testable import HealthGPT
 import Testing
 
+
 struct PromptGeneratorTests {
     var sampleHealthData: [HealthData] = createSampleHealthData()
 
