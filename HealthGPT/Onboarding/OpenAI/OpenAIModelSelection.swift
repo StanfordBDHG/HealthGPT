@@ -7,12 +7,12 @@
 //
 
 import SpeziLLMOpenAI
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 struct OpenAIModelSelection: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIParameters.ModelType.gpt4o
 
     

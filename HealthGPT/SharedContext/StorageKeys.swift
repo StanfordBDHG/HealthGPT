@@ -26,4 +26,9 @@ enum StorageKeys {
     static let openAIModel = "openAI.model"
     /// A `Bool` flag indicating if messages should be spoken.
     static let enableTextToSpeech = "settings.enableTextToSpeech"
+    /// Identifier for selecting a fog model.
+    ///
+    /// The value should correspond to the registered model name available on the fog node.
+    /// HealthGPT uses this name to resolve and load the correct model.
+    static let fogModel = "fog.model"
 }

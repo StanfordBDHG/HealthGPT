@@ -215,7 +215,7 @@ only_rules:
   # Operators should be surrounded by a single whitespace when they are being used.
   - operator_usage_whitespace
   # Operators should be surrounded by a single whitespace when defining them.
-  - operator_whitespace
+  - function_name_whitespace
   # Matching an enum case against an optional enum without ‘?’ is supported on Swift 5.1 and above.
   - optional_enum_case_matching
   # A doc comment should be attached to a declaration.
@@ -257,7 +257,7 @@ only_rules:
   # Objective-C attribute (@objc) is redundant in declaration.
   - redundant_objc_attribute
   # Initializing an optional variable with nil is redundant.
-  - redundant_optional_initialization
+  - implicit_optional_initialization
   # Property setter access level shouldn't be explicit if it's the same as the variable access level.
   - redundant_set_access_control
   # String enum values can be omitted when they are equal to the enumcase name.

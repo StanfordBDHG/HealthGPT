@@ -60,6 +60,15 @@ You can add queries for additional [HealthKit](https://developer.apple.com/docum
 3. Update the prompt in [`HealthGPT/HealthGPT/PromptGenerator.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/PromptGenerator.swift) to pass the newly acquired data to the OpenAI API.
 
 
+## Network-local privacy-focused Fog LLM Mode
+
+HealthGPT can run LLM inference on nearby machines in your local network, called fog nodes, instead of only on-device or in the cloud.
+The app discovers a fog node via mDNS, connects to it, and streams model responses back while dispatching inference tasks.
+This setup provides low latency, strong performance, and improved privacy, since models run on your own hardware inside your own network.
+
+For instructions on running a minimal Docker-based fog node on Linux or macOS, see [FogNode/README.Md](FogNode/README.Md).
+
+
 ## Contributing
 
 Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordBDHG/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordBDHG/.github/blob/main/CODE_OF_CONDUCT.md) first.
