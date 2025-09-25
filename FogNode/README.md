@@ -1,3 +1,13 @@
+<!--
+
+This source file is part of the Stanford HealthGPT project
+
+SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
+
+SPDX-License-Identifier: MIT
+   
+-->
+
 # HealthGPT Fog Node Setup
 
 This README explains how to spin up a simple Fog Node for HealthGPT using Docker on Linux or macOS. If the Fog Node mode is picked during the HealthGPT setup, HealthGPT sends LLM requests to a node on your local network instead of running on‑device or using a cloud provider.
