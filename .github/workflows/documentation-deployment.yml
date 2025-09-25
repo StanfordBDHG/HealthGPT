@@ -1,0 +1,33 @@
+#
+# This source file is part of the Stanford HealthGPT open-source project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Documentation Deployment
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: Documentation-Deployment-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Documentation Deployment
+    uses: StanfordBDHG/.github/.github/workflows/docc-github-pages.yml@v2
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    with:
+      scheme: 'HealthGPT'
+      dryrun: ${{ github.ref_name != 'main' }}
+      xcodeversion: "16.1" # Temporary workaround for: https://github.com/actions/runner-images/issues/11335. Remove when resolved.

@@ -12,7 +12,7 @@ import SpeziViews
 import SwiftUI
 
 
-/// Displays an multi-step onboarding flow for the HealthGPT Application.
+/// Displays an multi-step onboarding flow for the Stanford HealthGPT Application.
 struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.llmSource) var llmSource = StorageKeys.Defaults.llmSource

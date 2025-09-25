@@ -34,7 +34,7 @@ struct FogInformationView: View {
                     iconSymbol: "exclamationmark.circle.fill",
                     title: "Setup Required".moduleLocalized,
                     description: """
-                    A fog node must be configured in your local network. Please consult the HealthGPT docs for setup instructions.
+                    A fog node must be configured in your local network. Please consult the Stanford HealthGPT docs for setup instructions.
                     """.moduleLocalized
                 )
             ],

@@ -1,0 +1,52 @@
+#
+# This source file is part of the Stanford HealthGPT open-source project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Static Analysis
+
+on:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: Static-Analysis-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reuse_action:
+    name: REUSE Compliance Check
+    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
+    permissions:
+      contents: read
+  swiftlint:
+    name: SwiftLint
+    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
+    permissions:
+      contents: read
+  periphery:
+    name: Periphery
+    uses: StanfordSpezi/.github/.github/workflows/periphery.yml@v2
+    permissions:
+      contents: read
+    with:
+      runsonlabels: '["macOS", "self-hosted"]'
+  markdownlinkcheck:
+    name: Markdown Link Check
+    uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
+    permissions:
+      contents: read
+  codeql:
+    name: CodeQL
+    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    with:
+      codeql: true
+      fastlanelane: codeql

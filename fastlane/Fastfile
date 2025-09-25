@@ -1,12 +1,22 @@
 #
 # This source file is part of the Stanford HealthGPT project
 #
-# SPDX-FileCopyrightText: 2023 Stanford University & Project Contributors (see CONTRIBUTORS.md)
+# SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
 # SPDX-License-Identifier: MIT
 #
 
 default_platform(:ios)
+
+APP_CONFIG = {
+  default_environment: "staging",
+  default_app_identifier: "edu.stanford.bdhg.healthgpt",
+  default_provisioningProfile: "HealthGPT",
+  default_version_name: "0.5.0",
+  default_release_notes: "Bug fixes and performance improvements.",
+  scheme: "HealthGPT",
+  plist_path: "HealthGPT/Supporting Files/Info.plist"
+}.freeze
 
 platform :ios do
   before_all do
@@ -20,34 +30,106 @@ platform :ios do
       skip_build: true,
       derived_data_path: ".derivedData",
       code_coverage: true,
-      devices: ["iPhone 15 Pro"],
+      devices: ["iPhone 17"],
       disable_slide_to_type: false,
       concurrent_workers: 1,
       max_concurrent_simulators: 1,
       result_bundle: true,
       output_directory: ".",
-      xcargs: "-skipPackagePluginValidation"
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ]
     )
+  end
+
+  desc "Screenshots"
+  lane :screenshots do
+    run_tests(
+      destination: "generic/platform=iOS Simulator",
+      configuration: "Debug",
+      derived_data_path: ".derivedData",
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ],
+      build_for_testing: true
+    )
+    
+    snapshot(
+      test_without_building: true,
+      derived_data_path: ".derivedData",
+      devices: [
+        "iPhone 17 Pro Max",
+        "iPad Pro 13-inch (M4)"
+      ],
+      languages: [
+         "en-US",
+      ],
+      scheme: APP_CONFIG[:scheme],
+      output_directory: "./fastlane/screenshots",
+      clear_previous_screenshots: true,
+      concurrent_simulators: false,
+      stop_after_first_error: true,
+      skip_open_summary: true
+    )
+    
+    # Workaround for https://github.com/fastlane/fastlane/issues/21759 and 
+    Dir.glob("./screenshots/**/iPhone 17 Pro Max-*.png").each do |file|
+      sh("sips --resampleHeightWidth 2796 1290 '#{file}'")
+    end
   end
 
   desc "CodeQL"
   lane :codeql do
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "320" # CodeQL runs on GitHub CI. We need much higher timeout here.
     build_app(
+      scheme: APP_CONFIG[:scheme],
       skip_archive: true,
       skip_codesigning: true,
       derived_data_path: ".derivedData",
-      xcargs: "-skipPackagePluginValidation"
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ]
     )
   end
 
   desc "Build app"
   lane :build do
     build_app(
+      scheme: APP_CONFIG[:scheme],
+      skip_archive: true,
+      skip_codesigning: true,
       derived_data_path: ".derivedData",
-      xcargs: "-skipPackagePluginValidation",
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ]
+    )
+  end
+
+  desc "Archive app"
+  lane :archive do |options|
+    appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
+    provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    
+    update_app_identifier(
+      plist_path: APP_CONFIG[:plist_path],
+      app_identifier: appidentifier
+    )
+
+    build_app(
+      scheme: APP_CONFIG[:scheme],
+      derived_data_path: ".derivedData",
+      skip_profile_detection: true,
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ],
       export_options: {
         provisioningProfiles: {
-          "edu.stanford.bdhg.healthgpt" => "HealthGPT"
+          appidentifier => provisioningProfile
         }
       }
     )
@@ -63,25 +145,81 @@ platform :ios do
     )
   end
 
-  desc "Publish a beta release to internal TestFlight testers"
-  lane :beta do
+  desc "Publish a release to TestFlight or the App Store depending on the environment"
+  lane :deploy do |options|
+    environment = options[:environment].to_s.strip.empty? ? APP_CONFIG[:default_environment] : options[:environment]
+    appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
+    provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    versionname = options[:versionname].to_s.strip.empty? ? APP_CONFIG[:default_version_name] : options[:versionname]
+    releasenotes = options[:releasenotes].to_s.strip.empty? ? APP_CONFIG[:default_release_notes] : options[:releasenotes]
+
+    UI.message("Using environment: #{environment}")
+    UI.message("Using app identifier: #{appidentifier}")
+    UI.message("Using provisioning profile: #{provisioningProfile}")
+    UI.message("Using version name: #{versionname}")
+    UI.message("Using release notes: #{releasenotes}")
+
+    releasenotes = releasenotes.gsub('\u2019', "'")
+
+    currentversion = get_version_number()
+    UI.message("Current version: #{currentversion}")
+
+    if Gem::Version.new(versionname) > Gem::Version.new(currentversion)
+      increment_version_number(
+        version_number: versionname
+      )
+      UI.message("Version bumped to #{versionname}.")
+    else
+      UI.message("No version bump needed. Current version (#{currentversion}) is greater than or equal to desired version (#{versionname}).")
+    end
+    
     signin
+    
+    buildnumber = options[:buildnumber].to_s.strip
+    if buildnumber.empty?
+      latest_build_number = latest_testflight_build_number(
+        app_identifier: appidentifier
+      )
+      buildnumber = latest_build_number + 1
+      UI.message("No build number provided. Incrementing to #{buildnumber}.")
+    else
+      UI.message("Using provided build number: #{buildnumber}.")
+    end
     increment_build_number(
-      {
-        build_number: latest_testflight_build_number + 1
-      }
+      build_number: buildnumber
     )
-    build
+
+    archive(
+      appidentifier: appidentifier,
+      provisioningProfile: provisioningProfile,
+    )
     commit = last_git_commit
-    upload_to_testflight(
-      distribute_external: true,
-      groups: [
-        "External Testers"
-      ],
-      submit_beta_review: true,
-      notify_external_testers: true,
-      expire_previous_builds: true,
-      changelog: commit[:message]
-    )
+    
+    if environment == "production"
+      deliver(
+        app_identifier: appidentifier,
+        release_notes: {
+          'en-US' => releasenotes
+        },
+        submit_for_review: true,
+        force: true,
+        reject_if_possible: true,
+        automatic_release: true,
+        precheck_include_in_app_purchases: false,
+      )
+    else
+      upload_to_testflight(
+        app_identifier: appidentifier,
+        distribute_external: true,
+        reject_build_waiting_for_review: true,
+        expire_previous_builds: true,
+        groups: [
+          "External Testers"
+        ],
+        submit_beta_review: true,
+        notify_external_testers: true,
+        changelog: commit[:message]
+      )
+    end
   end
 end

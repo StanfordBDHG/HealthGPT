@@ -10,7 +10,7 @@ SPDX-License-Identifier: MIT
 
 # HealthGPT Fog Node Setup
 
-This README explains how to spin up a simple Fog Node for HealthGPT using Docker on Linux or macOS. If the Fog Node mode is picked during the HealthGPT setup, HealthGPT sends LLM requests to a node on your local network instead of running on‑device or using a cloud provider.
+This README explains how to spin up a simple Fog Node for HealthGPT using Docker on Linux or macOS. If the Fog Node mode is picked during the Stanford HealthGPT setup, HealthGPT sends LLM requests to a node on your local network instead of running on‑device or using a cloud provider.
 
 This setup is intentionally minimal: it does not include an authorization service and does not secure traffic with TLS. For production‑ready guidance (authN/Z and TLS), see the SpeziLLM Fog Node documentation:
 
@@ -32,7 +32,7 @@ HealthGPT defaults to the host `spezillmfog.local` with HTTP and no auth, matchi
 ## Prerequisites
 
 - Docker and Docker Compose installed on Linux or macOS.
-- Network access between the device running the HealthGPT app and the machine hosting the Fog Node (Devices must be connected to the **same network and subnet** with IP-level reachability).
+- Network access between the device running the Stanford HealthGPT app and the machine hosting the Fog Node (Devices must be connected to the **same network and subnet** with IP-level reachability).
 - mDNS advertisement and discovery allowed on the network (required to resolve `.local` hostnames between HealthGPT and the Fog Node).
 
 
@@ -74,9 +74,9 @@ Keep this command running while you use the Fog Node. Stop with `Ctrl+C` when fi
 
 ## Use with HealthGPT
 
-- Build and run the HealthGPT app on a physical device (the iOS simulator is not supported).
+- Build and run the Stanford HealthGPT app on a physical device (the iOS simulator is not supported).
 - Choose the Fog option during onboarding or change it within the app's settings. With the defaults in this repo, the app discovers the `spezillmfog.local` fog node via a connection over HTTP with no auth.
-- As long as the Fog Node is reachable on your local network and the selected model in the HealthGPT app (e.g., `llama3.1:8b`) is pulled on the fog node, you’re set.
+- As long as the Fog Node is reachable on your local network and the selected model in the Stanford HealthGPT app (e.g., `llama3.1:8b`) is pulled on the fog node, you’re set.
 
 
 ## Notes and Limitations
