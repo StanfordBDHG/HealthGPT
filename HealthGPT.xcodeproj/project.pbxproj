@@ -119,6 +119,7 @@
 		63497B6B2BBF095A001F8419 /* LLMSourceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSourceSelection.swift; sourceTree = "<group>"; };
 		63497B6D2BBF0C0B001F8419 /* LLMSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMSource.swift; sourceTree = "<group>"; };
 		63DAAF742BBEB24D009E5E19 /* LLMLocalDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMLocalDownload.swift; sourceTree = "<group>"; };
+		6509F9492E852EF300F6945C /* HealthGPT.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = HealthGPT.xctestplan; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* HealthGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* HealthGPTApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthGPTApplication.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -289,6 +290,7 @@
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
+				6509F9492E852EF300F6945C /* HealthGPT.xctestplan */,
 				103566202E776B2E00CE14BF /* FogNode */,
 				653A254F283387FE005D4D48 /* HealthGPT */,
 				2F4E21D629F0518B0067EE98 /* HealthGPTUITests */,

@@ -82,7 +82,7 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Back"].waitForExistence(timeout: 2))
         buttons["Back"].tap()
         
-        optionToSelect.adjust(toPickerWheelValue: "Open AI LLM")
+        optionToSelect.adjust(toPickerWheelValue: "Remote OpenAI LLM")
         XCTAssertTrue(buttons["Save Choice"].waitForExistence(timeout: 5))
         buttons["Save Choice"].tap()
     }
@@ -111,6 +111,6 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 10))
         buttons["Grant Access"].tap()
 
-        try handleHealthKitAuthorization()
+        handleHealthKitAuthorization()
     }
 }
