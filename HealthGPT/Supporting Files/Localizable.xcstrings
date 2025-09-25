@@ -240,6 +240,16 @@
       }
     },
     "LLM Settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LLM Settings"
+          }
+        }
+      }
+    },
+    "LLM Settings" : {
 
     },
     "LLM_SOURCE_PICKER_LABEL" : {
@@ -366,7 +376,14 @@
       }
     },
     "Select Execution Type & Model" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Execution Type & Model"
+          }
+        }
+      }
     },
     "SETTINGS_CHAT" : {
       "localizations" : {

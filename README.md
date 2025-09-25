@@ -66,7 +66,7 @@ HealthGPT can run LLM inference on nearby machines in your local network, called
 The app discovers a fog node via mDNS, connects to it, and streams model responses back while dispatching inference tasks.
 This setup provides low latency, strong performance, and improved privacy, since models run on your own hardware inside your own network.
 
-For instructions on running a minimal Docker-based fog node on Linux or macOS, see [FogNode/README.Md](FogNode/README.Md).
+For instructions on running a minimal Docker-based fog node on Linux or macOS, see [FogNode/README.md](FogNode/README.md).
 
 
 ## Contributing

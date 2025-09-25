@@ -1,5 +1,5 @@
 {
-  "originHash" : "0ae48e3d48f3363339a12af1ec4bf0a61267b433bf0b10dbeb1c94b08fd6c61e",
+  "originHash" : "36331fe1c7c0dffee63b40d67eef7395a2e05704ae543b72aff854133d6082da",
   "pins" : [
     {
       "identity" : "gzipswift",
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mattpolzin/OpenAPIKit",
       "state" : {
-        "revision" : "65d3bd28ad1f9497bfd4011fc2cac4acb49805b2",
-        "version" : "3.7.1"
+        "revision" : "c1dcd65ccbcc1f3e132293ff2338c72c49a9026d",
+        "version" : "3.8.0"
       }
     },
     {
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
       "state" : {
-        "revision" : "164140d4fce0d0918f2c97fa027880f69d5c6e3e",
-        "version" : "1.2.6"
+        "revision" : "bbd2418acbdcf4f6be502c9a865af79a0656053d",
+        "version" : "1.2.7"
       }
     },
     {
@@ -97,7 +97,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
       "state" : {
         "branch" : "smallFixes",
-        "revision" : "d70b1e44f1a2b2b1f1e848b3fc0937a1f257be3f"
+        "revision" : "4a698475afe9df5949cdc5d7e18999073df9df3d"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews",
       "state" : {
-        "revision" : "45fa2677530aba4c305fab2be5a4e4abfbfffc32",
-        "version" : "1.12.3"
+        "revision" : "d05ffbcedf6760d1a9671f629475c46ee6b1fe19",
+        "version" : "1.12.4"
       }
     },
     {
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-cmark",
       "state" : {
-        "revision" : "b022b08312decdc46585e0b3440d97f6f22ef703",
-        "version" : "0.6.0"
+        "revision" : "b97d09472e847a416629f026eceae0e2afcfad65",
+        "version" : "0.7.0"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-openapi-generator",
       "state" : {
-        "revision" : "bb9a13596af11db9bb83389295d91cd335810fe8",
-        "version" : "1.10.2"
+        "revision" : "d74223cc5595a8165181c4d9579243c932e5cd07",
+        "version" : "1.10.3"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-openapi-runtime",
       "state" : {
-        "revision" : "8f33cc5dfe81169fb167da73584b9c72c3e8bc23",
-        "version" : "1.8.2"
+        "revision" : "7722cf8eac05c1f1b5b05895b04cfcc29576d9be",
+        "version" : "1.8.3"
       }
     },
     {
