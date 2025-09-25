@@ -7,18 +7,19 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 struct Disclaimer: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
     
     
     var body: some View {
         SequentialOnboardingView(
             title: "INTERESTING_MODULES_TITLE".moduleLocalized,
             subtitle: "INTERESTING_MODULES_SUBTITLE".moduleLocalized,
-            content: [
+            steps: [
                 .init(
                     title: "INTERESTING_MODULES_AREA1_TITLE".moduleLocalized,
                     description: "INTERESTING_MODULES_AREA1_DESCRIPTION".moduleLocalized
@@ -46,9 +47,7 @@ struct Disclaimer: View {
 
 
 #if DEBUG
-struct Disclaimer_Previews: PreviewProvider {
-    static var previews: some View {
-        Disclaimer()
-    }
+#Preview {
+    Disclaimer()
 }
 #endif

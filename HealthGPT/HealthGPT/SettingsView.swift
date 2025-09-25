@@ -9,38 +9,38 @@
 import OSLog
 import SpeziChat
 import SpeziLLMOpenAI
+import SpeziViews
 import SwiftUI
 
 struct SettingsView: View {
     private enum SettingsDestinations {
-        case openAIKey
-        case openAIModelSelection
+        case changeModelSettings
     }
-    
-    @State private var path = NavigationPath()
-    @Environment(\.dismiss) private var dismiss
+
+
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
+    @Environment(\.dismiss) private var dismiss
+
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
     @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
     @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIParameters.ModelType.gpt4o
+
+    @State private var path = ManagedNavigationStack.Path()
+    @State private var didComplete = false
+    @Binding var modelSettingRefreshId: UUID
+
     let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
     
     var body: some View {
-        NavigationStack(path: $path) {
+        ManagedNavigationStack(didComplete: self.$didComplete, path: self.path) {
             List {
-                if !FeatureFlags.localLLM && !(llmSource == .local) {
-                    openAISettings
-                }
-
-                chatSettings
-                speechSettings
-                disclaimer
+                self.changeModelSettings
+                self.chatSettings
+                self.speechSettings
+                self.disclaimer
             }
             .navigationTitle("SETTINGS_TITLE")
-            .navigationDestination(for: SettingsDestinations.self) { destination in
-                navigate(to: destination)
-            }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("SETTINGS_DONE") {
@@ -48,20 +48,22 @@ struct SettingsView: View {
                     }
                 }
             }
-                .accessibilityIdentifier("settingsList")
+            .accessibilityIdentifier("settingsList")
         }
+            .onChange(of: self.didComplete) { _, newValue in
+                if newValue {
+                    self.modelSettingRefreshId = UUID()      // fresh refresh main view
+                    dismiss()
+                }
+            }
     }
     
-    private var openAISettings: some View {
-        Section("SETTINGS_OPENAI") {
-            NavigationLink(value: SettingsDestinations.openAIKey) {
-                Text("SETTINGS_OPENAI_KEY")
+    private var changeModelSettings: some View {
+        Section("LLM Settings") {
+            Button("Select Execution Type & Model") {
+                self.path.append(customView: LLMSourceSelection())
             }
-                .accessibilityIdentifier("openAIKey")
-            NavigationLink(value: SettingsDestinations.openAIModelSelection) {
-                Text("SETTINGS_OPENAI_MODEL")
-            }
-                .accessibilityIdentifier("openAIModel")
+                .accessibilityIdentifier("changeModelButton")
         }
     }
     
@@ -91,38 +93,11 @@ struct SettingsView: View {
             Text("SETTINGS_DISCLAIMER_TEXT")
         }
     }
-    
-    private func navigate(to destination: SettingsDestinations) -> some View {
-        Group {
-            switch destination {
-            case .openAIKey:
-                LLMOpenAIAPITokenOnboardingStep(actionText: "OPEN_AI_KEY_SAVE_ACTION") {
-                    path.removeLast()
-                }
-            case .openAIModelSelection:
-                LLMOpenAIModelOnboardingStep(
-                    actionText: "OPEN_AI_MODEL_SAVE_ACTION",
-                    models: [
-                        .gpt3_5_turbo,
-                        .gpt4_turbo,
-                        .gpt4o,
-                        .o1,
-                        .o1_mini,
-                        .o3_mini,
-                        .o3_mini_high
-                    ]
-                ) { model in
-                    Task {
-                        openAIModel = model
-                        try? await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: model)))
-                        path.removeLast()
-                    }
-                }
-            }
-        }
-    }
 }
 
+
+#if DEBUG
 #Preview {
-    SettingsView()
+    SettingsView(modelSettingRefreshId: .constant(UUID()))
 }
+#endif

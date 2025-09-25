@@ -1,0 +1,66 @@
+#
+# This source file is part of the Stanford Spezi open source project
+#
+# SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+# ⚠️ Development-only setup
+# This compose file runs without user authN/Z and without TLS. SpeziLLM supports both,
+# but they require additional configuration.
+# For secure, production-ready deployment instructions, see:
+# https://github.com/StanfordSpezi/SpeziLLM/blob/main/README.md#spezi-llm-fog
+
+services:
+  # Reverse proxy routing requests to the Ollama service (potential to add middleware authN/Z)
+  traefik:
+    image: traefik:v2.5
+    restart: unless-stopped
+    command:
+      - "--log.level=DEBUG"   # Adjust the log level as needed
+      - "--providers.docker=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - web
+    depends_on:
+      - ollama
+
+  # LLM inference service Ollama
+  ollama:
+    image: ollama/ollama
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ollama.rule=Host(`spezillmfog.local`)"
+      - "traefik.http.routers.ollama.entrypoints=web"
+      - "traefik.http.routers.ollama.service=ollama-service"
+      - "traefik.http.services.ollama-service.loadbalancer.server.port=11434"
+    volumes:
+      - ollama_storage:/root/.ollama
+    networks:
+      - web
+
+  # On the Linux platform, advertise LLM inference service via mDNS from Avahi
+  # On macOS, this has to be done manually via the Bonjour cmd: "dns-sd -R "SpeziLLMFog Service" _http._tcp spezillmfog.local 80"
+  avahi:
+    build:
+      context: avahi
+    hostname: spezillmfog.local
+    network_mode: host  # Need to run in host network mode for mDNS
+    profiles:
+      - linux
+    restart: unless-stopped
+
+# Enables persistence of downloaded LLMs by Ollama
+volumes:
+  ollama_storage:
+
+networks:
+  web:
+    driver: bridge
