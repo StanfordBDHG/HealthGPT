@@ -9,6 +9,9 @@
 name: Release
 
 on:
+  push:
+    branches:
+      - fixGitHub
   release:
     types: [published]
 
@@ -21,9 +24,9 @@ jobs:
     name: Format Release Notes
     uses: StanfordBDHG/.github/.github/workflows/format-release-notes.yml@v2
     with:
-      release-tag: ${{ github.event.release.tag_name }}
+      release-tag: "0.4.1"
       repository: ${{ github.repository }}
-  build-and-test:
+  deployment:
     name: Build and Test
     uses: ./.github/workflows/deployment.yml
     needs: formatreleasenotes
