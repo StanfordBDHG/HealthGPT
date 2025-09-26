@@ -9,3 +9,5 @@
 project: HealthGPT.xcodeproj
 schemes:
 - HealthGPT
+report_exclude:
+- "**/GeneratedOpenAIClient/OpenAPIGenerator/GeneratedSources/**"

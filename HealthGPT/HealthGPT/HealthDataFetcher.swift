@@ -114,14 +114,14 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
         )
     }
 
-    /// Fetches the user's heart rate data for the last two weeks.
+    /// Fetches the user's resting heart rate data for the last two weeks.
     ///
-    /// - Returns: An array of `Double` values representing daily average heart rates.
+    /// - Returns: An array of `Double` values representing daily average resting heart rate.
     /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksHeartRate() async throws -> [Double] {
+    func fetchLastTwoWeeksRestingHeartRate() async throws -> [Double] {
         try await fetchLastTwoWeeksQuantityData(
-            for: .heartRate,
-            unit: .count(),
+            for: .restingHeartRate,
+            unit: .count().unitDivided(by: .minute()),
             options: [.discreteAverage]
         )
     }

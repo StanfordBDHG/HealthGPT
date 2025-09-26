@@ -13,23 +13,14 @@ import SpeziViews
 import SwiftUI
 
 struct SettingsView: View {
-    private enum SettingsDestinations {
-        case changeModelSettings
-    }
-
-
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
     @Environment(\.dismiss) private var dismiss
 
     @AppStorage(StorageKeys.enableTextToSpeech) private var enableTextToSpeech = StorageKeys.Defaults.enableTextToSpeech
-    @AppStorage(StorageKeys.llmSource) private var llmSource = StorageKeys.Defaults.llmSource
-    @AppStorage(StorageKeys.openAIModel) private var openAIModel = LLMOpenAIParameters.ModelType.gpt4o
 
     @State private var path = ManagedNavigationStack.Path()
     @State private var didComplete = false
     @Binding var modelSettingRefreshId: UUID
-
-    let logger = Logger(subsystem: "HealthGPT", category: "Settings")
 
     
     var body: some View {

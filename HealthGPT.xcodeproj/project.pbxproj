@@ -17,7 +17,6 @@
 		107A0A412E428DDA0060886F /* FogResourceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107A0A402E428DD30060886F /* FogResourceSelectionView.swift */; };
 		107A0A432E4290D60060886F /* FogInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107A0A422E4290D30060886F /* FogInformationView.swift */; };
 		2719BC7829F0A31500995C31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7729F0A31500995C31 /* SettingsView.swift */; };
-		2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */; };
 		272FB34E2A03CDFF0010B98D /* HealthDataFetcher+Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */; };
 		272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */; };
 		272FB3522A03D14C0010B98D /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FB3512A03D14C0010B98D /* HealthData.swift */; };
@@ -89,7 +88,6 @@
 		107A0A402E428DD30060886F /* FogResourceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogResourceSelectionView.swift; sourceTree = "<group>"; };
 		107A0A422E4290D30060886F /* FogInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogInformationView.swift; sourceTree = "<group>"; };
 		2719BC7729F0A31500995C31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
 		272FB34D2A03CDFF0010B98D /* HealthDataFetcher+Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataFetcher+Process.swift"; sourceTree = "<group>"; };
 		272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataFetcherError.swift; sourceTree = "<group>"; };
 		272FB3512A03D14C0010B98D /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 				272FB34F2A03D1000010B98D /* HealthDataFetcherError.swift */,
 				E22B62EE29E8CE1E008F3484 /* HealthGPTView.swift */,
 				2719BC7729F0A31500995C31 /* SettingsView.swift */,
-				2719BC7F29F0A5DD00995C31 /* UIApplication+Keyboard.swift */,
 				272FB3532A03F1860010B98D /* PromptGenerator.swift */,
 				F381BD3B2A4DE41900BCEB69 /* HealthDataInterpreter.swift */,
 			);
@@ -540,7 +537,6 @@
 				63497B6C2BBF095A001F8419 /* LLMSourceSelection.swift in Sources */,
 				275DEFDB29EEC6CA0079D453 /* String+ModuleLocalized.swift in Sources */,
 				107A0A412E428DDA0060886F /* FogResourceSelectionView.swift in Sources */,
-				2719BC8029F0A5DD00995C31 /* UIApplication+Keyboard.swift in Sources */,
 				E22B62EF29E8CE1E008F3484 /* HealthGPTView.swift in Sources */,
 				275DEFCE29EEC5AD0079D453 /* StorageKeys.swift in Sources */,
 				272FB3502A03D1000010B98D /* HealthDataFetcherError.swift in Sources */,

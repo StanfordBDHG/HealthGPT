@@ -111,6 +111,6 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 10))
         buttons["Grant Access"].tap()
 
-        handleHealthKitAuthorization()
+        handleHealthKitAuthorization(requireSheetToAppear: assertThatHealthKitConsentIsShown)
     }
 }

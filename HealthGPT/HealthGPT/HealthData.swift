@@ -16,5 +16,5 @@ struct HealthData: Codable {
     var exerciseMinutes: Double?
     var bodyWeight: Double?
     var sleepHours: Double?
-    var heartRate: Double?
+    var restingHeartRate: Double?
 }

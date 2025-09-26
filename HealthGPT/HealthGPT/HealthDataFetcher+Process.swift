@@ -31,24 +31,20 @@ extension HealthDataFetcher {
 
         healthData = healthData.reversed()
 
-        async let stepCounts = fetchLastTwoWeeksStepCount()
-        async let sleepHours = fetchLastTwoWeeksSleep()
-        async let caloriesBurned = fetchLastTwoWeeksActiveEnergy()
-        async let exerciseTime = fetchLastTwoWeeksExerciseTime()
-        async let bodyMass = fetchLastTwoWeeksBodyWeight()
-
-        let fetchedStepCounts = try? await stepCounts
-        let fetchedSleepHours = try? await sleepHours
-        let fetchedCaloriesBurned = try? await caloriesBurned
-        let fetchedExerciseTime = try? await exerciseTime
-        let fetchedBodyMass = try? await bodyMass
+        let stepCounts = try? await fetchLastTwoWeeksStepCount()
+        let sleepHours = try? await fetchLastTwoWeeksSleep()
+        let caloriesBurned = try? await fetchLastTwoWeeksActiveEnergy()
+        let exerciseTime = try? await fetchLastTwoWeeksExerciseTime()
+        let bodyMass = try? await fetchLastTwoWeeksBodyWeight()
+        let restingHeartRate = try? await fetchLastTwoWeeksRestingHeartRate()
 
         for day in 0...13 {
-            healthData[day].steps = fetchedStepCounts?[day]
-            healthData[day].sleepHours = fetchedSleepHours?[day]
-            healthData[day].activeEnergy = fetchedCaloriesBurned?[day]
-            healthData[day].exerciseMinutes = fetchedExerciseTime?[day]
-            healthData[day].bodyWeight = fetchedBodyMass?[day]
+            healthData[day].steps = stepCounts?[day]
+            healthData[day].sleepHours = sleepHours?[day]
+            healthData[day].activeEnergy = caloriesBurned?[day]
+            healthData[day].exerciseMinutes = exerciseTime?[day]
+            healthData[day].bodyWeight = bodyMass?[day]
+            healthData[day].restingHeartRate = restingHeartRate?[day]
         }
 
         return healthData
