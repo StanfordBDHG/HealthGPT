@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziChat",
       "state" : {
-        "revision" : "021ec65df13c02176d43737b8587a41cd520a510",
-        "version" : "0.2.4"
+        "revision" : "d696d882f2722d22669e6d50254e87a124ef6643",
+        "version" : "0.2.5"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
       "state" : {
-        "branch" : "smallFixes",
-        "revision" : "4a698475afe9df5949cdc5d7e18999073df9df3d"
+        "revision" : "aad90784c5660572df75cbdb2d090412312b2307",
+        "version" : "0.12.1"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews",
       "state" : {
-        "revision" : "d05ffbcedf6760d1a9671f629475c46ee6b1fe19",
-        "version" : "1.12.4"
+        "revision" : "e4f08b7200f38eec605ab4eb2fb4a0437e8eb36b",
+        "version" : "1.12.5"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics",
       "state" : {
-        "revision" : "bbadd4b853a33fd78c4ae977d17bb2af15eb3f2a",
-        "version" : "1.1.0"
+        "revision" : "0c0290ff6b24942dadb83a929ffaaa1481df04a2",
+        "version" : "1.1.1"
       }
     },
     {
