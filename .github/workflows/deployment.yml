@@ -119,16 +119,16 @@ jobs:
           fi
           echo "buildnumber: ${{ inputs.buildnumber }}"
           echo "releasenotes: ${{ inputs.releasenotes }}"
-  # buildandtest:
-  #   name: Build and Test
-  #   needs: determineenvironment
-  #   uses: ./.github/workflows/build-and-test.yml
-  #   permissions:
-  #     contents: read
-  #   secrets: inherit
+  buildandtest:
+    name: Build and Test
+    needs: determineenvironment
+    uses: ./.github/workflows/build-and-test.yml
+    permissions:
+      contents: read
+    secrets: inherit
   iosapptestflightdeployment:
     name: iOS App TestFlight Deployment
-    needs: [determineenvironment, vars] #, buildandtest]
+    needs: [determineenvironment, vars, buildandtest]
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     permissions:
       contents: read
