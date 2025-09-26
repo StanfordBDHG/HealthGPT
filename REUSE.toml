@@ -1,0 +1,6 @@
+version = 1
+
+[[annotations]]
+path = ["HealthGPT.xcodeproj/**", "HealthGPT/Supporting Files/**"]
+SPDX-FileCopyrightText = "2025 Stanford University and the project authors (see CONTRIBUTORS.md)"
+SPDX-License-Identifier = "MIT"
