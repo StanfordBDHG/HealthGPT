@@ -7,7 +7,7 @@
 //
 
 
-/// A collection of feature flags for the HealthGPT app.
+/// A collection of feature flags for the Stanford HealthGPT app.
 enum FeatureFlags {
     /// Skips the onboarding flow to enable easier development of features in the application
     /// and to allow UI tests to skip the onboarding flow.

@@ -1,0 +1,55 @@
+{
+  "configurations" : [
+    {
+      "id" : "94721506-0954-4399-BAA4-037E6C904195",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "--mockMode",
+        "enabled" : false
+      },
+      {
+        "argument" : "--localLLM",
+        "enabled" : false
+      },
+      {
+        "argument" : "--showOnboarding",
+        "enabled" : false
+      },
+      {
+        "argument" : "--resetSecureStorage",
+        "enabled" : false
+      }
+    ],
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:HealthGPT.xcodeproj",
+      "identifier" : "653A254C283387FE005D4D48",
+      "name" : "HealthGPT"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:HealthGPT.xcodeproj",
+        "identifier" : "2F4E21D429F0518B0067EE98",
+        "name" : "HealthGPTUITests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HealthGPT.xcodeproj",
+        "identifier" : "27B249592A06590E0091E52C",
+        "name" : "HealthGPTTests"
+      }
+    }
+  ],
+  "version" : 1
+}

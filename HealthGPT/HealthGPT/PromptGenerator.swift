@@ -51,6 +51,9 @@ class PromptGenerator {
         if let bodyWeight = dayData.bodyWeight {
             dayPrompt += " \(bodyWeight) lbs of body weight,"
         }
+        if let heartRate = dayData.restingHeartRate {
+            dayPrompt += "and \(heartRate) bpm average resting heart rate."
+        }
         return dayPrompt
     }
 }

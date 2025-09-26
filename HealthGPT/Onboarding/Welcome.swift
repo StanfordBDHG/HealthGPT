@@ -7,11 +7,12 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 struct Welcome: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var onboardingNavigationPath
 
 
     var body: some View {
@@ -20,17 +21,17 @@ struct Welcome: View {
             subtitle: "WELCOME_SUBTITLE".moduleLocalized,
             areas: [
                 .init(
-                    icon: Image(systemName: "shippingbox.fill"), // swiftlint:disable:this accessibility_label_for_image
+                    iconSymbol: "shippingbox.fill",
                     title: "WELCOME_AREA1_TITLE".moduleLocalized,
                     description: "WELCOME_AREA1_DESCRIPTION".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "applewatch.side.right"), // swiftlint:disable:this accessibility_label_for_image
+                    iconSymbol: "applewatch.side.right",
                     title: "WELCOME_AREA2_TITLE".moduleLocalized,
                     description: "WELCOME_AREA2_DESCRIPTION".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "list.bullet.clipboard.fill"), // swiftlint:disable:this accessibility_label_for_image
+                    iconSymbol: "list.bullet.clipboard.fill",
                     title: "WELCOME_AREA3_TITLE".moduleLocalized,
                     description: "WELCOME_AREA3_DESCRIPTION".moduleLocalized
                 )
@@ -45,9 +46,7 @@ struct Welcome: View {
 
 
 #if DEBUG
-struct Welcome_Previews: PreviewProvider {
-    static var previews: some View {
-        Welcome()
-    }
+#Preview {
+    Welcome()
 }
 #endif

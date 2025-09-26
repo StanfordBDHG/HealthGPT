@@ -30,15 +30,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
     /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
     ///
-    /// - Parameter schema: the LLMSchema to use
+    /// - Parameter schema: The LLMSchema to use.
     @MainActor
     func prepareLLM(with schema: any LLMSchema) async throws {
-        let llm = llmRunner(with: schema)
-        systemPrompt = await generateSystemPrompt()
-        llm.context.append(systemMessage: systemPrompt)
-        if let localLLM = llm as? LLMLocalSession {
-            try await localLLM.setup()
-        }
+        let llm = self.llmRunner(with: schema)
+        self.systemPrompt = await generateSystemPrompt()
+
+        llm.context.append(systemMessage: self.systemPrompt)
         self.llm = llm
     }
     
@@ -60,15 +58,15 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// Resets the LLM context and re-injects the system prompt.
     @MainActor
     func resetChat() async {
-        systemPrompt = await generateSystemPrompt()
-        llm?.context.reset()
-        llm?.context.append(systemMessage: systemPrompt)
+        self.systemPrompt = await self.generateSystemPrompt()
+        self.llm?.context.reset()
+        self.llm?.context.append(systemMessage: self.systemPrompt)
     }
     
     /// Fetches updated health data using the `HealthDataFetcher`
     /// and passes it to the `PromptGenerator` to create the system prompt.
     private func generateSystemPrompt() async -> String {
-        let healthData = await healthDataFetcher.fetchAndProcessHealthData()
+        let healthData = await self.healthDataFetcher.fetchAndProcessHealthData()
         return PromptGenerator(with: healthData).buildMainPrompt()
     }
 }

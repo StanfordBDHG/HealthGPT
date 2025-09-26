@@ -8,27 +8,24 @@
 
 import HealthKit
 import SpeziLLMOpenAI
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
-/// Displays an multi-step onboarding flow for the HealthGPT Application.
+/// Displays an multi-step onboarding flow for the Stanford HealthGPT Application.
 struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @AppStorage(StorageKeys.llmSource) var llmSource = StorageKeys.Defaults.llmSource
     
     
     var body: some View {
-        OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
+        ManagedNavigationStack(didComplete: $completedOnboardingFlow) {
             Welcome()
             Disclaimer()
-            
-            if FeatureFlags.localLLM {
-                LLMLocalDownload()
-            } else {
-                LLMSourceSelection()
-            }
-            
+
+            // Presents the onboarding flow for the respective local, fog, or cloud LLM
+            LLMSourceSelection()
+
             if HKHealthStore.isHealthDataAvailable() {
                 HealthKitPermissions()
             }
@@ -40,9 +37,7 @@ struct OnboardingFlow: View {
 
 
 #if DEBUG
-struct OnboardingFlow_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingFlow()
-    }
+#Preview {
+    OnboardingFlow()
 }
 #endif

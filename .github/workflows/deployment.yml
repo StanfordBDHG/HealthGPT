@@ -1,0 +1,141 @@
+#
+# This source file is part of the Stanford HealthGPT open-source project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: |
+          The GitHub deployment environment.
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      version:
+        description: |
+          The semantic version of the app that should be released.
+        required: true
+        type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
+        type: string
+      releasenotes:
+        description: |
+          Release notes of what changed in this version.
+        required: false
+        type: string
+        default: Bug fixes and performance improvements.
+  workflow_call:
+    inputs:
+      environment:
+        description: |
+          The GitHub deployment environment.
+        required: false
+        type: string
+        default: staging
+      version:
+        description: |
+          The semantic version of the app that should be released.
+        required: true
+        type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
+        type: string
+      releasenotes:
+        description: |
+          Release notes of what changed in this version.
+        required: false
+        type: string
+        default: Bug fixes and performance improvements.
+
+concurrency:
+  group: deployment
+  cancel-in-progress: false
+
+jobs:
+  determineenvironment:
+    name: Determine Environment
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.determineenvironment.outputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Determine Environment
+        id: determineenvironment
+        run: |
+          if [[ -z "${{ inputs.environment }}" ]]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "environment: staging"
+          else
+            echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
+            echo "environment: ${{ inputs.environment }}"
+          fi
+  vars:
+    name: Inject Environment Variables In Deployment Workflow
+    needs: determineenvironment
+    runs-on: ubuntu-latest
+    environment: ${{ needs.determineenvironment.outputs.environment }}
+    outputs:
+      version: ${{ steps.script.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+        with:
+          semver_only: true
+          initial_version: "1.0.0"
+      - id: script
+        run: |
+          echo "Injecting Environment Variables In Deployment Workflow ..."
+          if [[ -z "${{ inputs.version }}" ]]; then
+            IFS='.' read -r MAJOR MINOR PATCH <<< "${{ steps.get-latest-tag.outputs.tag }}"
+
+            PATCH=$((PATCH + 1))
+            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+            echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+            echo "version: $NEW_VERSION"
+          else
+            echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+            echo "version: ${{ inputs.version }}"
+          fi
+          echo "buildnumber: ${{ inputs.buildnumber }}"
+          echo "releasenotes: ${{ inputs.releasenotes }}"
+  buildandtest:
+    name: Build and Test
+    needs: determineenvironment
+    uses: ./.github/workflows/build-and-test.yml
+    permissions:
+      contents: read
+    secrets: inherit
+  iosapptestflightdeployment:
+    name: iOS App TestFlight Deployment
+    needs: [determineenvironment, vars, buildandtest]
+    uses: StanfordSpezi/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+    permissions:
+      contents: read
+    with:
+      runsonlabels: '["macOS", "self-hosted"]'
+      environment: ${{ needs.determineenvironment.outputs.environment }}
+      setupsigning: true
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}" ${{ inputs.buildnumber && format('buildnumber:"{0}"', inputs.buildnumber) || '' }}
+    secrets: inherit
+

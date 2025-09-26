@@ -44,6 +44,26 @@
         }
       }
     },
+    "FOG_LLM_LABEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fog-based LLM"
+          }
+        }
+      }
+    },
+    "FOG_MODEL_SAVE_ACTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Fog Model"
+          }
+        }
+      }
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -70,7 +90,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthGPT can access data from HealthKit to use in conversations with ChatGPT."
+            "value" : "HealthGPT can access data from HealthKit to use in conversations with LLMs."
           }
         }
       }
@@ -192,7 +212,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthGPT is an experimental iOS app that allows users to interact with health data stored in Apple Health using ChatGPT."
+            "value" : "HealthGPT is an experimental iOS app that allows users to interact with health data stored in Apple Health using LLMs."
           }
         }
       }
@@ -214,10 +234,23 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Llama3 8B model will be downloaded."
+            "value" : "The Llama3.2 3B model will be downloaded. Model size is around 3GB."
           }
         }
       }
+    },
+    "LLM Settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LLM Settings"
+          }
+        }
+      }
+    },
+    "LLM Settings" : {
+
     },
     "LLM_SOURCE_PICKER_LABEL" : {
       "localizations" : {
@@ -244,7 +277,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choose an on-device or OpenAI LLM"
+            "value" : "Choose an on-device LLM, OpenAI LLM, or an LLM running on a fog node within your local network (setup required)."
           }
         }
       }
@@ -264,7 +297,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Loading the chat window..."
+            "value" : "Initializing the LLM chat…"
           }
         }
       }
@@ -302,16 +335,6 @@
         }
       }
     },
-    "OPEN_AI_KEY_SAVE_ACTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save API Key"
-          }
-        }
-      }
-    },
     "OPEN_AI_MODEL_SAVE_ACTION" : {
       "localizations" : {
         "en" : {
@@ -337,7 +360,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open AI LLM"
+            "value" : "Remote OpenAI LLM"
           }
         }
       }
@@ -348,6 +371,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reset"
+          }
+        }
+      }
+    },
+    "Select Execution Type & Model" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Execution Type & Model"
           }
         }
       }
@@ -398,36 +431,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
-          }
-        }
-      }
-    },
-    "SETTINGS_OPENAI" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open AI Settings"
-          }
-        }
-      }
-    },
-    "SETTINGS_OPENAI_KEY" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open AI API Key"
-          }
-        }
-      }
-    },
-    "SETTINGS_OPENAI_MODEL" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open AI Model"
           }
         }
       }
@@ -492,7 +495,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthGPT is an experimental iOS app that allows users to query health data stored in Apple Health using ChatGPT."
+            "value" : "HealthGPT is an experimental iOS app that allows users to query health data stored in Apple Health using LLMs."
           }
         }
       }
@@ -503,7 +506,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ChatGPT"
+            "value" : "HealthGPT"
           }
         }
       }
@@ -514,7 +517,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthGPT can surface data from Apple Health to use in conversations with ChatGPT."
+            "value" : "HealthGPT can surface data from Apple Health to use in conversations with LLMs."
           }
         }
       }

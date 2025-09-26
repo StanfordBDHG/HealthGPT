@@ -1,0 +1,21 @@
+#
+# This source file is part of the Stanford HealthGPT open-source project
+#
+# SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Monthly Markdown Link Check
+
+on:
+  # Runs at midnight on the first of every month
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  markdown_link_check:
+    name: Markdown Link Check
+    uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
+    permissions:
+      contents: read
