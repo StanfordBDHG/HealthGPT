@@ -23,7 +23,7 @@ jobs:
     with:
       release-tag: ${{ github.event.release.tag_name }}
       repository: ${{ github.repository }}
-  build-and-test:
+  deployment:
     name: Build and Test
     uses: ./.github/workflows/deployment.yml
     needs: formatreleasenotes
