@@ -45,6 +45,19 @@ struct PromptGeneratorTests {
     }
 
     @Test
+    func toolUsePromptContainsInstructions() {
+        let toolUsePrompt = PromptGenerator.buildToolUsePrompt()
+        let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
+
+        #expect(toolUsePrompt.contains("HealthGPT"))
+        #expect(toolUsePrompt.contains("Today is \(today)"))
+        #expect(toolUsePrompt.contains("get_health_metric"))
+        #expect(toolUsePrompt.contains("get_available_metrics"))
+        #expect(toolUsePrompt.contains("compare_periods"))
+        #expect(toolUsePrompt.contains("MUST call the available tools"))
+    }
+
+    @Test
     func buildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()

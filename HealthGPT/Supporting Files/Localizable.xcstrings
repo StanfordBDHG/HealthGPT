@@ -44,6 +44,9 @@
         }
       }
     },
+    "Fetching your health data..." : {
+
+    },
     "FOG_LLM_LABEL" : {
       "localizations" : {
         "en" : {
@@ -79,7 +82,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Supported data types include sleep, step count, active energy, exercise minutes, heart rate, and body mass. \n\n Aggregated HealthKit data for the past 14 days will be uploaded to OpenAI. \n\n Please refer to the OpenAI privacy policy for more information."
+            "value" : "Supported data types include sleep, step count, active energy, exercise minutes, heart rate, and body mass. \n\n HealthKit data is fetched on demand when you ask questions, and sent to OpenAI for processing. \n\n Please refer to the OpenAI privacy policy for more information."
           }
         }
       }
@@ -248,9 +251,6 @@
           }
         }
       }
-    },
-    "LLM Settings" : {
-
     },
     "LLM_SOURCE_PICKER_LABEL" : {
       "localizations" : {

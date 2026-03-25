@@ -10,6 +10,7 @@ import Foundation
 import Spezi
 import SpeziChat
 import SpeziLLM
+import SpeziLLMFog
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
@@ -39,6 +40,19 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
         llm.context.append(systemMessage: self.systemPrompt)
         self.llm = llm
     }
+
+    /// Creates an LLM session with tool-use prompt (no pre-fetched data).
+    /// Used for OpenAI sessions that support function calling.
+    ///
+    /// - Parameter schema: The LLMOpenAISchema configured with LLM functions.
+    @MainActor
+    func prepareLLMWithTools(with schema: LLMOpenAISchema) {
+        let llm = self.llmRunner(with: schema)
+        self.systemPrompt = PromptGenerator.buildToolUsePrompt()
+
+        llm.context.append(systemMessage: self.systemPrompt)
+        self.llm = llm
+    }
     
     /// Queries the LLM using the current session in the `llm` property and adds the output to the context.
     @MainActor
@@ -56,9 +70,15 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     }
     
     /// Resets the LLM context and re-injects the system prompt.
+    /// For OpenAI sessions with tools, uses the static tool-use prompt.
+    /// For legacy sessions (Fog, Local, Mock), re-fetches health data.
     @MainActor
     func resetChat() async {
-        self.systemPrompt = await self.generateSystemPrompt()
+        if llm is LLMOpenAISession {
+            self.systemPrompt = PromptGenerator.buildToolUsePrompt()
+        } else {
+            self.systemPrompt = await self.generateSystemPrompt()
+        }
         self.llm?.context.reset()
         self.llm?.context.append(systemMessage: self.systemPrompt)
     }

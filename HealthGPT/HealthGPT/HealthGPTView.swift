@@ -23,6 +23,7 @@ struct HealthGPTView: View {
     @AppStorage(StorageKeys.fogModel) private var fogModel = LLMFogParameters.FogModelType.llama3_1_8B
 
     @Environment(HealthDataInterpreter.self) private var healthDataInterpreter
+    @Environment(HealthDataFetcher.self) private var healthDataFetcher
     @State private var showSettings = false
     @State private var showErrorAlert = false
     @State private var errorMessage = ""
@@ -32,37 +33,7 @@ struct HealthGPTView: View {
     var body: some View {
         NavigationStack {
             if let llm = self.healthDataInterpreter.llm {
-                let contextBinding = Binding { llm.context.chat } set: { llm.context.chat = $0 }
-                
-                ChatView(contextBinding, exportFormat: .text)
-                    .speak(llm.context.chat, muted: !self.textToSpeech)
-                    .speechToolbarButton(muted: !self.$textToSpeech)
-                    .viewStateAlert(state: llm.state)
-                    .navigationTitle("WELCOME_TITLE")
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            self.settingsButton
-                        }
-                        ToolbarItem(placement: .primaryAction) {
-                            self.resetChatButton
-                        }
-                    }
-                    .onChange(of: llm.context, initial: true) { _, _ in
-                        // Once the user enters a message in the chat, increase `messageTaskId` that triggers LLM inference
-                        if !llm.context.isEmpty && llm.state != .generating && llm.context.last?.role != .system {
-                            self.messageTaskId += 1
-                        }
-                    }
-                    // Triggered on every new user message in the chat via `messageTaskId`
-                    // Automatically cancels the LLM inference once view disappears
-                    .task(id: self.messageTaskId) {
-                        do {
-                            try await healthDataInterpreter.queryLLM()
-                        } catch {
-                            showErrorAlert = true
-                            errorMessage = "Error querying LLM: \(error.localizedDescription)"
-                        }
-                    }
+                chatContentView(for: llm)
             } else {
                 self.loadingChatView
             }
@@ -86,7 +57,12 @@ struct HealthGPTView: View {
                         with: LLMFogSchema(parameters: .init(modelType: self.fogModel))
                     )
                 } else {
-                    try await healthDataInterpreter.prepareLLM(with: LLMOpenAISchema(parameters: .init(modelType: openAIModel)))
+                    let schema = LLMOpenAISchema(parameters: .init(modelType: openAIModel)) {
+                        GetHealthMetricFunction(healthDataFetcher: healthDataFetcher)
+                        GetAvailableMetricsFunction()
+                        ComparePeriodsFunction(healthDataFetcher: healthDataFetcher)
+                    }
+                    healthDataInterpreter.prepareLLMWithTools(with: schema)
                 }
             } catch {
                 self.showErrorAlert = true
@@ -123,10 +99,58 @@ struct HealthGPTView: View {
         .accessibilityIdentifier("resetChatButton")
     }
     
+    private var callingToolsIndicator: some View {
+        VStack(spacing: 8) {
+            ProgressView()
+            Text("Fetching your health data...")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+    }
+
     private var loadingChatView: some View {
         VStack {
             Text("LOADING_CHAT_VIEW")
             ProgressView()
         }
+    }
+
+    @ViewBuilder
+    private func chatContentView(for llm: any LLMSession) -> some View {
+        let contextBinding = Binding { llm.context.chat } set: { llm.context.chat = $0 }
+
+        ChatView(contextBinding, exportFormat: .text)
+            .speak(llm.context.chat, muted: !self.textToSpeech)
+            .speechToolbarButton(muted: !self.$textToSpeech)
+            .viewStateAlert(state: llm.state)
+            .overlay(alignment: .center) {
+                if llm.state == .callingTools {
+                    callingToolsIndicator
+                }
+            }
+            .navigationTitle("WELCOME_TITLE")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    self.settingsButton
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    self.resetChatButton
+                }
+            }
+            .onChange(of: llm.context, initial: true) { _, _ in
+                if !llm.context.isEmpty && llm.state != .generating && llm.context.last?.role != .system {
+                    self.messageTaskId += 1
+                }
+            }
+            .task(id: self.messageTaskId) {
+                do {
+                    try await healthDataInterpreter.queryLLM()
+                } catch {
+                    showErrorAlert = true
+                    errorMessage = "Error querying LLM: \(error.localizedDescription)"
+                }
+            }
     }
 }
