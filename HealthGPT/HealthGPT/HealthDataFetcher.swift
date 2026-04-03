@@ -215,7 +215,7 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
         let endDay = calendar.startOfDay(for: endDate)
 
         var currentDay = startDay
-        while currentDay <= endDay {
+        while currentDay < endDay {
             guard let previousDay = calendar.date(byAdding: .day, value: -1, to: currentDay),
                   let startOfSleep = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: previousDay),
                   let endOfSleep = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: currentDay) else {
