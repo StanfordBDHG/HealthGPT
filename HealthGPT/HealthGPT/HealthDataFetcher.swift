@@ -15,10 +15,9 @@ import SpeziHealthKit
 class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
-    required init() { }
-    
-
     private static let defaultLookbackDays = 14
+
+    required init() { }
 
     // MARK: - Flexible Date-Range Queries
 

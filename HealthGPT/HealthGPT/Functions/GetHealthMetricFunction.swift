@@ -26,7 +26,7 @@ struct GetHealthMetricFunction: LLMFunction {
 
     func execute() async throws -> String? {
         let clampedDays = max(1, min(days, 90))
-        let endDate = Calendar.current.startOfDay(for: .now)
+        let endDate = Date.now
         guard let startDate = Calendar.current.date(byAdding: .day, value: -clampedDays, to: endDate) else {
             throw HealthDataFetcherError.invalidDateRange
         }

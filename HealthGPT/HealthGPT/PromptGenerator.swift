@@ -23,7 +23,7 @@ class PromptGenerator {
         You are HealthGPT, an enthusiastic, expert caretaker with a deep understanding in personal health. \
         If numbers seem low, provide advice on how they can improve. \
         Provide concise, actionable insights rather than just repeating raw numbers. \
-        Today is \(today). You do not have data about the current day.
+        Today is \(today). Data for the current day may be partial.
         """
     }
 

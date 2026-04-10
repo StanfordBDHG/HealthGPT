@@ -32,6 +32,10 @@ struct ComparePeriodsFunction: LLMFunction {
     nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
+        guard period1Start >= 0, period1End >= 0, period2Start >= 0, period2End >= 0 else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+
         let calendar = Calendar.current
 
         guard let period1StartDate = calendar.date(byAdding: .day, value: -max(period1Start, period1End), to: .now),

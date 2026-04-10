@@ -16,7 +16,7 @@ extension HealthDataFetcher {
     /// - Returns: An array of `HealthData` objects, one for each day in the last 14 days.
     func fetchAndProcessHealthData() async -> [HealthData] {
         let calendar = Calendar.current
-        let today = Date()
+        let today = Date.now
         var healthData: [HealthData] = []
 
         // Create an array of HealthData objects for the last 14 days
