@@ -11,4 +11,6 @@ import Foundation
 
 enum HealthDataFetcherError: Error {
     case invalidObjectType
+    case unsupportedMetric
+    case invalidDateRange
 }

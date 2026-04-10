@@ -27,24 +27,9 @@ struct LLMFunctionMetadataTests {
     }
 
     @Test
-    func getHealthMetricMetricTypeCasesMatchHealthMetric() {
-        let metricTypeCases = GetHealthMetricFunction.MetricType.allCases.map(\.rawValue).sorted()
-        let healthMetricCases = HealthMetric.allCases.map(\.rawValue).sorted()
-        #expect(metricTypeCases == healthMetricCases)
-    }
-
-    @Test
-    func comparePeriodsMetricTypeCasesMatchHealthMetric() {
-        let metricTypeCases = ComparePeriodsFunction.MetricType.allCases.map(\.rawValue).sorted()
-        let healthMetricCases = HealthMetric.allCases.map(\.rawValue).sorted()
-        #expect(metricTypeCases == healthMetricCases)
-    }
-
-    @Test
     func allFunctionNamesAreUnique() {
         let names = [
             GetHealthMetricFunction.name,
-            GetAvailableMetricsFunction.name,
             ComparePeriodsFunction.name
         ]
         #expect(Set(names).count == names.count)
@@ -54,7 +39,6 @@ struct LLMFunctionMetadataTests {
     func toolUsePromptReferencesAllFunctionNames() {
         let prompt = PromptGenerator.buildToolUsePrompt()
         #expect(prompt.contains(GetHealthMetricFunction.name))
-        #expect(prompt.contains(GetAvailableMetricsFunction.name))
         #expect(prompt.contains(ComparePeriodsFunction.name))
     }
 }

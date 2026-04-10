@@ -59,10 +59,9 @@ struct HealthGPTView: View {
                 } else {
                     let schema = LLMOpenAISchema(parameters: .init(modelType: openAIModel)) {
                         GetHealthMetricFunction(healthDataFetcher: healthDataFetcher)
-                        GetAvailableMetricsFunction()
                         ComparePeriodsFunction(healthDataFetcher: healthDataFetcher)
                     }
-                    healthDataInterpreter.prepareLLMWithTools(with: schema)
+                    try await healthDataInterpreter.prepareLLM(with: schema, useToolPrompt: true)
                 }
             } catch {
                 self.showErrorAlert = true
@@ -99,17 +98,6 @@ struct HealthGPTView: View {
         .accessibilityIdentifier("resetChatButton")
     }
     
-    private var callingToolsIndicator: some View {
-        VStack(spacing: 8) {
-            ProgressView()
-            Text("Fetching your health data...")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-    }
-
     private var loadingChatView: some View {
         VStack {
             Text("LOADING_CHAT_VIEW")
@@ -125,12 +113,21 @@ struct HealthGPTView: View {
             .speak(llm.context.chat, muted: !self.textToSpeech)
             .speechToolbarButton(muted: !self.$textToSpeech)
             .viewStateAlert(state: llm.state)
-            .overlay(alignment: .center) {
-                if llm.state == .callingTools {
-                    callingToolsIndicator
+            .navigationTitle("WELCOME_TITLE")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    if llm.state == .callingTools {
+                        VStack(spacing: 2) {
+                            Text("WELCOME_TITLE")
+                                .font(.headline)
+                            Text("CALLING_TOOLS_SUBTITLE")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
             }
-            .navigationTitle("WELCOME_TITLE")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     self.settingsButton
@@ -140,7 +137,10 @@ struct HealthGPTView: View {
                 }
             }
             .onChange(of: llm.context, initial: true) { _, _ in
-                if !llm.context.isEmpty && llm.state != .generating && llm.context.last?.role != .system {
+                if !llm.context.isEmpty
+                    && llm.state != .generating
+                    && llm.state != .callingTools
+                    && llm.context.last?.role != .system {
                     self.messageTaskId += 1
                 }
             }

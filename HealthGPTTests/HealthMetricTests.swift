@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import HealthKit
 @testable import HealthGPT
+import HealthKit
 import Testing
 
 
@@ -33,45 +33,34 @@ struct HealthMetricTests {
     }
 
     @Test
-    func sleepHasNilIdentifierUnitAndOptions() {
+    func sleepHasNilSampleTypeAndAggregation() {
         let sleep = HealthMetric.sleep
-        #expect(sleep.identifier == nil)
-        #expect(sleep.unit == nil)
-        #expect(sleep.options == nil)
+        #expect(sleep.sampleType == nil)
+        #expect(sleep.aggregation == nil)
     }
 
     @Test
-    func quantityMetricsHaveIdentifierUnitAndOptions() {
+    func quantityMetricsHaveSampleTypeAndAggregation() {
         let quantityMetrics: [HealthMetric] = [.steps, .activeEnergy, .exerciseMinutes, .bodyWeight, .restingHeartRate]
         for metric in quantityMetrics {
-            #expect(metric.identifier != nil, "Expected identifier for \(metric.rawValue)")
-            #expect(metric.unit != nil, "Expected unit for \(metric.rawValue)")
-            #expect(metric.options != nil, "Expected options for \(metric.rawValue)")
+            #expect(metric.sampleType != nil, "Expected sampleType for \(metric.rawValue)")
+            #expect(metric.aggregation != nil, "Expected aggregation for \(metric.rawValue)")
         }
     }
 
     @Test
-    func identifierMappingsAreCorrect() {
-        #expect(HealthMetric.steps.identifier == .stepCount)
-        #expect(HealthMetric.activeEnergy.identifier == .activeEnergyBurned)
-        #expect(HealthMetric.exerciseMinutes.identifier == .appleExerciseTime)
-        #expect(HealthMetric.bodyWeight.identifier == .bodyMass)
-        #expect(HealthMetric.restingHeartRate.identifier == .restingHeartRate)
-    }
-
-    @Test
-    func cumulativeSumMetrics() {
-        let cumulativeMetrics: [HealthMetric] = [.steps, .activeEnergy, .exerciseMinutes]
-        for metric in cumulativeMetrics {
-            #expect(metric.options == [.cumulativeSum], "Expected cumulativeSum for \(metric.rawValue)")
+    func sumAggregationMetrics() {
+        let sumMetrics: [HealthMetric] = [.steps, .activeEnergy, .exerciseMinutes]
+        for metric in sumMetrics {
+            #expect(metric.aggregation == .sum, "Expected .sum aggregation for \(metric.rawValue)")
         }
     }
 
     @Test
-    func discreteAverageMetrics() {
+    func averageAggregationMetrics() {
         let averageMetrics: [HealthMetric] = [.bodyWeight, .restingHeartRate]
         for metric in averageMetrics {
-            #expect(metric.options == [.discreteAverage], "Expected discreteAverage for \(metric.rawValue)")
+            #expect(metric.aggregation == .average, "Expected .average aggregation for \(metric.rawValue)")
         }
     }
 

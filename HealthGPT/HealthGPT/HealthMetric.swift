@@ -8,9 +8,10 @@
 
 import HealthKit
 import SpeziHealthKit
+import SpeziLLMOpenAI
 
 
-enum HealthMetric: String, CaseIterable, Sendable {
+enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
     case steps
     case activeEnergy
     case exerciseMinutes
@@ -29,33 +30,22 @@ enum HealthMetric: String, CaseIterable, Sendable {
         }
     }
 
-    var identifier: HKQuantityTypeIdentifier? {
+    var aggregation: SpeziHealthKit.StatisticsAggregationOption? {
         switch self {
-        case .steps: .stepCount
-        case .activeEnergy: .activeEnergyBurned
-        case .exerciseMinutes: .appleExerciseTime
-        case .bodyWeight: .bodyMass
-        case .restingHeartRate: .restingHeartRate
+        case .steps, .activeEnergy, .exerciseMinutes: .sum
+        case .bodyWeight, .restingHeartRate: .average
         case .sleep: nil
         }
     }
 
-    var unit: HKUnit? {
+    var unitLabel: String {
         switch self {
-        case .steps: .count()
-        case .activeEnergy: .largeCalorie()
-        case .exerciseMinutes: .minute()
-        case .bodyWeight: .pound()
-        case .restingHeartRate: .count().unitDivided(by: .minute())
-        case .sleep: nil
-        }
-    }
-
-    var options: HKStatisticsOptions? {
-        switch self {
-        case .steps, .activeEnergy, .exerciseMinutes: [.cumulativeSum]
-        case .bodyWeight, .restingHeartRate: [.discreteAverage]
-        case .sleep: nil
+        case .steps: "steps"
+        case .activeEnergy: "cal"
+        case .exerciseMinutes: "min"
+        case .bodyWeight: "lbs"
+        case .restingHeartRate: "bpm"
+        case .sleep: "hours"
         }
     }
 

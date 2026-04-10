@@ -11,57 +11,49 @@ import SpeziLLMOpenAI
 
 
 struct GetHealthMetricFunction: LLMFunction {
-    enum MetricType: String, LLMFunctionParameterEnum {
-        case steps
-        case activeEnergy
-        case exerciseMinutes
-        case bodyWeight
-        case restingHeartRate
-        case sleep
-    }
-
     static let name: String = "get_health_metric"
-    // swiftlint:disable:next line_length
-    static let description: String = "Fetch daily values for a specific health metric over a given number of past days. Use this to retrieve step counts, active energy, exercise minutes, body weight, resting heart rate, or sleep data."
+    static let description: String = """
+        Fetch daily values for a specific health metric over a given number of past days. \
+        Use this to retrieve step counts, active energy, exercise minutes, \
+        body weight, resting heart rate, or sleep data.
+        """
 
-    @Parameter(description: "The health metric to fetch") var metric: MetricType
+    @Parameter(description: "The health metric to fetch") var metric: HealthMetric
 
-    @Parameter(description: "Number of past days to fetch (1-90)") var days: String
+    @Parameter(description: "Number of past days to fetch (1-90)") var days: Int
 
     nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
-        let clampedDays = max(1, min(Int(days) ?? 7, 90))
-        let endDate = Calendar.current.startOfDay(for: Date())
+        let clampedDays = max(1, min(days, 90))
+        let endDate = Calendar.current.startOfDay(for: .now)
         guard let startDate = Calendar.current.date(byAdding: .day, value: -clampedDays, to: endDate) else {
-            return "Error: Could not calculate date range."
+            throw HealthDataFetcherError.invalidDateRange
         }
 
-        let healthMetric = HealthMetric(rawValue: metric.rawValue) ?? .steps
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        if healthMetric == .sleep {
+        if metric == .sleep {
             let data = try await healthDataFetcher.fetchSleepData(from: startDate, to: endDate)
             let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.hours)) hours" }
-            return "\(healthMetric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
+            return "\(metric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
         } else {
-            guard let identifier = healthMetric.identifier,
-                  let unit = healthMetric.unit,
-                  let options = healthMetric.options else {
-                return "Error: Unsupported metric."
+            guard let sampleType = metric.sampleType,
+                  let aggregation = metric.aggregation else {
+                throw HealthDataFetcherError.unsupportedMetric
             }
 
             let data = try await healthDataFetcher.fetchQuantityData(
-                for: identifier,
-                unit: unit,
-                options: options,
+                for: sampleType,
+                aggregatedBy: aggregation,
                 from: startDate,
                 to: endDate
             )
 
-            let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.value))" }
-            return "\(healthMetric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
+            let unit = metric.unitLabel
+            let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.value)) \(unit)" }
+            return "\(metric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
         }
     }
 }
