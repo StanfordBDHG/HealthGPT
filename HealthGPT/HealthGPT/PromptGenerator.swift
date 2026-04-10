@@ -11,12 +11,6 @@ import Foundation
 
 
 class PromptGenerator {
-    var healthData: [HealthData]
-
-    init(with healthData: [HealthData] = []) {
-        self.healthData = healthData
-    }
-
     private static var basePrompt: String {
         let today = DateFormatter.localizedString(from: .now, dateStyle: .full, timeStyle: .none)
         return """
@@ -25,6 +19,12 @@ class PromptGenerator {
         Provide concise, actionable insights rather than just repeating raw numbers. \
         Today is \(today). Data for the current day may be partial.
         """
+    }
+
+    var healthData: [HealthData]
+
+    init(with healthData: [HealthData] = []) {
+        self.healthData = healthData
     }
 
     func buildPrompt(usesTools: Bool) -> String {
@@ -47,8 +47,7 @@ class PromptGenerator {
 
     private func buildFourteenDaysHealthDataPrompt() -> String {
         var healthDataPrompt = ""
-        for day in 0...13 {
-            let dayData = healthData[day]
+        for dayData in healthData {
             let dayPrompt = buildOneDayHealthDataPrompt(with: dayData)
             healthDataPrompt += "\(dayData.date): \(dayPrompt) \n"
         }
