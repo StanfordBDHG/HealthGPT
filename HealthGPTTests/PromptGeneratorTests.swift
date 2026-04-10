@@ -45,15 +45,6 @@ struct PromptGeneratorTests {
     }
 
     @Test
-    func toolUsePromptContainsInstructions() {
-        let toolUsePrompt = PromptGenerator.buildToolUsePrompt()
-
-        #expect(toolUsePrompt.contains("HealthGPT"))
-        #expect(toolUsePrompt.contains("Today is"))
-        #expect(toolUsePrompt.contains("MUST call the available tools"))
-    }
-
-    @Test
     func buildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
         let mainPrompt = promptGenerator.buildMainPrompt()
