@@ -13,7 +13,7 @@ import Foundation
 class PromptGenerator {
     var healthData: [HealthData]
 
-    init(with healthData: [HealthData]) {
+    init(with healthData: [HealthData] = []) {
         self.healthData = healthData
     }
 
@@ -27,22 +27,22 @@ class PromptGenerator {
         """
     }
 
-    static func buildToolUsePrompt() -> String {
-        basePrompt + "\n\n" + """
-        You have access to tools that let you fetch the user's real Apple Health data on demand. \
-        You do NOT have any health data pre-loaded. You MUST call the available tools to fetch data \
-        before answering any health-related questions. Do not guess or make up health data. \
-        When the user asks about their health, call the appropriate tool(s) to fetch the relevant data first. \
-        If the user asks a vague question, fetch the most relevant metrics for the last 7 days.
-        """
-    }
+    func buildPrompt(usesTools: Bool) -> String {
+        if usesTools {
+            return Self.basePrompt + "\n\n" + """
+            You have access to tools that let you fetch the user's real Apple Health data on demand. \
+            You do NOT have any health data pre-loaded. You MUST call the available tools to fetch data \
+            before answering any health-related questions. Do not guess or make up health data. \
+            When the user asks about their health, call the appropriate tool(s) to fetch the relevant data first. \
+            If the user asks a vague question, fetch the most relevant metrics for the last 7 days.
+            """
+        } else {
+            return Self.basePrompt + "\n\n" + """
+            Some health metrics over the past two weeks (14 days) to incorporate is given below. \
+            If a value is zero, the user has not inputted anything for that day.
 
-    func buildMainPrompt() -> String {
-        Self.basePrompt + "\n\n" + """
-        Some health metrics over the past two weeks (14 days) to incorporate is given below. \
-        If a value is zero, the user has not inputted anything for that day.
-
-        """ + buildFourteenDaysHealthDataPrompt()
+            """ + buildFourteenDaysHealthDataPrompt()
+        }
     }
 
     private func buildFourteenDaysHealthDataPrompt() -> String {

@@ -38,12 +38,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     func prepareLLM(with schema: any LLMSchema, useToolPrompt: Bool = false) async throws {
         let llm = self.llmRunner(with: schema)
         self.usesToolBasedPrompt = useToolPrompt
-
-        if useToolPrompt {
-            self.systemPrompt = PromptGenerator.buildToolUsePrompt()
-        } else {
-            self.systemPrompt = await generateSystemPrompt()
-        }
+        self.systemPrompt = await buildSystemPrompt(usesTools: useToolPrompt)
 
         llm.context.append(systemMessage: self.systemPrompt)
         self.llm = llm
@@ -67,19 +62,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// Resets the LLM context and re-injects the system prompt.
     @MainActor
     func resetChat() async {
-        if usesToolBasedPrompt {
-            self.systemPrompt = PromptGenerator.buildToolUsePrompt()
-        } else {
-            self.systemPrompt = await self.generateSystemPrompt()
-        }
+        self.systemPrompt = await buildSystemPrompt(usesTools: usesToolBasedPrompt)
         self.llm?.context.reset()
         self.llm?.context.append(systemMessage: self.systemPrompt)
     }
-    
-    /// Fetches updated health data using the `HealthDataFetcher`
-    /// and passes it to the `PromptGenerator` to create the system prompt.
-    private func generateSystemPrompt() async -> String {
-        let healthData = await self.healthDataFetcher.fetchAndProcessHealthData()
-        return PromptGenerator(with: healthData).buildMainPrompt()
+
+    private func buildSystemPrompt(usesTools: Bool) async -> String {
+        let healthData = usesTools ? [] : await self.healthDataFetcher.fetchAndProcessHealthData()
+        return PromptGenerator(with: healthData).buildPrompt(usesTools: usesTools)
     }
 }

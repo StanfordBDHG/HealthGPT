@@ -109,25 +109,16 @@ struct HealthGPTView: View {
     private func chatContentView(for llm: any LLMSession) -> some View {
         let contextBinding = Binding { llm.context.chat } set: { llm.context.chat = $0 }
 
-        ChatView(contextBinding, exportFormat: .text)
+        ChatView(
+            contextBinding,
+            exportFormat: .text,
+            messagePendingAnimation: .manual(shouldDisplay: llm.state == .callingTools || llm.state == .generating)
+        )
             .speak(llm.context.chat, muted: !self.textToSpeech)
             .speechToolbarButton(muted: !self.$textToSpeech)
             .viewStateAlert(state: llm.state)
             .navigationTitle("WELCOME_TITLE")
             .toolbarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    if llm.state == .callingTools {
-                        VStack(spacing: 2) {
-                            Text("WELCOME_TITLE")
-                                .font(.headline)
-                            Text("CALLING_TOOLS_SUBTITLE")
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                }
-            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     self.settingsButton

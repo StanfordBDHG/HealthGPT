@@ -47,7 +47,7 @@ struct PromptGeneratorTests {
     @Test
     func buildMainPrompt() {
         let promptGenerator = PromptGenerator(with: sampleHealthData)
-        let mainPrompt = promptGenerator.buildMainPrompt()
+        let mainPrompt = promptGenerator.buildPrompt(usesTools: false)
         let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
 
         #expect(mainPrompt != nil)

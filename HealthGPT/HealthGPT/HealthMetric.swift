@@ -39,35 +39,13 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
     }
 
     var unitLabel: String {
-        switch self {
-        case .steps: "steps"
-        case .activeEnergy: "cal"
-        case .exerciseMinutes: "min"
-        case .bodyWeight: "lbs"
-        case .restingHeartRate: "bpm"
-        case .sleep: "hours"
-        }
+        sampleType?.displayUnit.unitString ?? "hours"
     }
 
     var displayName: String {
-        switch self {
-        case .steps: "Steps"
-        case .activeEnergy: "Active Energy (calories)"
-        case .exerciseMinutes: "Exercise Minutes"
-        case .bodyWeight: "Body Weight (lbs)"
-        case .restingHeartRate: "Resting Heart Rate (bpm)"
-        case .sleep: "Sleep (hours)"
+        if let sampleType {
+            return "\(sampleType.displayTitle) (\(unitLabel))"
         }
-    }
-
-    var description: String {
-        switch self {
-        case .steps: "Daily step count"
-        case .activeEnergy: "Active energy burned in calories"
-        case .exerciseMinutes: "Minutes of exercise"
-        case .bodyWeight: "Body weight in pounds"
-        case .restingHeartRate: "Average resting heart rate in beats per minute"
-        case .sleep: "Hours of sleep per night"
-        }
+        return "Sleep (hours)"
     }
 }

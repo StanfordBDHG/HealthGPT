@@ -44,16 +44,6 @@
         }
       }
     },
-    "CALLING_TOOLS_SUBTITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fetching health data…"
-          }
-        }
-      }
-    },
     "FOG_LLM_LABEL" : {
       "localizations" : {
         "en" : {
