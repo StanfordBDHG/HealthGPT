@@ -13,9 +13,8 @@ import SpeziHealthKit
 
 @Observable
 class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
-
     private static let defaultLookbackDays = 14
+    @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
     required init() { }
 
