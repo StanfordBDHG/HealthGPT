@@ -24,27 +24,43 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
     /// Fetches quantity data for an arbitrary date range, returning daily values with dates.
     ///
     /// - Parameters:
-    ///   - sampleType: The `SampleType` representing the type of health data to fetch.
-    ///   - aggregatedBy: The aggregation mode to use (e.g., `.sum` or `.average`).
+    ///   - metric: The health metric to fetch.
     ///   - startDate: The start of the date range.
     ///   - endDate: The end of the date range.
     /// - Returns: An array of tuples containing the date and value for each day.
     func fetchQuantityData(
-        for sampleType: SampleType<HKQuantitySample>,
-        aggregatedBy aggregation: SpeziHealthKit.StatisticsAggregationOption,
+        for metric: HealthMetric,
         from startDate: Date,
         to endDate: Date
     ) async throws -> [(date: Date, value: Double)] {
+        guard let sampleType = metric.sampleType else {
+            throw HealthDataFetcherError.unsupportedMetric
+        }
         let timeRange = HealthKitQueryTimeRange(startDate..<endDate)
         let unit = sampleType.displayUnit
-        let statistics = try await healthKit.statisticsQuery(sampleType, aggregatedBy: [aggregation], over: .day, timeRange: timeRange)
+        let statistics: [HKStatistics]
+
+        switch metric {
+        case .steps, .activeEnergy, .exerciseMinutes:
+            statistics = try await healthKit.statisticsQuery(
+                sampleType,
+                aggregatedBy: [.sum],
+                over: .day,
+                timeRange: timeRange
+            )
+        case .bodyWeight, .restingHeartRate:
+            statistics = try await healthKit.statisticsQuery(
+                sampleType,
+                aggregatedBy: [.average],
+                over: .day,
+                timeRange: timeRange
+            )
+        case .sleep:
+            throw HealthDataFetcherError.unsupportedMetric
+        }
 
         return statistics.map { stat in
-            let value: Double = switch aggregation {
-            case .sum: stat.sumQuantity()?.doubleValue(for: unit) ?? 0
-            case .average: stat.averageQuantity()?.doubleValue(for: unit) ?? 0
-            }
-            return (date: stat.startDate, value: value)
+            (date: stat.startDate, value: metric.quantityValue(from: stat, unit: unit))
         }
     }
 
@@ -106,27 +122,27 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
 
     /// Fetches the user's step count data for the last two weeks.
     func fetchLastTwoWeeksStepCount() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .stepCount, aggregatedBy: .sum)
+        try await fetchLastTwoWeeksData(for: .steps)
     }
 
     /// Fetches the user's active energy burned data for the last two weeks.
     func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .activeEnergyBurned, aggregatedBy: .sum)
+        try await fetchLastTwoWeeksData(for: .activeEnergy)
     }
 
     /// Fetches the user's exercise time data for the last two weeks.
     func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .appleExerciseTime, aggregatedBy: .sum)
+        try await fetchLastTwoWeeksData(for: .exerciseMinutes)
     }
 
     /// Fetches the user's body weight data for the last two weeks.
     func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .bodyMass, aggregatedBy: .average)
+        try await fetchLastTwoWeeksData(for: .bodyWeight)
     }
 
     /// Fetches the user's resting heart rate data for the last two weeks.
     func fetchLastTwoWeeksRestingHeartRate() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .restingHeartRate, aggregatedBy: .average)
+        try await fetchLastTwoWeeksData(for: .restingHeartRate)
     }
 
     /// Fetches the user's sleep data for the last two weeks.
@@ -141,15 +157,12 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
 
     // MARK: - Private Helpers
 
-    private func fetchLastTwoWeeksData(
-        for sampleType: SampleType<HKQuantitySample>,
-        aggregatedBy aggregation: SpeziHealthKit.StatisticsAggregationOption
-    ) async throws -> [Double] {
+    private func fetchLastTwoWeeksData(for metric: HealthMetric) async throws -> [Double] {
         let endDate = Date.now
         guard let startDate = Calendar.current.date(byAdding: .day, value: -Self.defaultLookbackDays, to: endDate) else {
             return []
         }
-        let data = try await fetchQuantityData(for: sampleType, aggregatedBy: aggregation, from: startDate, to: endDate)
+        let data = try await fetchQuantityData(for: metric, from: startDate, to: endDate)
         return data.map(\.value)
     }
 }

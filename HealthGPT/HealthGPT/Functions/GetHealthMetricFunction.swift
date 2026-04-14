@@ -20,11 +20,15 @@ struct GetHealthMetricFunction: LLMFunction {
 
     @Parameter(description: "The health metric to fetch") var metric: HealthMetric
 
-    @Parameter(description: "Number of past days to fetch (1-90)") var days: Int
+    @Parameter(description: "Number of past days to fetch (1-90)", minimum: 1, maximum: 90) var days: Int?
 
     nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
+        guard let days else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+
         let clampedDays = max(1, min(days, 90))
         let endDate = Date.now
         guard let startDate = Calendar.current.date(byAdding: .day, value: -clampedDays, to: endDate) else {
@@ -39,14 +43,8 @@ struct GetHealthMetricFunction: LLMFunction {
             let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.hours)) hours" }
             return "\(metric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
         } else {
-            guard let sampleType = metric.sampleType,
-                  let aggregation = metric.aggregation else {
-                throw HealthDataFetcherError.unsupportedMetric
-            }
-
             let data = try await healthDataFetcher.fetchQuantityData(
-                for: sampleType,
-                aggregatedBy: aggregation,
+                for: metric,
                 from: startDate,
                 to: endDate
             )

@@ -21,17 +21,24 @@ struct ComparePeriodsFunction: LLMFunction {
 
     @Parameter(description: "The health metric to compare") var metric: HealthMetric
 
-    @Parameter(description: "Start of period 1 in days ago (e.g. 7 means 7 days ago)") var period1Start: Int
+    @Parameter(description: "Start of period 1 in days ago (e.g. 7 means 7 days ago)", minimum: 0) var period1Start: Int?
 
-    @Parameter(description: "End of period 1 in days ago (e.g. 0 means today)") var period1End: Int
+    @Parameter(description: "End of period 1 in days ago (e.g. 0 means today)", minimum: 0) var period1End: Int?
 
-    @Parameter(description: "Start of period 2 in days ago") var period2Start: Int
+    @Parameter(description: "Start of period 2 in days ago", minimum: 0) var period2Start: Int?
 
-    @Parameter(description: "End of period 2 in days ago") var period2End: Int
+    @Parameter(description: "End of period 2 in days ago", minimum: 0) var period2End: Int?
 
     nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
+        guard let period1Start,
+              let period1End,
+              let period2Start,
+              let period2End else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+
         guard period1Start >= 0, period1End >= 0, period2Start >= 0, period2End >= 0 else {
             throw HealthDataFetcherError.invalidDateRange
         }
@@ -72,14 +79,8 @@ struct ComparePeriodsFunction: LLMFunction {
             let values = data.map(\.hours)
             return values.isEmpty ? 0 : values.reduce(0, +) / Double(values.count)
         } else {
-            guard let sampleType = metric.sampleType,
-                  let aggregation = metric.aggregation else {
-                throw HealthDataFetcherError.unsupportedMetric
-            }
-
             let data = try await healthDataFetcher.fetchQuantityData(
-                for: sampleType,
-                aggregatedBy: aggregation,
+                for: metric,
                 from: startDate,
                 to: endDate
             )

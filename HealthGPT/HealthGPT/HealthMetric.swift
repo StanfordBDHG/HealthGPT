@@ -30,14 +30,6 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
         }
     }
 
-    var aggregation: SpeziHealthKit.StatisticsAggregationOption? {
-        switch self {
-        case .steps, .activeEnergy, .exerciseMinutes: .sum
-        case .bodyWeight, .restingHeartRate: .average
-        case .sleep: nil
-        }
-    }
-
     var unitLabel: String {
         sampleType?.displayUnit.unitString ?? "hours"
     }
@@ -47,5 +39,16 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
             return "\(sampleType.displayTitle) (\(unitLabel))"
         }
         return "Sleep (hours)"
+    }
+
+    func quantityValue(from statistic: HKStatistics, unit: HKUnit) -> Double {
+        switch self {
+        case .steps, .activeEnergy, .exerciseMinutes:
+            statistic.sumQuantity()?.doubleValue(for: unit) ?? 0
+        case .bodyWeight, .restingHeartRate:
+            statistic.averageQuantity()?.doubleValue(for: unit) ?? 0
+        case .sleep:
+            preconditionFailure("Sleep metrics do not use quantity statistics.")
+        }
     }
 }
