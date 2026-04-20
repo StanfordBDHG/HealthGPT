@@ -11,9 +11,9 @@ import Foundation
 
 
 extension HealthDataFetcher {
-    /// Fetches and processes health data for the last 14 days.
+    /// Fetches and processes health data for the configured lookback window.
     ///
-    /// - Returns: An array of `HealthData` objects, one for each day in the last 14 days.
+    /// - Returns: An array of `HealthData` objects, one per day over `HealthDataFetcher.defaultLookbackDays`.
     func fetchAndProcessHealthData() async -> [HealthData] {
         let calendar = Calendar.current
         let today = Date.now

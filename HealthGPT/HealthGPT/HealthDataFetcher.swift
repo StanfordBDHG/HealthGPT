@@ -81,7 +81,7 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
         guard let queryStart = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of:
                     calendar.date(byAdding: .day, value: -1, to: startDay) ?? startDay),
               let queryEnd = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of: endDay) else {
-            return []
+            throw HealthDataFetcherError.invalidDateRange
         }
 
         // Single HealthKit query for the entire range.

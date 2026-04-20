@@ -61,7 +61,7 @@ struct HealthGPTView: View {
                         GetHealthMetricFunction(healthDataFetcher: healthDataFetcher)
                         ComparePeriodsFunction(healthDataFetcher: healthDataFetcher)
                     }
-                    try await healthDataInterpreter.prepareLLM(with: schema, useToolPrompt: true)
+                    try await healthDataInterpreter.prepareLLM(with: schema, usesTools: true)
                 }
             } catch {
                 self.showErrorAlert = true

@@ -22,7 +22,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     
     var llm: (any LLMSession)?
     @ObservationIgnored private var systemPrompt = ""
-    @ObservationIgnored private var usesToolBasedPrompt = false
+    @ObservationIgnored private var usesTools = false
 
     required init() { }
 
@@ -33,12 +33,12 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     ///
     /// - Parameters:
     ///   - schema: The LLMSchema to use.
-    ///   - useToolPrompt: Whether to use the tool-use prompt (for sessions with function calling).
+    ///   - usesTools: Whether to use the tool-use prompt (for sessions with function calling).
     @MainActor
-    func prepareLLM(with schema: any LLMSchema, useToolPrompt: Bool = false) async throws {
+    func prepareLLM(with schema: any LLMSchema, usesTools: Bool = false) async throws {
         let llm = self.llmRunner(with: schema)
-        self.usesToolBasedPrompt = useToolPrompt
-        self.systemPrompt = await buildSystemPrompt(usesTools: useToolPrompt)
+        self.usesTools = usesTools
+        self.systemPrompt = await buildSystemPrompt(usesTools: usesTools)
 
         llm.context.append(systemMessage: self.systemPrompt)
         self.llm = llm
@@ -62,7 +62,7 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// Resets the LLM context and re-injects the system prompt.
     @MainActor
     func resetChat() async {
-        self.systemPrompt = await buildSystemPrompt(usesTools: usesToolBasedPrompt)
+        self.systemPrompt = await buildSystemPrompt(usesTools: usesTools)
         self.llm?.context.reset()
         self.llm?.context.append(systemMessage: self.systemPrompt)
     }

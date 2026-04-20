@@ -39,10 +39,7 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
     }
 
     var displayName: String {
-        if let sampleType {
-            return "\(sampleType.displayTitle) (\(unitLabel))"
-        }
-        return "Sleep (hours)"
+        "\(sampleType?.displayTitle ?? "Sleep") (\(unitLabel))"
     }
 
     func quantityValue(from statistic: HKStatistics, unit: HKUnit) throws -> Double {
