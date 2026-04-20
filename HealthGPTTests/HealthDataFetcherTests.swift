@@ -101,6 +101,28 @@ struct HealthDataFetcherTests {
     }
 
     @Test
+    func clipsSessionsThatStraddleThreePmBoundary() {
+        // Session 11 AM → 7 PM Apr 20 (8 h elapsed, 6 h asleep) crosses the 3 PM boundary.
+        // Apr 20 window (15:00 Apr 19 – 15:00 Apr 20) overlaps 11 AM – 3 PM (4 h of 8 h).
+        // Apr 21 window (15:00 Apr 20 – 15:00 Apr 21) overlaps 3 PM – 7 PM (4 h of 8 h).
+        // Each window should receive half of the 6 h asleep, not the full 6 h.
+        let sessions: [Session] = [
+            Session(startDate: Self.at(2026, 4, 20, 11), endDate: Self.at(2026, 4, 20, 19), totalTimeSpentAsleep: 6 * 60 * 60)
+        ]
+
+        let result = HealthDataFetcher.bucketSleepSessions(
+            sessions: sessions,
+            startDay: Self.day(2026, 4, 20),
+            endDay: Self.day(2026, 4, 22),
+            calendar: Self.calendar
+        )
+
+        #expect(result.count == 2)
+        #expect(result[0].hours == 3)
+        #expect(result[1].hours == 3)
+    }
+
+    @Test
     func emitsZeroHoursForDaysWithoutSessions() {
         let result = HealthDataFetcher.bucketSleepSessions(
             sessions: [],

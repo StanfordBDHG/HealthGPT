@@ -17,36 +17,66 @@ extension HealthDataFetcher {
     func fetchAndProcessHealthData() async -> [HealthData] {
         let calendar = Calendar.current
         let today = Date.now
-        var healthData: [HealthData] = []
 
-        // Create an array of HealthData objects for the last 14 days
+        var dayDates: [Date] = []
         for day in 1...14 {
-            guard let endDate = calendar.date(byAdding: .day, value: -day, to: today) else { continue }
-            healthData.append(
-                HealthData(
-                    date: DateFormatter.localizedString(from: endDate, dateStyle: .short, timeStyle: .none)
-                )
+            guard let date = calendar.date(byAdding: .day, value: -day, to: today) else { continue }
+            dayDates.append(calendar.startOfDay(for: date))
+        }
+        dayDates.reverse()
+
+        guard let startDate = dayDates.first,
+              let lastDay = dayDates.last,
+              let endDate = calendar.date(byAdding: .day, value: 1, to: lastDay) else {
+            return []
+        }
+
+        let steps = await dailyValues(for: .steps, from: startDate, to: endDate, calendar: calendar)
+        let activeEnergy = await dailyValues(for: .activeEnergy, from: startDate, to: endDate, calendar: calendar)
+        let exerciseMinutes = await dailyValues(for: .exerciseMinutes, from: startDate, to: endDate, calendar: calendar)
+        let bodyWeight = await dailyValues(for: .bodyWeight, from: startDate, to: endDate, calendar: calendar)
+        let restingHeartRate = await dailyValues(for: .restingHeartRate, from: startDate, to: endDate, calendar: calendar)
+        let sleepHours = await dailySleepHours(from: startDate, to: endDate, calendar: calendar)
+
+        return dayDates.map { day in
+            HealthData(
+                date: DateFormatter.localizedString(from: day, dateStyle: .short, timeStyle: .none),
+                steps: steps[day],
+                activeEnergy: activeEnergy[day],
+                exerciseMinutes: exerciseMinutes[day],
+                bodyWeight: bodyWeight[day],
+                sleepHours: sleepHours[day],
+                restingHeartRate: restingHeartRate[day]
             )
         }
+    }
 
-        healthData = healthData.reversed()
-
-        let stepCounts = try? await fetchLastTwoWeeksStepCount()
-        let sleepHours = try? await fetchLastTwoWeeksSleep()
-        let caloriesBurned = try? await fetchLastTwoWeeksActiveEnergy()
-        let exerciseTime = try? await fetchLastTwoWeeksExerciseTime()
-        let bodyMass = try? await fetchLastTwoWeeksBodyWeight()
-        let restingHeartRate = try? await fetchLastTwoWeeksRestingHeartRate()
-
-        for day in 0...13 {
-            healthData[day].steps = stepCounts?[day]
-            healthData[day].sleepHours = sleepHours?[day]
-            healthData[day].activeEnergy = caloriesBurned?[day]
-            healthData[day].exerciseMinutes = exerciseTime?[day]
-            healthData[day].bodyWeight = bodyMass?[day]
-            healthData[day].restingHeartRate = restingHeartRate?[day]
+    private func dailyValues(
+        for metric: HealthMetric,
+        from startDate: Date,
+        to endDate: Date,
+        calendar: Calendar
+    ) async -> [Date: Double] {
+        guard let data = try? await fetchQuantityData(for: metric, from: startDate, to: endDate) else {
+            return [:]
         }
+        return Dictionary(
+            data.map { (calendar.startOfDay(for: $0.date), $0.value) },
+            uniquingKeysWith: { first, _ in first }
+        )
+    }
 
-        return healthData
+    private func dailySleepHours(
+        from startDate: Date,
+        to endDate: Date,
+        calendar: Calendar
+    ) async -> [Date: Double] {
+        guard let data = try? await fetchSleepData(from: startDate, to: endDate) else {
+            return [:]
+        }
+        return Dictionary(
+            data.map { (calendar.startOfDay(for: $0.date), $0.hours) },
+            uniquingKeysWith: { first, _ in first }
+        )
     }
 }

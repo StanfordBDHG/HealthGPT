@@ -15,7 +15,6 @@ import SpeziHealthKit
 // which is itself thread-safe. Matches the @unchecked Sendable pattern used by SpeziHealthKit's HealthKit.
 @Observable
 final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible, @unchecked Sendable {
-    private static let defaultLookbackDays = 14
     private static let sleepWindowHour = 15
     @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
@@ -124,9 +123,21 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
                 continue
             }
 
-            let secondsAsleep = sessions
-                .filter { $0.startDate < endOfSleep && $0.endDate > startOfSleep }
-                .reduce(0.0) { $0 + $1.totalTimeSpentAsleep }
+            // Clip each session to the window so a session that straddles the 3 PM boundary
+            // doesn't get fully counted in both adjacent days.
+            let secondsAsleep = sessions.reduce(0.0) { partial, session in
+                let overlapStart = max(session.startDate, startOfSleep)
+                let overlapEnd = min(session.endDate, endOfSleep)
+                guard overlapEnd > overlapStart else {
+                    return partial
+                }
+                let sessionDuration = session.endDate.timeIntervalSince(session.startDate)
+                guard sessionDuration > 0 else {
+                    return partial
+                }
+                let proportion = min(1, overlapEnd.timeIntervalSince(overlapStart) / sessionDuration)
+                return partial + session.totalTimeSpentAsleep * proportion
+            }
 
             dailySleepData.append((date: currentDay, hours: secondsAsleep / (60 * 60)))
             currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay) ?? endDay
@@ -135,51 +146,4 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
         return dailySleepData
     }
 
-    // MARK: - Last Two Weeks Convenience Methods
-
-    /// Fetches the user's step count data for the last two weeks.
-    func fetchLastTwoWeeksStepCount() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .steps)
-    }
-
-    /// Fetches the user's active energy burned data for the last two weeks.
-    func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .activeEnergy)
-    }
-
-    /// Fetches the user's exercise time data for the last two weeks.
-    func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .exerciseMinutes)
-    }
-
-    /// Fetches the user's body weight data for the last two weeks.
-    func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .bodyWeight)
-    }
-
-    /// Fetches the user's resting heart rate data for the last two weeks.
-    func fetchLastTwoWeeksRestingHeartRate() async throws -> [Double] {
-        try await fetchLastTwoWeeksData(for: .restingHeartRate)
-    }
-
-    /// Fetches the user's sleep data for the last two weeks.
-    func fetchLastTwoWeeksSleep() async throws -> [Double] {
-        let endDate = Date.now
-        guard let startDate = Calendar.current.date(byAdding: .day, value: -Self.defaultLookbackDays, to: endDate) else {
-            return []
-        }
-        let data = try await fetchSleepData(from: startDate, to: endDate)
-        return data.map(\.hours)
-    }
-
-    // MARK: - Private Helpers
-
-    private func fetchLastTwoWeeksData(for metric: HealthMetric) async throws -> [Double] {
-        let endDate = Date.now
-        guard let startDate = Calendar.current.date(byAdding: .day, value: -Self.defaultLookbackDays, to: endDate) else {
-            return []
-        }
-        let data = try await fetchQuantityData(for: metric, from: startDate, to: endDate)
-        return data.map(\.value)
-    }
 }
