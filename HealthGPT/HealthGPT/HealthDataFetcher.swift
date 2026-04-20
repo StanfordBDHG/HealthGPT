@@ -15,6 +15,7 @@ import SpeziHealthKit
 // which is itself thread-safe. Matches the @unchecked Sendable pattern used by SpeziHealthKit's HealthKit.
 @Observable
 final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible, @unchecked Sendable {
+    static let defaultLookbackDays = 14
     private static let sleepWindowHour = 15
     @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 

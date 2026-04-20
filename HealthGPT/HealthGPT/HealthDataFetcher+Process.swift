@@ -19,7 +19,7 @@ extension HealthDataFetcher {
         let today = Date.now
 
         var dayDates: [Date] = []
-        for day in 1...14 {
+        for day in 1...HealthDataFetcher.defaultLookbackDays {
             guard let date = calendar.date(byAdding: .day, value: -day, to: today) else { continue }
             dayDates.append(calendar.startOfDay(for: date))
         }
