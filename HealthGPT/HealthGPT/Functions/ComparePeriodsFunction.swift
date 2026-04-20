@@ -36,28 +36,28 @@ struct ComparePeriodsFunction: LLMFunction {
             throw HealthDataFetcherError.invalidDateRange
         }
 
-        let period1 = try Self.resolveRange(start: period1Start, end: period1End, relativeTo: .now)
-        let period2 = try Self.resolveRange(start: period2Start, end: period2End, relativeTo: .now)
+        let period1Range = try Self.resolveRange(start: period1Start, end: period1End, relativeTo: .now)
+        let period2Range = try Self.resolveRange(start: period2Start, end: period2End, relativeTo: .now)
 
-        let period1Average = try await fetchAverage(for: metric, from: period1.start, to: period1.end)
-        let period2Average = try await fetchAverage(for: metric, from: period2.start, to: period2.end)
+        let period1Mean = try await averageValue(for: metric, from: period1Range.start, to: period1Range.end)
+        let period2Mean = try await averageValue(for: metric, from: period2Range.start, to: period2Range.end)
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d"
-
-        let period1Label = "\(dateFormatter.string(from: period1.start)) - \(dateFormatter.string(from: period1.end))"
-        let period2Label = "\(dateFormatter.string(from: period2.start)) - \(dateFormatter.string(from: period2.end))"
-
-        let difference = period1Average - period2Average
-        let percentChangeLabel = Self.percentChange(current: period1Average, baseline: period2Average)
+        let difference = period1Mean - period2Mean
+        let percentChangeLabel = Self.percentChange(current: period1Mean, baseline: period2Mean)
             .map { String(format: "%+.1f%%", $0) } ?? "no baseline data"
 
         return """
         \(metric.displayName) comparison:
-        Period 1 (\(period1Label)): avg \(String(format: "%.1f", period1Average))
-        Period 2 (\(period2Label)): avg \(String(format: "%.1f", period2Average))
+        Period 1 (\(Self.format(range: period1Range))): avg \(String(format: "%.1f", period1Mean))
+        Period 2 (\(Self.format(range: period2Range))): avg \(String(format: "%.1f", period2Mean))
         Difference: \(String(format: "%+.1f", difference)) (\(percentChangeLabel))
         """
+    }
+
+    private static func format(range: (start: Date, end: Date)) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d"
+        return "\(formatter.string(from: range.start)) - \(formatter.string(from: range.end))"
     }
 
     static func resolveRange(
@@ -83,7 +83,7 @@ struct ComparePeriodsFunction: LLMFunction {
         return ((current - baseline) / baseline) * 100
     }
 
-    private func fetchAverage(for metric: HealthMetric, from startDate: Date, to endDate: Date) async throws -> Double {
+    private func averageValue(for metric: HealthMetric, from startDate: Date, to endDate: Date) async throws -> Double {
         if metric == .sleep {
             let data = try await healthDataFetcher.fetchSleepData(from: startDate, to: endDate)
             let values = data.map(\.hours)
