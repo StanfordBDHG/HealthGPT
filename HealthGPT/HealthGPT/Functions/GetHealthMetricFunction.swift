@@ -22,16 +22,15 @@ struct GetHealthMetricFunction: LLMFunction {
 
     @Parameter(description: "Number of past days to fetch (1-90)", minimum: 1, maximum: 90) var days: Int?
 
-    nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
+    let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
-        guard let days else {
+        guard let days, (1...90).contains(days) else {
             throw HealthDataFetcherError.invalidDateRange
         }
 
-        let clampedDays = max(1, min(days, 90))
         let endDate = Date.now
-        guard let startDate = Calendar.current.date(byAdding: .day, value: -clampedDays, to: endDate) else {
+        guard let startDate = Calendar.current.date(byAdding: .day, value: -days, to: endDate) else {
             throw HealthDataFetcherError.invalidDateRange
         }
 
@@ -41,7 +40,7 @@ struct GetHealthMetricFunction: LLMFunction {
         if metric == .sleep {
             let data = try await healthDataFetcher.fetchSleepData(from: startDate, to: endDate)
             let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.hours)) hours" }
-            return "\(metric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
+            return "\(metric.displayName) for the last \(days) days:\n" + lines.joined(separator: "\n")
         } else {
             let data = try await healthDataFetcher.fetchQuantityData(
                 for: metric,
@@ -51,7 +50,7 @@ struct GetHealthMetricFunction: LLMFunction {
 
             let unit = metric.unitLabel
             let lines = data.map { "\(dateFormatter.string(from: $0.date)): \(String(format: "%.1f", $0.value)) \(unit)" }
-            return "\(metric.displayName) for the last \(clampedDays) days:\n" + lines.joined(separator: "\n")
+            return "\(metric.displayName) for the last \(days) days:\n" + lines.joined(separator: "\n")
         }
     }
 }

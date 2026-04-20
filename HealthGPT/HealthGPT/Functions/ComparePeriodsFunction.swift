@@ -29,41 +29,28 @@ struct ComparePeriodsFunction: LLMFunction {
 
     @Parameter(description: "End of period 2 in days ago", minimum: 0) var period2End: Int?
 
-    nonisolated(unsafe) let healthDataFetcher: HealthDataFetcher
+    let healthDataFetcher: HealthDataFetcher
 
     func execute() async throws -> String? {
-        guard let period1Start,
-              let period1End,
-              let period2Start,
-              let period2End else {
+        guard let period1Start, let period1End, let period2Start, let period2End else {
             throw HealthDataFetcherError.invalidDateRange
         }
 
-        guard period1Start >= 0, period1End >= 0, period2Start >= 0, period2End >= 0 else {
-            throw HealthDataFetcherError.invalidDateRange
-        }
+        let period1 = try Self.resolveRange(start: period1Start, end: period1End, relativeTo: .now)
+        let period2 = try Self.resolveRange(start: period2Start, end: period2End, relativeTo: .now)
 
-        let calendar = Calendar.current
-
-        guard let period1StartDate = calendar.date(byAdding: .day, value: -max(period1Start, period1End), to: .now),
-              let period1EndDate = calendar.date(byAdding: .day, value: -min(period1Start, period1End), to: .now),
-              let period2StartDate = calendar.date(byAdding: .day, value: -max(period2Start, period2End), to: .now),
-              let period2EndDate = calendar.date(byAdding: .day, value: -min(period2Start, period2End), to: .now) else {
-            throw HealthDataFetcherError.invalidDateRange
-        }
-
-        let period1Average = try await fetchAverage(for: metric, from: period1StartDate, to: period1EndDate)
-        let period2Average = try await fetchAverage(for: metric, from: period2StartDate, to: period2EndDate)
+        let period1Average = try await fetchAverage(for: metric, from: period1.start, to: period1.end)
+        let period2Average = try await fetchAverage(for: metric, from: period2.start, to: period2.end)
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"
 
-        let period1Label = "\(dateFormatter.string(from: period1StartDate)) - \(dateFormatter.string(from: period1EndDate))"
-        let period2Label = "\(dateFormatter.string(from: period2StartDate)) - \(dateFormatter.string(from: period2EndDate))"
+        let period1Label = "\(dateFormatter.string(from: period1.start)) - \(dateFormatter.string(from: period1.end))"
+        let period2Label = "\(dateFormatter.string(from: period2.start)) - \(dateFormatter.string(from: period2.end))"
 
         let difference = period1Average - period2Average
-        let percentChange: Double? = period2Average != 0 ? (difference / period2Average) * 100 : nil
-        let percentChangeLabel = percentChange.map { String(format: "%+.1f%%", $0) } ?? "no baseline data"
+        let percentChangeLabel = Self.percentChange(current: period1Average, baseline: period2Average)
+            .map { String(format: "%+.1f%%", $0) } ?? "no baseline data"
 
         return """
         \(metric.displayName) comparison:
@@ -71,6 +58,29 @@ struct ComparePeriodsFunction: LLMFunction {
         Period 2 (\(period2Label)): avg \(String(format: "%.1f", period2Average))
         Difference: \(String(format: "%+.1f", difference)) (\(percentChangeLabel))
         """
+    }
+
+    static func resolveRange(
+        start: Int,
+        end: Int,
+        relativeTo now: Date,
+        calendar: Calendar = .current
+    ) throws -> (start: Date, end: Date) {
+        guard start >= 0, end >= 0 else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+        guard let startDate = calendar.date(byAdding: .day, value: -max(start, end), to: now),
+              let endDate = calendar.date(byAdding: .day, value: -min(start, end), to: now) else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+        return (startDate, endDate)
+    }
+
+    static func percentChange(current: Double, baseline: Double) -> Double? {
+        guard baseline != 0 else {
+            return nil
+        }
+        return ((current - baseline) / baseline) * 100
     }
 
     private func fetchAverage(for metric: HealthMetric, from startDate: Date, to endDate: Date) async throws -> Double {

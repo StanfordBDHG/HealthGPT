@@ -58,6 +58,7 @@ struct HealthGPTView: View {
                     )
                 } else {
                     let schema = LLMOpenAISchema(parameters: .init(modelType: openAIModel)) {
+                        GetAvailableMetricsFunction()
                         GetHealthMetricFunction(healthDataFetcher: healthDataFetcher)
                         ComparePeriodsFunction(healthDataFetcher: healthDataFetcher)
                     }

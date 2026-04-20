@@ -11,69 +11,57 @@ import Foundation
 import Testing
 
 
+@Suite("Prompt Generator Tests")
 struct PromptGeneratorTests {
-    var sampleHealthData: [HealthData] = createSampleHealthData()
+    private static let fixture: [HealthData] = [
+        HealthData(
+            date: "2026-04-18",
+            steps: 8421,
+            activeEnergy: 312,
+            exerciseMinutes: 47,
+            bodyWeight: 178.4,
+            sleepHours: 7.2,
+            restingHeartRate: 62
+        ),
+        HealthData(
+            date: "2026-04-19",
+            steps: 5102,
+            activeEnergy: 198,
+            exerciseMinutes: nil,
+            bodyWeight: nil,
+            sleepHours: 6.5,
+            restingHeartRate: nil
+        )
+    ]
 
-    private static func createSampleHealthData() -> [HealthData] {
-        var healthData: [HealthData] = []
-        for day in 0...13 {
-            guard let date = Calendar.current.date(byAdding: .day, value: -(13 - day), to: Date()) else {
-                continue
-            }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = dateFormatter.string(from: date)
+    @Test
+    func dataPromptFormatsEachFieldFromFixture() {
+        let prompt = PromptGenerator(with: Self.fixture).buildPrompt(usesTools: false)
 
-            let steps = Double.random(in: 5000..<10000)
-            let activeEnergy = Double.random(in: 100..<500)
-            let exerciseMinutes = Double.random(in: 10..<100)
-            let bodyWeight = Double.random(in: 100..<120)
-            let sleepHours = Double.random(in: 4..<9)
-
-            let healthDataItem = HealthData(
-                date: dateString,
-                steps: steps,
-                activeEnergy: activeEnergy,
-                exerciseMinutes: exerciseMinutes,
-                bodyWeight: bodyWeight,
-                sleepHours: sleepHours
-            )
-
-            healthData.append(healthDataItem)
-        }
-        return healthData
+        #expect(prompt.contains("2026-04-18: 8421 steps, 7 hours of sleep, 312 calories burned, 47 minutes of exercise, 178.4 lbs of body weight,and 62.0 bpm average resting heart rate."))
+        #expect(prompt.contains("2026-04-19: 5102 steps, 6 hours of sleep, 198 calories burned,"))
     }
 
     @Test
-    func buildMainPrompt() {
-        let promptGenerator = PromptGenerator(with: sampleHealthData)
-        let mainPrompt = promptGenerator.buildPrompt(usesTools: false)
-        let today = DateFormatter.localizedString(from: Date(), dateStyle: .full, timeStyle: .none)
+    func dataPromptOmitsNilFields() {
+        let prompt = PromptGenerator(with: Self.fixture).buildPrompt(usesTools: false)
 
-        #expect(mainPrompt != nil)
+        let dayTwoLine = prompt
+            .split(separator: "\n")
+            .first { $0.contains("2026-04-19") }
+            .map(String.init) ?? ""
 
-        #expect(mainPrompt.contains("You are HealthGPT"))
-        #expect(mainPrompt.contains("Some health metrics over the past two weeks"))
-        
-        #expect(mainPrompt.contains("Today is \(today)"))
+        #expect(!dayTwoLine.contains("minutes of exercise"))
+        #expect(!dayTwoLine.contains("lbs of body weight"))
+        #expect(!dayTwoLine.contains("bpm"))
+    }
 
-        for healthDataItem in sampleHealthData {
-            #expect(mainPrompt.contains(healthDataItem.date))
-            if let steps = healthDataItem.steps {
-                #expect(mainPrompt.contains("\(Int(steps)) steps"))
-            }
-            if let sleepHours = healthDataItem.sleepHours {
-                #expect(mainPrompt.contains("\(Int(sleepHours)) hours of sleep"))
-            }
-            if let activeEnergy = healthDataItem.activeEnergy {
-                #expect(mainPrompt.contains("\(Int(activeEnergy)) calories burned"))
-            }
-            if let exerciseMinutes = healthDataItem.exerciseMinutes {
-                #expect(mainPrompt.contains("\(Int(exerciseMinutes)) minutes of exercise"))
-            }
-            if let bodyWeight = healthDataItem.bodyWeight {
-                #expect(mainPrompt.contains("\(bodyWeight) lbs of body weight"))
-            }
+    @Test
+    func toolPromptDoesNotEmbedHealthData() {
+        let prompt = PromptGenerator(with: Self.fixture).buildPrompt(usesTools: true)
+
+        for day in Self.fixture {
+            #expect(!prompt.contains(day.date))
         }
     }
 }

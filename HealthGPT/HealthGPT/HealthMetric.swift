@@ -31,7 +31,11 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
     }
 
     var unitLabel: String {
-        sampleType?.displayUnit.unitString ?? "hours"
+        switch self {
+        case .sleep: "hours"
+        case .steps, .activeEnergy, .exerciseMinutes, .bodyWeight, .restingHeartRate:
+            sampleType?.displayUnit.unitString ?? ""
+        }
     }
 
     var displayName: String {
@@ -41,14 +45,14 @@ enum HealthMetric: String, CaseIterable, Sendable, LLMFunctionParameterEnum {
         return "Sleep (hours)"
     }
 
-    func quantityValue(from statistic: HKStatistics, unit: HKUnit) -> Double {
+    func quantityValue(from statistic: HKStatistics, unit: HKUnit) throws -> Double {
         switch self {
         case .steps, .activeEnergy, .exerciseMinutes:
-            statistic.sumQuantity()?.doubleValue(for: unit) ?? 0
+            return statistic.sumQuantity()?.doubleValue(for: unit) ?? 0
         case .bodyWeight, .restingHeartRate:
-            statistic.averageQuantity()?.doubleValue(for: unit) ?? 0
+            return statistic.averageQuantity()?.doubleValue(for: unit) ?? 0
         case .sleep:
-            preconditionFailure("Sleep metrics do not use quantity statistics.")
+            throw HealthDataFetcherError.unsupportedMetric
         }
     }
 }

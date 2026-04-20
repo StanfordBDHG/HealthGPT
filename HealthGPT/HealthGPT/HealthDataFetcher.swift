@@ -11,9 +11,12 @@ import Spezi
 import SpeziHealthKit
 
 
+// HealthKit access is thread-safe; the only mutable state is the @Observable registrar,
+// which is itself thread-safe. Matches the @unchecked Sendable pattern used by SpeziHealthKit's HealthKit.
 @Observable
-class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
+final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible, @unchecked Sendable {
     private static let defaultLookbackDays = 14
+    private static let sleepWindowHour = 15
     @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
     required init() { }
@@ -58,8 +61,8 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
             throw HealthDataFetcherError.unsupportedMetric
         }
 
-        return statistics.map { stat in
-            (date: stat.startDate, value: metric.quantityValue(from: stat, unit: unit))
+        return try statistics.map { stat in
+            (date: stat.startDate, value: try metric.quantityValue(from: stat, unit: unit))
         }
     }
 
@@ -74,10 +77,10 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
         let startDay = calendar.startOfDay(for: startDate)
         let endDay = calendar.startOfDay(for: endDate)
 
-        // Build the full query range: 3 PM the day before startDay through 3 PM on the last day.
-        guard let queryStart = calendar.date(bySettingHour: 15, minute: 0, second: 0, of:
+        // Build the full query range: sleepWindowHour the day before startDay through sleepWindowHour on the last day.
+        guard let queryStart = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of:
                     calendar.date(byAdding: .day, value: -1, to: startDay) ?? startDay),
-              let queryEnd = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: endDay) else {
+              let queryEnd = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of: endDay) else {
             return []
         }
 
@@ -91,22 +94,37 @@ class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
             predicate: asleepPredicate
         )
 
-        // Split samples into sessions for proper overlap handling.
-        let sleepSessions = try allSamples.splitIntoSleepSessions()
+        let sessions = try allSamples.splitIntoSleepSessions().map {
+            SleepInterval(startDate: $0.startDate, endDate: $0.endDate, totalTimeSpentAsleep: $0.totalTimeSpentAsleep)
+        }
 
-        // Bucket sessions into per-day 3 PM–3 PM windows.
+        return Self.bucketSleepSessions(sessions: sessions, startDay: startDay, endDay: endDay, calendar: calendar)
+    }
+
+    struct SleepInterval: Sendable {
+        let startDate: Date
+        let endDate: Date
+        let totalTimeSpentAsleep: TimeInterval
+    }
+
+    static func bucketSleepSessions(
+        sessions: [SleepInterval],
+        startDay: Date,
+        endDay: Date,
+        calendar: Calendar = .current
+    ) -> [(date: Date, hours: Double)] {
         var dailySleepData: [(date: Date, hours: Double)] = []
         var currentDay = startDay
         while currentDay < endDay {
             guard let previousDay = calendar.date(byAdding: .day, value: -1, to: currentDay),
-                  let startOfSleep = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: previousDay),
-                  let endOfSleep = calendar.date(bySettingHour: 15, minute: 0, second: 0, of: currentDay) else {
+                  let startOfSleep = calendar.date(bySettingHour: sleepWindowHour, minute: 0, second: 0, of: previousDay),
+                  let endOfSleep = calendar.date(bySettingHour: sleepWindowHour, minute: 0, second: 0, of: currentDay) else {
                 dailySleepData.append((date: currentDay, hours: 0))
                 currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay) ?? endDay
                 continue
             }
 
-            let secondsAsleep = sleepSessions
+            let secondsAsleep = sessions
                 .filter { $0.startDate < endOfSleep && $0.endDate > startOfSleep }
                 .reduce(0.0) { $0 + $1.totalTimeSpentAsleep }
 
