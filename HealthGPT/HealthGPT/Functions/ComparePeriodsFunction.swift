@@ -32,22 +32,22 @@ struct ComparePeriodsFunction: LLMFunction {
 
     let healthDataFetcher: HealthDataFetcher
 
-    private static func format(range: (start: Date, end: Date)) -> String {
+    private static func formatDateRange(_ range: (start: Date, end: Date)) -> String {
         let style = Date.FormatStyle.dateTime.month(.abbreviated).day()
         return "\(range.start.formatted(style)) - \(range.end.formatted(style))"
     }
 
     static func resolveRange(
-        start: Int,
-        end: Int,
+        startDaysAgo: Int,
+        endDaysAgo: Int,
         relativeTo now: Date,
         calendar: Calendar = .current
     ) throws -> (start: Date, end: Date) {
-        guard start >= 0, end >= 0 else {
+        guard startDaysAgo >= 0, endDaysAgo >= 0 else {
             throw HealthDataFetcherError.invalidDateRange
         }
-        guard let startDate = calendar.date(byAdding: .day, value: -max(start, end), to: now),
-              let endDate = calendar.date(byAdding: .day, value: -min(start, end), to: now) else {
+        guard let startDate = calendar.date(byAdding: .day, value: -max(startDaysAgo, endDaysAgo), to: now),
+              let endDate = calendar.date(byAdding: .day, value: -min(startDaysAgo, endDaysAgo), to: now) else {
             throw HealthDataFetcherError.invalidDateRange
         }
         return (startDate, endDate)
@@ -68,41 +68,41 @@ struct ComparePeriodsFunction: LLMFunction {
         let period1Range: (start: Date, end: Date)
         let period2Range: (start: Date, end: Date)
         do {
-            period1Range = try Self.resolveRange(start: period1Start, end: period1End, relativeTo: .now)
-            period2Range = try Self.resolveRange(start: period2Start, end: period2End, relativeTo: .now)
+            period1Range = try Self.resolveRange(startDaysAgo: period1Start, endDaysAgo: period1End, relativeTo: .now)
+            period2Range = try Self.resolveRange(startDaysAgo: period2Start, endDaysAgo: period2End, relativeTo: .now)
         } catch {
             return "Error: period offsets must be non-negative days."
         }
 
-        let period1Mean = try await averageValue(for: metric, from: period1Range.start, to: period1Range.end)
-        let period2Mean = try await averageValue(for: metric, from: period2Range.start, to: period2Range.end)
+        let period1Average = try await averageValue(for: metric, from: period1Range.start, to: period1Range.end)
+        let period2Average = try await averageValue(for: metric, from: period2Range.start, to: period2Range.end)
 
-        let period1Label = "Period 1 (\(Self.format(range: period1Range)))"
-        let period2Label = "Period 2 (\(Self.format(range: period2Range)))"
+        let period1Label = "Period 1 (\(Self.formatDateRange(period1Range)))"
+        let period2Label = "Period 2 (\(Self.formatDateRange(period2Range)))"
 
-        switch (period1Mean, period2Mean) {
+        switch (period1Average, period2Average) {
         case (nil, nil):
             return "\(metric.displayName) comparison: no data in either period."
-        case let (nil, baseline?):
+        case let (nil, period2Value?):
             return """
             \(metric.displayName) comparison:
             \(period1Label): no data
-            \(period2Label): avg \(String(format: "%.1f", baseline))
+            \(period2Label): avg \(String(format: "%.1f", period2Value))
             """
-        case let (current?, nil):
+        case let (period1Value?, nil):
             return """
             \(metric.displayName) comparison:
-            \(period1Label): avg \(String(format: "%.1f", current))
+            \(period1Label): avg \(String(format: "%.1f", period1Value))
             \(period2Label): no data
             """
-        case let (current?, baseline?):
-            let difference = current - baseline
-            let percentChangeLabel = Self.percentChange(current: current, baseline: baseline)
+        case let (period1Value?, period2Value?):
+            let difference = period1Value - period2Value
+            let percentChangeLabel = Self.percentChange(current: period1Value, baseline: period2Value)
                 .map { String(format: "%+.1f%%", $0) } ?? "no baseline data"
             return """
             \(metric.displayName) comparison:
-            \(period1Label): avg \(String(format: "%.1f", current))
-            \(period2Label): avg \(String(format: "%.1f", baseline))
+            \(period1Label): avg \(String(format: "%.1f", period1Value))
+            \(period2Label): avg \(String(format: "%.1f", period2Value))
             Difference: \(String(format: "%+.1f", difference)) (\(percentChangeLabel))
             """
         }

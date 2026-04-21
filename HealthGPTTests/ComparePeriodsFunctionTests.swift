@@ -31,8 +31,8 @@ struct ComparePeriodsFunctionTests {
 
     @Test
     func resolveRangeNormalizesReversedOffsets() throws {
-        let inOrder = try ComparePeriodsFunction.resolveRange(start: 7, end: 0, relativeTo: Self.referenceDate, calendar: Self.calendar)
-        let reversed = try ComparePeriodsFunction.resolveRange(start: 0, end: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
+        let inOrder = try ComparePeriodsFunction.resolveRange(startDaysAgo: 7, endDaysAgo: 0, relativeTo: Self.referenceDate, calendar: Self.calendar)
+        let reversed = try ComparePeriodsFunction.resolveRange(startDaysAgo: 0, endDaysAgo: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
 
         #expect(inOrder.start == reversed.start)
         #expect(inOrder.end == reversed.end)
@@ -41,7 +41,7 @@ struct ComparePeriodsFunctionTests {
 
     @Test
     func resolveRangeReturnsExpectedDayOffsets() throws {
-        let range = try ComparePeriodsFunction.resolveRange(start: 14, end: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
+        let range = try ComparePeriodsFunction.resolveRange(startDaysAgo: 14, endDaysAgo: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
 
         let expectedStart = Self.calendar.date(byAdding: .day, value: -14, to: Self.referenceDate)
         let expectedEnd = Self.calendar.date(byAdding: .day, value: -7, to: Self.referenceDate)
@@ -52,7 +52,7 @@ struct ComparePeriodsFunctionTests {
 
     @Test
     func resolveRangeAllowsZeroLengthWindow() throws {
-        let range = try ComparePeriodsFunction.resolveRange(start: 3, end: 3, relativeTo: Self.referenceDate, calendar: Self.calendar)
+        let range = try ComparePeriodsFunction.resolveRange(startDaysAgo: 3, endDaysAgo: 3, relativeTo: Self.referenceDate, calendar: Self.calendar)
 
         #expect(range.start == range.end)
     }
@@ -60,10 +60,10 @@ struct ComparePeriodsFunctionTests {
     @Test
     func resolveRangeRejectsNegativeOffsets() {
         #expect(throws: HealthDataFetcherError.invalidDateRange) {
-            _ = try ComparePeriodsFunction.resolveRange(start: -1, end: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
+            _ = try ComparePeriodsFunction.resolveRange(startDaysAgo: -1, endDaysAgo: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
         }
         #expect(throws: HealthDataFetcherError.invalidDateRange) {
-            _ = try ComparePeriodsFunction.resolveRange(start: 7, end: -3, relativeTo: Self.referenceDate, calendar: Self.calendar)
+            _ = try ComparePeriodsFunction.resolveRange(startDaysAgo: 7, endDaysAgo: -3, relativeTo: Self.referenceDate, calendar: Self.calendar)
         }
     }
 
