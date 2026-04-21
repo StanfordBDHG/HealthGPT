@@ -16,7 +16,6 @@ import SpeziHealthKit
 @Observable
 final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible, @unchecked Sendable {
     static let defaultLookbackDays = 14
-    private static let sleepWindowHour = 15
     @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
     required init() { }
@@ -66,7 +65,7 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
         }
     }
 
-    /// Fetches sleep data for an arbitrary date range using 3PM-3PM sleep windows.
+    /// Fetches sleep data for an arbitrary date range, attributing each sleep session to the calendar day it ended on.
     ///
     /// - Parameters:
     ///   - startDate: The start of the date range.
@@ -77,74 +76,29 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
         let startDay = calendar.startOfDay(for: startDate)
         let endDay = calendar.startOfDay(for: endDate)
 
-        // Build the full query range: sleepWindowHour the day before startDay through sleepWindowHour on the last day.
-        guard let queryStart = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of:
-                    calendar.date(byAdding: .day, value: -1, to: startDay) ?? startDay),
-              let queryEnd = calendar.date(bySettingHour: Self.sleepWindowHour, minute: 0, second: 0, of: endDay) else {
+        // Look back a day so a session whose wake-up is on startDay but began the previous evening is fully captured.
+        guard let queryStart = calendar.date(byAdding: .day, value: -1, to: startDay) else {
             throw HealthDataFetcherError.invalidDateRange
         }
 
-        // Single HealthKit query for the entire range.
-        let asleepPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(
-            equalTo: HKCategoryValueSleepAnalysis.allAsleepValues
-        )
-        let allSamples = try await healthKit.query(
+        let samples = try await healthKit.query(
             .sleepAnalysis,
-            timeRange: HealthKitQueryTimeRange(queryStart..<queryEnd),
-            predicate: asleepPredicate
+            timeRange: HealthKitQueryTimeRange(queryStart..<endDay)
+        )
+        let sessions = try samples.splitIntoSleepSessions()
+
+        let secondsByDay = Dictionary(
+            sessions.map { (calendar.startOfDay(for: $0.endDate), $0.totalTimeSpentAsleep) },
+            uniquingKeysWith: +
         )
 
-        let sessions = try allSamples.splitIntoSleepSessions().map {
-            SleepInterval(startDate: $0.startDate, endDate: $0.endDate, totalTimeSpentAsleep: $0.totalTimeSpentAsleep)
+        var result: [(date: Date, hours: Double)] = []
+        var day = startDay
+        while day < endDay {
+            result.append((date: day, hours: (secondsByDay[day] ?? 0) / 3600))
+            guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
+            day = next
         }
-
-        return Self.bucketSleepSessions(sessions: sessions, startDay: startDay, endDay: endDay, calendar: calendar)
+        return result
     }
-
-    struct SleepInterval: Sendable {
-        let startDate: Date
-        let endDate: Date
-        let totalTimeSpentAsleep: TimeInterval
-    }
-
-    static func bucketSleepSessions(
-        sessions: [SleepInterval],
-        startDay: Date,
-        endDay: Date,
-        calendar: Calendar = .current
-    ) -> [(date: Date, hours: Double)] {
-        var dailySleepData: [(date: Date, hours: Double)] = []
-        var currentDay = startDay
-        while currentDay < endDay {
-            guard let previousDay = calendar.date(byAdding: .day, value: -1, to: currentDay),
-                  let startOfSleep = calendar.date(bySettingHour: sleepWindowHour, minute: 0, second: 0, of: previousDay),
-                  let endOfSleep = calendar.date(bySettingHour: sleepWindowHour, minute: 0, second: 0, of: currentDay) else {
-                dailySleepData.append((date: currentDay, hours: 0))
-                currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay) ?? endDay
-                continue
-            }
-
-            // Clip each session to the window so a session that straddles the 3 PM boundary
-            // doesn't get fully counted in both adjacent days.
-            let secondsAsleep = sessions.reduce(0.0) { partial, session in
-                let overlapStart = max(session.startDate, startOfSleep)
-                let overlapEnd = min(session.endDate, endOfSleep)
-                guard overlapEnd > overlapStart else {
-                    return partial
-                }
-                let sessionDuration = session.endDate.timeIntervalSince(session.startDate)
-                guard sessionDuration > 0 else {
-                    return partial
-                }
-                let proportion = min(1, overlapEnd.timeIntervalSince(overlapStart) / sessionDuration)
-                return partial + session.totalTimeSpentAsleep * proportion
-            }
-
-            dailySleepData.append((date: currentDay, hours: secondsAsleep / (60 * 60)))
-            currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay) ?? endDay
-        }
-
-        return dailySleepData
-    }
-
 }
