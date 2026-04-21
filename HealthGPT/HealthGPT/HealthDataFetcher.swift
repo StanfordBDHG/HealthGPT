@@ -20,6 +20,30 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
 
     required init() { }
 
+    /// Buckets sleep sessions by the calendar day each session ended on, then emits one `(date, hours)` entry
+    /// per day in `[startDay, endDay)`. Days with no sessions yield 0 hours. Sessions outside the range are
+    /// ignored. Multiple sessions ending on the same day are summed.
+    static func bucketSleepSessionsByEndDay(
+        sessions: [(endDate: Date, totalTimeSpentAsleep: TimeInterval)],
+        startDay: Date,
+        endDay: Date,
+        calendar: Calendar = .current
+    ) -> [(date: Date, hours: Double)] {
+        let secondsByDay = Dictionary(
+            sessions.map { (calendar.startOfDay(for: $0.endDate), $0.totalTimeSpentAsleep) },
+            uniquingKeysWith: +
+        )
+
+        var result: [(date: Date, hours: Double)] = []
+        var day = startDay
+        while day < endDay {
+            result.append((date: day, hours: (secondsByDay[day] ?? 0) / 3600))
+            guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
+            day = next
+        }
+        return result
+    }
+
     // MARK: - Flexible Date-Range Queries
 
     /// Fetches quantity data for an arbitrary date range, returning daily values with dates.
@@ -85,20 +109,15 @@ final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessib
             .sleepAnalysis,
             timeRange: HealthKitQueryTimeRange(queryStart..<endDay)
         )
-        let sessions = try samples.splitIntoSleepSessions()
-
-        let secondsByDay = Dictionary(
-            sessions.map { (calendar.startOfDay(for: $0.endDate), $0.totalTimeSpentAsleep) },
-            uniquingKeysWith: +
-        )
-
-        var result: [(date: Date, hours: Double)] = []
-        var day = startDay
-        while day < endDay {
-            result.append((date: day, hours: (secondsByDay[day] ?? 0) / 3600))
-            guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
-            day = next
+        let sessions = try samples.splitIntoSleepSessions().map {
+            (endDate: $0.endDate, totalTimeSpentAsleep: $0.totalTimeSpentAsleep)
         }
-        return result
+
+        return Self.bucketSleepSessionsByEndDay(
+            sessions: sessions,
+            startDay: startDay,
+            endDay: endDay,
+            calendar: calendar
+        )
     }
 }
