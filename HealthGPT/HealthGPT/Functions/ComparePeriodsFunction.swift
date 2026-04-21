@@ -32,6 +32,34 @@ struct ComparePeriodsFunction: LLMFunction {
 
     let healthDataFetcher: HealthDataFetcher
 
+    private static func format(range: (start: Date, end: Date)) -> String {
+        let style = Date.FormatStyle.dateTime.month(.abbreviated).day()
+        return "\(range.start.formatted(style)) - \(range.end.formatted(style))"
+    }
+
+    static func resolveRange(
+        start: Int,
+        end: Int,
+        relativeTo now: Date,
+        calendar: Calendar = .current
+    ) throws -> (start: Date, end: Date) {
+        guard start >= 0, end >= 0 else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+        guard let startDate = calendar.date(byAdding: .day, value: -max(start, end), to: now),
+              let endDate = calendar.date(byAdding: .day, value: -min(start, end), to: now) else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+        return (startDate, endDate)
+    }
+
+    static func percentChange(current: Double, baseline: Double) -> Double? {
+        guard baseline != 0 else {
+            return nil
+        }
+        return ((current - baseline) / baseline) * 100
+    }
+
     func execute() async throws -> String? {
         guard let period1Start, let period1End, let period2Start, let period2End else {
             return "Error: period1Start, period1End, period2Start, and period2End are all required (non-negative integer days ago)."
@@ -78,34 +106,6 @@ struct ComparePeriodsFunction: LLMFunction {
             Difference: \(String(format: "%+.1f", difference)) (\(percentChangeLabel))
             """
         }
-    }
-
-    private static func format(range: (start: Date, end: Date)) -> String {
-        let style = Date.FormatStyle.dateTime.month(.abbreviated).day()
-        return "\(range.start.formatted(style)) - \(range.end.formatted(style))"
-    }
-
-    static func resolveRange(
-        start: Int,
-        end: Int,
-        relativeTo now: Date,
-        calendar: Calendar = .current
-    ) throws -> (start: Date, end: Date) {
-        guard start >= 0, end >= 0 else {
-            throw HealthDataFetcherError.invalidDateRange
-        }
-        guard let startDate = calendar.date(byAdding: .day, value: -max(start, end), to: now),
-              let endDate = calendar.date(byAdding: .day, value: -min(start, end), to: now) else {
-            throw HealthDataFetcherError.invalidDateRange
-        }
-        return (startDate, endDate)
-    }
-
-    static func percentChange(current: Double, baseline: Double) -> Double? {
-        guard baseline != 0 else {
-            return nil
-        }
-        return ((current - baseline) / baseline) * 100
     }
 
     private func averageValue(for metric: HealthMetric, from startDate: Date, to endDate: Date) async throws -> Double? {
