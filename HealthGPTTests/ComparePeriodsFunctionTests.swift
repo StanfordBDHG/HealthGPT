@@ -115,8 +115,18 @@ struct ComparePeriodsFunctionTests {
 
     @Test
     func resolveRangeNormalizesReversedOffsets() throws {
-        let inOrder = try ComparePeriodsFunction.resolveRange(startDaysAgo: 7, endDaysAgo: 0, relativeTo: Self.referenceDate, calendar: Self.calendar)
-        let reversed = try ComparePeriodsFunction.resolveRange(startDaysAgo: 0, endDaysAgo: 7, relativeTo: Self.referenceDate, calendar: Self.calendar)
+        let inOrder = try ComparePeriodsFunction.resolveRange(
+            startDaysAgo: 7,
+            endDaysAgo: 0,
+            relativeTo: Self.referenceDate,
+            calendar: Self.calendar
+        )
+        let reversed = try ComparePeriodsFunction.resolveRange(
+            startDaysAgo: 0,
+            endDaysAgo: 7,
+            relativeTo: Self.referenceDate,
+            calendar: Self.calendar
+        )
 
         #expect(inOrder.start == reversed.start)
         #expect(inOrder.end == reversed.end)
