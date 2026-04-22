@@ -11,6 +11,35 @@ import Foundation
 
 
 extension HealthDataFetcher {
+    struct DailyMetricValues {
+        var steps: [Date: Double] = [:]
+        var activeEnergy: [Date: Double] = [:]
+        var exerciseMinutes: [Date: Double] = [:]
+        var bodyWeight: [Date: Double] = [:]
+        var sleepHours: [Date: Double] = [:]
+        var restingHeartRate: [Date: Double] = [:]
+    }
+
+    static func buildHealthData(
+        for dayDates: [Date],
+        values: DailyMetricValues,
+        dateLabel: (Date) -> String = {
+            DateFormatter.localizedString(from: $0, dateStyle: .short, timeStyle: .none)
+        }
+    ) -> [HealthData] {
+        dayDates.map { day in
+            HealthData(
+                date: dateLabel(day),
+                steps: values.steps[day],
+                activeEnergy: values.activeEnergy[day],
+                exerciseMinutes: values.exerciseMinutes[day],
+                bodyWeight: values.bodyWeight[day],
+                sleepHours: values.sleepHours[day],
+                restingHeartRate: values.restingHeartRate[day]
+            )
+        }
+    }
+
     /// Fetches and processes health data for the configured lookback window.
     ///
     /// - Returns: An array of `HealthData` objects, one per day over `HealthDataFetcher.defaultLookbackDays`.
@@ -38,17 +67,15 @@ extension HealthDataFetcher {
         let restingHeartRate = await dailyValues(for: .restingHeartRate, from: startDate, to: endDate, calendar: calendar)
         let sleepHours = await dailySleepHours(from: startDate, to: endDate, calendar: calendar)
 
-        return dayDates.map { day in
-            HealthData(
-                date: DateFormatter.localizedString(from: day, dateStyle: .short, timeStyle: .none),
-                steps: steps[day],
-                activeEnergy: activeEnergy[day],
-                exerciseMinutes: exerciseMinutes[day],
-                bodyWeight: bodyWeight[day],
-                sleepHours: sleepHours[day],
-                restingHeartRate: restingHeartRate[day]
-            )
-        }
+        let values = DailyMetricValues(
+            steps: steps,
+            activeEnergy: activeEnergy,
+            exerciseMinutes: exerciseMinutes,
+            bodyWeight: bodyWeight,
+            sleepHours: sleepHours,
+            restingHeartRate: restingHeartRate
+        )
+        return Self.buildHealthData(for: dayDates, values: values)
     }
 
     private func dailyValues(

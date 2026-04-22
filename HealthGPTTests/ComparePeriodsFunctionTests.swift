@@ -13,6 +13,13 @@ import Testing
 
 @Suite("Compare Periods Function Tests")
 struct ComparePeriodsFunctionTests {
+    enum MissingPeriodOffset: CaseIterable, Sendable {
+        case period1Start
+        case period1End
+        case period2Start
+        case period2End
+    }
+
     private static let calendar: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: "UTC") ?? .gmt
@@ -28,6 +35,39 @@ struct ComparePeriodsFunctionTests {
         components.timeZone = TimeZone(identifier: "UTC")
         return calendar.date(from: components) ?? Date(timeIntervalSince1970: 0)
     }()
+
+    @Test(arguments: MissingPeriodOffset.allCases)
+    func resolvePeriodOffsetsRequiresEveryOffset(missingOffset: MissingPeriodOffset) throws {
+        let result = ComparePeriodsFunction.resolvePeriodOffsets(
+            period1Start: missingOffset == .period1Start ? nil : 7,
+            period1End: missingOffset == .period1End ? nil : 0,
+            period2Start: missingOffset == .period2Start ? nil : 14,
+            period2End: missingOffset == .period2End ? nil : 7
+        )
+
+        guard case .missing(let message) = result else {
+            Issue.record("Expected .missing for missing \(missingOffset)")
+            return
+        }
+        #expect(message.contains("period1Start"))
+        #expect(message.contains("period1End"))
+        #expect(message.contains("period2Start"))
+        #expect(message.contains("period2End"))
+        #expect(message.contains("required"))
+    }
+
+    @Test
+    func executeReturnsRequiredOffsetsErrorBeforeFetchingData() async throws {
+        let function = ComparePeriodsFunction(healthDataFetcher: HealthDataFetcher())
+
+        let result = try await function.execute()
+
+        #expect(result?.contains("period1Start") == true)
+        #expect(result?.contains("period1End") == true)
+        #expect(result?.contains("period2Start") == true)
+        #expect(result?.contains("period2End") == true)
+        #expect(result?.contains("required") == true)
+    }
 
     @Test
     func resolveRangeNormalizesReversedOffsets() throws {

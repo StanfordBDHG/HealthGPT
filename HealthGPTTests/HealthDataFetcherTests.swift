@@ -41,6 +41,34 @@ struct HealthDataFetcherTests {
     }
 
     @Test
+    func buildHealthDataAlignsSparseMetricValuesByDate() {
+        let firstDay = Self.day(2026, 4, 18)
+        let secondDay = Self.day(2026, 4, 19)
+        let thirdDay = Self.day(2026, 4, 20)
+
+        let result = HealthDataFetcher.buildHealthData(
+            for: [firstDay, secondDay, thirdDay],
+            values: .init(
+                steps: [secondDay: 5_102],
+                activeEnergy: [firstDay: 312],
+                sleepHours: [thirdDay: 7.5],
+                restingHeartRate: [secondDay: 62]
+            ),
+            dateLabel: { date in
+                String(Self.calendar.component(.day, from: date))
+            }
+        )
+
+        #expect(result.map(\.date) == ["18", "19", "20"])
+        #expect(result[0].activeEnergy == 312)
+        #expect(result[0].steps == nil)
+        #expect(result[1].steps == 5_102)
+        #expect(result[1].restingHeartRate == 62)
+        #expect(result[2].sleepHours == 7.5)
+        #expect(result[2].activeEnergy == nil)
+    }
+
+    @Test
     func attributesSessionsToTheCalendarDayTheyEndedOn() {
         // Two sessions that began the previous evening but ended on the subject day.
         let sessions: [Session] = [

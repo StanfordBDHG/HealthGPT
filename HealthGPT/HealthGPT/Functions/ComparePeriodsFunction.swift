@@ -11,6 +11,18 @@ import SpeziLLMOpenAI
 
 
 struct ComparePeriodsFunction: LLMFunction {
+    struct PeriodOffsets: Equatable, Sendable {
+        let period1Start: Int
+        let period1End: Int
+        let period2Start: Int
+        let period2End: Int
+    }
+
+    enum OffsetsResolution: Equatable, Sendable {
+        case resolved(PeriodOffsets)
+        case missing(message: String)
+    }
+
     static let name: String = "compare_periods"
     static let description: String = """
         Compare a health metric between two time periods. \
@@ -31,6 +43,27 @@ struct ComparePeriodsFunction: LLMFunction {
     @Parameter(description: "End of period 2 in days ago (required)", minimum: 0) var period2End: Int?
 
     let healthDataFetcher: HealthDataFetcher
+
+    static func resolvePeriodOffsets(
+        period1Start: Int?,
+        period1End: Int?,
+        period2Start: Int?,
+        period2End: Int?
+    ) -> OffsetsResolution {
+        guard let period1Start, let period1End, let period2Start, let period2End else {
+            let message = "Error: period1Start, period1End, period2Start, and "
+                + "period2End are all required (non-negative integer days ago)."
+            return .missing(message: message)
+        }
+        return .resolved(
+            PeriodOffsets(
+                period1Start: period1Start,
+                period1End: period1End,
+                period2Start: period2Start,
+                period2End: period2End
+            )
+        )
+    }
 
     private static func formatDateRange(_ range: (start: Date, end: Date)) -> String {
         let style = Date.FormatStyle.dateTime.month(.abbreviated).day()
@@ -53,6 +86,26 @@ struct ComparePeriodsFunction: LLMFunction {
         return (startDate, endDate)
     }
 
+    static func resolveRanges(
+        from offsets: PeriodOffsets,
+        relativeTo now: Date,
+        calendar: Calendar = .current
+    ) throws -> (period1: (start: Date, end: Date), period2: (start: Date, end: Date)) {
+        let period1Range = try Self.resolveRange(
+            startDaysAgo: offsets.period1Start,
+            endDaysAgo: offsets.period1End,
+            relativeTo: now,
+            calendar: calendar
+        )
+        let period2Range = try Self.resolveRange(
+            startDaysAgo: offsets.period2Start,
+            endDaysAgo: offsets.period2End,
+            relativeTo: now,
+            calendar: calendar
+        )
+        return (period1Range, period2Range)
+    }
+
     static func percentChange(current: Double, baseline: Double) -> Double? {
         guard baseline != 0 else {
             return nil
@@ -61,24 +114,31 @@ struct ComparePeriodsFunction: LLMFunction {
     }
 
     func execute() async throws -> String? {
-        guard let period1Start, let period1End, let period2Start, let period2End else {
-            return "Error: period1Start, period1End, period2Start, and period2End are all required (non-negative integer days ago)."
+        let offsets: PeriodOffsets
+        switch Self.resolvePeriodOffsets(
+            period1Start: period1Start,
+            period1End: period1End,
+            period2Start: period2Start,
+            period2End: period2End
+        ) {
+        case .missing(let message):
+            return message
+        case .resolved(let resolved):
+            offsets = resolved
         }
 
-        let period1Range: (start: Date, end: Date)
-        let period2Range: (start: Date, end: Date)
+        let ranges: (period1: (start: Date, end: Date), period2: (start: Date, end: Date))
         do {
-            period1Range = try Self.resolveRange(startDaysAgo: period1Start, endDaysAgo: period1End, relativeTo: .now)
-            period2Range = try Self.resolveRange(startDaysAgo: period2Start, endDaysAgo: period2End, relativeTo: .now)
+            ranges = try Self.resolveRanges(from: offsets, relativeTo: .now)
         } catch {
             return "Error: period offsets must be non-negative days."
         }
 
-        let period1Average = try await averageValue(for: metric, from: period1Range.start, to: period1Range.end)
-        let period2Average = try await averageValue(for: metric, from: period2Range.start, to: period2Range.end)
+        let period1Average = try await averageValue(for: metric, from: ranges.period1.start, to: ranges.period1.end)
+        let period2Average = try await averageValue(for: metric, from: ranges.period2.start, to: ranges.period2.end)
 
-        let period1Label = "Period 1 (\(Self.formatDateRange(period1Range)))"
-        let period2Label = "Period 2 (\(Self.formatDateRange(period2Range)))"
+        let period1Label = "Period 1 (\(Self.formatDateRange(ranges.period1)))"
+        let period2Label = "Period 2 (\(Self.formatDateRange(ranges.period2)))"
 
         switch (period1Average, period2Average) {
         case (nil, nil):

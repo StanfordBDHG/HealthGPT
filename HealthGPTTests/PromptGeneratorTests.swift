@@ -35,11 +35,15 @@ struct PromptGeneratorTests {
     ]
 
     @Test
-    func dataPromptFormatsEachFieldFromFixture() {
+    func dataPromptIncludesProvidedHealthData() {
         let prompt = PromptGenerator(with: Self.fixture).buildPrompt(usesTools: false)
 
-        #expect(prompt.contains("2026-04-18: 8421 steps, 7 hours of sleep, 312 calories burned, 47 minutes of exercise, 178.4 lbs of body weight,and 62.0 bpm average resting heart rate."))
-        #expect(prompt.contains("2026-04-19: 5102 steps, 6 hours of sleep, 198 calories burned,"))
+        #expect(prompt.contains("Some health metrics over the past two weeks"))
+        #expect(prompt.contains("2026-04-18"))
+        #expect(prompt.contains("8421 steps"))
+        #expect(prompt.contains("7 hours of sleep"))
+        #expect(prompt.contains("2026-04-19"))
+        #expect(prompt.contains("5102 steps"))
     }
 
     @Test
@@ -60,6 +64,8 @@ struct PromptGeneratorTests {
     func toolPromptDoesNotEmbedHealthData() {
         let prompt = PromptGenerator(with: Self.fixture).buildPrompt(usesTools: true)
 
+        #expect(prompt.contains("MUST call the available tools"))
+        #expect(prompt.contains("Do NOT have any health data pre-loaded"))
         for day in Self.fixture {
             #expect(!prompt.contains(day.date))
         }

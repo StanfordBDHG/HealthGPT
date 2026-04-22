@@ -25,12 +25,23 @@ struct GetHealthMetricFunction: LLMFunction {
 
     let healthDataFetcher: HealthDataFetcher
 
-    func execute() async throws -> String? {
+    static func resolveDays(_ days: Int?) -> (days: Int?, error: String?) {
         guard let days else {
-            return "Error: `days` is required. Provide an integer between 1 and 90."
+            return (nil, "Error: `days` is required. Provide an integer between 1 and 90.")
         }
         guard (1...90).contains(days) else {
-            return "Error: `days` must be between 1 and 90 (received \(days))."
+            return (nil, "Error: `days` must be between 1 and 90 (received \(days)).")
+        }
+        return (days, nil)
+    }
+
+    func execute() async throws -> String? {
+        let resolvedDays = Self.resolveDays(days)
+        if let error = resolvedDays.error {
+            return error
+        }
+        guard let days = resolvedDays.days else {
+            throw HealthDataFetcherError.invalidDateRange
         }
 
         let endDate = Date.now
