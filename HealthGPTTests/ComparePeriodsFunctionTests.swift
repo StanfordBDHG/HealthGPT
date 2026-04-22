@@ -57,6 +57,50 @@ struct ComparePeriodsFunctionTests {
     }
 
     @Test
+    func resolvePeriodOffsetsHappyPathAssignsFields() throws {
+        let result = ComparePeriodsFunction.resolvePeriodOffsets(
+            period1Start: 7,
+            period1End: 0,
+            period2Start: 14,
+            period2End: 7
+        )
+
+        guard case .resolved(let offsets) = result else {
+            Issue.record("Expected .resolved when all offsets are provided")
+            return
+        }
+        #expect(offsets.period1Start == 7)
+        #expect(offsets.period1End == 0)
+        #expect(offsets.period2Start == 14)
+        #expect(offsets.period2End == 7)
+    }
+
+    @Test
+    func resolveRangesMapsPeriod1AndPeriod2IndependentOffsets() throws {
+        let offsets = ComparePeriodsFunction.PeriodOffsets(
+            period1Start: 7,
+            period1End: 0,
+            period2Start: 14,
+            period2End: 7
+        )
+
+        let ranges = try ComparePeriodsFunction.resolveRanges(
+            from: offsets,
+            relativeTo: Self.referenceDate,
+            calendar: Self.calendar
+        )
+
+        let expectedP1Start = Self.calendar.date(byAdding: .day, value: -7, to: Self.referenceDate)
+        let expectedP2Start = Self.calendar.date(byAdding: .day, value: -14, to: Self.referenceDate)
+        let expectedP2End = Self.calendar.date(byAdding: .day, value: -7, to: Self.referenceDate)
+
+        #expect(ranges.period1.start == expectedP1Start)
+        #expect(ranges.period1.end == Self.referenceDate)
+        #expect(ranges.period2.start == expectedP2Start)
+        #expect(ranges.period2.end == expectedP2End)
+    }
+
+    @Test
     func executeReturnsRequiredOffsetsErrorBeforeFetchingData() async throws {
         let function = ComparePeriodsFunction(healthDataFetcher: HealthDataFetcher())
 
