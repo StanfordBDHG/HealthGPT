@@ -55,7 +55,7 @@ Building and running HealthGPT requires a Mac with [Xcode 16.2](https://develope
 
 You can add queries for additional [HealthKit](https://developer.apple.com/documentation/healthkit) quantities and categories as follows:
 
-1. Update the SpeziHealthKit configuration in [`HealthGPT/HealthGPT/AppDelegate.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPTAppDelegate.swift) to include the additional data type(s). For more information about configuring SpeziHealthKit, please refer to the [official documentation](https://swiftpackageindex.com/StanfordSpezi/SpeziHealthKit/0.5.3/documentation/spezihealthkit).
+1. Update the SpeziHealthKit configuration in [`HealthGPT/HealthGPTAppDelegate.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPTAppDelegate.swift) to include the additional data type(s). For more information about configuring SpeziHealthKit, please refer to the [official documentation](https://swiftpackageindex.com/StanfordSpezi/SpeziHealthKit/0.5.3/documentation/spezihealthkit).
 2. Edit [`HealthGPT/HealthGPT/HealthDataFetcher.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/HealthDataFetcher.swift) to create appropriate query for your data type(s).
 3. Update the prompt in [`HealthGPT/HealthGPT/PromptGenerator.swift`](https://github.com/StanfordBDHG/HealthGPT/blob/main/HealthGPT/HealthGPT/PromptGenerator.swift) to pass the newly acquired data to the OpenAI API.
 
