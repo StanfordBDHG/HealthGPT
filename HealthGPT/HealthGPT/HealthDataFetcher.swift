@@ -8,171 +8,116 @@
 
 import HealthKit
 import Spezi
+import SpeziHealthKit
 
 
+// HealthKit access is thread-safe; the only mutable state is the @Observable registrar,
+// which is itself thread-safe. Matches the @unchecked Sendable pattern used by SpeziHealthKit's HealthKit.
 @Observable
-class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible {
-    @ObservationIgnored private let healthStore = HKHealthStore()
-    
-    required init() { }
-    
+final class HealthDataFetcher: DefaultInitializable, Module, EnvironmentAccessible, @unchecked Sendable {
+    static let defaultLookbackDays = 14
+    @ObservationIgnored @Dependency(HealthKit.self) private var healthKit
 
-    /// Fetches the user's health data for the specified quantity type identifier for the last two weeks.
+    required init() { }
+
+    /// Buckets sleep sessions by the calendar day each session ended on, then emits one `(date, hours)` entry
+    /// per day in `[startDay, endDay)`. Days with no sessions yield 0 hours. Sessions outside the range are
+    /// ignored. Multiple sessions ending on the same day are summed.
+    static func bucketSleepSessionsByEndDay(
+        sessions: [(endDate: Date, totalTimeSpentAsleep: TimeInterval)],
+        startDay: Date,
+        endDay: Date,
+        calendar: Calendar = .current
+    ) -> [(date: Date, hours: Double)] {
+        let secondsByDay = Dictionary(
+            sessions.map { (calendar.startOfDay(for: $0.endDate), $0.totalTimeSpentAsleep) },
+            uniquingKeysWith: +
+        )
+
+        var result: [(date: Date, hours: Double)] = []
+        var day = startDay
+        while day < endDay {
+            result.append((date: day, hours: (secondsByDay[day] ?? 0) / 3600))
+            guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
+            day = next
+        }
+        return result
+    }
+
+    // MARK: - Flexible Date-Range Queries
+
+    /// Fetches quantity data for an arbitrary date range, returning daily values with dates.
     ///
     /// - Parameters:
-    ///   - identifier: The `HKQuantityTypeIdentifier` representing the type of health data to fetch.
-    ///   - unit: The `HKUnit` to use for the fetched health data values.
-    ///   - options: The `HKStatisticsOptions` to use when fetching the health data.
-    /// - Returns: An array of `Double` values representing the daily health data for the specified identifier.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksQuantityData(
-        for identifier: HKQuantityTypeIdentifier,
-        unit: HKUnit,
-        options: HKStatisticsOptions
-    ) async throws -> [Double] {
-        guard let quantityType = HKObjectType.quantityType(forIdentifier: identifier) else {
-            throw HealthDataFetcherError.invalidObjectType
+    ///   - metric: The health metric to fetch.
+    ///   - startDate: The start of the date range.
+    ///   - endDate: The end of the date range.
+    /// - Returns: An array of tuples containing the date and value for each day.
+    func fetchQuantityData(
+        for metric: HealthMetric,
+        from startDate: Date,
+        to endDate: Date
+    ) async throws -> [(date: Date, value: Double)] {
+        guard let sampleType = metric.sampleType else {
+            throw HealthDataFetcherError.unsupportedMetric
         }
+        let timeRange = HealthKitQueryTimeRange(startDate..<endDate)
+        let unit = sampleType.displayUnit
+        let statistics: [HKStatistics]
 
-        let predicate = createLastTwoWeeksPredicate()
-
-        let quantityLastTwoWeeks = HKSamplePredicate.quantitySample(
-            type: quantityType,
-            predicate: predicate
-        )
-
-        let query = HKStatisticsCollectionQueryDescriptor(
-            predicate: quantityLastTwoWeeks,
-            options: options,
-            anchorDate: Date.startOfDay(),
-            intervalComponents: DateComponents(day: 1)
-        )
-
-        let quantityCounts = try await query.result(for: healthStore)
-
-        var dailyData = [Double]()
-
-        quantityCounts.enumerateStatistics(
-            from: Date().twoWeeksAgoStartOfDay(),
-            to: Date.startOfDay()
-        ) { statistics, _ in
-            if let quantity = statistics.sumQuantity() {
-                dailyData.append(quantity.doubleValue(for: unit))
-            } else {
-                dailyData.append(0)
-            }
-        }
-
-        return dailyData
-    }
-
-    /// Fetches the user's step count data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily step counts.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksStepCount() async throws -> [Double] {
-        try await fetchLastTwoWeeksQuantityData(
-            for: .stepCount,
-            unit: HKUnit.count(),
-            options: [.cumulativeSum]
-        )
-    }
-
-    /// Fetches the user's active energy burned data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily active energy burned.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksActiveEnergy() async throws -> [Double] {
-        try await fetchLastTwoWeeksQuantityData(
-            for: .activeEnergyBurned,
-            unit: HKUnit.largeCalorie(),
-            options: [.cumulativeSum]
-        )
-    }
-
-    /// Fetches the user's exercise time data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily exercise times in minutes.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksExerciseTime() async throws -> [Double] {
-        try await fetchLastTwoWeeksQuantityData(
-            for: .appleExerciseTime,
-            unit: .minute(),
-            options: [.cumulativeSum]
-        )
-    }
-
-    /// Fetches the user's body weight data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily body weights in pounds.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksBodyWeight() async throws -> [Double] {
-        try await fetchLastTwoWeeksQuantityData(
-            for: .bodyMass,
-            unit: .pound(),
-            options: [.discreteAverage]
-        )
-    }
-
-    /// Fetches the user's resting heart rate data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily average resting heart rate.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksRestingHeartRate() async throws -> [Double] {
-        try await fetchLastTwoWeeksQuantityData(
-            for: .restingHeartRate,
-            unit: .count().unitDivided(by: .minute()),
-            options: [.discreteAverage]
-        )
-    }
-
-    /// Fetches the user's sleep data for the last two weeks.
-    ///
-    /// - Returns: An array of `Double` values representing daily sleep duration in hours.
-    /// - Throws: `HealthDataFetcherError` if the data cannot be fetched.
-    func fetchLastTwoWeeksSleep() async throws -> [Double] {
-        var dailySleepData: [Double] = []
-        
-        // We go through all possible days in the last two weeks.
-        for day in -14..<0 {
-            // We start the calculation at 3 PM the previous day to 3 PM on the day in question.
-            guard let startOfSleepDay = Calendar.current.date(byAdding: DateComponents(day: day - 1), to: Date.startOfDay()),
-                  let startOfSleep = Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: startOfSleepDay),
-                  let endOfSleepDay = Calendar.current.date(byAdding: DateComponents(day: day), to: Date.startOfDay()),
-                  let endOfSleep = Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: endOfSleepDay) else {
-                dailySleepData.append(0)
-                continue
-            }
-            
-            
-            let sleepType = HKCategoryType(.sleepAnalysis)
-
-            let dateRangePredicate = HKQuery.predicateForSamples(withStart: startOfSleep, end: endOfSleep, options: .strictEndDate)
-            let allAsleepValuesPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(equalTo: HKCategoryValueSleepAnalysis.allAsleepValues)
-            let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateRangePredicate, allAsleepValuesPredicate])
-
-            let descriptor = HKSampleQueryDescriptor(
-                predicates: [.categorySample(type: sleepType, predicate: compoundPredicate)],
-                sortDescriptors: []
+        switch metric {
+        case .steps, .activeEnergy, .exerciseMinutes:
+            statistics = try await healthKit.statisticsQuery(
+                sampleType,
+                aggregatedBy: [.sum],
+                over: .day,
+                timeRange: timeRange
             )
-            
-            let results = try await descriptor.result(for: healthStore)
-
-            var secondsAsleep = 0.0
-            for result in results {
-                secondsAsleep += result.endDate.timeIntervalSince(result.startDate)
-            }
-            
-            // Append the hours of sleep for that date
-            dailySleepData.append(secondsAsleep / (60 * 60))
+        case .bodyWeight, .restingHeartRate:
+            statistics = try await healthKit.statisticsQuery(
+                sampleType,
+                aggregatedBy: [.average],
+                over: .day,
+                timeRange: timeRange
+            )
+        case .sleep:
+            throw HealthDataFetcherError.unsupportedMetric
         }
-        
-        return dailySleepData
+
+        return try statistics.map { stat in
+            (date: stat.startDate, value: try metric.quantityValue(from: stat, unit: unit))
+        }
     }
 
-    private func createLastTwoWeeksPredicate() -> NSPredicate {
-        let now = Date()
-        let startDate = Calendar.current.date(byAdding: DateComponents(day: -14), to: now) ?? Date()
-        return HKQuery.predicateForSamples(withStart: startDate, end: now, options: .strictStartDate)
+    /// Fetches sleep data for an arbitrary date range, attributing each sleep session to the calendar day it ended on.
+    ///
+    /// - Parameters:
+    ///   - startDate: The start of the date range.
+    ///   - endDate: The end of the date range.
+    /// - Returns: An array of tuples containing the date and sleep hours for each day.
+    func fetchSleepData(from startDate: Date, to endDate: Date) async throws -> [(date: Date, hours: Double)] {
+        let calendar = Calendar.current
+        let startDay = calendar.startOfDay(for: startDate)
+        let endDay = calendar.startOfDay(for: endDate)
+
+        // Look back a day so a session whose wake-up is on startDay but began the previous evening is fully captured.
+        guard let queryStart = calendar.date(byAdding: .day, value: -1, to: startDay) else {
+            throw HealthDataFetcherError.invalidDateRange
+        }
+
+        let samples = try await healthKit.query(
+            .sleepAnalysis,
+            timeRange: HealthKitQueryTimeRange(queryStart..<endDay)
+        )
+        let sessions = try samples.splitIntoSleepSessions().map {
+            (endDate: $0.endDate, totalTimeSpentAsleep: $0.totalTimeSpentAsleep)
+        }
+
+        return Self.bucketSleepSessionsByEndDay(
+            sessions: sessions,
+            startDay: startDay,
+            endDay: endDay,
+            calendar: calendar
+        )
     }
 }

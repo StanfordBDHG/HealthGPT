@@ -10,8 +10,8 @@ import Foundation
 import Spezi
 import SpeziChat
 import SpeziLLM
+import SpeziLLMFog
 import SpeziLLMLocal
-import SpeziLLMOpenAI
 import SpeziSpeechSynthesizer
 
 
@@ -22,19 +22,23 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     
     var llm: (any LLMSession)?
     @ObservationIgnored private var systemPrompt = ""
-    
+    @ObservationIgnored private var usesTools = false
+
     required init() { }
-    
-    
+
+
     /// Creates an `LLMRunner`, from an `LLMSchema` and injects the system prompt
     /// into the context, and assigns the resulting `LLMSession` to the `llm` property. For more
     /// information, please refer to the [`SpeziLLM`](https://swiftpackageindex.com/StanfordSpezi/SpeziLLM/documentation/spezillm) documentation.
     ///
-    /// - Parameter schema: The LLMSchema to use.
+    /// - Parameters:
+    ///   - schema: The LLMSchema to use.
+    ///   - usesTools: Whether to use the tool-use prompt (for sessions with function calling).
     @MainActor
-    func prepareLLM(with schema: any LLMSchema) async throws {
+    func prepareLLM(with schema: any LLMSchema, usesTools: Bool = false) async throws {
         let llm = self.llmRunner(with: schema)
-        self.systemPrompt = await generateSystemPrompt()
+        self.usesTools = usesTools
+        self.systemPrompt = await buildSystemPrompt(usesTools: usesTools)
 
         llm.context.append(systemMessage: self.systemPrompt)
         self.llm = llm
@@ -58,15 +62,13 @@ class HealthDataInterpreter: DefaultInitializable, Module, EnvironmentAccessible
     /// Resets the LLM context and re-injects the system prompt.
     @MainActor
     func resetChat() async {
-        self.systemPrompt = await self.generateSystemPrompt()
+        self.systemPrompt = await buildSystemPrompt(usesTools: usesTools)
         self.llm?.context.reset()
         self.llm?.context.append(systemMessage: self.systemPrompt)
     }
-    
-    /// Fetches updated health data using the `HealthDataFetcher`
-    /// and passes it to the `PromptGenerator` to create the system prompt.
-    private func generateSystemPrompt() async -> String {
-        let healthData = await self.healthDataFetcher.fetchAndProcessHealthData()
-        return PromptGenerator(with: healthData).buildMainPrompt()
+
+    private func buildSystemPrompt(usesTools: Bool) async -> String {
+        let healthData = usesTools ? [] : await self.healthDataFetcher.fetchAndProcessHealthData()
+        return PromptGenerator(with: healthData).buildPrompt(usesTools: usesTools)
     }
 }

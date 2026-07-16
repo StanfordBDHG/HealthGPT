@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh pr:*)",
+      "Bash(xcodebuild -project HealthGPT/HealthGPT.xcodeproj -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
+      "Bash(ls /Users/ahmed/Desktop/HealthGPT/HealthGPT/*.xcodeproj)",
+      "Bash(ls /Users/ahmed/Desktop/HealthGPT/*.xcodeproj)",
+      "Bash(ls /Users/ahmed/Desktop/HealthGPT/*.xcworkspace)",
+      "Bash(xcodebuild -project /Users/ahmed/Desktop/HealthGPT/HealthGPT.xcodeproj -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
+      "Bash(xcodebuild -project /Users/ahmed/Desktop/HealthGPT/HealthGPT.xcodeproj -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git rebase:*)",
+      "Bash(gh api:*)",
+      "Bash(gh search:*)",
+      "WebSearch",
+      "WebFetch(domain:livsycode.com)",
+      "WebFetch(domain:www.hackingwithswift.com)",
+      "Bash(grep -i -E '\\(chat|view|llm|fhir\\).*\\\\.swift$')",
+      "WebFetch(domain:swiftpackageindex.com)",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(d['name'], d['type']\\) for d in data]\")",
+      "Bash(xcodebuild -scheme HealthGPT -destination 'platform=iOS Simulator,id=5D5CE463-961D-483A-996A-81CAA65D05D2' -only-testing:HealthGPTTests test)",
+      "Bash(gh issue *)",
+      "Bash(git fetch *)",
+      "Bash(git update-ref *)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter 'sed \"/^Co-[Aa]uthored-[Bb]y: Claude/d\"' 3e8274805aab7b29829d90216611059f2aa16959..HEAD)",
+      "Bash(xcodebuild -list -project /Users/ahmed/Desktop/HealthGPT/HealthGPT.xcodeproj)",
+      "Bash(xcodebuild -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest' -configuration Debug -quiet build)",
+      "Bash(xcodebuild -project HealthGPT.xcodeproj -scheme HealthGPT -destination 'generic/platform=iOS Simulator' -quiet build)",
+      "Bash(xcodebuild -project HealthGPT.xcodeproj -scheme HealthGPT -destination 'generic/platform=iOS Simulator' build)",
+      "Bash(xcodebuild -scheme HealthGPT -destination 'generic/platform=iOS' -skipPackagePluginValidation CODE_SIGNING_ALLOWED=NO build)",
+      "Bash(git *)",
+      "Bash(xcodebuild -project HealthGPT.xcodeproj -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 16' build)",
+      "Bash(xcodebuild -project HealthGPT.xcodeproj -scheme HealthGPT -destination 'platform=iOS Simulator,name=iPhone 17' build)"
+    ]
+  }
+}
