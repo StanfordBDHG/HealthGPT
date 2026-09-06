@@ -29,6 +29,7 @@ struct HealthGPTView: View {
     @State private var modelSettingRefreshId = UUID()
     @State private var messageTaskId = 0
 
+<<<<<<< Updated upstream
     var body: some View {
         NavigationStack {
             if let llm = self.healthDataInterpreter.llm {
@@ -66,6 +67,20 @@ struct HealthGPTView: View {
             } else {
                 self.loadingChatView
             }
+=======
+    /// Whether the chat has no user or assistant messages yet.
+    /// Controls visibility of the suggestion banner overlay.
+    private var isChatEmpty: Bool {
+        guard let llm = healthDataInterpreter.llm else {
+            return true
+        }
+        return !llm.context.chat.contains(where: { $0.role == .user || $0.role == .assistant })
+    }
+
+    var body: some View {
+        NavigationStack {
+            chatViewContent
+>>>>>>> Stashed changes
         }
         .sheet(isPresented: $showSettings) {
             SettingsView(modelSettingRefreshId: $modelSettingRefreshId)
@@ -95,6 +110,53 @@ struct HealthGPTView: View {
         }
     }
     
+    @ViewBuilder private var chatViewContent: some View {
+        if let llm = self.healthDataInterpreter.llm {
+            let contextBinding = Binding { llm.context.chat } set: { llm.context.chat = $0 }
+            ZStack {
+                ChatView(contextBinding, exportFormat: .text)
+                    .speak(llm.context.chat, muted: !self.textToSpeech)
+                    .speechToolbarButton(muted: !self.$textToSpeech)
+                if isChatEmpty {
+                    VStack {
+                        Spacer()
+                        SuggestionBannerView { suggestion in
+                            contextBinding.wrappedValue.append(ChatEntity(role: .user, content: suggestion))
+                        }
+                        .padding(.bottom, 70)
+                    }
+                    .transition(.opacity)
+                    .animation(.easeInOut(duration: 0.3), value: isChatEmpty)
+                }
+            }
+            .viewStateAlert(state: llm.state)
+            .navigationTitle("WELCOME_TITLE")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    self.settingsButton
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    self.resetChatButton
+                }
+            }
+            .onChange(of: llm.context, initial: true) { _, _ in
+                if !llm.context.isEmpty && llm.state != .generating && llm.context.last?.role != .system {
+                    self.messageTaskId += 1
+                }
+            }
+            .task(id: self.messageTaskId) {
+                do {
+                    try await healthDataInterpreter.queryLLM()
+                } catch {
+                    showErrorAlert = true
+                    errorMessage = "Error querying LLM: \(error.localizedDescription)"
+                }
+            }
+        } else {
+            self.loadingChatView
+        }
+    }
+
     private var settingsButton: some View {
         Button(
             action: {
